@@ -1,0 +1,12 @@
+{
+  "title": "Alignment Bestiary",
+  "desc": "227 AI safety concepts as a 3D world map and a searchable wiki.",
+  "files": {
+    "bestiary-world-map.html": "bestiary-world-map.html",
+    "bestiary-wiki.html": "bestiary-wiki.html",
+    "preview-map.jpg": "site/preview-map.jpg",
+    "preview-wiki.jpg": "site/preview-wiki.jpg",
+    "data/": "data/",
+    "assets/": "assets/"
+  }
+}
