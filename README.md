@@ -11,9 +11,9 @@ straight through.
 - `bestiary-world-map.html` - the 3D world map: every concept is a creature on a landscape of
   families.
 - `bestiary-wiki.html` - the searchable wiki of all 227 entries.
-- `bestiary-interactives.html` - four interactive views: zooming from the whole bestiary down to
-  one beast, ideas followed forward and back through their genealogy, and the most contested
-  beasts with what supports and what argues against them. It runs on `support.js` and reads
+- `bestiary-interactives.html` - three interactive views: zooming from the whole bestiary down to
+  one beast's pros and cons (what supports it and what argues with it), and ideas followed
+  forward and back through their genealogy. It runs on `support.js` and reads
   `data/bestiary-interactives.json`.
 - `data/longtext/` - the written entry of each concept, one file per concept in Russian (`.md`)
   and one in English (`.en.md`), 227 of each.
