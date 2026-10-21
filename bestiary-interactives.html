@@ -14,19 +14,24 @@
 <style>
 body{margin:0;background:#0c0b0a;color:#efeae2;}
 a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
+/* CHANGED 2026-10-21: an always-visible scrollbar on the pros and cons columns (macOS hides overlay bars) */
+.zcol::-webkit-scrollbar{width:8px;}
+.zcol::-webkit-scrollbar-track{background:#1a1816;}
+.zcol::-webkit-scrollbar-thumb{background:#4a4540;}
+.zcol::-webkit-scrollbar-thumb:hover{background:#7d776f;}
+@supports not selector(::-webkit-scrollbar){.zcol{scrollbar-width:thin;scrollbar-color:#4a4540 #1a1816;}}
 </style>
 </helmet>
-<section data-screen-label="Turn 4 · Zoom" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px;display:flex;flex-direction:column;gap:36px;border-bottom:1px solid #26231f;">
+<section data-screen-label="Zoom" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px;display:flex;flex-direction:column;gap:36px;border-bottom:1px solid #26231f;">
   <div style="display:flex;flex-direction:column;gap:12px;max-width:1100px;">
-    <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;letter-spacing:.2em;">Bestiarium · zoom · turn 4</span>
+    <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;letter-spacing:.2em;">Bestiarium · zoom</span>
     <h1 style="margin:0;font:900 44px/1 'Unbounded',sans-serif;letter-spacing:-.02em;text-transform:uppercase;">Zoom in, <span style="color:#d8a24a;">zoom out</span></h1>
-    <span style="font:400 17px/1.5 'Onest',sans-serif;color:#9a948b;max-width:860px;text-wrap:pretty;"><a href="#4a" style="color:#efeae2;">4a</a> follows one beast from the whole bestiary down to what supports it and what argues with it, five steps, then picks the next beast.</span>
+    <span style="font:400 17px/1.5 'Onest',sans-serif;color:#9a948b;max-width:860px;text-wrap:pretty;">Follow one beast from the whole bestiary down to what supports it and what argues with it, five steps, then on to the next beast.</span>
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;">
     <div id="4a" onMouseEnter="{{ zIn }}" onMouseLeave="{{ zLeave }}" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;">
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <span style="align-self:flex-start;font:700 12px 'JetBrains Mono',monospace;background:#d8a24a;color:#0c0b0a;padding:3px 8px;">4a</span>
           <span style="font:700 26px 'Unbounded',sans-serif;">Zooming in</span>
           <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:700px;">Bestiary at six resolutions, one layer, one district, one circuit, one beast's pros and cons. Hover at any level to look closer; pick a step to stay on it.</span>
         </div>
@@ -57,7 +62,7 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
           </div>
           <sc-for list="{{ z1Isl }}" as="is"><div onMouseEnter="{{ is.enter }}" style="position:absolute;left:{{ is.x }};top:{{ is.y }};width:{{ is.w }};height:{{ is.h }};border-radius:42%;background:#141210;opacity:{{ is.o }};box-shadow:0 0 0 10px #12100e, 0 0 0 11px {{ is.ring }}, 0 0 0 22px #100f0d, 0 0 0 23px #1c1a17;transition:opacity .3s,left .9s cubic-bezier(.22,1,.36,1),top .9s cubic-bezier(.22,1,.36,1),width .9s cubic-bezier(.22,1,.36,1),height .9s cubic-bezier(.22,1,.36,1);"></div></sc-for>
           <svg viewBox="0 0 1136 600" style="position:absolute;inset:0;width:1136px;height:600px;pointer-events:none;overflow:visible;"><sc-for list="{{ z1Roads }}" as="r"><path d="{{ r.d }}" fill="none" stroke="#d8a24a" stroke-width="{{ r.w }}" stroke-linecap="round" opacity=".55"></path></sc-for></svg>
-          <sc-for list="{{ z1Tiles }}" as="t"><i onClick="{{ t.pick }}" style="position:absolute;left:{{ t.x }};top:{{ t.y }};width:13px;height:13px;background:{{ t.c }};outline:{{ t.ol }};outline-offset:1px;cursor:pointer;transition:left 1s cubic-bezier(.22,1,.36,1) {{ t.d }},top 1s cubic-bezier(.22,1,.36,1) {{ t.d }},background .8s;"></i></sc-for>
+          <sc-for list="{{ z1Tiles }}" as="t"><i onClick="{{ t.pick }}" style="position:absolute;left:{{ t.x }};top:{{ t.y }};width:{{ t.sz }};height:{{ t.sz }};background:{{ t.c }};outline:{{ t.ol }};outline-offset:1px;cursor:pointer;transition:left 1s cubic-bezier(.22,1,.36,1) {{ t.d }},top 1s cubic-bezier(.22,1,.36,1) {{ t.d }},background .8s;"></i></sc-for>
           <sc-for list="{{ z1Labels }}" as="l"><span style="transition:left .9s cubic-bezier(.22,1,.36,1),top .9s cubic-bezier(.22,1,.36,1);position:absolute;left:{{ l.x }};top:{{ l.y }};transform:translateX(-50%);font:700 11px 'Unbounded',sans-serif;color:{{ l.c }};white-space:nowrap;pointer-events:none;background:#0f0e0ccc;padding:1px 5px;">{{ l.label }}</span></sc-for>
         </div>
         <div style="position:absolute;inset:0;opacity:{{ zL2.o }};transform:scale({{ zL2.s }});pointer-events:{{ zL2.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
@@ -74,11 +79,13 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
         </div>
         <!-- CHANGED 2026-10-21: the last step, Pros and cons, shows what supports the followed beast and what argues with it (was a dossier; the separate 2a block is gone) -->
         <div style="position:absolute;inset:0;opacity:{{ zL4.o }};transform:scale({{ zL4.s }});pointer-events:{{ zL4.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
-          <div style="position:absolute;left:24px;right:24px;top:18px;bottom:18px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 290px minmax(0,1fr);gap:16px;align-items:start;">
-            <div style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+          <div style="position:absolute;left:24px;right:24px;top:18px;bottom:18px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 290px minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:16px;align-items:stretch;">
+            <div style="display:flex;flex-direction:column;gap:8px;min-width:0;height:100%;">
               <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#ffd84a;">+ Supports · builds on · {{ z4.npos }}</span>
+              <!-- CHANGED 2026-10-21: every link is listed; the column scrolls when they do not fit -->
+              <div class="zcol" style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:8px;">
               <sc-for list="{{ z4.pos }}" as="n">
-                <div onClick="{{ n.pick }}" onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start;background:{{ n.bg }};border:1px solid {{ n.bd }};border-left:3px solid #ffd84a;padding:7px 8px;transition:background .2s,border-color .2s;cursor:pointer;">
+                <div onClick="{{ n.pick }}" onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start;background:{{ n.bg }};border:1px solid {{ n.bd }};border-left:3px solid #ffd84a;padding:7px 8px;flex:none;transition:background .2s,border-color .2s;cursor:pointer;">
                   <div style="width:44px;height:44px;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div>
                   <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
                     <span style="font:700 13px/1.25 'Onest',sans-serif;">{{ n.name }}</span>
@@ -87,10 +94,10 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
                   </div>
                 </div>
               </sc-for>
-              <sc-if value="{{ z4.posMore }}" hint-placeholder-val="{{ false }}"><span style="font:400 12px 'Onest',sans-serif;color:#7d776f;padding:2px 8px;">{{ z4.posMore }}</span></sc-if>
+              </div>
               <sc-if value="{{ z4.posNone }}" hint-placeholder-val="{{ false }}"><span style="font:400 12px 'Onest',sans-serif;color:#7d776f;padding:8px;border:1px dashed #3a3531;">Nothing on this side yet.</span></sc-if>
             </div>
-            <div onClick="{{ z4.pick }}" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:#171513;border:1px solid #3a3531;border-top:4px solid {{ z4.c }};padding:18px 16px;">
+            <div onClick="{{ z4.pick }}" style="cursor:pointer;align-self:start;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:#171513;border:1px solid #3a3531;border-top:4px solid {{ z4.c }};padding:18px 16px;">
               <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#7d776f;">The claim</span>
               <div style="width:120px;height:120px;background-image:url({{ z4.img }});background-size:contain;background-repeat:no-repeat;"></div>
               <span style="font:700 18px/1.2 'Unbounded',sans-serif;text-wrap:balance;">{{ z4.name }}</span>
@@ -99,10 +106,12 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
               <span style="font:700 12px 'JetBrains Mono',monospace;color:#efeae2;padding-top:6px;border-top:1px solid #26231f;width:100%;">{{ z4.verdict }}</span>
               <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%;border-top:1px solid #26231f;padding-top:10px;"><sc-for list="{{ z4.stats }}" as="s"><div style="display:flex;flex-direction:column;gap:2px;"><span style="font:700 18px 'Unbounded',sans-serif;">{{ s.v }}</span><span style="font:700 9px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#7d776f;">{{ s.k }}</span></div></sc-for></div>
             </div>
-            <div style="display:flex;flex-direction:column;gap:8px;min-width:0;">
+            <div style="display:flex;flex-direction:column;gap:8px;min-width:0;height:100%;">
               <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#c3affe;">− Argues against · {{ z4.nneg }}</span>
+              <!-- CHANGED 2026-10-21: every link is listed; the column scrolls when they do not fit -->
+              <div class="zcol" style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:8px;">
               <sc-for list="{{ z4.neg }}" as="n">
-                <div onClick="{{ n.pick }}" onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start;background:{{ n.bg }};border:1px solid {{ n.bd }};border-left:3px solid #c3affe;padding:7px 8px;transition:background .2s,border-color .2s;cursor:pointer;">
+                <div onClick="{{ n.pick }}" onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start;background:{{ n.bg }};border:1px solid {{ n.bd }};border-left:3px solid #c3affe;padding:7px 8px;flex:none;transition:background .2s,border-color .2s;cursor:pointer;">
                   <div style="width:44px;height:44px;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div>
                   <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
                     <span style="font:700 13px/1.25 'Onest',sans-serif;">{{ n.name }}</span>
@@ -111,7 +120,7 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
                   </div>
                 </div>
               </sc-for>
-              <sc-if value="{{ z4.negMore }}" hint-placeholder-val="{{ false }}"><span style="font:400 12px 'Onest',sans-serif;color:#7d776f;padding:2px 8px;">{{ z4.negMore }}</span></sc-if>
+              </div>
               <sc-if value="{{ z4.negNone }}" hint-placeholder-val="{{ false }}"><span style="font:400 12px 'Onest',sans-serif;color:#7d776f;padding:8px;border:1px dashed #3a3531;">Nothing on this side yet.</span></sc-if>
             </div>
           </div>
@@ -150,11 +159,11 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
     </div>
   </div>
 </section>
-<section data-screen-label="Turn 2 · Other forms" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px;display:flex;flex-direction:column;gap:36px;">
+<section data-screen-label="Genealogy" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px;display:flex;flex-direction:column;gap:36px;">
   <div style="display:flex;flex-direction:column;gap:12px;max-width:1100px;">
-    <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:#d8a24a;">Bestiarium · other forms · turn 2</span>
-    <h1 style="margin:0;font:900 44px/1 'Unbounded',sans-serif;letter-spacing:-.02em;text-transform:uppercase;">Two other ways <span style="color:#d8a24a;">to show the beasts</span></h1>
-    <span style="font:400 17px/1.5 'Onest',sans-serif;color:#9a948b;max-width:860px;text-wrap:pretty;">Not graphs this time. <a href="#2b" style="color:#efeae2;">2b</a> an idea feeds what comes after, <a href="#2c" style="color:#efeae2;">2c</a> an idea is fed. All on the real data.</span>
+    <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:#d8a24a;">Bestiarium · genealogy</span>
+    <h1 style="margin:0;font:900 44px/1 'Unbounded',sans-serif;letter-spacing:-.02em;text-transform:uppercase;">Where ideas <span style="color:#d8a24a;">come from and lead</span></h1>
+    <span style="font:400 17px/1.5 'Onest',sans-serif;color:#9a948b;max-width:860px;text-wrap:pretty;">An idea feeds what comes after it, and an idea is fed by what came before it.</span>
   </div>
 
   <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;">
@@ -162,7 +171,6 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
     <div id="2b" onMouseEnter="{{ trIn }}" onMouseLeave="{{ trLeave }}" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;">
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <span style="align-self:flex-start;font:700 12px 'JetBrains Mono',monospace;background:#d8a24a;color:#0c0b0a;padding:3px 8px;">2b</span>
           <span style="font:700 26px 'Unbounded',sans-serif;">An idea feeds</span>
           <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:700px;">{{ trNote }}</span>
         </div>
@@ -227,7 +235,6 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
     <div id="2c" onMouseEnter="{{ fbIn }}" onMouseLeave="{{ fbLeave }}" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;">
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <span style="align-self:flex-start;font:700 12px 'JetBrains Mono',monospace;background:#d8a24a;color:#0c0b0a;padding:3px 8px;">2c</span>
           <span style="font:700 26px 'Unbounded',sans-serif;">An idea is fed</span>
           <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:700px;">{{ fbNote }}</span>
         </div>
@@ -605,14 +612,16 @@ class Component extends DCLogic {
       .concat([{ x: `${L0[L0.length - 1].tp[tb][0] + 2}px`, y: `${Math.min(580, L0[L0.length - 1].tp[tb][1] + 10)}px`, label: tbn.name, c: '#d8a24a' }]);
     // L1 — which map we zoom into
     const mf = MP.f, mnm = MP.nm, gk = fn[mf];
-    const ck = 'l1' + mf; if (!this.zCache[ck]) { const many = Object.keys(mnm).length; this.zCache[ck] = this.zIsl(D, mf, Object.keys(mnm), mnm, many <= 3 ? 13 : 15, 1080, 28, 80, 500, many <= 3 ? 90 : 44, 60); }
+    // CHANGED 2026-10-21: one grid step per layer, and every tile 2px smaller than it, so tiles stay apart on every layer
+    const step1 = Object.keys(mnm).length <= 3 ? 13 : 15, tile1 = `${step1 - 2}px`;
+    const ck = 'l1' + mf; if (!this.zCache[ck]) { const many = Object.keys(mnm).length; this.zCache[ck] = this.zIsl(D, mf, Object.keys(mnm), mnm, step1, 1080, 28, 80, 500, many <= 3 ? 90 : 44, 60); }
     const L1 = this.zCache[ck], hi = st.zIs || gk, ctr = {}; L1.isl.forEach(s => ctr[s.k] = [s.x + s.w / 2, s.y + s.h / 2]);
     const cross = {}; this.edgesList.forEach(([p, q]) => { const a = this.by[p][mf], b = this.by[q][mf]; if (a === b || (a !== hi && b !== hi)) return; const o = a === hi ? b : a; cross[o] = (cross[o] || 0) + 1; });
     const tops = Object.entries(cross).sort((a, b) => b[1] - a[1]).slice(0, 7), mxC = tops.length ? tops[0][1] : 1, topSet = new Set(tops.map(t => t[0]));
     const z1Roads = tops.map(([o, c]) => { const A = ctr[hi], B = ctr[o], mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2 - Math.hypot(B[0] - A[0], B[1] - A[1]) * .2; return { d: `M${A[0]},${A[1]} Q${mx},${my} ${B[0]},${B[1]}`, w: String(1.5 + 6 * c / mxC) }; });
     const z1Isl = L1.isl.map(s => ({ x: `${s.x - 8}px`, y: `${s.y - 8}px`, w: `${s.w + 16}px`, h: `${s.h + 16}px`, ring: s.k === hi ? '#d8a24a' : '#24211e', o: s.k === hi || topSet.has(s.k) ? '1' : '.45', enter: () => this.setState({ zIs: s.k }) }));
     const tcol = n => mf === 'role' ? F[n.fam][1] : R[n.role][1];
-    const z1Tiles = D.map(n => { const p = L1.tp[n.id]; return { pick: () => this.openSide(n.id, '4a'), x: `${p[0]}px`, y: `${p[1]}px`, c: tcol(n), ol: n.id === fid ? '2px solid #efeae2' : 'none', d: `${Math.round(this.hash(n.id) * 260)}ms` }; });
+    const z1Tiles = D.map(n => { const p = L1.tp[n.id]; return { pick: () => this.openSide(n.id, '4a'), x: `${p[0]}px`, y: `${p[1]}px`, sz: tile1, c: tcol(n), ol: n.id === fid ? '2px solid #efeae2' : 'none', d: `${Math.round(this.hash(n.id) * 260)}ms` }; });
     const z1Labels = L1.isl.map(s => ({ x: `${s.x + s.w / 2}px`, y: `${Math.max(2, s.y - 34)}px`, label: s.label, c: s.k === hi ? '#d8a24a' : '#cfc8bd' }));
     // L2 — the beast's district inside the chosen map
     const grp = D.filter(n => n[mf] === gk), nbS = new Set(fn.adj.map(a => a[0]));
@@ -633,8 +642,7 @@ class Component extends DCLogic {
     // L4 — CHANGED 2026-10-21: pros and cons of the followed beast
     const zPos = fn.adj.filter(a => Component.POS.includes(a[1])), zNeg = fn.adj.filter(a => Component.NEG.includes(a[1])), zBal = zPos.length - zNeg.length;
     const zItem = ([b, t]) => { const m = this.by[b], on = st.zH4 === b; return { name: m.name, rel: Component.REL[t] || t, tldr: m.tldr, img: this.sp(b), lines: on ? '5' : '2', bg: on ? '#1c1a17' : '#151311', bd: on ? '#4a4540' : '#26231f', enter: () => this.setState({ zH4: b }), leave: () => this.setState({ zH4: null }), pick: () => this.openSide(b, '4a') }; };
-    const more = (L) => L.length > 5 ? `+ ${L.length - 5} more · open the beast for all` : '';
-    const z4 = { pick: () => this.openSide(fid, '4a'), pos: zPos.slice(0, 5).map(zItem), neg: zNeg.slice(0, 5).map(zItem), npos: String(zPos.length), nneg: String(zNeg.length), posMore: more(zPos), negMore: more(zNeg), posNone: !zPos.length, negNone: !zNeg.length,
+        const z4 = { pick: () => this.openSide(fid, '4a'), pos: zPos.map(zItem), neg: zNeg.map(zItem), npos: String(zPos.length), nneg: String(zNeg.length), posNone: !zPos.length, negNone: !zNeg.length,
       verdict: `${zPos.length} for · ${zNeg.length} against · ${zBal > 0 ? 'mostly built on' : zBal < 0 ? 'mostly contested' : 'evenly split'}`,
       img: this.sp(fid), name: fn.name, meta: meta(fn), tldr: fn.tldr, c: R[fn.role][1], stats: [{ k: 'Links', v: String(fn.adj.length) }, { k: 'Families touched', v: String(new Set(fn.adj.map(a => this.by[a[0]].fam)).size) }, { k: 'In its district', v: String(fn.adj.filter(a => this.by[a[0]][mf] === gk).length) }, { k: 'Weight', v: fn.cen }] };
     // nav
@@ -648,7 +656,7 @@ class Component extends DCLogic {
       [`${st.zM == null && lvl === 1 && st.zCyc != null ? `Layer ${st.zCyc + 1} of 6 · ${MP.l}.` : `The ${MP.l} layer.`} ${fn.name} lives in ${mnm[gk]}; ${mnm[hi]} has the most roads to ${tops[0] ? mnm[tops[0][0]] : '—'} (${tops[0] ? tops[0][1] : 0} links).`, `Tiles are coloured by ${mf === 'role' ? 'family' : 'role'}. Hover an island for its roads; pick a layer on top to stay on it.`],
       [`Inside ${mnm[gk]} (${MP.l}): ${grp.length} beasts, mostly ${R[r2[0][0]][0].toLowerCase()}s. ${fn.name} has ${fn.adj.filter(a => this.by[a[0]][mf] === gk).length} neighbours here.`, grp.length > 30 ? 'Showing its 29 closest neighbours. Hover a beast to see its links inside the district.' : 'Hover a beast to see its links inside the district.'],
       [`${fn.name}: ${z3.nin} ideas lead into it, it leads to ${z3.nout}.`, 'Lines are coloured by kind of link: logical, causal, dialectical, associative, genealogical. Hover one to isolate it.'],
-      [`${fn.name}: ${zPos.length} ideas support it, ${zNeg.length} argue with it.`, `${R[fn.role][0]} · ${mnm[gk]} on the ${MP.l} layer · hover a card to read it, click to open the beast · then the next beast, from the top.`],
+      [`${fn.name}: ${zPos.length} ideas support it, ${zNeg.length} argue with it.`, `${R[fn.role][0]} · ${mnm[gk]} on the ${MP.l} layer · scroll a column for every link, hover a card to read it, click to open the beast · then the next beast, from the top.`],
     ][lvl];
     const zMaps = L0.map((r, i) => ({ label: r.l, n: String(r.n), go: () => { this.auto.z = 0; this.setState({ zM: i, zPlay: false, zIs: null, zL: Math.max(1, lvl) }); }, bg: i === mi ? '#d8a24a' : 'transparent', fg: i === mi ? '#0c0b0a' : '#9a948b', bd: '' }));
     const zMapNote = st.zM != null ? 'your pick' : lvl === 1 ? 'cycling through all six, landing on this beast’s layer' : 'cycles on the Layer step';
@@ -674,7 +682,7 @@ class Component extends DCLogic {
   blobURL(cv) { const b = atob(cv.toDataURL('image/png').split(',')[1]), a = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return URL.createObjectURL(new Blob([a], { type: 'image/png' })); }
   renderVals() {
     const st = this.state, D = st.data, F = Component.FAM, R = Component.ROLE;
-    const empty = { side4a: false, side2b: false, side2c: false, hasSide: false, side: { href: '#', c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' }, closeSide: () => {}, zMaps: [], zMapNote: '', zTabs: [], zPicks: [], zL0: { o: '0', s: '1', p: 'none' }, zL1: { o: '0', s: '1', p: 'none' }, zL2: { o: '0', s: '1', p: 'none' }, zL3: { o: '0', s: '1', p: 'none' }, zL4: { o: '0', s: '1', p: 'none' }, z0Rows: [], z0Tiles: [], z0Threads: [], z0Labels: [], z1Isl: [], z1Roads: [], z1Tiles: [], z1Labels: [], z2Cards: [], z2Links: [], z3L: [], z3R: [], z3: { img: '', name: '', c: '#3a3531', nin: '', nout: '' }, z4: { img: '', name: '', meta: '', tldr: '', c: '#3a3531', stats: [], pos: [], neg: [], npos: '', nneg: '', posMore: '', negMore: '', posNone: false, negNone: false, verdict: '' }, zCap: '', zSub: '', zPlayLabel: 'Ⅱ Pause', zToggle: () => {}, zPrev: () => {}, zNext: () => {}, zIn: () => {}, zLeave: () => {}, fbAxes: [], fbRoots: [], fbCols: [], fbLinks: [], fbNodes: [], fbCap: '', fbCapSub: '', fbCapC: '#3a3531', fbHpx: '400px', fbHn: '400', fbNote: '', fbIn: () => {}, fbLeave: () => {}, fbPToggle: () => {}, fbPLabel: 'Ⅱ Pause', fbReplayFn: () => {}, trIn: () => {}, trLeave: () => {}, trPToggle: () => {}, trPLabel: 'Ⅱ Pause', roots: [], eraCols: [], trAxes: [], trNote: '', treeLinks: [], treeNodes: [], treeCap: '', treeCapSub: '', treeCapC: '#3a3531', treeH: '400px', treeHn: '400', eraHead: Component.ERAS.map(e => e[1]), bandRows: [], bandTitle: '', bandNames: [], gTabs: [], gCells: [], gSel: { c: '#3a3531', mode: '', img: '', name: '', meta: '', tldr: '', kept: false } };
+    const empty = { side4a: false, side2b: false, side2c: false, hasSide: false, side: { href: '#', c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' }, closeSide: () => {}, zMaps: [], zMapNote: '', zTabs: [], zPicks: [], zL0: { o: '0', s: '1', p: 'none' }, zL1: { o: '0', s: '1', p: 'none' }, zL2: { o: '0', s: '1', p: 'none' }, zL3: { o: '0', s: '1', p: 'none' }, zL4: { o: '0', s: '1', p: 'none' }, z0Rows: [], z0Tiles: [], z0Threads: [], z0Labels: [], z1Isl: [], z1Roads: [], z1Tiles: [], z1Labels: [], z2Cards: [], z2Links: [], z3L: [], z3R: [], z3: { img: '', name: '', c: '#3a3531', nin: '', nout: '' }, z4: { img: '', name: '', meta: '', tldr: '', c: '#3a3531', stats: [], pos: [], neg: [], npos: '', nneg: '', posNone: false, negNone: false, verdict: '' }, zCap: '', zSub: '', zPlayLabel: 'Ⅱ Pause', zToggle: () => {}, zPrev: () => {}, zNext: () => {}, zIn: () => {}, zLeave: () => {}, fbAxes: [], fbRoots: [], fbCols: [], fbLinks: [], fbNodes: [], fbCap: '', fbCapSub: '', fbCapC: '#3a3531', fbHpx: '400px', fbHn: '400', fbNote: '', fbIn: () => {}, fbLeave: () => {}, fbPToggle: () => {}, fbPLabel: 'Ⅱ Pause', fbReplayFn: () => {}, trIn: () => {}, trLeave: () => {}, trPToggle: () => {}, trPLabel: 'Ⅱ Pause', roots: [], eraCols: [], trAxes: [], trNote: '', treeLinks: [], treeNodes: [], treeCap: '', treeCapSub: '', treeCapC: '#3a3531', treeH: '400px', treeHn: '400', eraHead: Component.ERAS.map(e => e[1]), bandRows: [], bandTitle: '', bandNames: [], gTabs: [], gCells: [], gSel: { c: '#3a3531', mode: '', img: '', name: '', meta: '', tldr: '', kept: false } };
     const fns = { replay: () => this.replay(), gPrev: () => this.setState({ gFam: (st.gFam + 12) % 13, gKeep: null, gHover: null }), gNext: () => this.setState({ gFam: (st.gFam + 1) % 13, gKeep: null, gHover: null }), gRelease: () => this.setState({ gKeep: null }) };
     const e3 = { flowLines: [], flowL: [], flowR: [], flowTitle: '', flowSub: '', flowCapC: '#efeae2', flowStrip: [], flowToggle: () => {}, flowPlayLabel: 'Ⅱ Pause', multiples: [], ftPicks: [], ft: { c: '#3a3531', img: '', name: '' }, ftCols: [], cfBtns: [], cfLabels: [], cfTiles: [], cfIslands: [], cfRoads: [], cfLinks: [], cfHasTip: false, cfTip: {}, cfInfo: [], cfInfoTitle: '', cfOut: () => {}, cfIn: () => {}, cfLeave: () => {}, cfPToggle: () => {}, cfPLabel: 'Ⅱ Pause', rtPicks: [], rt: { img: '', name: '', tldr: '' }, rtRows: [], flowOut: () => this.setState({ flowH: null }) };
     if (!D) return { ...empty, ...e3, ...fns };
