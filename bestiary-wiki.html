@@ -140,7 +140,7 @@ a{color:inherit;text-decoration:none}
 
 /* ======================== СТРАНИЦА КОНЦЕПТА ======================== */
 .entry{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:46px;align-items:start}
-@media(max-width:920px){.entry{grid-template-columns:1fr}}
+@media(max-width:920px){.entry{grid-template-columns:1fr}/* CHANGED 2026-10-21: on a phone the plate with the beast comes first, above the text */.entry>:last-child{order:-1}.entry .plate{position:static}}@media(max-width:820px){/* CHANGED 2026-10-21: on an entry page the filters panel goes below the entry, so the beast comes first */.wrap:has(.entry)>.side{order:1;border-bottom:none;border-top:1px solid var(--rule)}}
 
 .crumbs{font-family:var(--ui);font-size:12.5px;color:var(--ink-faint);margin-bottom:22px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .crumbs a{color:var(--ink-soft);cursor:pointer;border-bottom:1px dotted transparent}
@@ -606,7 +606,59 @@ function lighten(c,f){const r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),
 function darken(c,f){const r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),16),b=parseInt(c.slice(5,7),16);const m=x=>Math.round(x*(1-f));return`rgb(${m(r)},${m(g)},${m(b)})`;}
 const FAMCOL = id => F.fam.cats[BY[id].fam].color;
 
+/* CHANGED 2026-10-21: the beasts are the world map's own: built from the monster sprite sheet by the
+   map's recipe (beastMonsterCanvas, seeded by the beast's id) and tinted by era, the map's default
+   colouring, so a beast looks the same on the map and here. Until the sheet loads - or if it cannot,
+   when the file is opened from disk - the drawn silhouette (drawBlob) stands in. */
+const MON={img:new Image(),frames:{},ready:false};
+const WAITING=new Set();
+function monHas(n){return !!MON.frames[n];}
+function monPart(x,name,cx,cy,scale,mirror,anchor){
+  const f=MON.frames[name]; if(!f) return; const w=f.w*scale,h=f.h*scale;
+  x.save(); x.translate(cx,cy); x.scale(mirror?-1:1,1); const oy=anchor==="t"?0:(anchor==="b"?-h:-h/2);
+  x.drawImage(MON.img,f.x,f.y,f.w,f.h,-w/2,oy,w,h); x.restore();
+}
+function monBeast(id,tint){
+  const rnd=mulberry(hstr(id)), S=360, c=document.createElement("canvas"); c.width=c.height=S; const x=c.getContext("2d");
+  x.translate(S/2,S/2);
+  const P=a=>a[(rnd()*a.length)|0], SH=["A","B","C","D","E","F"], SH5=["A","B","C","D","E"];
+  const bn="body_white"+P(SH)+".png", bf=MON.frames[bn]||{w:160,h:180};
+  const sc=Math.min(1.35,235/bf.h), bw=bf.w*sc, bh=bf.h*sc, bcy=-bh*0.06, bTop=bcy-bh/2, bBot=bcy+bh/2;
+  const arm="arm_white"+P(SH5)+".png", leg="leg_white"+P(SH5)+".png";
+  let det=null; if(rnd()<0.55){const dl=["detail_white_horn_large.png","detail_white_horn_small.png","detail_white_antenna_large.png","detail_white_antenna_small.png","detail_white_ear.png","detail_white_ear_round.png"].filter(monHas); if(dl.length) det=P(dl);}
+  monPart(x,arm,-bw*0.46,bcy-bh*0.12,sc,false,"t"); monPart(x,arm,bw*0.46,bcy-bh*0.12,sc,true,"t");
+  monPart(x,leg,-bw*0.22,bBot-bh*0.04,sc,false,"t"); monPart(x,leg,bw*0.22,bBot-bh*0.04,sc,true,"t");
+  monPart(x,bn,0,bcy,sc,false,"c");
+  if(det){monPart(x,det,-bw*0.26,bTop+bh*0.05,sc,false,"b"); monPart(x,det,bw*0.26,bTop+bh*0.05,sc,true,"b");}
+  x.globalCompositeOperation="source-atop"; x.globalAlpha=0.95; x.fillStyle=tint; x.fillRect(-S/2,-S/2,S,S);
+  x.globalAlpha=1; x.globalCompositeOperation="source-over";
+  const eyeL=["eye_blue","eye_green","eye_red","eye_yellow","eye_human","eye_human_blue","eye_human_green","eye_human_red","eye_cute_light","eye_cute_dark","eye_angry_blue","eye_angry_green","eye_angry_red","eye_dead","eye_psycho_light","eye_psycho_dark","eye_closed_happy","eye_closed_feminine"].map(s=>s+".png").filter(monHas);
+  const en=P(eyeL), cyc=rnd()<0.18;
+  if(cyc) monPart(x,en,0,bcy-bh*0.14,sc*1.15,false,"c");
+  else {monPart(x,en,-bw*0.17,bcy-bh*0.14,sc,false,"c"); monPart(x,en,bw*0.17,bcy-bh*0.14,sc,rnd()<0.5,"c");}
+  const mouthL=["mouthA","mouthB","mouthC","mouthD","mouthE","mouthF","mouthG","mouthH","mouthI","mouthJ","mouth_closed_fangs","mouth_closed_happy","mouth_closed_sad","mouth_closed_teeth"].map(s=>s+".png").filter(monHas);
+  if(mouthL.length) monPart(x,P(mouthL),0,bcy+bh*0.12,sc,false,"c");
+  if(rnd()<0.4){const nn="nose_"+P(["red","green","yellow","brown"])+".png"; if(monHas(nn)) monPart(x,nn,0,bcy+bh*0.02,sc*0.8,false,"c");}
+  return c;
+}
 function drawBeast(cv, node, opts={}){
+  if(!MON.ready){ WAITING.add([cv,node,opts]); return drawBlob(cv,node,opts); }
+  const DPR=Math.min(devicePixelRatio||1,2), S=cv.clientWidth||opts.size||120;
+  cv.width=S*DPR; cv.height=S*DPR;
+  const g=cv.getContext("2d"); g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,cv.width,cv.height);
+  g.drawImage(monBeast(node.id,F.era.cats[node.era].color),0,0,cv.width,cv.height);
+}
+Promise.all([
+  fetch("assets/monster/spritesheet_default.xml").then(r=>r.text()),
+  new Promise((res,rej)=>{MON.img.onload=res; MON.img.onerror=rej; MON.img.src="assets/monster/spritesheet_default.png";}),
+]).then(([xml])=>{
+  const re=/name="([^"]+)"\s+x="(\d+)"\s+y="(\d+)"\s+width="(\d+)"\s+height="(\d+)"/g; let m;
+  while((m=re.exec(xml))) MON.frames[m[1]]={x:+m[2],y:+m[3],w:+m[4],h:+m[5]};
+  MON.ready=true;
+  for(const d of WAITING) if(d[0].isConnected) drawBeast(...d);
+  WAITING.clear();
+});
+function drawBlob(cv, node, opts={}){
   const ring = opts.ring!==false;
   const DPR = Math.min(devicePixelRatio||1,2);
   const S = cv.clientWidth||opts.size||120;
