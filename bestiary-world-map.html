@@ -25,7 +25,7 @@
       margin: 0;
       height: 100%;
       overflow: hidden;
-      background: #070812;
+      background: #0c0b0a;
       color: var(--ink);
       font: 13.5px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       -webkit-font-smoothing: antialiased
@@ -994,12 +994,16 @@
     else (function () {
       "use strict";
       const { nodes: RAW, edges: EDGES, facets: FACETS, grp: GRP } = DATA;
+      const PLACE_MODE = 'rings';
+      // Mrs Wallbreaker role palette (brand) — beasts read the same everywhere
+      const ROLEPAL = { 'провал': '#fea199', 'механизм': '#1cddae', 'тезис': '#76c7ff', 'решение': '#ffd84a', 'метафора': '#ffa752', 'линза': '#ff96d3', 'критика': '#c3affe', 'эмпирика': '#96d35f' };
+      if (FACETS.role) for (const k in ROLEPAL) if (FACETS.role.cats[k]) FACETS.role.cats[k].color = ROLEPAL[k];
       // ==================== i18n ====================
       let LANG = (function () { try { return localStorage.getItem('bestiaryLang') || 'en'; } catch (e) { return 'en'; } })();
       const T = {
         ru: {
           docTitle: 'Бестиарий алайнмента — единый мир', title: 'Бестиарий · единый мир',
-          sub: (n, e) => `<b>${n}</b> зверей · <b>${e}</b> связей · одна карта`,
+          sub: (n, e) => `<b>${n}</b> зверей · <b>${e}</b> связей<br>Берег: мифы и старые идеи → центр: эпоха LLM`,
           biomesBy: 'Биомы по…', colorBy: 'Покраска зверей по…', legendBiomes: 'Биомы-регионы', legendColor: 'Покраска зверей',
           search: 'Найти зверя…', contrast: 'Контраст', contrastNote: 'Контраст к цвету биома (звери разноцветные)',
           edgesOn: 'Связи между биомами: показаны', edgesOff: 'Связи между биомами: скрыты',
@@ -1010,7 +1014,7 @@
         },
         en: {
           docTitle: 'Bestiary of Alignment — one world', title: 'Bestiary · one world',
-          sub: (n, e) => `<b>${n}</b> beasts · <b>${e}</b> links · one map`,
+          sub: (n, e) => `<b>${n}</b> beasts · <b>${e}</b> links<br>Shore: myths & oldest ideas → centre: LLM era`,
           biomesBy: 'Biomes by…', colorBy: 'Beast colour by…', legendBiomes: 'Biome regions', legendColor: 'Beast colour',
           search: 'Find a beast…', contrast: 'Contrast', contrastNote: 'Contrasts with the biome colour (beasts multicoloured)',
           edgesOn: 'Cross-biome links: shown', edgesOff: 'Cross-biome links: hidden',
@@ -1064,7 +1068,7 @@
 
       const BIOME = {
         misalign: 'volcano', deception: 'swamp', control: 'fortress', oversight: 'peaks', strategy: 'peaks',
-        robustness: 'ice', interp: 'crystal', mind: 'water', ethics: 'garden', critical: 'ruins', myth: 'fortress', decision: 'maze', 'moral-status': 'garden'
+        robustness: 'ice', interp: 'crystal', mind: 'plateau', ethics: 'garden', critical: 'ruins', myth: 'fortress', decision: 'maze', 'moral-status': 'garden'
       };
       const BASE = { peaks: 1.0, volcano: 0.82, crystal: 0.6, fortress: 0.4, garden: 0.42, plateau: 0.42, maze: 0.32, ruins: 0.34, ice: 0.28, swamp: 0.12, water: 0.06 };
       // distinct plateau heights per biome -> hard cliffs at region borders
@@ -1083,7 +1087,8 @@
         const tx = TEXALIAS[biome] || biome, key = tx + '|' + colorHex; if (_gtcache[key]) return _gtcache[key];
         const im = GIMG[tx], S = 256, c = document.createElement('canvas'); c.width = c.height = S; const x = c.getContext('2d');
         if (im && im.width) x.drawImage(im, 0, 0, S, S); else { x.fillStyle = '#8a8a8a'; x.fillRect(0, 0, S, S); }
-        x.globalAlpha = GROUND_OV; x.fillStyle = colorHex; x.fillRect(0, 0, S, S); x.globalAlpha = 1;
+        x.globalCompositeOperation = 'multiply'; x.fillStyle = colorHex; x.fillRect(0, 0, S, S);
+        x.globalCompositeOperation = 'source-over'; x.globalAlpha = 0.55; x.fillStyle = colorHex; x.fillRect(0, 0, S, S); x.globalAlpha = 1;
         const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 4; _gtcache[key] = t; return t;
       }
       // ---- ground decor: per-biome MIX of props (bigger & denser; still below the floating beasts) ----
@@ -1165,7 +1170,7 @@
         const P = a => a[(rnd() * a.length) | 0], SH = ['A', 'B', 'C', 'D', 'E', 'F'], SH5 = ['A', 'B', 'C', 'D', 'E'];
         // ARBITRARY colour: build the body from WHITE parts, then multiply-tint to the exact target colour.
         let tint = fc || col; if (!fc && bg) tint = '#' + KENCOL[contrastKen(bg, rnd)].toString(16).padStart(6, '0');
-        { const cc = new THREE.Color(tint), h = {}; cc.getHSL(h); cc.setHSL(h.h, Math.min(1, h.s + 0.6), Math.max(0.52, Math.min(0.6, h.l))); tint = '#' + cc.getHexString(); } // NEON: crank saturation to the max, bright
+        if (!fc) { const cc = new THREE.Color(tint), h = {}; cc.getHSL(h); cc.setHSL(h.h, Math.min(1, h.s + 0.6), Math.max(0.52, Math.min(0.6, h.l))); tint = '#' + cc.getHexString(); } // NEON: crank saturation to the max, bright
         const bn = 'body_white' + P(SH) + '.png', bf = MON.frames[bn] || { w: 160, h: 180 };
         const sc = Math.min(1.35, 235 / bf.h), bw = bf.w * sc, bh = bf.h * sc, bcy = -bh * 0.06, bTop = bcy - bh / 2, bBot = bcy + bh / 2;
         const arm = 'arm_white' + P(SH5) + '.png', leg = 'leg_white' + P(SH5) + '.png';
@@ -1202,7 +1207,13 @@
       // ---- one connected world: anchors (regions) on a plane ----
       const AXES = [["fam", "Семейство"], ["era", "Эпоха"], ["role", "Роль"], ["track", "Канон"]];
       let axis = "fam"; let anchors = []; let LAND = 2600, SIG = 900, H0 = 680;
-      function layout() {
+      let CLEAR = [];
+      function zoneMul(an, x, z) {
+        if (PLACE_MODE === 'links') { let m = 1; for (const c of CLEAR) { if (c.k !== an.key) continue; const d = Math.hypot(x - c.x, z - c.z) / c.r; if (d < 1) m = Math.max(m, 1 + 0.55 * (1 - d * d)); } return m; }
+        if (PLACE_MODE === 'climb' || PLACE_MODE === 'rings') { const dn = Math.hypot(x - an.x, z - an.z) / (760 * an.rw); return Math.floor(dn * 5) % 2 ? 0.66 : 1.22; }
+        return 1;
+      }
+      function layout() { CLEAR = [];
         const F = FACETS[axis], order = F.order, cats = F.cats, n = order.length;
         const counts = {}; RAW.forEach(nd => counts[nd[F.nkey]] = (counts[nd[F.nkey]] || 0) + 1);
         // region SIZE ∝ population via multiplicatively-weighted Voronoi (cell metric = dist²·ir2).
@@ -1213,10 +1224,10 @@
           let x, z; const rnd = mb(hstr(k + axis + "a"));
           if (axis === "track") { x = i === 0 ? -1200 : 1200; z = (rnd() - 0.5) * 700; }
           else { const a = i / n * 6.283 - 1.57, ring = n <= 6 ? 1150 : 1500; x = Math.cos(a) * ring * (0.8 + rnd() * 0.35); z = Math.sin(a) * ring * (0.8 + rnd() * 0.35); }
-          const cnt = counts[k] || 1, rw = Math.max(0.72, Math.min(1.5, 1 + (Math.sqrt(cnt / meanPop) - 1) * SPOP));
+          const ra = (hstr(k + 'r') % 628) / 100, cnt = counts[k] || 1, rw = Math.max(0.72, Math.min(1.5, 1 + (Math.sqrt(cnt / meanPop) - 1) * SPOP));
           anchors.push({
-            key: k, x, z, rgb: hexRGB(cats[k].color), color: cats[k].color, label: cats[k].label,
-            biome: axis === "fam" ? (BIOME[k] || 'plateau') : axis === "track" ? ['ice', 'water'][i] : ROT[i % ROT.length], cnt, rw, ir2: 1 / (rw * rw), seed: (hstr(k) % 900) / 6
+            key: k, ra, x, z, rgb: hexRGB(cats[k].color), color: cats[k].color, label: cats[k].label,
+            biome: axis === "fam" ? (BIOME[k] || 'plateau') : axis === "track" ? ['ice', 'garden'][i] : ROT[i % ROT.length], cnt, rw, ir2: 1 / (rw * rw), seed: (hstr(k) % 900) / 6
           });
         });
         // relax so centres are spread proportionally to their weights (big regions get more room)
@@ -1273,8 +1284,26 @@
           if (!spots.length) spots = [[a.x, a.z]];
           let cx = 0, cz = 0; spots.forEach(p => { cx += p[0]; cz += p[1]; }); cx /= spots.length; cz /= spots.length;
           spots.sort((p, q) => ((p[0] - cx) * (p[0] - cx) + (p[1] - cz) * (p[1] - cz)) - ((q[0] - cx) * (q[0] - cx) + (q[1] - cz) * (q[1] - cz)));
-          mine.forEach((nd, i) => {
-            const sp = spots[i % spots.length], jit = i >= spots.length ? 70 : 0;
+          const PM = PLACE_MODE, dC = p => (p[0] - cx) * (p[0] - cx) + (p[1] - cz) * (p[1] - cz), eraN = n => +String(n.era).slice(1) || 0;
+          const LADDER = ['метафора', 'линза', 'критика', 'тезис', 'провал', 'эмпирика', 'механизм', 'решение'];
+          let sps, seq;
+          if (PM === 'climb' || PM === 'rings') {
+            const key = PM === 'climb' ? (n => LADDER.indexOf(n.role)) : eraN;
+            sps = spots.slice().sort((p, q) => dC(q) - dC(p)); seq = mine.slice().sort((p, q) => key(p) - key(q) || cenOrd(q) - cenOrd(p));
+          } else if (PM === 'river') {
+            const pr = p => (p[0] - a.x) * Math.cos(a.ra) + (p[1] - a.z) * Math.sin(a.ra);
+            sps = spots.slice().sort((p, q) => pr(p) - pr(q)); seq = mine.slice().sort((p, q) => eraN(p) - eraN(q) || cenOrd(p) - cenOrd(q));
+          } else {
+            const m = mine.length, S = spots.slice(0, m); while (S.length < m) S.push(spots[S.length % spots.length]);
+            const idx = {}; mine.forEach((n, i) => idx[n.id] = i); const adjL = mine.map(() => []);
+            EDGES.forEach(e => { const i = idx[e.a], j = idx[e.b]; if (i != null && j != null && i !== j) { adjL[i].push(j); adjL[j].push(i); } });
+            const asg = mine.map((_, i) => i), d2 = (s, t) => { const p = S[s], q = S[t]; return (p[0] - q[0]) * (p[0] - q[0]) + (p[1] - q[1]) * (p[1] - q[1]); };
+            const cost = i => { let c = 0; for (const j of adjL[i]) c += d2(asg[i], asg[j]); if (mine[i].cen === 'Core') c += dC(S[asg[i]]) * 0.6; return c; };
+            for (let it = 0, N = Math.min(12000, m * m * 8); it < N; it++) { const i = (Math.random() * m) | 0, j = (Math.random() * m) | 0; if (i === j) continue; const b0 = cost(i) + cost(j); let t = asg[i]; asg[i] = asg[j]; asg[j] = t; if (cost(i) + cost(j) > b0) { t = asg[i]; asg[i] = asg[j]; asg[j] = t; } }
+            sps = mine.map((_, i) => S[asg[i]]); seq = mine;
+          }
+          seq.forEach((nd, i) => {
+            const sp = sps[i % sps.length], jit = i >= spots.length ? 70 : 0;
             nd._ax = sp[0] + (Math.random() - 0.5) * jit; nd._az = sp[1] + (Math.random() - 0.5) * jit; nd._region = a;
           });
         });
@@ -1282,8 +1311,8 @@
       // height + colour blended over regions, with coastline + water
       function sample(x, z) {
         // NEAREST WEIGHTED region (dist²·ir2) -> hard borders, area ∝ population, distinct plateau height
-        let best = null, bd = 1e18;
-        for (const a of anchors) { const dx = x - a.x, dz = z - a.z, m = (dx * dx + dz * dz) * a.ir2; if (m < bd) { bd = m; best = a; } }
+        let best = null, bd = 1e18, bd2 = 1e18;
+        for (const a of anchors) { const dx = x - a.x, dz = z - a.z, m = (dx * dx + dz * dz) * a.ir2; if (m < bd) { bd2 = bd; bd = m; best = a; } else if (m < bd2) bd2 = m; }
         if (!best) return { h: -140, c: WATER };
         const bm = best.biome, rd2 = (x - best.x) * (x - best.x) + (z - best.z) * (z - best.z), dloc = Math.sqrt(rd2);
         let h = PLAT[bm] !== undefined ? PLAT[bm] : 190, c = best.rgb;
@@ -1293,6 +1322,14 @@
         else if (bm === 'ice') { const s = fbm(x, z, best.seed, 3); h += (s > 0.7 ? (s - 0.7) * 300 : 0); }
         else if (bm === 'swamp' || bm === 'water') { h += fbm(x, z, best.seed, 2) * 12 - 16; }
         else { h += fbm(x, z, best.seed, 3) * 46; }
+        if (PLACE_MODE === 'climb') { const k = Math.max(0, 1 - dloc / (820 * best.rw)); h += Math.pow(k, 1.4) * 260; }
+        if (PLACE_MODE === 'river') { const v = Math.abs(-(x - best.x) * Math.sin(best.ra) + (z - best.z) * Math.cos(best.ra)), RW = 42, RS = 130;
+          if (v < RW) { h = -30; c = WATER; } else if (v < RW + RS) { const t = (v - RW) / RS, s = t * t * (3 - 2 * t); h = -10 + (h + 10) * s; } }
+        if (anchors.length > 1) {
+          const gap = Math.sqrt(bd2) - Math.sqrt(bd), CH = 60, SH = 230;
+          if (gap < CH) { h = -45; c = WATER; }
+          else if (gap < CH + SH) { const t = (gap - CH) / SH, s = t * t * (3 - 2 * t); h = -12 + (h + 12) * s; }
+        }
         const rr = Math.hypot(x, z) / LAND;
         if (rr > 0.98) { h = -40 - (rr - 0.98) * 900; c = WATER; }
         if (h < 0) c = WATER;
@@ -1338,7 +1375,8 @@
         puddle: { g: 'lilypad', wr: 1.5, hr: 0.05, mat: 'water' }, cairn: { g: 'cairn', wr: 0.7, mat: 'matte' },
         firefly: { g: 'firefly', anim: 'fly', mat: 'ember' }, floatcrystal: { g: 'crystal', anim: 'cry', wr: 0.5, mat: 'glow' }
       };
-      function buildDecor() {
+      const _decorTint = {};
+      function buildDecor() { for (const k in _decorTint) delete _decorTint[k];
         decorAnim = { fly: null, cry: null, flyS: [], cryS: [] };
         // ---- unit geometries (height ~1, small footprint), non-indexed for flat facets ----
         const blade = new THREE.ConeGeometry(0.18, 1, 4).toNonIndexed(); blade.translate(0, 0.5, 0);
@@ -1428,7 +1466,7 @@
         for (let gx = -rng; gx <= rng; gx += step)for (let gz = -rng; gz <= rng; gz += step) {
           const x = gx + (Math.random() - 0.5) * step, z = gz + (Math.random() - 0.5) * step;
           if (Math.hypot(x, z) / LAND > 0.965) continue;
-          const reg = regionAt(x, z); const cfg = (reg && DECORVAR[reg.key]) || DECOR[reg ? reg.biome : 'water']; if (!cfg || Math.random() > cfg.d) continue;
+          const reg = regionAt(x, z); const cfg = (reg && DECORVAR[reg.key]) || DECOR[reg ? reg.biome : 'water']; if (!cfg || Math.random() > cfg.d * 0.5) continue;
           const s = sample(x, z); if (s.h < 2) continue;
           // weighted pick of one prop from the biome's mix
           const mix = cfg.mix; let tot = 0; for (const m of mix) tot += m[3]; let rrv = Math.random() * tot, pick = mix[0];
@@ -1437,6 +1475,7 @@
           let base = pick[1]; if (spec.pal) base = FLOWERPAL[(Math.random() * FLOWERPAL.length) | 0];
           const hj = (t === 'crystal' || t === 'floatcrystal') ? 0.12 : 0.03;
           const c = new THREE.Color(base).offsetHSL((Math.random() - 0.5) * hj, (Math.random() - 0.5) * 0.08, (Math.random() - 0.5) * 0.10);
+          if (reg && reg._tintHex && spec.mat !== 'ember') { const gt = _decorTint[reg.key] || (_decorTint[reg.key] = new THREE.Color(reg._tintHex)); c.lerp(gt, 0.5).multiplyScalar(0.5); }
           if (spec.anim === 'fly') { decorAnim.flyS.push({ x, z, y: s.h + 55 + Math.random() * 95, ph: Math.random() * 6.28, sc: hv, c }); continue; }
           if (spec.anim === 'cry') { decorAnim.cryS.push({ x, z, y: s.h + 16, ph: Math.random() * 6.28, sc: hv, c }); continue; }
           const wr = spec.wr * (spec.wj ? 1 + Math.random() * spec.wj : 1); let sx = hv * wr, sy = hv * (spec.hr || 1), sz = hv * wr;
@@ -1480,7 +1519,7 @@
       const scene = new THREE.Scene();// no fog — stay bright & crisp at any distance
       (function () {
         const c = document.createElement("canvas"); c.width = 8; c.height = 256; const x = c.getContext("2d");
-        const gr = x.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, "#0a0d18"); gr.addColorStop(.55, "#070812"); gr.addColorStop(1, "#05060c");
+        const gr = x.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, "#141210"); gr.addColorStop(.55, "#0c0b0a"); gr.addColorStop(1, "#090807");
         x.fillStyle = gr; x.fillRect(0, 0, 8, 256); scene.background = new THREE.CanvasTexture(c);
       })();
       const camera = new THREE.PerspectiveCamera(48, innerWidth / innerHeight, 1, 40000); camera.position.set(0, 2600, 3400);
@@ -1493,7 +1532,7 @@
       // (turtle A'Tuin removed — the skinned/animated model broke when scaled; values saved in project memory for later)
       function fitTurtle() { }
       let worldGroup = new THREE.Group(); scene.add(worldGroup); const spriteList = []; const terrainMeshes = []; let terrainMesh = null, edgeLines = null, pathMesh = null, isoKey = null, selected = null;
-      const _dummy = new THREE.Object3D(); let decorAnim = { fly: null, cry: null, flyS: [], cryS: [] }; let edgesShown = true; let colorAxis = "role"; const BIOME_SAT = 0.32;// max biome saturation (muted backdrop so monsters pop)
+      const _dummy = new THREE.Object3D(); let decorAnim = { fly: null, cry: null, flyS: [], cryS: [] }; let edgesShown = true; let colorAxis = "era"; const BIOME_SAT = 0.32;// max biome saturation (muted backdrop so monsters pop)
       // dark-textured biomes -> emissive lift so dark monsters stay visible (rock/crystal/lava can't be brightened by multiply tint)
       const DARKBIOME = { peaks: 0.34, crystal: 0.36, volcano: 0.16, maze: 0.18, fortress: 0.14, swamp: 0.12 };
       // absolute ground tint override per biome (wins over category colour) — for biomes whose hue would hide a monster colour
@@ -1529,6 +1568,10 @@
         // per-region ground tint = category colour, nudged so biome-siblings differ, softened toward white
         const WHITE = new THREE.Color(0xffffff), bybiome = {}; anchors.forEach(a => { (bybiome[a.biome] || (bybiome[a.biome] = [])).push(a); });
         const tintOf = {}; anchors.forEach(a => {
+          { const v = REGIONVAR[a.key], col = new THREE.Color(v && v.col !== undefined ? v.col : a.color), hs = {}; col.getHSL(hs);
+            const sib = bybiome[a.biome], f = sib.length > 1 ? sib.indexOf(a) - (sib.length - 1) / 2 : 0;
+            col.setHSL((hs.h + f * 0.035 + 1) % 1, Math.min(0.4, Math.max(0.18, hs.s * 0.48)), 0.34 + ((hstr(a.key) % 7) - 3) * 0.014 + f * 0.03);
+            a._tintHex = '#' + col.getHexString(); tintOf[a.key] = col; return; }
           const v = REGIONVAR[a.key]; let col, white = 0.5;
           if (v && v.col !== undefined) { col = new THREE.Color(v.col); if (v.white !== undefined) white = v.white; }
           else {
@@ -1546,14 +1589,19 @@
           g.setAttribute('position', new THREE.Float32BufferAttribute(bk.p, 3));
           g.setAttribute('uv', new THREE.Float32BufferAttribute(bk.uv, 2)); g.computeVertexNormals();
           let mat;
-          if (key === '__water') { mat = new THREE.MeshBasicMaterial({ color: 0x070812 }); }// unlit, matches the dark backdrop so the square's corners blend away (no light quad)
-          else { const an = keyAnchor[key]; mat = new THREE.MeshBasicMaterial({ map: groundTex(an.biome, an.color) }); }// unlit -> ground == legend swatch exactly (no scene light washing it out)
+          if (key === '__water') { mat = new THREE.MeshBasicMaterial({ color: 0x0c0b0a }); }// unlit, matches the dark backdrop so the square's corners blend away (no light quad)
+          else {
+            const an = keyAnchor[key], nrm = g.attributes.normal, col = [], L = new THREE.Vector3(0.45, 0.8, 0.35).normalize();
+            for (let i = 0; i < nrm.count; i++) { const d = nrm.getX(i) * L.x + nrm.getY(i) * L.y + nrm.getZ(i) * L.z, s = (0.5 + 0.62 * Math.max(0, d)) * zoneMul(an, g.attributes.position.getX(i), g.attributes.position.getZ(i)); col.push(s, s, s); }
+            g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+            mat = new THREE.MeshBasicMaterial({ map: groundTex(an.biome, an._tintHex), vertexColors: true });
+          }// unlit -> ground == legend swatch exactly (no scene light washing it out)
           const m = new THREE.Mesh(g, mat); worldGroup.add(m); terrainMeshes.push(m); if (!terrainMesh) terrainMesh = m;
         }
         buildDecor();
         // water plane at sea level
         const water = new THREE.Mesh(new THREE.CircleGeometry(LAND * 1.05, 80),
-          new THREE.MeshStandardMaterial({ color: 0x3a6ea5, transparent: true, opacity: 0.72, roughness: 0.15, metalness: 0.25 }));
+          new THREE.MeshStandardMaterial({ color: 0x15283a, transparent: true, opacity: 0.94, roughness: 0.3, metalness: 0.2 }));
         water.rotation.x = -Math.PI / 2; water.position.y = 0; worldGroup.add(water);
         // beasts — lifted clear above local terrain (neighbourhood max height + clearance) so none sink into slopes
         const F = FACETS[axis];
@@ -1572,7 +1620,9 @@
         });
         // ---- connections: INSIDE a biome -> ground PATHS (colour = the biome's OWN ground tint, darkened,
         //      so a trail always harmonises with its biome); connections crossing OUT -> bright lines ----
-        const epos = [], ecol = [], ppos = [], pcol = [], PW = 7;
+        const epos = [], ecol = [], ppos = [], pcol = [], PW = 7, BR = {};
+        const adjCache = {}, adjacent = (A, B) => { const k = A.key < B.key ? A.key + '|' + B.key : B.key + '|' + A.key; if (k in adjCache) return adjCache[k];
+          let ok = true; for (let i = 1; i < 40; i++) { const t = i / 40, r = regionAt(A.x + (B.x - A.x) * t, A.z + (B.z - A.z) * t); if (r !== A && r !== B) { ok = false; break; } } return adjCache[k] = ok; };
         for (const e of EDGES) {
           const a = byId[e.a], b = byId[e.b]; if (!a || a._y == null || !b || b._y == null) continue;
           if (a._region && a._region === b._region) {
@@ -1584,18 +1634,30 @@
             if (a._region.biome === 'water') { pr = 0.34; pg2 = 0.55; pb = 0.72; }                 // clear blue trail over the sea
             else {
               const tc = tintOf[a._region.key];
-              if (tc) { const cc = tc.clone().offsetHSL(0, 0.16, -0.24); pr = cc.r; pg2 = cc.g; pb = cc.b; } // SAME biome hue, deeper -> worn trail
+              if (tc) { const cc = tc.clone().offsetHSL(0, 0.08, 0.16); pr = cc.r; pg2 = cc.g; pb = cc.b; } // SAME biome hue, deeper -> worn trail
               else { const rr = a._region.rgb || [0.5, 0.42, 0.32]; pr = rr[0] * 0.7; pg2 = rr[1] * 0.7; pb = rr[2] * 0.7; }
             }
             for (let k = 0; k < 6; k++)pcol.push(pr, pg2, pb);
           } else {
+            if (a._region && b._region && adjacent(a._region, b._region)) { const A = a._region, B = b._region, k = A.key < B.key ? A.key + '|' + B.key : B.key + '|' + A.key; (BR[k] = BR[k] || { A, B, n: 0 }).n++; continue; }
             const cc = hexRGB((GRP[e.g] || {}).color || "#8aa0b8");
-            epos.push(a._ax, a._y, a._az, b._ax, b._y, b._az); ecol.push(cc[0], cc[1], cc[2], cc[0], cc[1], cc[2]);
+            const lift = Math.hypot(b._ax - a._ax, b._az - a._az) * 0.16, SEG = 10; let px0 = a._ax, py0 = a._y, pz0 = a._az;
+            for (let k = 1; k <= SEG; k++) { const t = k / SEG, px = a._ax + (b._ax - a._ax) * t, pz = a._az + (b._az - a._az) * t, py = a._y + (b._y - a._y) * t + Math.sin(t * Math.PI) * lift;
+              epos.push(px0, py0, pz0, px, py, pz); ecol.push(cc[0], cc[1], cc[2], cc[0], cc[1], cc[2]); px0 = px; py0 = py; pz0 = pz; }
           }
         }
+        const deckMat = new THREE.MeshBasicMaterial({ color: 0x8a6436 }), railMat = new THREE.MeshBasicMaterial({ color: 0xffc865 }), maxN = Math.max(1, ...Object.values(BR).map(b => b.n));
+        for (const k in BR) { const { A, B, n } = BR[k]; let lo = 0, hi = 1;
+          for (let i = 0; i < 24; i++) { const m = (lo + hi) / 2; regionAt(A.x + (B.x - A.x) * m, A.z + (B.z - A.z) * m) === A ? lo = m : hi = m; }
+          const bx = A.x + (B.x - A.x) * lo, bz = A.z + (B.z - A.z) * lo, ang = Math.atan2(B.z - A.z, B.x - A.x), len = 420 * (A.rw + B.rw) / 2 + 220, w = 60 + 110 * n / maxN;
+          const bg = new THREE.Group(); bg.position.set(bx, 0, bz); bg.rotation.y = -ang;
+          const deck = new THREE.Mesh(new THREE.BoxGeometry(len, 16, w), railMat); deck.position.y = 40; bg.add(deck);
+          for (const s of [-1, 1]) { const rail = new THREE.Mesh(new THREE.BoxGeometry(len, 8, 8), deckMat); rail.position.set(0, 70, s * w / 2); bg.add(rail);
+            for (let p = -2; p <= 2; p++) { const post = new THREE.Mesh(new THREE.BoxGeometry(9, 150, 9), deckMat); post.position.set(p * len / 4.4, 0, s * w / 2); bg.add(post); } }
+          bg.userData.bridge = { A: A.key, B: B.key, n }; worldGroup.add(bg); }
         const eg = new THREE.BufferGeometry(); eg.setAttribute("position", new THREE.Float32BufferAttribute(epos, 3));
         eg.setAttribute("color", new THREE.Float32BufferAttribute(ecol, 3));
-        edgeLines = new THREE.LineSegments(eg, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.6 }));
+        edgeLines = new THREE.LineSegments(eg, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.22 }));
         edgeLines.visible = edgesShown; worldGroup.add(edgeLines);
         if (ppos.length) {
           const pg = new THREE.BufferGeometry(); pg.setAttribute("position", new THREE.Float32BufferAttribute(ppos, 3));
@@ -1725,7 +1787,7 @@
           const an = anchors.find(a => a.key === k), bm = an ? an.biome : 'plateau', tx = TEXALIAS[bm] || bm, cr = hexRGB(c.color);
           const rgba = `rgba(${(cr[0] * 255) | 0},${(cr[1] * 255) | 0},${(cr[2] * 255) | 0},.4)`;
           // swatch = biome texture + 40% category colour overlay — the map is baked with the SAME formula
-          const sw = bm === 'water' ? `background:#3a6ea5` : `background-image:linear-gradient(${rgba},${rgba}),url('assets/ground/${tx}.jpg')`;
+          const sw = bm === 'water' || !an ? `background:#15283a` : `background-image:url('${groundTex(bm, an._tintHex).image.toDataURL('image/jpeg', 0.7)}');background-size:cover`;
           row.innerHTML = `<span class="sw" style="${sw}"></span><span class="nm">${catLabel(axis, k)}</span><span class="ct">${counts[k] || 0}</span>`;
           row.onclick = () => focusRegion(k); host.appendChild(row);
         });
@@ -1750,7 +1812,7 @@
         isoKey = (!force && isoKey === k) ? null : k;
         spriteList.forEach(sp => { const nd = sp.userData.node; sp.material.opacity = (isoKey && nd[F.nkey] !== k) ? 0.12 : 1; });
         [...document.getElementById("biomes").children].forEach((r, i) => r.classList.toggle("dim", isoKey && F.order[i] !== isoKey));
-        if (edgeLines) edgeLines.material.opacity = isoKey ? 0.14 : 0.6;
+        if (edgeLines) edgeLines.material.opacity = isoKey ? 0.1 : 0.3;
         if (isoKey) {
           openRegionPanel(k); goal.t.set(a.x, Math.max(6, sample(a.x, a.z).h), a.z);
           const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
