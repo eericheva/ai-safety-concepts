@@ -6,14 +6,16 @@
 //   {{ a.b.c }}                 a value path, in attributes and text; `true` and `false` are literals
 //   <sc-for list="{{ xs }}" as="x">   repeats its children for each item, `x` in scope
 //   <sc-if value="{{ v }}">     renders its children when the value is truthy
-//   onClick / onMouseEnter / onMouseLeave="{{ fn }}"   event handlers
+//   onClick / onMouseEnter / onMouseLeave / onInput / onKeyDown / onFocus="{{ fn }}"   event handlers
+//   value="{{ v }}" on an input also sets its live value, so clearing the state clears the field
 //   style-hover="css"           declarations applied while the pointer is over the element
 //   <helmet>                    its children go to <head>
 // Rendering keeps the DOM nodes in place between updates, so CSS transitions run.
 (() => {
   const SVG = 'http://www.w3.org/2000/svg'
   const EXPR = /\{\{\s*([^}]+?)\s*\}\}/g
-  const EVENTS = { onclick: 'click', onmouseenter: 'mouseenter', onmouseleave: 'mouseleave' }
+  // CHANGED 2026-10-27: input, keydown and focus, for the search fields of the bestiary blocks
+  const EVENTS = { onclick: 'click', onmouseenter: 'mouseenter', onmouseleave: 'mouseleave', oninput: 'input', onkeydown: 'keydown', onfocus: 'focus' }
   const SKIP = new Set(['style-hover', 'hint-placeholder-count', 'hint-placeholder-val'])
   // The raw template must not flash before it is compiled.
   document.head.append(Object.assign(document.createElement('style'), { textContent: 'x-dc{display:none}' }))
@@ -106,6 +108,8 @@
   const update = (el, old, v) => {
     for (const n in old.attrs) if (!(n in v.attrs)) el.removeAttribute(n)
     for (const n in v.attrs) if (old.attrs[n] !== v.attrs[n]) el.setAttribute(n, v.attrs[n])
+    // CHANGED 2026-10-27: the attribute is only the default; the field shows the property
+    if ('value' in v.attrs && el.value !== String(v.attrs.value)) el.value = v.attrs.value
     for (const ev in v.on) {
       if (!(ev in el.__on)) el.addEventListener(ev, (e) => { const f = el.__on[ev]; if (typeof f === 'function') f(e) })
       el.__on[ev] = v.on[ev]

@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<!-- ADDED 2026-10-27: demo tours for the three blocks -->
+<script src="./bestiary-demo.js"></script>
 </head>
 <body>
 <x-dc>
@@ -22,6 +24,51 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
 @supports not selector(::-webkit-scrollbar){.zcol{scrollbar-width:thin;scrollbar-color:#4a4540 #1a1816;}}
 </style>
 </helmet>
+<!-- CHANGED 2026-10-27: The whole bestiary comes first: the beast is picked here, and Zooming in and An idea feeds — and is fed follow it -->
+<section data-screen-label="Bestiary" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px 56px 0;display:flex;flex-direction:column;gap:36px;">
+    <div id="2w" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <span style="font:700 26px 'Unbounded',sans-serif;">The whole bestiary</span>
+        <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:760px;text-wrap:pretty;">Every idea at once, laid out along the axis you grow it by. Pick any one: what feeds it lights up to the left, what it feeds, to the right. Zooming in and An idea feeds — and is fed, further down, follow your pick.</span>
+      </div>
+      <div style="display:flex;gap:4px 22px;flex-wrap:wrap;align-items:center;border-bottom:1px solid #26231f;">
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Grow along</span>
+        <sc-for list="{{ gTabs }}" as="a" hint-placeholder-count="5">
+          <button onClick="{{ a.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:2px solid {{ a.line }};margin-bottom:-1px;padding:8px 0;min-height:40px;color:{{ a.fg }};font:500 15px 'Onest',sans-serif;" style-hover="color:#efeae2;">{{ a.label }}</button>
+        </sc-for>
+        <span style="flex:1;"></span>
+        <span style="font:400 12px 'Onest',sans-serif;color:#7d776f;">{{ gHint }}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Selected</span>
+        <span style="display:flex;gap:6px;align-items:center;height:32px;padding:0 11px;background:#d8a24a;color:#0c0b0a;font:700 13px 'Onest',sans-serif;">{{ wHead.name }}<span style="opacity:.6;font-weight:500;">{{ wHead.n }}</span></span>
+        <div style="display:flex;align-items:center;gap:8px;border:1px solid #3a3531;background:#0f0e0c;padding:0 10px;height:32px;width:260px;box-sizing:border-box;">
+          <span style="color:#7d776f;font-size:13px;">⌕</span>
+          <input value="{{ wQ }}" onInput="{{ wOnQ }}" onKeyDown="{{ wKey }}" placeholder="Highlight in the bestiary…" style="flex:1;min-width:0;background:transparent;border:0;outline:none;color:#efeae2;font:500 13px 'Onest',sans-serif;">
+        </div>
+        <span style="font:400 12.5px 'Onest',sans-serif;color:#9a948b;">{{ wInfo }}</span>
+      </div>
+      <div style="position:relative;width:1136px;height:{{ wH }};">
+        <svg viewBox="0 0 1136 {{ wHn }}" style="position:absolute;inset:0;width:1136px;height:{{ wH }};pointer-events:none;overflow:visible;">
+          <sc-for list="{{ wEdges }}" as="e"><path d="{{ e.d }}" fill="none" stroke="{{ e.c }}" stroke-width="{{ e.w }}" opacity="{{ e.o }}"></path></sc-for>
+        </svg>
+        <div style="display:grid;grid-template-columns:{{ wGrid }};position:relative;">
+          <sc-for list="{{ wCols }}" as="col" hint-placeholder-count="8">
+            <div style="border-left:1px solid #1f1d1a;display:flex;flex-direction:column;min-width:0;">
+              <div style="display:flex;justify-content:space-between;gap:4px;height:26px;align-items:center;padding:0 8px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ col.hc }};"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ col.label }}</span><span style="color:#7d776f;">{{ col.n }}</span></div>
+              <sc-for list="{{ col.items }}" as="it"><div onClick="{{ it.go }}" title="{{ it.title }}" style="height:16px;display:flex;align-items:center;margin:0 6px 0 4px;padding:0 6px;font:{{ it.weight }} 11px 'Onest',sans-serif;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ it.fg }};background:{{ it.bg }};border-left:2px solid {{ it.mark }};" style-hover="color:#efeae2;background:#24211e;">{{ it.name }}</div></sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <sc-if value="{{ wUnOn }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #26231f;padding-top:14px;">
+          <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#7d776f;">{{ wUnTitle }}</span>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;"><sc-for list="{{ wUn }}" as="it"><span onClick="{{ it.go }}" title="{{ it.title }}" style="cursor:pointer;padding:2px 7px;font:{{ it.weight }} 11px 'Onest',sans-serif;color:{{ it.fg }};background:{{ it.bg }};border:1px solid #26231f;" style-hover="color:#efeae2;background:#24211e;">{{ it.name }}</span></sc-for></div>
+        </div>
+      </sc-if>
+    </div>
+</section>
 <section data-screen-label="Zoom" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px;display:flex;flex-direction:column;gap:36px;border-bottom:1px solid #26231f;">
   <div style="display:flex;flex-direction:column;gap:12px;max-width:1100px;">
     <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;letter-spacing:.2em;">Bestiarium · zoom</span>
@@ -47,7 +94,9 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
       </div>
       <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;padding-right:6px;">Follow</span>
-        <sc-for list="{{ zPicks }}" as="p" hint-placeholder-count="6"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid #3a3531;padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button></sc-for>
+        <sc-for list="{{ zPicks }}" as="p" hint-placeholder-count="6"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button></sc-for>
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;padding:0 6px 0 10px;">Alongside · {{ zAlN }}</span>
+        <sc-for list="{{ zAl }}" as="p" hint-placeholder-count="8"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button></sc-for>
       </div>
       <div style="position:relative;width:1136px;height:600px;overflow:hidden;background:#0f0e0c;">
         <div style="position:absolute;inset:0;opacity:{{ zL0.o }};transform:scale({{ zL0.s }});pointer-events:{{ zL0.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
@@ -66,6 +115,10 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
           <sc-for list="{{ z1Labels }}" as="l"><span style="transition:left .9s cubic-bezier(.22,1,.36,1),top .9s cubic-bezier(.22,1,.36,1);position:absolute;left:{{ l.x }};top:{{ l.y }};transform:translateX(-50%);font:700 11px 'Unbounded',sans-serif;color:{{ l.c }};white-space:nowrap;pointer-events:none;background:#0f0e0ccc;padding:1px 5px;">{{ l.label }}</span></sc-for>
         </div>
         <div style="position:absolute;inset:0;opacity:{{ zL2.o }};transform:scale({{ zL2.s }});pointer-events:{{ zL2.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
+          <!-- CHANGED 2026-10-27: the District step has the same layer row as Layer, so a district can be cut by any grouping -->
+          <div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:3;display:flex;border:1px solid #3a3531;background:#0f0e0c;">
+            <sc-for list="{{ zMaps }}" as="m"><button onClick="{{ m.go }}" style="cursor:pointer;border:0;padding:9px 11px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;background:{{ m.bg }};color:{{ m.fg }};">{{ m.label }} · {{ m.n }}</button></sc-for>
+          </div>
           <sc-for list="{{ z2Cards }}" as="c"><div onClick="{{ c.pick }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="cursor:pointer;position:absolute;left:{{ c.x }};top:{{ c.y }};width:{{ c.w }};height:112px;box-sizing:border-box;background:#151311;border:1px solid {{ c.bd }};border-top:3px solid {{ c.c }};opacity:{{ c.o }};display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px;transition:opacity .25s;cursor:default;"><div style="width:60px;height:60px;flex:none;background-image:url({{ c.img }});background-size:contain;background-repeat:no-repeat;background-position:center;"></div><span style="font:500 10px/1.2 'Onest',sans-serif;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{{ c.name }}</span></div></sc-for>
           <svg viewBox="0 0 1136 600" style="position:absolute;inset:0;width:1136px;height:600px;pointer-events:none;overflow:visible;"><sc-for list="{{ z2Links }}" as="l"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="1.6" opacity=".6"></path></sc-for></svg>
         </div>
@@ -73,9 +126,13 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
           <span style="position:absolute;left:40px;top:16px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;">Comes from · {{ z3.nin }}</span>
           <span style="position:absolute;right:40px;top:16px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;">Leads to · {{ z3.nout }}</span>
           <svg viewBox="0 0 1136 600" style="position:absolute;inset:0;width:1136px;height:600px;pointer-events:none;overflow:visible;"><sc-for list="{{ z3L }}" as="l"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="2" opacity="{{ l.lo }}"></path></sc-for><sc-for list="{{ z3R }}" as="l"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="2" opacity="{{ l.lo }}"></path></sc-for></svg>
-          <sc-for list="{{ z3L }}" as="p"><div onClick="{{ p.pick }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer;position:absolute;left:{{ p.x }};top:{{ p.y }};width:300px;height:40px;box-sizing:border-box;display:flex;align-items:center;gap:8px;background:#151311;border:1px solid #2e2b28;border-left:3px solid {{ p.c }};padding:0 8px;opacity:{{ p.o }};transition:opacity .25s;cursor:default;"><div style="width:32px;height:32px;flex:none;background-image:url({{ p.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 12px 'Onest',sans-serif;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ p.c }};white-space:nowrap;">{{ p.rel }}</span></div></sc-for>
-          <sc-for list="{{ z3R }}" as="p"><div onClick="{{ p.pick }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer;position:absolute;left:{{ p.x }};top:{{ p.y }};width:300px;height:40px;box-sizing:border-box;display:flex;align-items:center;gap:8px;background:#151311;border:1px solid #2e2b28;border-left:3px solid {{ p.c }};padding:0 8px;opacity:{{ p.o }};transition:opacity .25s;cursor:default;"><div style="width:32px;height:32px;flex:none;background-image:url({{ p.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 12px 'Onest',sans-serif;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ p.c }};white-space:nowrap;">{{ p.rel }}</span></div></sc-for>
-          <div onClick="{{ z3.pick }}" style="cursor:pointer;position:absolute;left:468px;top:190px;width:200px;height:220px;box-sizing:border-box;background:#171513;border:1px solid #3a3531;border-top:4px solid {{ z3.c }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;text-align:center;"><div style="width:110px;height:110px;background-image:url({{ z3.img }});background-size:contain;background-repeat:no-repeat;background-position:center;"></div><span style="font:700 14px/1.2 'Unbounded',sans-serif;text-wrap:balance;">{{ z3.name }}</span></div>
+          <sc-for list="{{ z3L }}" as="p"><div onClick="{{ p.pick }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer;position:absolute;left:{{ p.x }};top:{{ p.y }};width:300px;height:{{ p.h }};box-sizing:border-box;display:flex;align-items:center;gap:8px;background:#151311;border:1px solid #2e2b28;border-left:3px solid {{ p.c }};padding:0 8px;opacity:{{ p.o }};transition:opacity .25s;cursor:default;"><div style="width:{{ p.sz }};height:{{ p.sz }};flex:none;background-image:url({{ p.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 12px 'Onest',sans-serif;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ p.c }};white-space:nowrap;">{{ p.rel }}</span></div></sc-for>
+          <sc-for list="{{ z3R }}" as="p"><div onClick="{{ p.pick }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer;position:absolute;left:{{ p.x }};top:{{ p.y }};width:300px;height:{{ p.h }};box-sizing:border-box;display:flex;align-items:center;gap:8px;background:#151311;border:1px solid #2e2b28;border-left:3px solid {{ p.c }};padding:0 8px;opacity:{{ p.o }};transition:opacity .25s;cursor:default;"><div style="width:{{ p.sz }};height:{{ p.sz }};flex:none;background-image:url({{ p.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 12px 'Onest',sans-serif;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ p.c }};white-space:nowrap;">{{ p.rel }}</span></div></sc-for>
+          <div onClick="{{ z3.pick }}" style="cursor:pointer;position:absolute;left:468px;top:{{ z3.top }};width:200px;height:{{ z3.h }};box-sizing:border-box;background:#171513;border:1px solid #3a3531;border-top:4px solid {{ z3.c }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;text-align:center;"><div style="width:110px;height:110px;background-image:url({{ z3.img }});background-size:contain;background-repeat:no-repeat;background-position:center;"></div><span style="font:700 14px/1.2 'Unbounded',sans-serif;text-wrap:balance;">{{ z3.name }}</span></div>
+          <sc-if value="{{ z3.alOn }}" hint-placeholder-val="{{ true }}">
+            <span style="position:absolute;left:40px;top:398px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;">Alongside · {{ z3.nal }} <span style="color:#7d776f;font-weight:400;letter-spacing:.04em;text-transform:none;">links with no direction</span></span>
+            <sc-for list="{{ z3A }}" as="p"><div onClick="{{ p.pick }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer;position:absolute;left:{{ p.x }};top:{{ p.y }};width:258px;height:20px;box-sizing:border-box;display:flex;align-items:center;gap:6px;background:#151311;border:1px solid #2e2b28;border-left:3px solid {{ p.c }};padding:0 6px;opacity:{{ p.o }};transition:opacity .25s;"><span style="font:500 11px 'Onest',sans-serif;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.name }}</span><span style="font:400 9px 'JetBrains Mono',monospace;color:{{ p.c }};white-space:nowrap;">{{ p.rel }}</span></div></sc-for>
+          </sc-if>
         </div>
         <!-- CHANGED 2026-10-21: the last step, Pros and cons, shows what supports the followed beast and what argues with it (was a dossier; the separate 2a block is gone) -->
         <div style="position:absolute;inset:0;opacity:{{ zL4.o }};transform:scale({{ zL4.s }});pointer-events:{{ zL4.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
@@ -159,156 +216,87 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
     </div>
   </div>
 </section>
+<!-- CHANGED 2026-10-27: blocks 2b (An idea feeds) and 2c (An idea is fed) are replaced by the owner's design, The whole bestiary (2w) and An idea feeds — and is fed (2f), over every beast; one selection is shared with Zooming in -->
 <section data-screen-label="Genealogy" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px;display:flex;flex-direction:column;gap:36px;">
   <div style="display:flex;flex-direction:column;gap:12px;max-width:1100px;">
     <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:#d8a24a;">Bestiarium · genealogy</span>
     <h1 style="margin:0;font:900 44px/1 'Unbounded',sans-serif;letter-spacing:-.02em;text-transform:uppercase;">Where ideas <span style="color:#d8a24a;">come from and lead</span></h1>
-    <span style="font:400 17px/1.5 'Onest',sans-serif;color:#9a948b;max-width:860px;text-wrap:pretty;">An idea feeds what comes after it, and an idea is fed by what came before it.</span>
+    <span style="font:400 17px/1.5 'Onest',sans-serif;color:#9a948b;max-width:860px;text-wrap:pretty;">An idea feeds what comes after it, and an idea is fed by what came before it. Pick a beast in either block and the other blocks follow it.</span>
   </div>
+  <div style="display:flex;flex-direction:column;gap:40px;align-items:flex-start;">
 
-  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;">
-
-    <div id="2b" onMouseEnter="{{ trIn }}" onMouseLeave="{{ trLeave }}" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
+    <div id="2f" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;">
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <span style="font:700 26px 'Unbounded',sans-serif;">An idea feeds</span>
-          <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:700px;">{{ trNote }}</span>
+          <span style="font:700 26px 'Unbounded',sans-serif;">An idea feeds — and is fed</span>
+          <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:700px;text-wrap:pretty;">One idea, both ways at once: what it grew out of builds to the left, what grows out of it builds to the right, step by step. Click any idea in the tree to grow from it.</span>
         </div>
-        <span style="display:flex;gap:10px;"><button onClick="{{ trPToggle }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;" style-hover="border-color:#efeae2;">{{ trPLabel }}</button><button onClick="{{ replay }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;" style-hover="border-color:#efeae2;">↻ Replay</button></span>
+        <span style="display:flex;gap:10px;"><button onClick="{{ fToggle }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;" style-hover="border-color:#efeae2;">{{ fPlayLabel }}</button><button onClick="{{ fReplay }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;" style-hover="border-color:#efeae2;">↻ Replay</button></span>
       </div>
-      <div style="display:flex;gap:4px 22px;flex-wrap:wrap;align-items:center;border-bottom:1px solid #26231f;padding-bottom:8px;">
+      <div style="display:flex;gap:4px 22px;flex-wrap:wrap;align-items:center;border-bottom:1px solid #26231f;">
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Grow along</span>
-        <sc-for list="{{ trAxes }}" as="a" hint-placeholder-count="5">
-          <button onClick="{{ a.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:2px solid {{ a.line }};padding:8px 0;min-height:40px;color:{{ a.fg }};font:500 15px 'Onest',sans-serif;" style-hover="color:#efeae2;">{{ a.label }}</button>
+        <sc-for list="{{ gTabs }}" as="a" hint-placeholder-count="5">
+          <button onClick="{{ a.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:2px solid {{ a.line }};margin-bottom:-1px;padding:8px 0;min-height:40px;color:{{ a.fg }};font:500 15px 'Onest',sans-serif;" style-hover="color:#efeae2;">{{ a.label }}</button>
         </sc-for>
+        <span style="flex:1;"></span>
+        <span style="font:400 12px 'Onest',sans-serif;color:#7d776f;">{{ gHint }}</span>
       </div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;">
-        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;align-self:center;padding-right:6px;">Root</span>
-        <sc-for list="{{ roots }}" as="r" hint-placeholder-count="5">
-          <button onClick="{{ r.go }}" style="cursor:pointer;background:{{ r.bg }};color:{{ r.fg }};border:1px solid #3a3531;padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ r.name }} <span style="opacity:.6;">{{ r.n }}</span></button>
-        </sc-for>
-      </div>
-      <div style="min-height:40px;display:flex;flex-direction:column;gap:3px;border-left:3px solid {{ treeCapC }};padding-left:10px;">
-        <span style="font:700 14px 'Onest',sans-serif;">{{ treeCap }}</span>
-        <span style="font:400 12px/1.45 'Onest',sans-serif;color:#9a948b;">{{ treeCapSub }}</span>
-      </div>
-      <div style="position:relative;width:1136px;height:{{ treeH }};">
-        <sc-for list="{{ eraCols }}" as="e">
-          <div style="position:absolute;left:{{ e.x }};top:0;bottom:0;width:{{ e.w }};border-left:1px solid #1f1d1a;">
-            <span style="position:absolute;left:8px;top:0;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:{{ e.c }};transition:color .4s;">{{ e.label }}</span>
-          </div>
-        </sc-for>
-        <svg viewBox="0 0 1136 {{ treeHn }}" style="position:absolute;inset:0;width:1136px;height:{{ treeH }};pointer-events:none;">
-          <sc-for list="{{ treeLinks }}" as="l"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="1.5" opacity="{{ l.o }}" style="transition:opacity .6s;"></path></sc-for>
-        </svg>
-        <sc-for list="{{ treeNodes }}" as="t">
-          <div onClick="{{ t.pick }}" onMouseEnter="{{ t.enter }}" onMouseLeave="{{ t.leave }}" style="cursor:pointer;outline:{{ t.ol }};position:absolute;left:{{ t.x }};top:{{ t.y }};width:{{ t.w }};height:26px;display:flex;align-items:center;gap:6px;background:#171513;border:1px solid #3a3531;border-left:3px solid {{ t.c }};padding:0 6px;box-sizing:border-box;opacity:{{ t.o }};transform:scale({{ t.s }});transform-origin:left center;transition:opacity .5s,transform .5s cubic-bezier(.22,1.4,.36,1);">
-            <span style="font:500 11px 'Onest',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ t.name }}</span>
-          </div>
-        </sc-for>
-      </div>
-<sc-if value="{{ side2b }}" hint-placeholder-val="{{ false }}">
-  <div onClick="{{ closeSide }}" style="position:absolute;inset:0;z-index:50;background:rgba(6,5,4,.6);"></div>
-  <aside style="position:absolute;top:0;right:0;bottom:0;width:440px;z-index:51;background:#11100e;border-left:1px solid #2e2b28;border-top:4px solid {{ side.c }};padding:24px 26px 32px;box-sizing:border-box;overflow:auto;display:flex;flex-direction:column;gap:14px;box-shadow:-24px 0 60px rgba(0,0,0,.6);font-family:'Onest',sans-serif;color:#efeae2;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-      <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ side.c }};padding-top:12px;">{{ side.role }}</span>
-      <button onClick="{{ closeSide }}" style="cursor:pointer;background:transparent;border:0;color:#9a948b;font:400 26px 'Onest',sans-serif;width:44px;height:44px;" style-hover="color:#efeae2;">×</button>
-    </div>
-    <div style="width:140px;height:140px;background-image:url({{ side.img }});background-size:contain;background-repeat:no-repeat;"></div>
-    <span style="font:700 26px/1.15 'Unbounded',sans-serif;text-wrap:balance;">{{ side.name }}</span>
-    <span style="font:400 12px/1.5 'JetBrains Mono',monospace;color:#9a948b;">{{ side.meta }}</span>
-    <span style="font:400 17px/1.55 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty;">{{ side.tldr }}</span>
-    <span style="font:400 13px 'Onest',sans-serif;color:#7d776f;">{{ side.author }}</span>
-    <a href="{{ side.href }}" target="_blank" style="align-self:flex-start;display:flex;align-items:center;gap:8px;background:{{ side.c }};color:#0c0b0a;padding:11px 16px;min-height:44px;box-sizing:border-box;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;" style-hover="color:#0c0b0a;opacity:.85;">Read full text →</a>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid #26231f;border-bottom:1px solid #26231f;padding:12px 0;">
-      <sc-for list="{{ side.stats }}" as="s"><div style="display:flex;flex-direction:column;gap:3px;"><span style="font:700 22px 'Unbounded',sans-serif;">{{ s.v }}</span><span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;font-size:10px;color:#7d776f;">{{ s.k }}</span></div></sc-for>
-    </div>
-    <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;padding-top:4px;">Comes from · {{ side.nin }}</span>
-    <div style="display:flex;flex-direction:column;"><sc-for list="{{ side.inc }}" as="n"><button onClick="{{ n.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:1px solid #1f1d1a;padding:8px 0;display:flex;align-items:center;gap:10px;text-align:left;color:#cfc8bd;min-height:40px;width:100%;" style-hover="color:#efeae2;"><div style="width:28px;height:28px;flex:none;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 13px 'Onest',sans-serif;flex:1;min-width:0;">{{ n.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ n.c }};white-space:nowrap;">{{ n.rel }}</span></button></sc-for></div>
-    <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;padding-top:8px;">Leads to · {{ side.nout }}</span>
-    <div style="display:flex;flex-direction:column;"><sc-for list="{{ side.out }}" as="n"><button onClick="{{ n.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:1px solid #1f1d1a;padding:8px 0;display:flex;align-items:center;gap:10px;text-align:left;color:#cfc8bd;min-height:40px;width:100%;" style-hover="color:#efeae2;"><div style="width:28px;height:28px;flex:none;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 13px 'Onest',sans-serif;flex:1;min-width:0;">{{ n.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ n.c }};white-space:nowrap;">{{ n.rel }}</span></button></sc-for></div>
-  </aside>
-</sc-if>
-    </div>
-
-
-    <div id="2c" onMouseEnter="{{ fbIn }}" onMouseLeave="{{ fbLeave }}" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;">
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <span style="font:700 26px 'Unbounded',sans-serif;">An idea is fed</span>
-          <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:700px;">{{ fbNote }}</span>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative;">
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;margin-right:6px;">Root</span>
+        <div style="display:flex;align-items:center;gap:8px;border:1px solid {{ fPBorder }};background:#0f0e0c;padding:0 10px;height:32px;width:240px;box-sizing:border-box;">
+          <span style="color:#7d776f;font-size:13px;">⌕</span>
+          <input value="{{ fQ }}" onInput="{{ fOnQ }}" onFocus="{{ fPOpen }}" onKeyDown="{{ fKey }}" placeholder="{{ fPHolder }}" style="flex:1;min-width:0;background:transparent;border:0;outline:none;color:#efeae2;font:500 13px 'Onest',sans-serif;">
         </div>
-        <span style="display:flex;gap:10px;"><button onClick="{{ fbPToggle }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;" style-hover="border-color:#efeae2;">{{ fbPLabel }}</button><button onClick="{{ fbReplayFn }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;" style-hover="border-color:#efeae2;">↻ Replay</button></span>
-      </div>
-      <div style="display:flex;gap:4px 22px;flex-wrap:wrap;align-items:center;border-bottom:1px solid #26231f;padding-bottom:8px;">
-        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Trace back along</span>
-        <sc-for list="{{ fbAxes }}" as="a" hint-placeholder-count="5">
-          <button onClick="{{ a.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:2px solid {{ a.line }};padding:8px 0;min-height:40px;color:{{ a.fg }};font:500 15px 'Onest',sans-serif;" style-hover="color:#efeae2;">{{ a.label }}</button>
-        </sc-for>
-      </div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;">
-        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;align-self:center;padding-right:6px;">Root</span>
-        <sc-for list="{{ fbRoots }}" as="r" hint-placeholder-count="5">
-          <button onClick="{{ r.go }}" style="cursor:pointer;background:{{ r.bg }};color:{{ r.fg }};border:1px solid #3a3531;padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ r.name }} <span style="opacity:.6;">{{ r.n }}</span></button>
-        </sc-for>
-      </div>
-      <div style="min-height:40px;display:flex;flex-direction:column;gap:3px;border-left:3px solid {{ fbCapC }};padding-left:10px;">
-        <span style="font:700 14px 'Onest',sans-serif;">{{ fbCap }}</span>
-        <span style="font:400 12px/1.45 'Onest',sans-serif;color:#9a948b;">{{ fbCapSub }}</span>
-      </div>
-      <div style="position:relative;width:1136px;height:{{ fbHpx }};">
-        <sc-for list="{{ fbCols }}" as="e">
-          <div style="position:absolute;left:{{ e.x }};top:0;bottom:0;width:{{ e.w }};border-left:1px solid #1f1d1a;">
-            <span style="position:absolute;left:8px;top:0;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:{{ e.c }};transition:color .4s;">{{ e.label }}</span>
+        <sc-for list="{{ fChips }}" as="c" hint-placeholder-count="5"><button onClick="{{ c.go }}" style="cursor:pointer;display:flex;gap:5px;align-items:center;height:32px;padding:0 11px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font:500 13px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ c.name }}<span style="color:{{ c.nc }};">{{ c.n }}</span></button></sc-for>
+        <button onClick="{{ fPToggle }}" style="cursor:pointer;display:flex;gap:6px;align-items:center;height:32px;padding:0 12px;background:transparent;border:1px dashed #d8a24a;color:#d8a24a;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;" style-hover="border-style:solid;">All {{ total }} {{ fPCaret }}</button>
+        <sc-if value="{{ fPIsOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:10;background:#151311;border:1px solid #3a3531;box-shadow:0 18px 40px rgba(0,0,0,.6);display:flex;flex-direction:column;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #26231f;font:400 12px 'Onest',sans-serif;color:#9a948b;">
+              <span>{{ pTitle }}</span>
+              <button onClick="{{ pClose }}" style="cursor:pointer;background:transparent;border:0;color:#efeae2;font:400 12px 'Onest',sans-serif;white-space:nowrap;" style-hover="color:#d8a24a;">close ✕</button>
+            </div>
+            <div style="display:grid;grid-template-columns:{{ pGrid }};max-height:340px;overflow:auto;" class="zcol">
+              <sc-for list="{{ pCols }}" as="col">
+                <div style="display:flex;flex-direction:column;border-right:1px solid #1f1d1a;padding:10px 0;min-width:0;">
+                  <div style="display:flex;justify-content:space-between;gap:4px;padding:0 10px 8px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ col.hc }};"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ col.label }}</span><span style="color:#7d776f;">{{ col.n }}</span></div>
+                  <sc-for list="{{ col.items }}" as="it"><div onClick="{{ it.go }}" style="display:flex;justify-content:space-between;gap:6px;padding:3px 10px;font:400 12px 'Onest',sans-serif;cursor:pointer;color:{{ it.fg }};background:{{ it.bg }};border-left:2px solid {{ it.mark }};" style-hover="background:#24211e;color:#efeae2;"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ it.name }}</span><span style="color:#7d776f;font:400 10.5px 'JetBrains Mono',monospace;">{{ it.n }}</span></div></sc-for>
+                </div>
+              </sc-for>
+            </div>
           </div>
-        </sc-for>
-        <svg viewBox="0 0 1136 {{ fbHn }}" style="position:absolute;inset:0;width:1136px;height:{{ fbHpx }};pointer-events:none;">
-          <sc-for list="{{ fbLinks }}" as="l"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="1.5" opacity="{{ l.o }}" style="transition:opacity .6s;"></path></sc-for>
-        </svg>
-        <sc-for list="{{ fbNodes }}" as="t">
-          <div onClick="{{ t.pick }}" onMouseEnter="{{ t.enter }}" onMouseLeave="{{ t.leave }}" style="cursor:pointer;outline:{{ t.ol }};position:absolute;left:{{ t.x }};top:{{ t.y }};width:{{ t.w }};height:26px;display:flex;align-items:center;gap:6px;background:#171513;border:1px solid #3a3531;border-left:3px solid {{ t.c }};padding:0 6px;box-sizing:border-box;opacity:{{ t.o }};transform:scale({{ t.s }});transform-origin:left center;transition:opacity .5s,transform .5s cubic-bezier(.22,1.4,.36,1);">
-            <span style="font:500 11px 'Onest',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ t.name }}</span>
-          </div>
-        </sc-for>
+        </sc-if>
       </div>
-<sc-if value="{{ side2c }}" hint-placeholder-val="{{ false }}">
-  <div onClick="{{ closeSide }}" style="position:absolute;inset:0;z-index:50;background:rgba(6,5,4,.6);"></div>
-  <aside style="position:absolute;top:0;right:0;bottom:0;width:440px;z-index:51;background:#11100e;border-left:1px solid #2e2b28;border-top:4px solid {{ side.c }};padding:24px 26px 32px;box-sizing:border-box;overflow:auto;display:flex;flex-direction:column;gap:14px;box-shadow:-24px 0 60px rgba(0,0,0,.6);font-family:'Onest',sans-serif;color:#efeae2;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-      <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ side.c }};padding-top:12px;">{{ side.role }}</span>
-      <button onClick="{{ closeSide }}" style="cursor:pointer;background:transparent;border:0;color:#9a948b;font:400 26px 'Onest',sans-serif;width:44px;height:44px;" style-hover="color:#efeae2;">×</button>
+      <div style="display:flex;flex-direction:column;gap:3px;border-left:3px solid {{ fCapC }};padding-left:12px;">
+        <span style="font:700 15px 'Onest',sans-serif;">{{ fName }} · {{ fInfo }}</span>
+        <span style="font:400 12px/1.45 'Onest',sans-serif;color:#9a948b;">{{ fTldr }}</span>
+      </div>
+      <sc-if value="{{ fEmpty }}" hint-placeholder-val="{{ false }}">
+        <span style="font:400 13px/1.5 'Onest',sans-serif;color:#9a948b;padding:14px 16px;border:1px dashed #3a3531;">{{ fEmptyText }}</span>
+      </sc-if>
+      <sc-if value="{{ fTree }}" hint-placeholder-val="{{ true }}">
+        <div style="position:relative;width:1136px;height:{{ fH }};">
+          <sc-for list="{{ fHeads }}" as="c"><div style="position:absolute;top:0;bottom:0;left:{{ c.x }};width:{{ c.w }};box-sizing:border-box;border-left:1px solid #1f1d1a;padding:4px 8px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ c.c }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .4s;">{{ c.label }}</div></sc-for>
+          <svg viewBox="0 0 1136 {{ fHn }}" style="position:absolute;inset:0;width:1136px;height:{{ fH }};pointer-events:none;">
+            <sc-for list="{{ fEdges }}" as="e"><path d="{{ e.d }}" fill="none" stroke="{{ e.c }}" stroke-width="{{ e.w }}" opacity="{{ e.o }}" stroke-dasharray="{{ e.dash }}"></path></sc-for>
+          </svg>
+          <sc-for list="{{ fNodes }}" as="n"><div onClick="{{ n.go }}" title="{{ n.title }}" style="cursor:pointer;position:absolute;left:{{ n.x }};top:{{ n.y }};width:{{ n.w }};height:26px;display:flex;align-items:center;padding:0 8px;box-sizing:border-box;background:{{ n.bg }};color:{{ n.fg }};border:1px solid {{ n.bd }};border-left:3px solid {{ n.c }};font:500 12px 'Onest',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" style-hover="outline:1px solid #efeae2;">{{ n.name }}</div></sc-for>
+        </div>
+      </sc-if>
     </div>
-    <div style="width:140px;height:140px;background-image:url({{ side.img }});background-size:contain;background-repeat:no-repeat;"></div>
-    <span style="font:700 26px/1.15 'Unbounded',sans-serif;text-wrap:balance;">{{ side.name }}</span>
-    <span style="font:400 12px/1.5 'JetBrains Mono',monospace;color:#9a948b;">{{ side.meta }}</span>
-    <span style="font:400 17px/1.55 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty;">{{ side.tldr }}</span>
-    <span style="font:400 13px 'Onest',sans-serif;color:#7d776f;">{{ side.author }}</span>
-    <a href="{{ side.href }}" target="_blank" style="align-self:flex-start;display:flex;align-items:center;gap:8px;background:{{ side.c }};color:#0c0b0a;padding:11px 16px;min-height:44px;box-sizing:border-box;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;" style-hover="color:#0c0b0a;opacity:.85;">Read full text →</a>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid #26231f;border-bottom:1px solid #26231f;padding:12px 0;">
-      <sc-for list="{{ side.stats }}" as="s"><div style="display:flex;flex-direction:column;gap:3px;"><span style="font:700 22px 'Unbounded',sans-serif;">{{ s.v }}</span><span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;font-size:10px;color:#7d776f;">{{ s.k }}</span></div></sc-for>
-    </div>
-    <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;padding-top:4px;">Comes from · {{ side.nin }}</span>
-    <div style="display:flex;flex-direction:column;"><sc-for list="{{ side.inc }}" as="n"><button onClick="{{ n.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:1px solid #1f1d1a;padding:8px 0;display:flex;align-items:center;gap:10px;text-align:left;color:#cfc8bd;min-height:40px;width:100%;" style-hover="color:#efeae2;"><div style="width:28px;height:28px;flex:none;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 13px 'Onest',sans-serif;flex:1;min-width:0;">{{ n.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ n.c }};white-space:nowrap;">{{ n.rel }}</span></button></sc-for></div>
-    <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;padding-top:8px;">Leads to · {{ side.nout }}</span>
-    <div style="display:flex;flex-direction:column;"><sc-for list="{{ side.out }}" as="n"><button onClick="{{ n.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:1px solid #1f1d1a;padding:8px 0;display:flex;align-items:center;gap:10px;text-align:left;color:#cfc8bd;min-height:40px;width:100%;" style-hover="color:#efeae2;"><div style="width:28px;height:28px;flex:none;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 13px 'Onest',sans-serif;flex:1;min-width:0;">{{ n.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ n.c }};white-space:nowrap;">{{ n.rel }}</span></button></sc-for></div>
-  </aside>
-</sc-if>
-    </div>
-
 
   </div>
 </section>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { data: null, tick: 0, root: null, grow: 99, band: null, gFam: 0, gHover: null, gKeep: null };
+  // CHANGED 2026-10-27: The whole bestiary, Zooming in and An idea feeds — and is fed share one selection (`sel`, on the Role ladder axis at first)
+  state = { data: null, tick: 0, sel: 'power', ax: 'role', wQ: '', fQ: '', fOpen: false, fStep: 0, fPlay: true, recent: [] };
   static FAM = { misalign: ['Misalignment', '#C0453A'], deception: ['Deception', '#8E5DB0'], control: ['Control', '#E08A3C'], oversight: ['Oversight', '#3FA07E'], strategy: ['Takeoff & strategy', '#D9A441'], robustness: ['Robustness', '#6FA85B'], interp: ['Interpretability', '#2E9AA6'], mind: ['Philosophy of mind', '#4C7FC0'], ethics: ['Ethical lenses', '#C77BB0'], critical: ['Critical lens', '#B34F63'], myth: ['Cultural myths', '#A98A5B'], decision: ['Decision theory', '#7C93C4'], 'moral-status': ['Moral status of AI', '#B57ED9'] };
   static ROLE = { 'провал': ['Failure mode', '#fea199'], 'механизм': ['Mechanism', '#1cddae'], 'тезис': ['Thesis', '#76c7ff'], 'решение': ['Approach', '#ffd84a'], 'метафора': ['Metaphor', '#ffa752'], 'линза': ['Lens', '#ff96d3'], 'критика': ['Critique', '#c3affe'], 'эмпирика': ['Empirics', '#96d35f'] };
-  static ERAS = [['E0', 'Myths'], ['E1', '<1900'], ['E2', '1900–55'], ['E3', '1956–99'], ['E4', '2000–15'], ['E5', '2016–21'], ['E6', '2022+']];
+  static ERAS = [['E0', 'Myths / undated'], ['E1', '<1900'], ['E2', '1900–55'], ['E3', '1956–99'], ['E4', '2000–15'], ['E5', '2016–21'], ['E6', '2022+']];
   static REL = { 'специализация': 'specializes', 'вытекает': 'follows from', 'предпосылка': 'prerequisite', 'часть': 'part of', 'порождает': 'gives rise to', 'усугубляет': 'aggravates', 'смягчает': 'mitigates', 'решает': 'solves', 'измеряется': 'measured by', 'демонстрирует': 'demonstrates', 'мотивирует': 'motivates', 'операционализирует': 'operationalizes', 'напряжение': 'tension', 'противоречит': 'contradicts', 'альтернатива': 'alternative', 'контрпример': 'counterexample', 'критикует': 'critiques', 'тот-же-механизм': 'same mechanism', 'тематически': 'related', 'дуал': 'dual', 'аналогия': 'analogy', 'иллюстрирует': 'illustrates', 'развивает': 'develops', 'переименование': 'renaming', 'одна-школа': 'same school', 'исторически-предшествует': 'precedes', 'мост-канонов': 'canon bridge' };
   static POS = ['порождает', 'вытекает', 'предпосылка', 'специализация', 'часть', 'развивает', 'решает', 'смягчает', 'мотивирует', 'операционализирует', 'демонстрирует', 'иллюстрирует', 'тот-же-механизм', 'измеряется'];
   static NEG = ['противоречит', 'критикует', 'напряжение', 'контрпример', 'альтернатива'];
-  static GEN = ['исторически-предшествует', 'развивает', 'одна-школа', 'переименование', 'вытекает', 'порождает', 'специализация'];
 
   componentDidMount() {
     this.sprites = {}; this.queue = [];
@@ -316,7 +304,11 @@ class Component extends DCLogic {
       const nodes = d.nodes.map(([id, name, fam, role, era, track, cen, tldr, author]) => ({ id, name, fam, role, era, track, cen, tldr, author, adj: [] }));
       const by = {}; nodes.forEach(n => by[n.id] = n);
       d.edges.forEach(([a, b, g, t]) => { if (by[a] && by[b]) { by[a].adj.push([b, t, g, 1]); by[b].adj.push([a, t, g, -1]); } });
-      this.by = by; this.buildTrees(nodes); this.buildBack(nodes); this.setState({ data: nodes }, () => { this.replay(); this.fbReplay(); });
+      // CHANGED 2026-10-27: the dominant link kind of every beast (the Links layer of Zooming in) is set here; it was set by the removed 3d view
+      nodes.forEach(n => { const c = {}; n.adj.forEach(a => c[a[2]] = (c[a[2]] || 0) + 1); n.lk = Object.keys(c).sort((p, q) => c[q] - c[p])[0] || 'D'; });
+      this.by = by; this.buildAxes(nodes);
+      const top = [...this.axes.role.C.flat()].sort((p, q) => this.axes.role.steps[q][0] + this.axes.role.steps[q][1] - this.axes.role.steps[p][0] - this.axes.role.steps[p][1]).filter(id => id !== 'power').slice(0, 4);
+      this.setState({ data: nodes, recent: ['power', ...top] });
     });
     const img = new Image();
     Promise.all([fetch('assets/monster/spritesheet_default.xml').then(r => r.text()), new Promise(res => { img.onload = res; img.src = 'assets/monster/spritesheet_default.png'; })]).then(([xml]) => {
@@ -324,36 +316,24 @@ class Component extends DCLogic {
       while ((m = re.exec(xml))) frames[m[1]] = { x: +m[2], y: +m[3], w: +m[4], h: +m[5] };
       this.sheet = { img, frames }; this.forceUpdate();
     });
-    this.auto = { cf: 0, db: 0, tr: 0 };
+    this.auto = {};
     this.autoT = setInterval(() => {
       const s = this.state; if (!s.data) return; const A = this.auto;
-      if (s.cfPlay !== false && !s.cfHover) { A.cf += 250; if (A.cf >= 5000) { A.cf = 0; this.setState({ cf: ((s.cf ?? 5) + 1) % (this.cfN || 6), cfIsl: null, cfTile: null }); this.cfRestart(); } }
-      if (s.trPlay !== false && !s.trHover && s.grow >= (this.nCols || 7) - 1) { A.tr += 250; if (A.tr >= 2800) { A.tr = 0; const T = this.trees || []; if (T.length) { const i = Math.max(0, T.findIndex(t => t.root === s.root));
-        if (i + 1 < Math.min(T.length, 3)) this.setState({ root: T[i + 1].root, treeH: null }, () => this.replay());
-        else { const AX = Component.TAXES, ai = AX.findIndex(a => a.k === (s.trAxis || 'time')), nx = AX[(ai + 1) % AX.length].k; this.setState({ trAxis: nx, root: null, treeH: null }, () => this.replay()); } } } }
-      if (s.fbPlay !== false && !s.fbHover && (s.fbGrow ?? 0) >= (this.fbMax ?? 6)) { A.fb = (A.fb || 0) + 250; if (A.fb >= 2800) { A.fb = 0; const T = this.fbTrees || []; if (T.length) { const i = Math.max(0, T.findIndex(t => t.root === s.fbRoot));
-        if (i + 1 < Math.min(T.length, 3)) this.setState({ fbRoot: T[i + 1].root, fbH: null }, () => this.fbReplay());
-        else { const AXs = Component.TAXES, ai = AXs.findIndex(a => a.k === (s.fbAxis || 'time')); this.setState({ fbAxis: AXs[(ai + 1) % AXs.length].k, fbRoot: null, fbH: null }, () => this.fbReplay()); } } } }
       if ((s.zL ?? 0) === 1 && s.zM == null && !s.zIs && (s.zCyc ?? 0) < 5) { A.zc = (A.zc || 0) + 250; if (A.zc >= 1800) { A.zc = 0; this.setState({ zCyc: (s.zCyc ?? 0) + 1 }); } }
       else if (s.zPlay !== false && !s.zHover && (s.zL ?? 0) === 1 && s.zM == null) { A.zc = (A.zc || 0) + 250; if (A.zc >= 1800) { A.zc = 0; this.setState({ zL: 2, zCyc: null }); this.zRestart(); } }
       else if (s.zPlay !== false && !s.zHover) { A.z = (A.z || 0) + 250; if (A.z >= 4500) { A.z = 0; const L = s.zL ?? 0; if (L === 0 && s.zM == null) { A.zc = 0; this.setState({ zL: 1, zCyc: 0 }); this.zRestart(); return; } if (L < 4) this.setState({ zL: L + 1 }); else { const P = this.zPicksIds || []; const i = Math.max(0, P.indexOf(s.zB)); this.setState({ zL: 0, zB: P[(i + 1) % (P.length || 1)] }); } this.zRestart(); } }
     }, 250);
-    setTimeout(() => { this.cfRestart(); this.zRestart(); }, 400);
-    this.flowT = setInterval(() => {
-      if (this.state.flowPlay === false || this.state.flowH || !this.state.data) return;
-      this.flowEl = (this.flowEl || 0) + 250;
-      if (this.flowEl >= 4000) { this.setState(s => ({ flowStep: ((s.flowStep || 0) + 1) % 8 })); this.flowRestart(); }
-    }, 250);
-    setTimeout(() => this.flowRestart(), 400);
+    setTimeout(() => this.zRestart(), 400);
+    // CHANGED 2026-10-27: An idea feeds — and is fed grows one link a side per tick while it is on screen, and stops when grown (no auto-advance: the selection is the reader's)
+    this.fVis = false; new IntersectionObserver(([e]) => { this.fVis = e.isIntersecting; }).observe(document.getElementById('2f'));
+    this.fT = setInterval(() => { const s = this.state; if (s.data && s.fPlay && this.fVis && s.fStep < this.fTotal) this.setState({ fStep: s.fStep + 1 }); }, 450);
     this.flush = setInterval(() => {
       if (!this.sheet || !this.queue.length) return;
       const batch = this.queue.splice(0, 14); batch.forEach(id => { if (!this.sprites[id]) this.sprites[id] = this.draw(this.by[id]); });
       this.setState(s => ({ tick: s.tick + 1 }));
     }, 60);
   }
-  componentWillUnmount() { clearInterval(this.flush); clearInterval(this.growT); clearInterval(this.flowT); clearInterval(this.autoT); clearTimeout(this.zPT); clearInterval(this.fbT); clearTimeout(this.cfPT); clearTimeout(this.flowPT); }
-  cfRestart() { clearTimeout(this.cfPT); this.setState({ cfProg: 0 }); this.cfPT = setTimeout(() => this.setState({ cfProg: 1 }), 60); }
-  flowRestart() { this.flowEl = 0; clearTimeout(this.flowPT); this.setState({ flowProg: 0 }); this.flowPT = setTimeout(() => this.setState({ flowProg: 1 }), 60); }
+  componentWillUnmount() { clearInterval(this.flush); clearInterval(this.autoT); clearTimeout(this.zPT); clearInterval(this.fT); }
 
   sp(id) { if (this.sprites[id]) return this.sprites[id]; if (!this.queue.includes(id)) this.queue.push(id); return ''; }
   draw(n) {
@@ -379,193 +359,144 @@ class Component extends DCLogic {
     ox.drawImage(c, 0, 0, 160, 160); return this.blobURL(o);
   }
 
-  turn3(D, meta) {
-    if (!this.edgesList) { this.edgesList = []; const seen = new Set(); D.forEach(n => n.adj.forEach(([b]) => { const k = n.id < b ? n.id + '|' + b : b + '|' + n.id; if (!seen.has(k)) { seen.add(k); this.edgesList.push([n.id, b]); } })); }
-    const st = this.state, F = Component.FAM, R = Component.ROLE, fk = Object.keys(F), rk = Object.keys(R);
-    // 3a flow
-    const H = 560, GAP = 6, side = (keys, field) => { const tot = H - GAP * (keys.length - 1); let y = 0; const out = {}; keys.forEach(k => { const n = D.filter(x => x[field] === k).length; const h = Math.max(4, tot * n / D.length); out[k] = { y, h, n }; y += h + GAP; }); return out; };
-    const LF = side(fk, 'fam'), RR = side(rk, 'role'), fPlay = st.flowPlay !== false, step = (st.flowStep || 0) % rk.length, h = st.flowH || (fPlay ? ['r', rk[step]] : null);
-    const slotL = {}, slotR = {};
-    const byF = [...D].sort((a, b) => fk.indexOf(a.fam) - fk.indexOf(b.fam) || rk.indexOf(a.role) - rk.indexOf(b.role));
-    const byR = [...D].sort((a, b) => rk.indexOf(a.role) - rk.indexOf(b.role) || fk.indexOf(a.fam) - fk.indexOf(b.fam));
-    const cntIn = {}; byF.forEach(n => { cntIn[n.fam] = (cntIn[n.fam] || 0) + 1; slotL[n.id] = cntIn[n.fam]; });
-    const cntR = {}; byR.forEach(n => { cntR[n.role] = (cntR[n.role] || 0) + 1; slotR[n.id] = cntR[n.role]; });
-    const hit = n => !h || (h[0] === 'f' ? n.fam === h[1] : n.role === h[1]);
-    const flowLines = D.map(n => { const a = LF[n.fam], b = RR[n.role], y1 = a.y + a.h * (slotL[n.id] - .5) / a.n, y2 = b.y + b.h * (slotR[n.id] - .5) / b.n; return { d: `M232,${y1.toFixed(1)} C568,${y1.toFixed(1)} 568,${y2.toFixed(1)} 904,${y2.toFixed(1)}`, c: R[n.role][1], w: hit(n) && h ? '1.6' : '1', o: hit(n) ? (h ? '.85' : '.32') : '.04' }; });
-    const flowL = fk.map(k => ({ label: F[k][0], n: String(LF[k].n), y: `${LF[k].y}px`, h: `${LF[k].h}px`, c: F[k][1], o: !h || (h[0] === 'f' && h[1] === k) || h[0] === 'r' ? '1' : '.4', enter: () => this.setState({ flowH: ['f', k] }) }));
-    const flowR = rk.map(k => ({ label: R[k][0], n: String(RR[k].n), y: `${RR[k].y}px`, h: `${RR[k].h}px`, c: R[k][1], o: !h || (h[0] === 'r' && h[1] === k) || h[0] === 'f' ? '1' : '.4', enter: () => this.setState({ flowH: ['r', k] }) }));
-    const hm = h ? D.filter(hit) : [];
-    const hfams = new Set(hm.map(n => n.fam)).size, hroles = new Set(hm.map(n => n.role)).size;
-    const flowTitle = h ? (h[0] === 'f' ? F[h[1]][0] : R[h[1]][0]) : 'Hover a family or a role';
-    const flowSub = !h ? '' : h[0] === 'r' ? `${hm.length} beasts · ${hfams >= 4 ? 'start apart in' : 'start together in'} ${hfams} ${hfams === 1 ? 'family' : 'families'}` : `${hm.length} beasts · spread over ${hroles} roles`;
-    const flowCapC = !h ? '#efeae2' : h[0] === 'f' ? F[h[1]][1] : R[h[1]][1];
-    const flowStrip = hm.slice(0, 14).map(n => ({ img: this.sp(n.id) }));
-    // 3b multiples
-    const multiples = rk.map(r => {
-      const mem = D.filter(n => n.role === r), fams = {}; mem.forEach(n => fams[n.fam] = (fams[n.fam] || 0) + 1);
-      const nf = Object.keys(fams).length, top = Math.max(...Object.values(fams));
-      const on = h && h[0] === 'r' && h[1] === r;
-      return { label: R[r][0], go: () => this.setState({ flowPlay: false, flowH: null, flowStep: rk.indexOf(r) }), bg: on ? '#1c1a17' : '#151311', bd: on ? R[r][1] : '#2e2b28',
-        prog: on && fPlay && !st.flowH ? (st.flowProg ? '100%' : '0%') : (on ? '100%' : '0%'), trans: on && fPlay && !st.flowH && st.flowProg ? 'width 3900ms linear' : 'none', c: R[r][1], verdict: nf >= 4 ? `start apart · ${nf} families` : `start together · ${nf}`,
-        dots: fk.map((f, i) => ({ x: '14', y: String(8 + i * 11.4), c: F[f][1], o: fams[f] ? '1' : '.18' })),
-        lines: Object.entries(fams).map(([f, c]) => { const y = 11.5 + fk.indexOf(f) * 11.4; return { d: `M22,${y} C130,${y} 130,80 226,80`, w: String(.8 + 4 * c / top) }; }),
-        strip: mem.slice(0, 6).map(n => ({ img: this.sp(n.id) })) };
-    });
-    // 3c followed through
-    const picks = ['clip', 'gorilla', 'deceptive', 'interp', 'power', 'cr-stochastic-parrots', 'cr-golem'].filter(id => this.by[id]);
-    const fid = st.ftId && this.by[st.ftId] ? st.ftId : picks[0], fn = this.by[fid];
-    const ftPicks = picks.map(id => ({ name: this.by[id].name, go: () => this.setState({ ftId: id }), bg: id === fid ? '#d8a24a' : 'transparent', fg: id === fid ? '#0c0b0a' : '#cfc8bd' }));
-    const nbs = fn.adj.map(([b, t]) => ({ m: this.by[b], t }));
-    const card = x => ({ name: x.m.name, img: this.sp(x.m.id) });
-    const colOf = (k, label, val) => {
-      const w = nbs.filter(x => x.m[k] === fn[k]), v = nbs.filter(x => x.m[k] !== fn[k]).sort((a, b) => Component.NEG.includes(b.t) - Component.NEG.includes(a.t));
-      return { k: label, v: val, with: w.slice(0, 2).map(card), vs: v.slice(0, 2).map(card) };
-    };
-    const CAN = { tech: 'Techno-rationalist', hum: 'Humanities-critical' };
-    const strongest = [...nbs].sort((a, b) => b.m.adj.length - a.m.adj.length)[0];
-    const ftCols = [colOf('track', 'Canon', CAN[fn.track]), colOf('era', 'Era', Component.ERAS[this.eraI(fn.era)][1]), colOf('fam', 'Family', F[fn.fam][0]), colOf('role', 'Role', R[fn.role][0]),
-      { k: 'Busiest neighbour', v: strongest ? strongest.m.name : '—', with: strongest ? strongest.m.adj.filter(([b]) => b !== fid).slice(0, 2).map(([b]) => card({ m: this.by[b] })) : [], vs: [] }];
-    const ft = { c: R[fn.role][1], img: this.sp(fid), name: fn.name };
-    // 3d coarse/fine
-    if (!this.lkDone) { this.lkDone = true; D.forEach(n => { const c = {}; n.adj.forEach(a => c[a[2]] = (c[a[2]] || 0) + 1); n.lk = Object.keys(c).sort((p, q) => c[q] - c[p])[0] || 'D'; }); }
-    const LKN = { A: 'Mostly logical links', B: 'Mostly causal links', C: 'Mostly debated', D: 'Mostly associative', E: 'Mostly genealogical', F: 'Canon bridges' };
-    const pres = (fld, obj) => Object.fromEntries(Object.entries(obj).filter(([k]) => D.some(n => n[fld] === k)));
-    const LV0 = [['track', 'Canon', { tech: 'Techno-rationalist', hum: 'Humanities-critical' }], ['cen', 'Weight', { Core: 'Core ideas', Major: 'Major', Supporting: 'Supporting' }], ['lk', 'Links', LKN],
-      ['era', 'Era', Object.fromEntries(Component.ERAS.map(e => [e[0], e[1]]))], ['role', 'Role', Object.fromEntries(rk.map(k => [k, R[k][0]]))], ['fam', 'Family', Object.fromEntries(fk.map(k => [k, F[k][0]]))]];
-    const LV = LV0.map(([f, l, o]) => { const p = pres(f, o); return [f, `${l} · ${Object.keys(p).length}`, p]; }); this.cfN = LV.length;
-    const lv = Math.min(st.cf ?? LV.length - 1, LV.length - 1);
-    const [field, , names] = LV[lv], STEP = 18, W = 1136, HH = 520, GX = 60, GY = 64;
-    const isl = Object.keys(names).map(k => {
-      const mem = D.filter(n => n[field] === k).sort((p, q) => fk.indexOf(p.fam) - fk.indexOf(q.fam));
-      const RR = Math.ceil(Math.sqrt(mem.length / Math.PI)) + 3, cells = [];
-      for (let i = -RR; i <= RR; i++) for (let j = -RR; j <= RR; j++) cells.push([i, j, Math.hypot(i * 0.92, j * 1.08) + this.hash(k + i + ',' + j) * 1.3]);
-      cells.sort((p, q) => p[2] - q[2]); const pick = cells.slice(0, mem.length);
-      const xs = pick.map(c => c[0]), ys = pick.map(c => c[1]), mx = Math.min(...xs), my = Math.min(...ys), cx = (Math.max(...xs) + mx) / 2, cy = (Math.max(...ys) + my) / 2;
-      pick.sort((p, q) => (Math.atan2(p[1] - cy, p[0] - cx) - Math.atan2(q[1] - cy, q[0] - cx)) || (p[2] - q[2]));
-      return { k, label: names[k], mem, pick, mx, my, w: (Math.max(...xs) - mx + 1) * STEP, h: (Math.max(...ys) - my + 1) * STEP };
-    }).filter(s => s.mem.length);
-    const rows = []; let row = [], rw = 0;
-    isl.forEach(s => { if (row.length && rw + s.w + GX > W - 40) { rows.push([row, rw]); row = []; rw = 0; } rw += s.w + (row.length ? GX : 0); row.push(s); });
-    if (row.length) rows.push([row, rw]);
-    const total = rows.reduce((t, [r]) => t + Math.max(...r.map(s => s.h)), 0) + GY * (rows.length - 1);
-    let y = Math.max(44, (HH - total) / 2 + 16); const tp = {};
-    rows.forEach(([r, w]) => { const rh = Math.max(...r.map(s => s.h)); let x = (W - w) / 2; r.forEach(s => { s.x = x; s.y = y + (rh - s.h) / 2; s.mem.forEach((n, i) => { const c = s.pick[i]; tp[n.id] = [s.x + (c[0] - s.mx) * STEP, s.y + (c[1] - s.my) * STEP]; }); x += s.w + GX; }); y += rh + GY; });
-    const cI = st.cfIsl, cT = st.cfTile && this.by[st.cfTile], cNb = cT ? new Set(cT.adj.map(a => a[0]).concat(cT.id)) : null;
-    const cfTiles = D.map(n => ({ x: `${tp[n.id][0]}px`, y: `${tp[n.id][1]}px`, c: F[n.fam][1], d: `${Math.round(this.hash(n.id) * 300)}ms`,
-      o: (cNb ? cNb.has(n.id) : (!cI || n[field] === cI)) ? '1' : '.15', ol: cT && cT.id === n.id ? '2px solid #efeae2' : 'none',
-      enter: () => this.setState({ cfTile: n.id, cfIsl: n[field] }), leave: () => this.setState({ cfTile: null }) }));
-    const cfIslands = isl.map(s => ({ x: `${s.x - 8}px`, y: `${s.y - 8}px`, w: `${s.w + 16}px`, h: `${s.h + 16}px`, o: cI && cI !== s.k ? '.4' : '1', enter: () => this.setState({ cfIsl: s.k }) }));
-    const ctr = {}; isl.forEach(s => ctr[s.k] = [s.x + s.w / 2, s.y + s.h / 2]);
-    const cross = {}; this.edgesList.forEach(([p, q]) => { const ga = this.by[p][field], gb = this.by[q][field]; if (ga === gb) return; const key = ga < gb ? ga + '|' + gb : gb + '|' + ga; cross[key] = (cross[key] || 0) + 1; });
-    const pairs = Object.entries(cross).sort((p, q) => q[1] - p[1]), maxC = pairs.length ? pairs[0][1] : 1;
-    const cfRoads = cT ? [] : (cI ? pairs.filter(([k]) => k.split('|').includes(cI)) : pairs.slice(0, 10)).map(([k, c]) => { const [p, q] = k.split('|'), A = ctr[p], B = ctr[q], mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2 - Math.hypot(B[0] - A[0], B[1] - A[1]) * .22; return { d: `M${A[0]},${A[1]} Q${mx},${my} ${B[0]},${B[1]}`, w: String(1 + 6 * c / maxC), c: cI ? '#d8a24a' : '#9a948b', o: cI ? '.7' : '.22' }; });
-    const cfLinks = cT ? cT.adj.map(([b]) => ({ d: `M${tp[cT.id][0] + 7.5},${tp[cT.id][1] + 7.5} L${tp[b][0] + 7.5},${tp[b][1] + 7.5}` })) : [];
-    const cfHasTip = !!cT, cfTip = cT ? { x: `${Math.min(tp[cT.id][0] + 22, 870)}px`, y: `${Math.min(tp[cT.id][1] - 10, 420)}px`, c: F[cT.fam][1], img: this.sp(cT.id), name: cT.name, meta: meta(cT), tldr: cT.tldr.length > 120 ? cT.tldr.slice(0, 118) + '…' : cT.tldr } : {};
-    const imem = cI ? D.filter(n => n[field] === cI) : [], comp = {}; imem.forEach(n => comp[n.fam] = (comp[n.fam] || 0) + 1);
-    const cfInfoTitle = cI ? `${names[cI]} · made of` : 'Hover an island or a tile';
-    const cfInfo = Object.entries(comp).sort((p, q) => q[1] - p[1]).map(([f, c]) => ({ label: F[f][0], n: String(c), c: F[f][1], w: `${Math.max(6, c * 3)}px` }));
-    const cfLabels = isl.map(s => ({ x: `${s.x + s.w / 2}px`, y: `${s.y - 46}px`, label: s.label, n: String(s.mem.length) }));
-    const cfOn = st.cfPlay !== false && !st.cfHover;
-    const cfBtns = LV.map((l, i) => ({ label: l[1], prog: i === lv ? (cfOn ? (st.cfProg ? '100%' : '0%') : '0%') : '0%', trans: i === lv && cfOn && st.cfProg ? 'width 4900ms linear' : 'none', go: () => { this.auto.cf = 0; this.setState({ cf: i, cfPlay: false }); }, bg: i === lv ? '#d8a24a' : 'transparent', fg: i === lv ? '#0c0b0a' : '#9a948b' }));
-    // 3e routes
-    const GL = { A: ['Logical', '#76c7ff'], B: ['Causal', '#1cddae'], C: ['Dialectical', '#c3affe'], D: ['Associative', '#9a948b'], E: ['Genealogical', '#ffa752'], F: ['Canon bridge', '#ff96d3'] };
-    const top8 = [...D].sort((a, b) => b.adj.length - a.adj.length).slice(0, 8);
-    const rid = st.rtId && this.by[st.rtId] ? st.rtId : top8[0].id, rn = this.by[rid];
-    const rtPicks = top8.map(n => ({ name: n.name, n: String(n.adj.length), go: () => this.setState({ rtId: n.id }), bg: n.id === rid ? '#d8a24a' : 'transparent', fg: n.id === rid ? '#0c0b0a' : '#cfc8bd' }));
-    const byG = {}; rn.adj.forEach(([b, t, g]) => (byG[g] = byG[g] || []).push([b, t]));
-    const rtRows = Object.entries(byG).sort((a, b) => b[1].length - a[1].length).map(([g, arr]) => ({ label: (GL[g] || [g])[0], c: (GL[g] || [0, '#9a948b'])[1], n: String(arr.length), share: `${Math.round(arr.length / rn.adj.length * 100)}%`, w: `${arr.length / rn.adj.length * 100}%`,
-      ex: arr.slice(0, 6).map(([b, t]) => ({ name: this.by[b].name, rel: Component.REL[t] || t })) }));
-    const rt = { img: this.sp(rid), name: rn.name, tldr: rn.tldr };
-    if (!st.flowPlay && st.flowPlay !== false) {}
-    const pinned = !fPlay && st.flowH == null ? ['r', rk[step]] : null;
-    return { flowLines, flowL, flowR, flowTitle, flowSub, flowCapC, flowStrip, flowOut: () => this.setState({ flowH: null }),
-      flowToggle: () => { this.setState({ flowPlay: !fPlay, flowH: null }); this.flowRestart(); }, flowPlayLabel: fPlay ? 'Ⅱ Pause' : '▶ Play', multiples, ftPicks, ft, ftCols, cfBtns, cfLabels, cfTiles, cfIslands, cfRoads, cfLinks, cfHasTip, cfTip, cfInfo, cfInfoTitle, cfOut: () => this.setState({ cfIsl: null, cfTile: null }),
-      cfIn: () => this.setState({ cfHover: true }), cfLeave: () => { this.auto.cf = 0; this.setState({ cfHover: false }); this.cfRestart(); },
-      cfPToggle: () => { this.auto.cf = 0; this.setState({ cfPlay: st.cfPlay === false }); this.cfRestart(); }, cfPLabel: st.cfPlay === false ? '▶ Play' : 'Ⅱ Pause', rtPicks, rt, rtRows };
-  }
   hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967296; }
   eraI(e) { return Component.ERAS.findIndex(x => x[0] === e); }
   static ROLEORD = ['метафора', 'линза', 'тезис', 'провал', 'механизм', 'решение', 'эмпирика', 'критика'];
+  // CHANGED 2026-10-27: the axes of the new genealogy blocks; `hint` explains the columns, `first` names the leftmost column of a link axis, `kind` its links
   static TAXES = [
-    { k: 'time', label: 'Time', word: 'descendants', note: 'Start from an old idea and follow its genealogical links forward, era by era. Branches sprout in the order history grew them.' },
-    { k: 'logic', label: 'Logic', g: 'A', word: 'consequences', note: 'From a premise to what follows from it. Each column is one more logical step: prerequisite, follows from, specializes, part of.' },
-    { k: 'cause', label: 'Cause', g: 'B', word: 'effects', note: 'What an idea sets off. Each column is one more causal step: gives rise to, aggravates, mitigates, solves.' },
-    { k: 'debate', label: 'Debate', g: 'C', word: 'replies', note: 'Who argues back, and who argues with them. Each column is one more turn of the debate: tension, contradicts, critiques.' },
-    { k: 'role', label: 'Role ladder', word: 'steps', note: 'From a story to a fix. Columns climb the roles of the argument: metaphor, lens, thesis, failure mode, mechanism, approach.' },
+    { k: 'time', label: 'Time', hint: 'columns = era · every link from an earlier era to a later one, coloured by its kind; genealogical links are bold' },
+    { k: 'logic', label: 'Logic', g: 'A', kind: 'logical', first: 'Premises', hint: 'columns = logical steps · a premise feeds what follows from it, a general idea feeds its special cases and its parts' },
+    { k: 'cause', label: 'Cause', g: 'B', kind: 'causal', first: 'First causes', hint: 'columns = causal steps · a cause feeds what it gives rise to or aggravates, a problem feeds what mitigates or solves it, an idea feeds the work that operationalizes it' },
+    { k: 'debate', label: 'Debate', g: 'C', kind: 'debate', first: 'Openers', hint: 'columns = turns of the debate · an idea feeds its critique; tension, contradiction and alternatives run from the earlier idea to the later one' },
+    { k: 'role', label: 'Role ladder', hint: 'columns = role in the argument · every link from one role to a later one, coloured by its kind; genealogical links are bold' },
   ];
-  buildTrees(nodes) {
-    const CAP = 24, ro = n => Component.ROLEORD.indexOf(n.role);
-    this.treesBy = {};
-    for (const ax of Component.TAXES) {
-      const fixed = ax.k === 'time' ? id => this.eraI(this.by[id].era) : ax.k === 'role' ? id => ro(this.by[id]) : null;
-      const okT = (t, g) => ax.k === 'time' ? Component.GEN.includes(t) : ax.g ? g === ax.g : true;
-      const grow = root => {
-        const seen = new Set([root]), par = {}, parT = {}, col = { [root]: fixed ? fixed(root) : 0 }, q = [root];
-        while (q.length && seen.size < CAP) { const u = q.shift(); for (const [v, t, g] of this.by[u].adj) {
-          if (seen.size >= CAP || seen.has(v) || !okT(t, g)) continue;
-          if (fixed ? fixed(v) <= fixed(u) : col[u] >= 6) continue;
-          seen.add(v); par[v] = u; parT[v] = t; col[v] = fixed ? fixed(v) : col[u] + 1; q.push(v); } }
-        return { root, ids: [...seen], par, parT, col };
-      };
-      const cand = nodes.filter(n => ax.k === 'time' ? this.eraI(n.era) <= 3 : ax.k === 'role' ? ro(n) <= 2 : true).map(n => grow(n.id)).filter(t => t.ids.length >= 5).sort((a, b) => b.ids.length - a.ids.length);
-      const pick = [], used = new Set();
-      for (const t of cand) { if (pick.length >= 5) break; if (used.has(t.root)) continue; pick.push(t); t.ids.slice(0, 6).forEach(id => used.add(id)); }
-      this.treesBy[ax.k] = pick;
-    }
-    this.trees = this.treesBy.time;
+  // CHANGED 2026-10-27: which way a link feeds. A directed link is stored as "a <type> b"; for these types b is the earlier idea and feeds a
+  // (a special case follows its general idea, a critique what it critiques, a remedy the problem it mitigates or solves); a link with no direction runs from the earlier era
+  static DIRT = ['специализация', 'вытекает', 'предпосылка', 'часть', 'порождает', 'усугубляет', 'смягчает', 'решает', 'измеряется', 'демонстрирует', 'мотивирует', 'операционализирует', 'критикует', 'иллюстрирует', 'развивает', 'исторически-предшествует'];
+  static REV = ['специализация', 'вытекает', 'развивает', 'критикует', 'иллюстрирует', 'операционализирует', 'смягчает', 'решает'];
+  static GCOL = { A: '#76c7ff', B: '#1cddae', C: '#c3affe', D: '#9a948b', E: '#ffa752', F: '#ff96d3' };
+  feeds(n, [b, t, , d]) {
+    if (Component.DIRT.includes(t)) { const [p, q] = d === 1 ? [n.id, b] : [b, n.id]; return Component.REV.includes(t) ? [q, p] : [p, q]; }
+    const m = this.by[b], RO = Component.ROLEORD, k = x => [this.eraI(x.era), RO.indexOf(x.role), x.id];
+    const [x, y] = [k(n), k(m)], first = x[0] - y[0] || x[1] - y[1] || (x[2] < y[2] ? -1 : 1);
+    return first < 0 ? [n.id, b] : [b, n.id];
   }
-  buildBack(nodes) {
-    const CAP = 24, ro = n => Component.ROLEORD.indexOf(n.role); this.backBy = {};
-    for (const ax of Component.TAXES) {
-      const fixed = ax.k === 'time' ? id => this.eraI(this.by[id].era) : ax.k === 'role' ? id => ro(this.by[id]) : null;
-      const okT = (t, g) => ax.k === 'time' ? Component.GEN.includes(t) : ax.g ? g === ax.g : true;
-      const grow = (root, strict) => {
-        const seen = new Set([root]), par = {}, parT = {}, dep = { [root]: 0 }, q = [root];
-        while (q.length && seen.size < CAP) { const u = q.shift(); for (const [v, t, g, d] of this.by[u].adj) {
-          if (seen.size >= CAP || seen.has(v) || !okT(t, g)) continue;
-          if (fixed ? fixed(v) >= fixed(u) : (dep[u] >= 5 || (strict && d !== -1))) continue;
-          seen.add(v); par[v] = u; parT[v] = t; dep[v] = dep[u] + 1; q.push(v); } }
-        return { root, ids: [...seen], par, parT, dep };
-      };
-      const pool = nodes.filter(n => ax.k === 'time' ? this.eraI(n.era) >= 4 : ax.k === 'role' ? ro(n) >= 3 : true);
-      let cand = pool.map(n => grow(n.id, true)).filter(t => t.ids.length >= 5);
-      if (cand.length < 3) cand = pool.map(n => grow(n.id, false)).filter(t => t.ids.length >= 5);
-      cand.sort((a, b) => b.ids.length - a.ids.length);
-      const pick = [], used = new Set();
-      for (const t of cand) { if (pick.length >= 5) break; if (used.has(t.root)) continue; pick.push(t); t.ids.slice(0, 6).forEach(id => used.add(id)); }
-      this.backBy[ax.k] = pick;
+  // CHANGED 2026-10-27: every axis puts every beast in a column and keeps only the links that run from left to right.
+  // Time and Role ladder have fixed columns (era, role) and take every link; Logic, Cause and Debate lay their own links out in steps
+  // from the ideas nothing feeds, after dropping the links that close a loop. Beasts without a link of that kind sit apart, in `un`,
+  // and their tree is the nearest chain of that kind one link away (`bridge`: up to three neighbours on the axis, most linked first);
+  // on Time and Role ladder the same holds for a beast whose links all stay inside its own column.
+  buildAxes(nodes) {
+    const R = Component.ROLE, RO = Component.ROLEORD, PAL = RO.map(r => R[r][1]);
+    this.axes = {};
+    for (const a of Component.TAXES) {
+      const OUT = {}, INN = {}, col = {}, K = {}; nodes.forEach(n => { OUT[n.id] = []; INN[n.id] = []; });
+      const link = (p, q, t, gg) => { if (p !== q && !OUT[p].includes(q)) { OUT[p].push(q); INN[q].push(p); K[p + '|' + q] = [t, gg]; } };
+      let labels;
+      if (a.g) {
+        const raw = {}; nodes.forEach(n => n.adj.forEach(e => { if (e[2] !== a.g) return; const [p, q] = this.feeds(n, e); if (p === n.id) (raw[p] = raw[p] || []).push([q, e[1]]); }));
+        const seen = {}, dfs = u => { seen[u] = 1; (raw[u] || []).forEach(([v, t]) => { if (seen[v] !== 1) { link(u, v, t, a.g); if (!seen[v]) dfs(v); } }); seen[u] = 2; };
+        nodes.forEach(n => { if (!seen[n.id]) dfs(n.id); });
+        const L = {}, lay = u => L[u] ?? (L[u] = INN[u].length ? Math.max(...INN[u].map(lay)) + 1 : 0);
+        nodes.forEach(n => col[n.id] = OUT[n.id].length || INN[n.id].length ? lay(n.id) : -1);
+        labels = Array.from({ length: Math.max(...Object.values(col)) + 1 }, (_, k) => k ? `${k} step${k > 1 ? 's' : ''} on` : a.first);
+      } else {
+        const f = a.k === 'time' ? n => this.eraI(n.era) : n => RO.indexOf(n.role);
+        nodes.forEach(n => col[n.id] = f(n));
+        nodes.forEach(n => n.adj.forEach(([b, t, gg]) => { if (col[n.id] < col[b]) link(n.id, b, t, gg); }));
+        labels = a.k === 'time' ? Component.ERAS.map(e => e[1]) : RO.map(r => R[r][0]);
+      }
+      const n = labels.length, g = { ...a, labels, n, col, OUT, INN, K, bridge: {}, color: k => k < 0 ? '#7d776f' : PAL[n > 1 ? Math.round(k * 7 / (n - 1)) : 0], steps: {} };
+      const deg = m => OUT[m].length + INN[m].length;
+      nodes.forEach(m => { if (!deg(m.id)) g.bridge[m.id] = [...new Set(m.adj.map(e => e[0]).filter(b => deg(b)))].sort((p, q) => deg(q) - deg(p)).slice(0, 3); });
+      nodes.forEach(m => { const nb = this.near(g, m.id); g.steps[m.id] = [nb.up, nb.down]; });
+      const tot = m => g.steps[m][0] + g.steps[m][1], ord = (p, q) => tot(q) - tot(p) || (this.by[p].name < this.by[q].name ? -1 : 1);
+      // CHANGED 2026-10-27: a beast with no link of the axis's kind stands, faded, in the column of its first bridge neighbour (or the first column); there is no list apart
+      g.ghost = new Set(nodes.filter(m => col[m.id] < 0).map(m => m.id)); g.ghost.forEach(m => col[m] = g.bridge[m].length ? col[g.bridge[m][0]] : 0);
+      g.C = labels.map((_, k) => nodes.filter(m => col[m.id] === k).map(m => m.id).sort((p, q) => g.ghost.has(p) - g.ghost.has(q) || ord(p, q)));
+      g.un = [];
+      this.axes[a.k] = g;
     }
   }
-  fbReplay() { clearInterval(this.fbT); this.setState({ fbGrow: 0 }); this.fbT = setInterval(() => { if ((this.state.fbGrow ?? 0) >= (this.fbMax ?? 6)) { clearInterval(this.fbT); return; } this.setState(s => ({ fbGrow: (s.fbGrow ?? 0) + 1 })); }, 800); }
-  fbVals() {
-    const st = this.state, R = Component.ROLE, AX = Component.TAXES;
-    const WORD = { time: 'ancestors', logic: 'premises', cause: 'causes', debate: 'challengers', role: 'steps back' };
-    const NOTE = { time: 'Start from one idea and walk back along its genealogy, era by era: what came before it and what it grew out of.', logic: 'What an idea rests on: its premises, and the premises of those, one logical step at a time.', cause: 'What set this idea off, and what set that off, one causal step at a time.', debate: 'Which arguments this idea answers, and what those were answering in turn.', role: 'From a fix back to the story: approach ← mechanism ← failure mode ← thesis ← lens ← metaphor.' };
-    const k = st.fbAxis || 'time', FT = this.backBy && this.backBy[k] && this.backBy[k].length ? this.backBy[k] : (this.backBy ? this.backBy.time : []); this.fbTrees = FT;
-    if (!FT || !FT.length) return {};
-    const tr = FT.find(t => t.root === st.fbRoot) || FT[0];
-    const fixed = k === 'time' ? id => this.eraI(this.by[id].era) : k === 'role' ? id => Component.ROLEORD.indexOf(this.by[id].role) : null;
-    const maxDep = Math.max(...tr.ids.map(id => tr.dep[id]));
-    const nC = fixed ? (k === 'time' ? Component.ERAS.length : Component.ROLEORD.length) : Math.max(4, maxDep + 1);
-    const colOf = fixed || (id => nC - 1 - tr.dep[id]);
-    const labels = k === 'time' ? Component.ERAS.map(x => x[1]) : k === 'role' ? Component.ROLEORD.map(r => R[r][0]) : Array.from({ length: nC }, (_, i) => i === nC - 1 ? 'The idea' : `${nC - 1 - i} back`);
-    const rc = colOf(tr.root); this.fbMax = rc - Math.min(...tr.ids.map(colOf));
-    const g = st.fbGrow ?? 0, colW = 1136 / nC, nodeW = Math.min(150, colW - 16), colX = i => 2 + i * colW, pos = {}, cnt = {};
-    [...tr.ids].sort((a, b) => tr.dep[a] - tr.dep[b]).forEach(id => { const c = colOf(id); cnt[c] = cnt[c] || 0; pos[id] = [colX(c) + 8, 28 + cnt[c] * 34]; cnt[c]++; });
-    const hn = 40 + Math.max(...Object.values(cnt)) * 34;
-    const th = st.fbH && tr.ids.includes(st.fbH) ? st.fbH : null, chain = []; if (th) { let u = th; while (u) { chain.push(u); u = tr.par[u]; } }
-    const cs = new Set(chain), shown = id => (rc - colOf(id)) <= g;
-    const lc = { logic: '#76c7ff', cause: '#1cddae', debate: '#c3affe' }[k] || '#9a948b';
-    const fbNodes = tr.ids.map(id => { const n = this.by[id], sh = shown(id); return { x: `${pos[id][0]}px`, y: `${pos[id][1]}px`, w: `${nodeW}px`, name: n.name, c: R[n.role][1], o: !sh ? '0' : (th && !cs.has(id) ? '.3' : '1'), s: sh ? '1' : '.6', ol: id === th ? '1px solid #efeae2' : (id === tr.root ? '1px solid #d8a24a' : 'none'), enter: () => this.setState({ fbH: id }), leave: () => this.setState({ fbH: null }), pick: () => this.openSide(id, '2c') }; });
-    const fbLinks = tr.ids.filter(id => tr.par[id]).map(id => { const p = pos[id], q = pos[tr.par[id]], x1 = p[0] + nodeW, y1 = p[1] + 13, x2 = q[0], y2 = q[1] + 13, mx = (x1 + x2) / 2; return { d: `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`, c: lc, o: !shown(id) ? '0' : (th ? (cs.has(id) ? '.95' : '.12') : '.6') }; });
-    const tn = this.by[th || tr.root], rel = t => Component.REL[t] || t;
-    const fbCap = th ? chain.map((id, i) => i < chain.length - 1 ? `${this.by[id].name} (${rel(tr.parT[id])}) →` : this.by[id].name).join(' ') : `${this.by[tr.root].name} · fed by ${tr.ids.length - 1} ${WORD[k]}`;
-    const fbCols = labels.map((l, i) => ({ x: `${colX(i)}px`, w: `${colW}px`, label: l, c: (i <= rc && rc - i <= g) ? '#efeae2' : '#4a4540' }));
-    const fbAxes = AX.map(a => ({ label: a.label, fg: a.k === k ? '#efeae2' : '#9a948b', line: a.k === k ? '#d8a24a' : 'transparent', go: () => { this.auto.fb = 0; this.setState({ fbAxis: a.k, fbRoot: null, fbH: null, fbPlay: false }, () => this.fbReplay()); } }));
-    const fbRoots = FT.map(t => ({ name: this.by[t.root].name, n: String(t.ids.length - 1), go: () => { this.auto.fb = 0; this.setState({ fbRoot: t.root, fbPlay: false }, () => this.fbReplay()); }, bg: t === tr ? '#d8a24a' : 'transparent', fg: t === tr ? '#0c0b0a' : '#cfc8bd' }));
-    return { fbAxes, fbRoots, fbCols, fbLinks, fbNodes, fbCap, fbCapSub: tn.tldr, fbCapC: R[tn.role][1], fbHpx: `${hn}px`, fbHn: String(hn), fbNote: NOTE[k],
-      fbIn: () => this.setState({ fbHover: true }), fbLeave: () => { this.auto.fb = 0; this.setState({ fbHover: false }); },
-      fbPToggle: () => { this.auto.fb = 0; this.setState({ fbPlay: st.fbPlay === false }); }, fbPLabel: st.fbPlay === false ? '▶ Play' : 'Ⅱ Pause', fbReplayFn: () => this.fbReplay() };
+  // CHANGED 2026-10-27: what feeds `focus` and what it feeds, up to three steps each way; `tree` holds the link that first reached each idea, `cross` the other links among them
+  // CHANGED 2026-10-27: a beast off the axis starts from its bridge neighbours (dir 0, step 0) and the walk takes two more steps from them
+  near(g, focus) {
+    const seen = new Set([focus]), tree = [], cross = [], br = g.bridge[focus] || [];
+    br.forEach(v => { seen.add(v); tree.push({ p: focus, q: v, d: 0, dir: 0, far: v, bridge: 1 }); });
+    const start = br.length ? br : [focus], d0 = br.length ? 1 : 0;
+    const walk = (M, dir) => { let front = start; for (let d = d0; d < 3 && front.length; d++) { const next = []; front.forEach(u => M[u].forEach(v => { const e = dir < 0 ? { p: v, q: u } : { p: u, q: v }; if (seen.has(v)) cross.push(e); else { seen.add(v); next.push(v); tree.push({ ...e, d, dir, far: v }); } })); front = next; } };
+    const s0 = seen.size; walk(g.INN, -1); const up = seen.size - s0; walk(g.OUT, 1);
+    return { seen, tree, cross, br, up, down: seen.size - s0 - up };
+  }
+  // CHANGED 2026-10-27: one selection for both genealogy blocks and Zooming in; Zooming in follows it the way its own Follow chips do
+  pick(id, fromZoom) {
+    if (!fromZoom) this.auto.z = 0;
+    this.setState(s => ({ sel: id, wQ: '', fQ: '', fOpen: false, fStep: 0, fPlay: true, recent: s.recent.includes(id) ? s.recent : [id, ...s.recent].slice(0, 5),
+      ...(fromZoom ? {} : { zB: id, zL: 0, zPlay: false, zH: null, zIs: null }) }));
+  }
+  // CHANGED 2026-10-27: The whole bestiary (2w) and An idea feeds — and is fed (2f)
+  genVals() {
+    const st = this.state, R = Component.ROLE, g = this.axes[st.ax], by = this.by, id = st.sel, fc = by[id], N = st.data.length, axl = g.label;
+    const lc = s => s.toLowerCase(), has = (q, m) => lc(by[m].name).includes(q), tot = m => g.steps[m][0] + g.steps[m][1];
+    const nb = this.near(g, id), CW = 1136 / g.n, ROWH = 16, TOP = 26;
+    const gTabs = Component.TAXES.map(a => ({ label: a.label, fg: a.k === g.k ? '#efeae2' : '#9a948b', line: a.k === g.k ? '#d8a24a' : 'transparent', go: () => this.setState({ ax: a.k, fStep: 0, fPlay: true, fOpen: false }) }));
+    // 2w — every beast in its column; the selection's three steps each way light up
+    const wq = lc(st.wQ.trim()), wM = wq ? st.data.filter(m => has(wq, m.id)) : [];
+    // CHANGED 2026-10-27: a beast with no link of the axis's kind is faded and says so in its title
+    const wItem = (m, k) => { const root = m === id, ch = nb.seen.has(m), hit = wq && has(wq, m), gh = g.ghost.has(m);
+      return { name: by[m].name, title: `${by[m].name} · ${R[by[m].role][0]} · ${gh ? `no ${g.kind} links of its own, placed by its nearest neighbour · ` : ''}fed by ${g.steps[m][0]}, feeds ${g.steps[m][1]} along ${axl}`, go: () => this.pick(m),
+        fg: root ? '#0c0b0a' : ch || hit ? '#efeae2' : wq ? '#3a3732' : gh ? '#4d4842' : '#7d776f', bg: root ? '#d8a24a' : ch ? '#1f1d1a' : hit ? '#2a2418' : 'transparent', mark: root || ch || hit ? g.color(k) : 'transparent', weight: root || ch ? '700' : '400' }; };
+    const rowOf = {}; g.C.forEach(c => c.forEach((m, i) => rowOf[m] = i));
+    const pt = m => [g.col[m] * CW, TOP + rowOf[m] * ROWH + ROWH / 2];
+    // CHANGED 2026-10-27: on Time and Role ladder a link is coloured by its kind (genealogical ones bold); on the other axes by its step
+    const ek = e => g.K[e.p + '|' + e.q] || [], ec = (e, hot) => g.g ? hot ? '#d8a24a' : '#8a8273' : Component.GCOL[ek(e)[1]];
+    const ew = (e, hot, a, b) => g.g ? hot ? a : b : ek(e)[1] === 'E' ? '2.2' : '1.1';
+    const own = g.g ? `No ${g.kind} links of its own` : `Every link stays inside its own ${g.k === 'time' ? 'era' : 'role'}`;
+    const brNames = nb.br.map(v => `${by[v].name} (${Component.REL[fc.adj.find(e => e[0] === v)[1]]})`).join(', ');
+    const wEdges = [...nb.tree, ...nb.cross].filter(e => !e.bridge).map(e => { const a = pt(e.p), b = pt(e.q), x1 = a[0] + CW - 6, x2 = b[0] + 4, mx = (x1 + x2) / 2, one = e.d === 0;
+      return { d: `M${x1} ${a[1]}C${mx} ${a[1]} ${mx} ${b[1]} ${x2} ${b[1]}`, c: ec(e, one), w: ew(e, one, '1.6', '1.1'), o: e.far ? '.85' : '.45' }; });
+    const wHn = TOP + Math.max(...g.C.map(c => c.length)) * ROWH + 6;
+    const wInfo = wq ? `${wM.length} of ${N} match · Enter selects the first` : nb.br.length ? `${own} · one link away: ${brNames} · ← ${nb.up} feed them · they feed ${nb.down} →`
+      : nb.up || nb.down ? `← ${nb.up} feed it · it feeds ${nb.down} → · within three steps · click any idea to select it` : `Along ${axl}, nothing feeds it and it feeds nothing · click any idea to select it`;
+    // 2f — the same three steps, grown one link a side per tick; a beast off the axis is drawn next to its bridge neighbours, joined by dashed links
+    const back = nb.tree.filter(e => e.dir < 0), fwd = nb.tree.filter(e => e.dir > 0), brE = nb.tree.filter(e => e.bridge);
+    const total = Math.max(back.length, fwd.length, brE.length ? 1 : 0), s = Math.min(st.fStep, total); this.fTotal = total;
+    const shown = [...brE, ...back.slice(0, s), ...fwd.slice(0, s)], lastE = new Set([back[s - 1], fwd[s - 1]].filter(Boolean)), lastN = new Set([...lastE].map(e => e.far));
+    const fcol = nb.br.length ? Math.min(...nb.br.map(v => g.col[v])) : 0, colOf = m => g.col[m] >= 0 ? g.col[m] : fcol;
+    const FW = CW - 14, place = {}, cnt = Array(g.n).fill(0), put = m => { if (!place[m]) { const k = colOf(m); place[m] = [k * CW + 6, 28 + cnt[k]++ * 34, k]; } };
+    if (total) { put(id); shown.forEach(e => put(e.far)); }
+    const fNodes = Object.entries(place).map(([m, p]) => ({ name: by[m].name, title: by[m].tldr, x: `${p[0]}px`, y: `${p[1]}px`, w: `${FW}px`, c: g.color(p[2]), bg: m === id ? '#d8a24a' : '#171513', fg: m === id ? '#0c0b0a' : '#efeae2', bd: lastN.has(m) ? '#d8a24a' : '#3a3531', go: () => this.pick(m) }));
+    const fEdges = [...shown, ...nb.cross.filter(e => place[e.p] && place[e.q])].map(e => { const a = place[e.p], b = place[e.q], y1 = a[1] + 13, y2 = b[1] + 13, L = lastE.has(e);
+      if (e.bridge) { const same = a[2] === b[2], x1 = same ? a[0] : a[0] + FW, x2 = b[0], m1 = same ? x1 - 26 : (x1 + x2) / 2, m2 = same ? x2 - 26 : (x1 + x2) / 2;
+        return { d: `M${x1} ${y1}C${m1} ${y1} ${m2} ${y2} ${x2} ${y2}`, c: '#9a948b', w: '1.4', o: '1', dash: '4 4' }; }
+      const x1 = a[0] + FW, x2 = b[0], mx = (x1 + x2) / 2;
+      return { d: `M${x1} ${y1}C${mx} ${y1} ${mx} ${y2} ${x2} ${y2}`, c: L ? '#d8a24a' : ec(e, false), w: L ? '2' : ew(e, false, '1.2', '1.2'), o: e.far ? '1' : '.5', dash: 'none' }; });
+    const used = new Set(Object.values(place).map(p => p[2])), fHn = Math.max(180, 28 + Math.max(...cnt) * 34 + 10);
+    const fInfo = nb.br.length ? `${own.toLowerCase()} · one link away: ${brNames} · ← fed by ${Math.min(s, back.length)}/${back.length} · feeds ${Math.min(s, fwd.length)}/${fwd.length} →`
+      : `${back.length ? `← fed by ${Math.min(s, back.length)}/${back.length}` : `nothing feeds it along ${axl}`} · ${fwd.length ? `feeds ${Math.min(s, fwd.length)}/${fwd.length} →` : `it feeds nothing along ${axl}`}`;
+    const kin = fc.adj.filter(([, , gg]) => !g.g || gg === g.g).length;
+    const why = g.g ? `it has no ${g.kind} links, and none of its neighbours has one either`
+      : kin ? `all ${kin} of its links stay inside its own ${g.k === 'time' ? `era, ${Component.ERAS[this.eraI(fc.era)][1]}` : `column, ${R[fc.role][0]}`}` : 'it has no links';
+    const elsewhere = Component.TAXES.filter(a => a.k !== g.k && this.axes[a.k].steps[id].some(x => x)).map(a => a.label);
+    const fEmptyText = `Along ${axl}, nothing feeds ${fc.name} and nothing grows out of it: ${why}. ${elsewhere.length ? `It does grow along ${elsewhere.join(', ')}.` : 'It grows along no axis yet.'}`;
+    // Root row: search, recent picks and the panel with every beast, grouped by the axis columns
+    const fq = lc(st.fQ.trim()), fM = fq ? st.data.filter(m => has(fq, m.id)) : [];
+    const groups = [...g.labels.map((l, k) => [l, g.C[k], k]), ...(g.un.length ? [[`No ${g.kind} links`, g.un, -1]] : [])];
+    const pCols = groups.map(([l, ids, k]) => { const it = ids.filter(m => !fq || has(fq, m));
+      return { label: l, n: fq ? `${it.length}/${ids.length}` : String(ids.length), hc: it.length ? g.color(k) : '#4a4540', items: it.map(m => ({ name: by[m].name, n: String(tot(m)), go: () => this.pick(m), fg: m === id ? '#0c0b0a' : '#cfc8bd', bg: m === id ? '#d8a24a' : 'transparent', mark: g.color(k) })) }; });
+    const fChips = st.recent.map(m => { const on = m === id; return { name: by[m].name, n: String(tot(m)), go: () => this.pick(m), bd: on ? '#d8a24a' : '#3a3531', bg: on ? '#d8a24a' : 'transparent', fg: on ? '#0c0b0a' : '#efeae2', nc: on ? 'rgba(12,11,10,.6)' : '#8a8273' }; });
+    const enter = list => e => { if (e.key === 'Enter' && list.length) this.pick(list[0].id); };
+    return { total: String(N), gTabs, gHint: g.hint,
+      wHead: { name: fc.name, n: `←${nb.up} ${nb.down}→` }, wQ: st.wQ, wOnQ: e => this.setState({ wQ: e.target.value }), wKey: enter(wM), wInfo,
+      wCols: g.labels.map((l, k) => ({ label: l, n: String(g.C[k].length), hc: g.color(k), items: g.C[k].map(m => wItem(m, k)) })), wEdges, wGrid: `repeat(${g.n}, ${CW}px)`, wH: `${wHn}px`, wHn: String(wHn),
+      wUnOn: g.un.length > 0, wUnTitle: `No ${g.kind} links of their own · ${g.un.length} · pick one to grow the nearest ${g.kind} chain, one link away`, wUn: g.un.map(m => wItem(m, -1)),
+      fName: fc.name, fInfo, fTldr: fc.tldr, fCapC: R[fc.role][1], fEmpty: !total, fEmptyText, fTree: total > 0, fNodes, fEdges, fH: `${fHn}px`, fHn: String(fHn),
+      fHeads: g.labels.map((l, k) => ({ label: l, x: `${k * CW}px`, w: `${CW}px`, c: used.has(k) ? '#efeae2' : '#4a4540' })),
+      fPlayLabel: st.fPlay && s < total ? 'Ⅱ Pause' : '▶ Play', fToggle: () => this.setState(s >= total ? { fStep: 0, fPlay: true } : { fPlay: !st.fPlay }), fReplay: () => this.setState({ fStep: 0, fPlay: true }),
+      fQ: st.fQ, fOnQ: e => this.setState({ fQ: e.target.value, fOpen: true }), fPOpen: () => this.setState({ fOpen: true }), fKey: enter(fM), fPHolder: `Search ${N} ideas…`,
+      fChips, fPToggle: () => this.setState({ fOpen: !st.fOpen, fQ: '' }), fPCaret: st.fOpen ? '▴' : '▾', fPIsOpen: st.fOpen, fPBorder: st.fOpen ? '#d8a24a' : '#3a3531',
+      pTitle: fq ? `“${st.fQ.trim()}” · ${fM.length} of ${N}` : `All ${N} ideas by ${axl} columns · the number is how many ideas it reaches within three steps · click to pick`,
+      pClose: () => this.setState({ fOpen: false, fQ: '' }), pGrid: `repeat(${groups.length}, minmax(140px,1fr))`, pCols };
   }
   zRestart() { clearTimeout(this.zPT); this.setState({ zProg: 0 }); this.zPT = setTimeout(() => this.setState({ zProg: 1 }), 60); }
   zIsl(D, field, keys, names, STEP, W, x0, y0, H, GX, GY) {
@@ -591,7 +522,9 @@ class Component extends DCLogic {
   zoomVals(D, meta) {
     const st = this.state, F = Component.FAM, R = Component.ROLE, fk = Object.keys(F), rk = Object.keys(R);
     const GC = { A: '#76c7ff', B: '#1cddae', C: '#c3affe', D: '#9a948b', E: '#ffa752', F: '#ff96d3' };
-    const picks = ['power', 'clip', 'deceptive', 'interp', 'cr-stochastic-parrots', 'ortho'].filter(id => this.by[id]); this.zPicksIds = picks;
+    // CHANGED 2026-10-27: Follow is the beast picked in The whole bestiary, then its Alongside neighbours (links with no direction); Play walks through them
+    const sid = this.by[st.sel] ? st.sel : 'power', alongN = [...new Set(this.by[sid].adj.filter(e => !Component.DIRT.includes(e[1])).map(e => e[0]))];
+    const picks = [sid, ...alongN]; this.zPicksIds = picks;
     const fid = picks.includes(st.zB) ? st.zB : picks[0], fn = this.by[fid], ff = fn.fam, lvl = st.zL ?? 0;
     if (!this.edgesList) { this.edgesList = []; const seen = new Set(); D.forEach(n => n.adj.forEach(([b]) => { const k = n.id < b ? n.id + '|' + b : b + '|' + n.id; if (!seen.has(k)) { seen.add(k); this.edgesList.push([n.id, b]); } })); }
     if (!this.zCache) {
@@ -602,7 +535,7 @@ class Component extends DCLogic {
         l1: this.zIsl(D, 'fam', fk, Object.fromEntries(fk.map(k => [k, F[k][0]])), 15, 1080, 28, 50, 520, 44, 60) };
     }
     // L0
-    const L0 = this.zCache.l0, dm = (picks.indexOf(fid) + 5) % 6, mi = st.zM ?? (lvl === 1 && st.zCyc != null ? (dm + 1 + st.zCyc) % 6 : dm), MP = L0[mi], tb = st.zH && this.by[st.zH] ? st.zH : fid, tbn = this.by[tb];
+    const L0 = this.zCache.l0, dm = L0.findIndex(r => r.f === 'fam'), mi = st.zM ?? (lvl === 1 && st.zCyc != null ? (dm + 1 + st.zCyc) % 6 : dm), MP = L0[mi], tb = st.zH && this.by[st.zH] ? st.zH : fid, tbn = this.by[tb];
     const famMem = D.filter(n => n.fam === tbn.fam).map(n => n.id), fset0 = new Set(famMem);
     const z0Rows = L0.map((r, i) => ({ go: () => { this.auto.z = 0; this.setState({ zM: i, zL: 1, zPlay: false, zIs: null }); }, c: i === mi ? '#d8a24a' : '#efeae2', band: i === mi ? '#d8a24a14' : 'transparent', bandY: `${r.y0 - 2}px`, label: r.l, sub: `${r.n} groups`, y: `${r.y0 + 26}px`, line: i < L0.length - 1 ? `${r.y0 + 93}px` : '-10px' }));
     const z0Tiles = []; L0.forEach(r => D.forEach(n => { const p = r.tp[n.id]; z0Tiles.push({ x: `${p[0]}px`, y: `${p[1]}px`, sz: '5px', c: F[n.fam][1], o: fset0.has(n.id) ? '1' : '.4', enter: () => this.setState({ zH: n.id }), pick: () => this.openSide(n.id, '4a') }); }));
@@ -633,12 +566,18 @@ class Component extends DCLogic {
     const z2Links = this.by[foc].adj.filter(a => cp[a[0]]).map(([b, t, g]) => { const A = cp[foc], B = cp[b]; return { d: `M${A[0] + cw / 2 - 4},${A[1] + 36} L${B[0] + cw / 2 - 4},${B[1] + 36}`, c: GC[g] || '#9a948b' }; });
     const rc = {}; mem.forEach(n => rc[n.role] = (rc[n.role] || 0) + 1); const r2 = Object.entries(rc).sort((a, b) => b[1] - a[1]);
     // L3
-    const inc = fn.adj.filter(a => a[3] === -1).slice(0, 7), out = fn.adj.filter(a => a[3] === 1).slice(0, 7);
-    const mk = side => ([b, t, g], i, arr) => { const m = this.by[b], y = 40 + (i + 1) * (540 / (arr.length + 1)) - 20, on = !st.zP || st.zP === b;
-      return { x: side === 'L' ? '40px' : '796px', y: `${y}px`, img: this.sp(b), name: m.name, rel: Component.REL[t] || t, c: GC[g] || '#9a948b', o: on ? '1' : '.35', lo: on ? '.9' : '.12',
-        d: side === 'L' ? `M340,${y + 20} C420,${y + 20} 400,300 468,300` : `M668,300 C736,300 716,${y + 20} 796,${y + 20}`, enter: () => this.setState({ zP: b }), leave: () => this.setState({ zP: null }), pick: () => this.openSide(b, '4a') }; };
+    // CHANGED 2026-10-27: every link is drawn (it was the first 7 a side), on the side it feeds from (`feeds`, as in the genealogy blocks); past 12 a side the rows go compact
+    // CHANGED 2026-10-27: links with no direction (related, analogy, same mechanism, dual, tension, alternative) sit apart, in Alongside along the bottom; the sides then take the upper 340px
+    const dirl = e => Component.DIRT.includes(e[1]), al = fn.adj.filter(e => !dirl(e)), cyC = al.length ? 200 : 300, YH = al.length ? 340 : 540;
+    const inc = fn.adj.filter(e => dirl(e) && this.feeds(fn, e)[1] === fid), out = fn.adj.filter(e => dirl(e) && this.feeds(fn, e)[0] === fid);
+    const mk = side => ([b, t, g], i, arr) => { const m = this.by[b], sp = YH / (arr.length + 1), h = Math.min(40, Math.floor(sp) - 2), y = 40 + (i + 1) * sp - h / 2, cy = y + h / 2, on = !st.zP || st.zP === b;
+      return { x: side === 'L' ? '40px' : '796px', y: `${y}px`, h: `${h}px`, sz: h >= 34 ? '32px' : '0px', img: this.sp(b), name: m.name, rel: Component.REL[t] || t, c: GC[g] || '#9a948b', o: on ? '1' : '.35', lo: on ? '.9' : '.12',
+        d: side === 'L' ? `M340,${cy} C420,${cy} 400,${cyC} 468,${cyC}` : `M668,${cyC} C736,${cyC} 716,${cy} 796,${cy}`, enter: () => this.setState({ zP: b }), leave: () => this.setState({ zP: null }), pick: () => this.openSide(b, '4a') }; };
     const z3L = inc.map(mk('L')), z3R = out.map(mk('R'));
-    const z3 = { pick: () => this.openSide(fid, '4a'), img: this.sp(fid), name: fn.name, c: R[fn.role][1], nin: String(fn.adj.filter(a => a[3] === -1).length), nout: String(fn.adj.filter(a => a[3] === 1).length) };
+    const z3A = al.map(([b, t, g], i) => { const on = !st.zP || st.zP === b; return { x: `${40 + (i % 4) * 266}px`, y: `${420 + Math.floor(i / 4) * 23}px`, name: this.by[b].name, rel: Component.REL[t] || t, c: GC[g] || '#9a948b', o: on ? '1' : '.35',
+      enter: () => this.setState({ zP: b }), leave: () => this.setState({ zP: null }), pick: () => this.openSide(b, '4a') }; });
+    const z3 = { pick: () => this.openSide(fid, '4a'), img: this.sp(fid), name: fn.name, c: R[fn.role][1], nin: String(inc.length), nout: String(out.length), nal: String(al.length), alOn: al.length > 0,
+      top: al.length ? '110px' : '190px', h: al.length ? '180px' : '220px' };
     // L4 — CHANGED 2026-10-21: pros and cons of the followed beast
     const zPos = fn.adj.filter(a => Component.POS.includes(a[1])), zNeg = fn.adj.filter(a => Component.NEG.includes(a[1])), zBal = zPos.length - zNeg.length;
     const zItem = ([b, t]) => { const m = this.by[b], on = st.zH4 === b; return { name: m.name, rel: Component.REL[t] || t, tldr: m.tldr, img: this.sp(b), lines: on ? '5' : '2', bg: on ? '#1c1a17' : '#151311', bd: on ? '#4a4540' : '#26231f', enter: () => this.setState({ zH4: b }), leave: () => this.setState({ zH4: null }), pick: () => this.openSide(b, '4a') }; };
@@ -650,91 +589,46 @@ class Component extends DCLogic {
     const LS = i => ({ o: i === lvl ? '1' : '0', s: i === lvl ? '1' : i < lvl ? '1.25' : '.85', p: i === lvl ? 'auto' : 'none' });
     const zTabs = TABS.map((l, i) => ({ label: l, go: () => { this.auto.z = 0; this.auto.zc = 0; this.setState({ zL: i, zPlay: false, zCyc: i === 1 ? 0 : null, zM: i === 1 ? null : st.zM }); }, color: i === lvl ? '#efeae2' : '#9a948b', dot: i === lvl ? '#d8a24a' : '#4a4540',
       prog: i < lvl ? '100%' : i === lvl ? (zOn ? (st.zProg ? '100%' : '0%') : '100%') : '0%', trans: i === lvl && zOn && st.zProg ? `width ${lvl === 1 && st.zM == null ? 10700 : 4400}ms linear` : 'none' }));
-    const zPicks = picks.map(id => ({ name: this.by[id].name, go: () => { this.auto.z = 0; this.setState({ zB: id, zL: 0, zPlay: false, zH: null, zIs: null }); }, bg: id === fid ? '#d8a24a' : 'transparent', fg: id === fid ? '#0c0b0a' : '#cfc8bd' }));
+    // CHANGED 2026-10-27: a Follow chip also selects the beast in the genealogy blocks; the extra chip has a gold border
+    const chipOf = id => ({ name: this.by[id].name, go: () => { this.auto.z = 0; this.setState({ zB: id, zL: 0, zPlay: false, zH: null, zIs: null }); this.pick(id, true); }, bg: id === fid ? '#d8a24a' : 'transparent', fg: id === fid ? '#0c0b0a' : '#cfc8bd', bd: id === sid ? '#d8a24a' : '#3a3531' });
+    const zPicks = [chipOf(sid)], zAl = alongN.map(chipOf), zAlN = String(alongN.length);
     const capt = [
       [`Six resolutions of one bestiary, from 2 groups to 13. The gold thread follows ${tbn.name} through all of them.`, `Grey threads are the rest of ${F[tbn.fam][0]}. Hover any tile to follow another beast.`],
       [`${st.zM == null && lvl === 1 && st.zCyc != null ? `Layer ${st.zCyc + 1} of 6 · ${MP.l}.` : `The ${MP.l} layer.`} ${fn.name} lives in ${mnm[gk]}; ${mnm[hi]} has the most roads to ${tops[0] ? mnm[tops[0][0]] : '—'} (${tops[0] ? tops[0][1] : 0} links).`, `Tiles are coloured by ${mf === 'role' ? 'family' : 'role'}. Hover an island for its roads; pick a layer on top to stay on it.`],
-      [`Inside ${mnm[gk]} (${MP.l}): ${grp.length} beasts, mostly ${R[r2[0][0]][0].toLowerCase()}s. ${fn.name} has ${fn.adj.filter(a => this.by[a[0]][mf] === gk).length} neighbours here.`, grp.length > 30 ? 'Showing its 29 closest neighbours. Hover a beast to see its links inside the district.' : 'Hover a beast to see its links inside the district.'],
-      [`${fn.name}: ${z3.nin} ideas lead into it, it leads to ${z3.nout}.`, 'Lines are coloured by kind of link: logical, causal, dialectical, associative, genealogical. Hover one to isolate it.'],
+      [`Inside ${mnm[gk]} (${MP.l}): ${grp.length} beasts, mostly ${({ 'Thesis': 'theses', 'Lens': 'lenses', 'Empirics': 'empirics' })[R[r2[0][0]][0]] || R[r2[0][0]][0].toLowerCase() + 's'}. ${fn.name} has ${fn.adj.filter(a => this.by[a[0]][mf] === gk).length} neighbours here.`, grp.length > 30 ? 'Showing its 29 closest neighbours. Hover a beast to see its links inside the district.' : 'Hover a beast to see its links inside the district.'],
+      [`${fn.name}: ${z3.nin} ideas lead into it, it leads to ${z3.nout}${al.length ? `, and ${z3.nal} sit alongside it` : ''}.`, `Lines are coloured by kind of link: logical, causal, dialectical, associative, genealogical. ${al.length ? 'Alongside holds the links with no direction: related, analogy, same mechanism, dual, tension, alternative. ' : ''}Hover one to isolate it.`],
       [`${fn.name}: ${zPos.length} ideas support it, ${zNeg.length} argue with it.`, `${R[fn.role][0]} · ${mnm[gk]} on the ${MP.l} layer · scroll a column for every link, hover a card to read it, click to open the beast · then the next beast, from the top.`],
     ][lvl];
     const zMaps = L0.map((r, i) => ({ label: r.l, n: String(r.n), go: () => { this.auto.z = 0; this.setState({ zM: i, zPlay: false, zIs: null, zL: Math.max(1, lvl) }); }, bg: i === mi ? '#d8a24a' : 'transparent', fg: i === mi ? '#0c0b0a' : '#9a948b', bd: '' }));
     const zMapNote = st.zM != null ? 'your pick' : lvl === 1 ? 'cycling through all six, landing on this beast’s layer' : 'cycles on the Layer step';
-    return { zMaps, zMapNote, zTabs, zPicks, zL0: LS(0), zL1: LS(1), zL2: LS(2), zL3: LS(3), zL4: LS(4), z0Rows, z0Tiles, z0Threads, z0Labels, z1Isl, z1Roads, z1Tiles, z1Labels, z2Cards, z2Links, z3L, z3R, z3, z4, zCap: capt[0], zSub: capt[1],
+    return { zMaps, zMapNote, zTabs, zPicks, zAl, zAlN, zL0: LS(0), zL1: LS(1), zL2: LS(2), zL3: LS(3), zL4: LS(4), z0Rows, z0Tiles, z0Threads, z0Labels, z1Isl, z1Roads, z1Tiles, z1Labels, z2Cards, z2Links, z3L, z3R, z3A, z3, z4, zCap: capt[0], zSub: capt[1],
       zPlayLabel: st.zPlay === false ? '▶ Play' : 'Ⅱ Pause', zToggle: () => { this.auto.z = 0; this.setState({ zPlay: st.zPlay === false }); this.zRestart(); },
       zPrev: () => { const n = (lvl + 4) % 5; this.auto.z = 0; this.auto.zc = 0; this.setState({ zL: n, zPlay: false, zCyc: n === 1 ? 0 : null }); }, zNext: () => { const n = (lvl + 1) % 5; this.auto.z = 0; this.auto.zc = 0; this.setState({ zL: n, zPlay: false, zCyc: n === 1 ? 0 : null }); },
       zIn: () => this.setState({ zHover: true }), zLeave: () => { this.auto.z = 0; this.setState({ zHover: false, zH: null, zIs: null, zC: null, zP: null }); this.zRestart(); } };
   }
-  openSide(id, p) { this.setState({ side: id, sideP: p || this.state.sideP || '4a', zPlay: false, trPlay: false, fbPlay: false }); }
+  openSide(id, p) { this.setState({ side: id, sideP: p || this.state.sideP || '4a', zPlay: false }); }
   sideVals(meta) {
     const st = this.state, n = st.side && this.by && this.by[st.side];
     const blank = { c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' };
-    if (!n) return { side4a: false, side2b: false, side2c: false, hasSide: false, side: blank, closeSide: () => this.setState({ side: null }) };
+    if (!n) return { side4a: false, hasSide: false, side: blank, closeSide: () => this.setState({ side: null }) };
     const R = Component.ROLE, F = Component.FAM, GC = { A: '#76c7ff', B: '#1cddae', C: '#c3affe', D: '#9a948b', E: '#ffa752', F: '#ff96d3' };
     const it = ([b, t, g]) => { const m = this.by[b]; return { name: m.name, rel: Component.REL[t] || t, c: GC[g] || '#9a948b', img: this.sp(b), go: () => this.setState({ side: b }) }; };
-    const inc = n.adj.filter(a => a[3] === -1), out = n.adj.filter(a => a[3] === 1);
-    const P = st.sideP || '4a'; return { side4a: P === '4a', side2b: P === '2b', side2c: P === '2c', hasSide: true, closeSide: () => this.setState({ side: null }), side: { href: '/bestiarium/wiki#/n/' + n.id, c: R[n.role][1], role: R[n.role][0] + ' · ' + F[n.fam][0], img: this.sp(n.id), name: n.name, meta: meta(n), tldr: n.tldr, author: n.author || '',
+    // CHANGED 2026-10-27: sides by which way a link feeds, every link listed (the panel scrolls)
+    const inc = n.adj.filter(e => this.feeds(n, e)[1] === n.id), out = n.adj.filter(e => this.feeds(n, e)[0] === n.id);
+    const P = st.sideP || '4a'; return { side4a: P === '4a', hasSide: true, closeSide: () => this.setState({ side: null }), side: { href: '/bestiarium/wiki#/n/' + n.id, c: R[n.role][1], role: R[n.role][0] + ' · ' + F[n.fam][0], img: this.sp(n.id), name: n.name, meta: meta(n), tldr: n.tldr, author: n.author || '',
       stats: [{ k: 'Links', v: String(n.adj.length) }, { k: 'Families', v: String(new Set(n.adj.map(a => this.by[a[0]].fam)).size) }, { k: 'Weight', v: n.cen }],
-      inc: inc.slice(0, 14).map(it), out: out.slice(0, 14).map(it), nin: String(inc.length), nout: String(out.length) } };
+      inc: inc.map(it), out: out.map(it), nin: String(inc.length), nout: String(out.length) } };
   }
-  replay() { clearInterval(this.growT); this.setState({ grow: 0 }); this.growT = setInterval(() => { if (this.state.grow >= (this.nCols || 7) - 1) { clearInterval(this.growT); return; } this.setState(s => ({ grow: s.grow + 1 })); }, 800); }
 
   blobURL(cv) { const b = atob(cv.toDataURL('image/png').split(',')[1]), a = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return URL.createObjectURL(new Blob([a], { type: 'image/png' })); }
   renderVals() {
     const st = this.state, D = st.data, F = Component.FAM, R = Component.ROLE;
-    const empty = { side4a: false, side2b: false, side2c: false, hasSide: false, side: { href: '#', c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' }, closeSide: () => {}, zMaps: [], zMapNote: '', zTabs: [], zPicks: [], zL0: { o: '0', s: '1', p: 'none' }, zL1: { o: '0', s: '1', p: 'none' }, zL2: { o: '0', s: '1', p: 'none' }, zL3: { o: '0', s: '1', p: 'none' }, zL4: { o: '0', s: '1', p: 'none' }, z0Rows: [], z0Tiles: [], z0Threads: [], z0Labels: [], z1Isl: [], z1Roads: [], z1Tiles: [], z1Labels: [], z2Cards: [], z2Links: [], z3L: [], z3R: [], z3: { img: '', name: '', c: '#3a3531', nin: '', nout: '' }, z4: { img: '', name: '', meta: '', tldr: '', c: '#3a3531', stats: [], pos: [], neg: [], npos: '', nneg: '', posNone: false, negNone: false, verdict: '' }, zCap: '', zSub: '', zPlayLabel: 'Ⅱ Pause', zToggle: () => {}, zPrev: () => {}, zNext: () => {}, zIn: () => {}, zLeave: () => {}, fbAxes: [], fbRoots: [], fbCols: [], fbLinks: [], fbNodes: [], fbCap: '', fbCapSub: '', fbCapC: '#3a3531', fbHpx: '400px', fbHn: '400', fbNote: '', fbIn: () => {}, fbLeave: () => {}, fbPToggle: () => {}, fbPLabel: 'Ⅱ Pause', fbReplayFn: () => {}, trIn: () => {}, trLeave: () => {}, trPToggle: () => {}, trPLabel: 'Ⅱ Pause', roots: [], eraCols: [], trAxes: [], trNote: '', treeLinks: [], treeNodes: [], treeCap: '', treeCapSub: '', treeCapC: '#3a3531', treeH: '400px', treeHn: '400', eraHead: Component.ERAS.map(e => e[1]), bandRows: [], bandTitle: '', bandNames: [], gTabs: [], gCells: [], gSel: { c: '#3a3531', mode: '', img: '', name: '', meta: '', tldr: '', kept: false } };
-    const fns = { replay: () => this.replay(), gPrev: () => this.setState({ gFam: (st.gFam + 12) % 13, gKeep: null, gHover: null }), gNext: () => this.setState({ gFam: (st.gFam + 1) % 13, gKeep: null, gHover: null }), gRelease: () => this.setState({ gKeep: null }) };
-    const e3 = { flowLines: [], flowL: [], flowR: [], flowTitle: '', flowSub: '', flowCapC: '#efeae2', flowStrip: [], flowToggle: () => {}, flowPlayLabel: 'Ⅱ Pause', multiples: [], ftPicks: [], ft: { c: '#3a3531', img: '', name: '' }, ftCols: [], cfBtns: [], cfLabels: [], cfTiles: [], cfIslands: [], cfRoads: [], cfLinks: [], cfHasTip: false, cfTip: {}, cfInfo: [], cfInfoTitle: '', cfOut: () => {}, cfIn: () => {}, cfLeave: () => {}, cfPToggle: () => {}, cfPLabel: 'Ⅱ Pause', rtPicks: [], rt: { img: '', name: '', tldr: '' }, rtRows: [], flowOut: () => this.setState({ flowH: null }) };
-    if (!D) return { ...empty, ...e3, ...fns };
+    // CHANGED 2026-10-27: the values of the removed views (2b, 2c and the unused 2d, 3a–3e) are gone; the genealogy blocks come from genVals
+    const empty = { side4a: false, hasSide: false, side: { href: '#', c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' }, closeSide: () => {}, zMaps: [], zMapNote: '', zTabs: [], zPicks: [], zAl: [], zAlN: '0', zL0: { o: '0', s: '1', p: 'none' }, zL1: { o: '0', s: '1', p: 'none' }, zL2: { o: '0', s: '1', p: 'none' }, zL3: { o: '0', s: '1', p: 'none' }, zL4: { o: '0', s: '1', p: 'none' }, z0Rows: [], z0Tiles: [], z0Threads: [], z0Labels: [], z1Isl: [], z1Roads: [], z1Tiles: [], z1Labels: [], z2Cards: [], z2Links: [], z3L: [], z3R: [], z3A: [], z3: { img: '', name: '', c: '#3a3531', nin: '', nout: '', nal: '', alOn: false, top: '190px', h: '220px' }, z4: { img: '', name: '', meta: '', tldr: '', c: '#3a3531', stats: [], pos: [], neg: [], npos: '', nneg: '', posNone: false, negNone: false, verdict: '' }, zCap: '', zSub: '', zPlayLabel: 'Ⅱ Pause', zToggle: () => {}, zPrev: () => {}, zNext: () => {}, zIn: () => {}, zLeave: () => {},
+      gTabs: [], wCols: [], wEdges: [], wUn: [], wH: '0px', wHn: '0', wHead: { name: '', n: '' }, wUnOn: false, fNodes: [], fEdges: [], fHeads: [], fChips: [], pCols: [], fH: '0px', fHn: '0', fEmpty: false, fTree: false, fPIsOpen: false, fCapC: '#3a3531', fPlayLabel: 'Ⅱ Pause' };
+    if (!D) return empty;
     const meta = n => `${R[n.role][0]} · ${F[n.fam][0]} · ${Component.ERAS[this.eraI(n.era)][1]}`;
-
-
-    // 2b
-    const AX = Component.TAXES, axk = st.trAxis || 'time', ax = AX.find(a => a.k === axk);
-    this.trees = this.treesBy[axk].length ? this.treesBy[axk] : this.treesBy.time;
-    const colLabels = axk === 'time' ? Component.ERAS.map(e => e[1]) : axk === 'role' ? Component.ROLEORD.map(r => R[r][0]) : ['Root', '1 step', '2 steps', '3 steps', '4 steps', '5 steps', '6 steps'];
-    const tree = this.trees.find(t => t.root === st.root) || this.trees[0];
-    const usedCols = Math.max(...tree.ids.map(id => tree.col[id])) + 1;
-    const nCols = axk === 'time' || axk === 'role' ? colLabels.length : Math.max(4, usedCols); this.nCols = nCols;
-    const colW = 1136 / nCols, nodeW = Math.min(150, colW - 16);
-    const trAxes = AX.map(a => ({ label: a.label, fg: a.k === axk ? '#efeae2' : '#9a948b', line: a.k === axk ? '#d8a24a' : 'transparent', go: () => { this.auto.tr = 0; this.setState({ trAxis: a.k, root: null, treeH: null, trPlay: false }, () => this.replay()); } }));
-    const roots = this.trees.map(t => ({ name: this.by[t.root].name, n: String(t.ids.length - 1), go: () => { this.auto.tr = 0; this.setState({ root: t.root, trPlay: false }, () => this.replay()); }, bg: t === tree ? '#d8a24a' : 'transparent', fg: t === tree ? '#0c0b0a' : '#cfc8bd' }));
-    const colX = i => 2 + i * colW, pos = {}, colCount = {};
-    const order = [...tree.ids].sort((a, b) => tree.col[a] - tree.col[b]);
-    order.forEach(id => { const e = tree.col[id]; colCount[e] = (colCount[e] || 0); pos[id] = [colX(e) + 8, 28 + colCount[e] * 34]; colCount[e]++; });
-    const maxRows = Math.max(...Object.values(colCount));
-    const treeHn = 40 + maxRows * 34;
-    const th = st.treeH && tree.ids.includes(st.treeH) ? st.treeH : null, chain = new Set(); if (th) { let u = th; while (u) { chain.add(u); u = tree.par[u]; } }
-    const GC = { A: '#76c7ff', B: '#1cddae', C: '#c3affe', D: '#9a948b', E: '#ffa752', F: '#ff96d3' };
-    const linkC = axk === 'logic' ? GC.A : axk === 'cause' ? GC.B : axk === 'debate' ? GC.C : '#9a948b';
-    const treeNodes = tree.ids.map(id => { const n = this.by[id], show = tree.col[id] <= st.grow; return { x: `${pos[id][0]}px`, y: `${pos[id][1]}px`, w: `${nodeW}px`, name: n.name, c: R[n.role][1], o: !show ? '0' : (th && !chain.has(id) ? '.3' : '1'), s: show ? '1' : '.6', ol: id === th ? '1px solid #efeae2' : 'none', enter: () => this.setState({ treeH: id }), leave: () => this.setState({ treeH: null }), pick: () => this.openSide(id, '2b') }; });
-    const treeLinks = tree.ids.filter(id => tree.par[id]).map(id => { const p = pos[tree.par[id]], q = pos[id], x1 = p[0] + nodeW, y1 = p[1] + 13, x2 = q[0], y2 = q[1] + 13, mx = (x1 + x2) / 2; return { d: `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`, c: linkC, o: tree.col[id] > st.grow ? '0' : (th ? (chain.has(id) ? '.95' : '.12') : '.6') }; });
-    const tn = this.by[th || tree.root], path = [...chain].reverse();
-    const treeCap = th ? path.map((id, i) => (i ? `(${Component.REL[tree.parT[id]] || tree.parT[id]}) ` : '') + this.by[id].name).join(' → ') : `${tn.name} · ${tree.ids.length - 1} ${ax.word}`;
-    const treeCapSub = tn.tldr, treeCapC = R[tn.role][1];
-    const eraCols = colLabels.slice(0, nCols).map((e, i) => ({ x: `${colX(i)}px`, w: `${colW}px`, label: e, c: i <= st.grow ? '#efeae2' : '#4a4540' }));
-
-    // 2c
-    const bandRows = Object.keys(F).map(f => {
-      const mem = D.filter(n => n.fam === f);
-      return { name: F[f][0], c: F[f][1], n: String(mem.length), cells: Component.ERAS.map(([e, el]) => {
-        const k = mem.filter(n => n.era === e), share = mem.length ? k.length / mem.length : 0, on = st.band && st.band[0] === f && st.band[1] === e;
-        return { n: k.length ? String(k.length) : '', w: `calc((100% - 16px) * ${share.toFixed(3)})`, tc: share > .35 ? '#0c0b0a' : '#cfc8bd', hl: on ? '#1c1a17' : 'transparent', enter: () => this.setState({ band: [f, e] }) };
-      }) };
-    });
-    const bsel = st.band ? D.filter(n => n.fam === st.band[0] && n.era === st.band[1]) : [];
-    const bandTitle = st.band ? `${F[st.band[0]][0]} · ${Component.ERAS[this.eraI(st.band[1])][1]} · ${bsel.length}` : 'Hover a cell';
-
-    // 2d
-    const fk = Object.keys(F), fam = fk[st.gFam], mem = D.filter(n => n.fam === fam);
-    const gTabs = fk.map((k, i) => ({ name: F[k][0], go: () => this.setState({ gFam: i, gKeep: null, gHover: null }), fg: i === st.gFam ? '#efeae2' : '#9a948b', line: i === st.gFam ? F[k][1] : 'transparent' }));
-    const focusId = st.gKeep || st.gHover || mem[0].id, fn = this.by[focusId];
-    const gCells = mem.map(n => ({ name: n.name, img: this.sp(n.id), bg: n.id === focusId ? '#1f1c19' : '#171513', bd: n.id === st.gKeep ? '#efeae2' : '#2e2b28', enter: () => this.setState({ gHover: n.id }), pick: () => this.setState({ gKeep: n.id }) }));
-    const gSel = { c: R[fn.role][1], mode: st.gKeep ? 'kept · click another to switch' : 'hover to explore · click to keep', img: this.sp(fn.id), name: fn.name, meta: meta(fn), tldr: fn.tldr, kept: !!st.gKeep };
-
-    return { ...empty, ...fns, ...this.turn3(D, meta), ...this.fbVals(), ...this.zoomVals(D, meta), ...this.sideVals(meta), trIn: () => this.setState({ trHover: true }), trLeave: () => { this.auto.tr = 0; this.setState({ trHover: false }); },
-      trPToggle: () => { this.auto.tr = 0; this.setState({ trPlay: st.trPlay === false }); }, trPLabel: st.trPlay === false ? '▶ Play' : 'Ⅱ Pause',
-      roots, eraCols, trAxes, trNote: ax.note, treeLinks, treeNodes, treeCap, treeCapSub, treeCapC, treeH: `${treeHn}px`, treeHn: String(treeHn), bandRows, bandTitle, bandNames: bsel.slice(0, 14).map(n => n.name), gTabs, gCells, gSel };
+    return { ...empty, ...this.zoomVals(D, meta), ...this.sideVals(meta), ...this.genVals() };
   }
 }
 </script>
