@@ -1,6 +1,6 @@
 ### Automation bias (Parasuraman & Riley, 1997; Mosier & Skitka, 1990-е)
 
-Есть эксперимент, который стоит держать в голове каждому, кто произносит слова «человек в контуре». Пилотам в тренажёре дали автоматизированную систему-помощник, которая следила за бортом и выдавала подсказки. В какой-то момент система «сообщала» о пожаре в двигателе — которого не было и который не подтверждался ни одним другим прибором в кабине. Значительная часть пилотов глушила исправный двигатель. Не потому что не умели читать приборы. А потому что машина сказала.
+В эксперименте Mosier, Skitka, Heers и Burdick (1998) участвовали 25 пилотов коммерческой авиации. Его результаты стоит держать в голове каждому, кто произносит слова "человек в контуре". Пилоты работали с автоматизированными бортовыми системами на тренажере для отдельных полетных задач (part-task simulator), оснащенном двумя мониторами и сенсорным управлением. В какой-то момент система «сообщала» о пожаре в двигателе — которого не было и который не подтверждался ни одним другим прибором в кабине. Ложное предупреждение получил 21 пилот. Каждый из них заглушил исправный двигатель. Не потому что не умели читать приборы. А потому что машина сказала.
 
 Это и есть automation bias — устойчивая, воспроизводимая склонность человека чрезмерно доверять автоматизированной системе: принимать её подсказку даже вопреки собственным глазам и противоречащим данным, и переставать бдительно перепроверять, полагаясь на то, что «оно само уследит».
 
@@ -35,6 +35,7 @@ Automation bias бьёт ровно в это основание. Надзира
 **Источники.**
 
 - Parasuraman, R., & Riley, V. (1997). [Humans and Automation: Use, Misuse, Disuse, Abuse](https://journals.sagepub.com/doi/10.1518/001872097778543886). *Human Factors*, 39(2), 230–253.
+- Mosier, K. L., Skitka, L. J., Heers, S., & Burdick, M. (1998). [Automation Bias: Decision Making and Performance in High-Tech Cockpits](https://doi.org/10.1207/s15327108ijap0801_3). *The International Journal of Aviation Psychology*, 8(1), 47–63.
 - Skitka, L. J., Mosier, K. L., & Burdick, M. (1999). [Does automation bias decision-making?](https://doi.org/10.1006/ijhc.1999.0252) *International Journal of Human-Computer Studies*, 51(5), 991–1006.
 - Skitka, L. J., Mosier, K. L., & Burdick, M. D. (2000). [Accountability and automation bias](https://doi.org/10.1006/ijhc.1999.0349). *International Journal of Human-Computer Studies*, 52(4), 701–717.
 - Mosier, K. L., & Skitka, L. J. (1996). [Human decision makers and automated decision aids: Made for each other?](https://openlibrary.org/books/OL973836M) В: R. Parasuraman & M. Mouloua (ред.), *Automation and Human Performance: Theory and Applications*.
