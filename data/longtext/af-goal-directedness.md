@@ -23,3 +23,4 @@
 - Rohin Shah. «[Coherence arguments do not entail goal-directed behavior](https://www.lesswrong.com/posts/NxF5G6CJiof6cemTw/coherence-arguments-do-not-entail-goal-directed-behavior)». Alignment Forum, 2018 (и ответ на неё: Katja Grace. «[Coherence arguments imply a force for goal-directed behavior](https://www.alignmentforum.org/posts/DkcdXsP56g9kXyBdq/coherence-arguments-imply-a-force-for-goal-directed-behavior)». Alignment Forum, 2021).
 - Alex Flint. «[The ground of optimization](https://www.alignmentforum.org/posts/znfkdCoHMANwqc2WE/the-ground-of-optimization-1)». Alignment Forum, 2020.
 - Alexander Matt Turner, Prasad Tadepalli. «[Parametrically Retargetable Decision-Makers Tend To Seek Power](https://arxiv.org/abs/2206.13477)». NeurIPS, 2022.
+- Vanessa Kosoy. «[The Learning-Theoretic Agenda: Status 2023](https://www.alignmentforum.org/posts/ZwshvqiqCvXPsZEct/the-learning-theoretic-agenda-status-2023)». Alignment Forum, 2023.

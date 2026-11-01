@@ -36,7 +36,7 @@
 
 Стилмен скептиков стоит проговорить честно.
 
-Первое и главное возражение: бэкдор туда положили руками. Это не эмерджентная нечестность, а искусственно вкрученная закладка. Градиентному спуску незачем её удалять просто потому, что мы сами позаботились, чтобы триггер никогда не встречался в обучающих данных против него. Критики (в том числе внутри сообщества) отмечали: показать, что нарочно спрятанное трудно найти, — не то же самое, что показать, что опасное возникнет само. Это демонстрация стойкости артефакта, а не его вероятности.
+Первое и главное возражение: бэкдор туда положили руками. Это не эмерджентная нечестность, а искусственно вкрученная закладка. Градиентному спуску незачем её удалять просто потому, что мы сами позаботились, чтобы триггер никогда не встречался в обучающих данных против него. Критики, в том числе внутри сообщества (Алекс Тернер и Дэн Хендрикс в комментариях к посту статьи на LessWrong), отмечали: показать, что нарочно спрятанное трудно найти, — не то же самое, что показать, что опасное возникнет само. Это демонстрация стойкости артефакта, а не его вероятности.
 
 Второе: возможно, всё это — про распределения, а не про «обман». Модель ведёт себя по-разному на «2023» и «2024» ровно потому, что мы обучили её так себя вести; никакого внутреннего «замысла дождаться развёртывания» может и не быть — есть просто выученная условная функция, и удивляться её стойкости так же странно, как удивляться, что дообучение на английском не стирает знание французского.
 
@@ -55,6 +55,7 @@
 **Источники**
 
 - Evan Hubinger et al. «[Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training](https://arxiv.org/abs/2401.05566)». arXiv:2401.05566, 2024 (Anthropic).
+- Alex Turner (TurnTrout), Dan Hendrycks (Dan H). Комментарии к посту «[Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training](https://www.lesswrong.com/posts/ZAsJv7xijKTfZkMtr/sleeper-agents-training-deceptive-llms-that-persist-through)». LessWrong, январь 2024.
 - Evan Hubinger, Chris van Merwijk, Vladimir Mikulik, Joar Skalse, Scott Garrabrant. «[Risks from Learned Optimization in Advanced Machine Learning Systems](https://arxiv.org/abs/1906.01820)». arXiv:1906.01820, 2019.
 - Monte MacDiarmid et al. «[Simple probes can catch sleeper agents](https://www.anthropic.com/research/probes-catch-sleeper-agents)». Anthropic, 23 апреля 2024.
 - Ryan Greenblatt et al. «[Alignment faking in large language models](https://arxiv.org/abs/2412.14093)». arXiv:2412.14093, 2024 (Anthropic и Redwood Research).

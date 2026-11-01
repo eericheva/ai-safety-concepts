@@ -39,4 +39,5 @@
 - Sydney Shoemaker. «[The Inverted Spectrum](https://www.pdcnet.org/jphil/content/jphil_1982_0079_0007_0357_0381)». *The Journal of Philosophy*, 1982.
 - C. L. Hardin. *[Color for Philosophers: Unweaving the Rainbow](https://archive.org/details/colorforphilosop0000hard)*. Hackett, 1988.
 - Ned Block. «[Inverted Earth](https://www.jstor.org/stable/2214187)». *Philosophical Perspectives*, 1990.
+- Michael Tye. *[Ten Problems of Consciousness: A Representational Theory of the Phenomenal Mind](https://archive.org/details/tenproblemsofcon0000tyem)*. MIT Press, 1995.
 - Michael Tye. *[Consciousness, Color, and Content](https://mitpress.mit.edu/9780262700887/consciousness-color-and-content/)*. MIT Press, 2000.
