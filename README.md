@@ -11,13 +11,17 @@ straight through.
 - `bestiary-world-map.html` - the 3D world map: every concept is a creature on a landscape of
   families.
 - `bestiary-wiki.html` - the searchable wiki of all 227 entries.
+- `bestiary-interactives.html` - three interactive views: zooming from the whole bestiary down to
+  one beast's pros and cons (what supports it and what argues with it), and ideas followed
+  forward and back through their genealogy. It runs on `support.js` and reads
+  `data/bestiary-interactives.json`.
 - `data/longtext/` - the written entry of each concept, one file per concept in Russian (`.md`)
   and one in English (`.en.md`), 227 of each.
 - `assets/` - the creature sprite sheet and the ground textures the map draws.
 - `site/` - what https://mrswallbreakermaps.com takes from this repository.
 
-The two pages are self-contained apart from `data/` and `assets/`; serve the repository root
-over HTTP and open either page.
+The three pages are self-contained apart from `data/`, `assets/` and `support.js`; serve the
+repository root over HTTP and open any of them.
 
 ## Licence
 

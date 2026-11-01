@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<!-- ADDED 2026-10-27: demo tours for the three blocks -->
+<script src="./bestiary-demo.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Onest:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0c0b0a;color:#efeae2;}
+a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
+/* CHANGED 2026-10-21: an always-visible scrollbar on the pros and cons columns (macOS hides overlay bars) */
+.zcol::-webkit-scrollbar{width:8px;}
+.zcol::-webkit-scrollbar-track{background:#1a1816;}
+.zcol::-webkit-scrollbar-thumb{background:#4a4540;}
+.zcol::-webkit-scrollbar-thumb:hover{background:#7d776f;}
+@supports not selector(::-webkit-scrollbar){.zcol{scrollbar-width:thin;scrollbar-color:#4a4540 #1a1816;}}
+</style>
+</helmet>
+<!-- CHANGED 2026-10-27: The whole bestiary comes first: the beast is picked here, and Zooming in and An idea feeds — and is fed follow it -->
+<section data-screen-label="Bestiary" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px 56px 0;display:flex;flex-direction:column;gap:36px;">
+    <div id="2w" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <span style="font:700 26px 'Unbounded',sans-serif;">The whole bestiary</span>
+        <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:760px;text-wrap:pretty;">Every idea at once, laid out along the axis you grow it by. Pick any one: what feeds it lights up to the left, what it feeds, to the right. Zooming in and An idea feeds — and is fed, further down, follow your pick.</span>
+      </div>
+      <div style="display:flex;gap:4px 22px;flex-wrap:wrap;align-items:center;border-bottom:1px solid #26231f;">
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Grow along</span>
+        <sc-for list="{{ gTabs }}" as="a" hint-placeholder-count="5">
+          <button onClick="{{ a.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:2px solid {{ a.line }};margin-bottom:-1px;padding:8px 0;min-height:40px;color:{{ a.fg }};font:500 15px 'Onest',sans-serif;" style-hover="color:#efeae2;">{{ a.label }}</button>
+        </sc-for>
+        <span style="flex:1;"></span>
+        <span style="font:400 12px 'Onest',sans-serif;color:#7d776f;">{{ gHint }}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Selected</span>
+        <span style="display:flex;gap:6px;align-items:center;height:32px;padding:0 11px;background:#d8a24a;color:#0c0b0a;font:700 13px 'Onest',sans-serif;">{{ wHead.name }}<span style="opacity:.6;font-weight:500;">{{ wHead.n }}</span></span>
+        <div style="display:flex;align-items:center;gap:8px;border:1px solid #3a3531;background:#0f0e0c;padding:0 10px;height:32px;width:260px;box-sizing:border-box;">
+          <span style="color:#7d776f;font-size:13px;">⌕</span>
+          <input value="{{ wQ }}" onInput="{{ wOnQ }}" onKeyDown="{{ wKey }}" placeholder="Highlight in the bestiary…" style="flex:1;min-width:0;background:transparent;border:0;outline:none;color:#efeae2;font:500 13px 'Onest',sans-serif;">
+        </div>
+        <span style="font:400 12.5px 'Onest',sans-serif;color:#9a948b;">{{ wInfo }}</span>
+      </div>
+      <div style="position:relative;width:1136px;height:{{ wH }};">
+        <svg viewBox="0 0 1136 {{ wHn }}" style="position:absolute;inset:0;width:1136px;height:{{ wH }};pointer-events:none;overflow:visible;">
+          <sc-for list="{{ wEdges }}" as="e"><path d="{{ e.d }}" fill="none" stroke="{{ e.c }}" stroke-width="{{ e.w }}" opacity="{{ e.o }}"></path></sc-for>
+        </svg>
+        <div style="display:grid;grid-template-columns:{{ wGrid }};position:relative;">
+          <sc-for list="{{ wCols }}" as="col" hint-placeholder-count="8">
+            <div style="border-left:1px solid #1f1d1a;display:flex;flex-direction:column;min-width:0;">
+              <div style="display:flex;justify-content:space-between;gap:4px;height:26px;align-items:center;padding:0 8px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ col.hc }};"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ col.label }}</span><span style="color:#7d776f;">{{ col.n }}</span></div>
+              <sc-for list="{{ col.items }}" as="it"><div onClick="{{ it.go }}" title="{{ it.title }}" style="height:16px;display:flex;align-items:center;margin:0 6px 0 4px;padding:0 6px;font:{{ it.weight }} 11px 'Onest',sans-serif;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ it.fg }};background:{{ it.bg }};border-left:2px solid {{ it.mark }};" style-hover="color:#efeae2;background:#24211e;">{{ it.name }}</div></sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <sc-if value="{{ wUnOn }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #26231f;padding-top:14px;">
+          <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#7d776f;">{{ wUnTitle }}</span>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;"><sc-for list="{{ wUn }}" as="it"><span onClick="{{ it.go }}" title="{{ it.title }}" style="cursor:pointer;padding:2px 7px;font:{{ it.weight }} 11px 'Onest',sans-serif;color:{{ it.fg }};background:{{ it.bg }};border:1px solid #26231f;" style-hover="color:#efeae2;background:#24211e;">{{ it.name }}</span></sc-for></div>
+        </div>
+      </sc-if>
+    </div>
+</section>
+<section data-screen-label="Zoom" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px;display:flex;flex-direction:column;gap:36px;border-bottom:1px solid #26231f;">
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:1100px;">
+    <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;letter-spacing:.2em;">Bestiarium · zoom</span>
+    <h1 style="margin:0;font:900 44px/1 'Unbounded',sans-serif;letter-spacing:-.02em;text-transform:uppercase;">Zoom in, <span style="color:#d8a24a;">zoom out</span></h1>
+    <span style="font:400 17px/1.5 'Onest',sans-serif;color:#9a948b;max-width:860px;text-wrap:pretty;">Follow one beast from the whole bestiary down to what supports it and what argues with it, five steps, then on to the next beast.</span>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;">
+    <div id="4a" onMouseEnter="{{ zIn }}" onMouseLeave="{{ zLeave }}" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font:700 26px 'Unbounded',sans-serif;">Zooming in</span>
+          <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:700px;">Bestiary at six resolutions, one layer, one district, one circuit, one beast's pros and cons. Hover at any level to look closer; pick a step to stay on it.</span>
+        </div>
+        <button onClick="{{ zToggle }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#efeae2;white-space:nowrap;" style-hover="border-color:#efeae2;">{{ zPlayLabel }}</button>
+      </div>
+      <div style="display:flex;gap:4px 24px;flex-wrap:wrap;border-bottom:1px solid #26231f;padding-bottom:8px;">
+        <sc-for list="{{ zTabs }}" as="t" hint-placeholder-count="5">
+          <button onClick="{{ t.go }}" style="cursor:pointer;background:transparent;border:0;padding:6px 0;min-height:40px;display:flex;flex-direction:column;justify-content:center;gap:6px;color:{{ t.color }};font:500 15px 'Onest',sans-serif;" style-hover="color:#efeae2;">
+            <span style="display:flex;align-items:center;gap:8px;"><i style="width:7px;height:7px;border-radius:50%;background:{{ t.dot }};"></i>{{ t.label }}</span>
+            <span style="display:block;height:2px;width:100%;background:#26231f;position:relative;overflow:hidden;"><i style="position:absolute;left:0;top:0;bottom:0;width:{{ t.prog }};background:#d8a24a;transition:{{ t.trans }};"></i></span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;padding-right:6px;">Follow</span>
+        <sc-for list="{{ zPicks }}" as="p" hint-placeholder-count="6"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button></sc-for>
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;padding:0 6px 0 10px;">Alongside · {{ zAlN }}</span>
+        <sc-for list="{{ zAl }}" as="p" hint-placeholder-count="8"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button></sc-for>
+      </div>
+      <div style="position:relative;width:1136px;height:600px;overflow:hidden;background:#0f0e0c;">
+        <div style="position:absolute;inset:0;opacity:{{ zL0.o }};transform:scale({{ zL0.s }});pointer-events:{{ zL0.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
+          <sc-for list="{{ z0Rows }}" as="r"><i style="position:absolute;left:0;right:0;top:{{ r.bandY }};height:94px;background:{{ r.band }};pointer-events:none;transition:background .3s;"></i><div onClick="{{ r.go }}" style="cursor:pointer;position:absolute;left:24px;top:{{ r.y }};display:flex;flex-direction:column;gap:3px;"><span style="font:700 15px 'Unbounded',sans-serif;color:{{ r.c }};">{{ r.label }}</span><span style="font:400 11px 'JetBrains Mono',monospace;color:#7d776f;">{{ r.sub }}</span></div><i style="position:absolute;left:24px;right:24px;top:{{ r.line }};height:1px;background:#1f1d1a;"></i></sc-for>
+          <sc-for list="{{ z0Tiles }}" as="t"><i onClick="{{ t.pick }}" onMouseEnter="{{ t.enter }}" style="cursor:pointer;position:absolute;left:{{ t.x }};top:{{ t.y }};width:5px;height:5px;background:{{ t.c }};opacity:{{ t.o }};transition:opacity .3s;"></i></sc-for>
+          <svg viewBox="0 0 1136 600" style="position:absolute;inset:0;width:1136px;height:600px;pointer-events:none;overflow:visible;"><sc-for list="{{ z0Threads }}" as="t"><path d="{{ t.d }}" fill="none" stroke="{{ t.c }}" stroke-width="{{ t.w }}" opacity="{{ t.o }}"></path></sc-for></svg>
+          <sc-for list="{{ z0Labels }}" as="l"><span style="position:absolute;left:{{ l.x }};top:{{ l.y }};font:700 10px 'Onest',sans-serif;color:{{ l.c }};background:#0f0e0ce6;border:1px solid #3a3531;padding:1px 5px;white-space:nowrap;pointer-events:none;">{{ l.label }}</span></sc-for>
+        </div>
+        <div style="position:absolute;inset:0;opacity:{{ zL1.o }};transform:scale({{ zL1.s }});pointer-events:{{ zL1.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
+          <div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:3;display:flex;border:1px solid #3a3531;background:#0f0e0c;">
+            <sc-for list="{{ zMaps }}" as="m"><button onClick="{{ m.go }}" style="cursor:pointer;border:0;padding:9px 11px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;background:{{ m.bg }};color:{{ m.fg }};">{{ m.label }} · {{ m.n }}</button></sc-for>
+          </div>
+          <sc-for list="{{ z1Isl }}" as="is"><div onMouseEnter="{{ is.enter }}" style="position:absolute;left:{{ is.x }};top:{{ is.y }};width:{{ is.w }};height:{{ is.h }};border-radius:42%;background:#141210;opacity:{{ is.o }};box-shadow:0 0 0 10px #12100e, 0 0 0 11px {{ is.ring }}, 0 0 0 22px #100f0d, 0 0 0 23px #1c1a17;transition:opacity .3s,left .9s cubic-bezier(.22,1,.36,1),top .9s cubic-bezier(.22,1,.36,1),width .9s cubic-bezier(.22,1,.36,1),height .9s cubic-bezier(.22,1,.36,1);"></div></sc-for>
+          <svg viewBox="0 0 1136 600" style="position:absolute;inset:0;width:1136px;height:600px;pointer-events:none;overflow:visible;"><sc-for list="{{ z1Roads }}" as="r"><path d="{{ r.d }}" fill="none" stroke="#d8a24a" stroke-width="{{ r.w }}" stroke-linecap="round" opacity=".55"></path></sc-for></svg>
+          <sc-for list="{{ z1Tiles }}" as="t"><i onClick="{{ t.pick }}" style="position:absolute;left:{{ t.x }};top:{{ t.y }};width:{{ t.sz }};height:{{ t.sz }};background:{{ t.c }};outline:{{ t.ol }};outline-offset:1px;cursor:pointer;transition:left 1s cubic-bezier(.22,1,.36,1) {{ t.d }},top 1s cubic-bezier(.22,1,.36,1) {{ t.d }},background .8s;"></i></sc-for>
+          <sc-for list="{{ z1Labels }}" as="l"><span style="transition:left .9s cubic-bezier(.22,1,.36,1),top .9s cubic-bezier(.22,1,.36,1);position:absolute;left:{{ l.x }};top:{{ l.y }};transform:translateX(-50%);font:700 11px 'Unbounded',sans-serif;color:{{ l.c }};white-space:nowrap;pointer-events:none;background:#0f0e0ccc;padding:1px 5px;">{{ l.label }}</span></sc-for>
+        </div>
+        <div style="position:absolute;inset:0;opacity:{{ zL2.o }};transform:scale({{ zL2.s }});pointer-events:{{ zL2.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
+          <!-- CHANGED 2026-10-27: the District step has the same layer row as Layer, so a district can be cut by any grouping -->
+          <div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:3;display:flex;border:1px solid #3a3531;background:#0f0e0c;">
+            <sc-for list="{{ zMaps }}" as="m"><button onClick="{{ m.go }}" style="cursor:pointer;border:0;padding:9px 11px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;background:{{ m.bg }};color:{{ m.fg }};">{{ m.label }} · {{ m.n }}</button></sc-for>
+          </div>
+          <sc-for list="{{ z2Cards }}" as="c"><div onClick="{{ c.pick }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="cursor:pointer;position:absolute;left:{{ c.x }};top:{{ c.y }};width:{{ c.w }};height:112px;box-sizing:border-box;background:#151311;border:1px solid {{ c.bd }};border-top:3px solid {{ c.c }};opacity:{{ c.o }};display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px;transition:opacity .25s;cursor:default;"><div style="width:60px;height:60px;flex:none;background-image:url({{ c.img }});background-size:contain;background-repeat:no-repeat;background-position:center;"></div><span style="font:500 10px/1.2 'Onest',sans-serif;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{{ c.name }}</span></div></sc-for>
+          <svg viewBox="0 0 1136 600" style="position:absolute;inset:0;width:1136px;height:600px;pointer-events:none;overflow:visible;"><sc-for list="{{ z2Links }}" as="l"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="1.6" opacity=".6"></path></sc-for></svg>
+        </div>
+        <div style="position:absolute;inset:0;opacity:{{ zL3.o }};transform:scale({{ zL3.s }});pointer-events:{{ zL3.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
+          <span style="position:absolute;left:40px;top:16px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;">Comes from · {{ z3.nin }}</span>
+          <span style="position:absolute;right:40px;top:16px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;">Leads to · {{ z3.nout }}</span>
+          <svg viewBox="0 0 1136 600" style="position:absolute;inset:0;width:1136px;height:600px;pointer-events:none;overflow:visible;"><sc-for list="{{ z3L }}" as="l"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="2" opacity="{{ l.lo }}"></path></sc-for><sc-for list="{{ z3R }}" as="l"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="2" opacity="{{ l.lo }}"></path></sc-for></svg>
+          <sc-for list="{{ z3L }}" as="p"><div onClick="{{ p.pick }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer;position:absolute;left:{{ p.x }};top:{{ p.y }};width:300px;height:{{ p.h }};box-sizing:border-box;display:flex;align-items:center;gap:8px;background:#151311;border:1px solid #2e2b28;border-left:3px solid {{ p.c }};padding:0 8px;opacity:{{ p.o }};transition:opacity .25s;cursor:default;"><div style="width:{{ p.sz }};height:{{ p.sz }};flex:none;background-image:url({{ p.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 12px 'Onest',sans-serif;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ p.c }};white-space:nowrap;">{{ p.rel }}</span></div></sc-for>
+          <sc-for list="{{ z3R }}" as="p"><div onClick="{{ p.pick }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer;position:absolute;left:{{ p.x }};top:{{ p.y }};width:300px;height:{{ p.h }};box-sizing:border-box;display:flex;align-items:center;gap:8px;background:#151311;border:1px solid #2e2b28;border-left:3px solid {{ p.c }};padding:0 8px;opacity:{{ p.o }};transition:opacity .25s;cursor:default;"><div style="width:{{ p.sz }};height:{{ p.sz }};flex:none;background-image:url({{ p.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 12px 'Onest',sans-serif;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ p.c }};white-space:nowrap;">{{ p.rel }}</span></div></sc-for>
+          <div onClick="{{ z3.pick }}" style="cursor:pointer;position:absolute;left:468px;top:{{ z3.top }};width:200px;height:{{ z3.h }};box-sizing:border-box;background:#171513;border:1px solid #3a3531;border-top:4px solid {{ z3.c }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;text-align:center;"><div style="width:110px;height:110px;background-image:url({{ z3.img }});background-size:contain;background-repeat:no-repeat;background-position:center;"></div><span style="font:700 14px/1.2 'Unbounded',sans-serif;text-wrap:balance;">{{ z3.name }}</span></div>
+          <sc-if value="{{ z3.alOn }}" hint-placeholder-val="{{ true }}">
+            <span style="position:absolute;left:40px;top:398px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;">Alongside · {{ z3.nal }} <span style="color:#7d776f;font-weight:400;letter-spacing:.04em;text-transform:none;">links with no direction</span></span>
+            <sc-for list="{{ z3A }}" as="p"><div onClick="{{ p.pick }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="cursor:pointer;position:absolute;left:{{ p.x }};top:{{ p.y }};width:258px;height:20px;box-sizing:border-box;display:flex;align-items:center;gap:6px;background:#151311;border:1px solid #2e2b28;border-left:3px solid {{ p.c }};padding:0 6px;opacity:{{ p.o }};transition:opacity .25s;"><span style="font:500 11px 'Onest',sans-serif;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.name }}</span><span style="font:400 9px 'JetBrains Mono',monospace;color:{{ p.c }};white-space:nowrap;">{{ p.rel }}</span></div></sc-for>
+          </sc-if>
+        </div>
+        <!-- CHANGED 2026-10-21: the last step, Pros and cons, shows what supports the followed beast and what argues with it (was a dossier; the separate 2a block is gone) -->
+        <div style="position:absolute;inset:0;opacity:{{ zL4.o }};transform:scale({{ zL4.s }});pointer-events:{{ zL4.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
+          <div style="position:absolute;left:24px;right:24px;top:18px;bottom:18px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 290px minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:16px;align-items:stretch;">
+            <div style="display:flex;flex-direction:column;gap:8px;min-width:0;height:100%;">
+              <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#ffd84a;">+ Supports · builds on · {{ z4.npos }}</span>
+              <!-- CHANGED 2026-10-21: every link is listed; the column scrolls when they do not fit -->
+              <div class="zcol" style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:8px;">
+              <sc-for list="{{ z4.pos }}" as="n">
+                <div onClick="{{ n.pick }}" onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start;background:{{ n.bg }};border:1px solid {{ n.bd }};border-left:3px solid #ffd84a;padding:7px 8px;flex:none;transition:background .2s,border-color .2s;cursor:pointer;">
+                  <div style="width:44px;height:44px;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+                    <span style="font:700 13px/1.25 'Onest',sans-serif;">{{ n.name }}</span>
+                    <span style="font:400 10px 'JetBrains Mono',monospace;color:#ffd84a;">{{ n.rel }}</span>
+                    <span style="font:400 12px/1.4 'Onest',sans-serif;color:#9a948b;display:-webkit-box;-webkit-line-clamp:{{ n.lines }};-webkit-box-orient:vertical;overflow:hidden;">{{ n.tldr }}</span>
+                  </div>
+                </div>
+              </sc-for>
+              </div>
+              <sc-if value="{{ z4.posNone }}" hint-placeholder-val="{{ false }}"><span style="font:400 12px 'Onest',sans-serif;color:#7d776f;padding:8px;border:1px dashed #3a3531;">Nothing on this side yet.</span></sc-if>
+            </div>
+            <div onClick="{{ z4.pick }}" style="cursor:pointer;align-self:start;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:#171513;border:1px solid #3a3531;border-top:4px solid {{ z4.c }};padding:18px 16px;">
+              <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#7d776f;">The claim</span>
+              <div style="width:120px;height:120px;background-image:url({{ z4.img }});background-size:contain;background-repeat:no-repeat;"></div>
+              <span style="font:700 18px/1.2 'Unbounded',sans-serif;text-wrap:balance;">{{ z4.name }}</span>
+              <span style="font:400 10px 'JetBrains Mono',monospace;color:#9a948b;">{{ z4.meta }}</span>
+              <span style="font:400 13px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty;">{{ z4.tldr }}</span>
+              <span style="font:700 12px 'JetBrains Mono',monospace;color:#efeae2;padding-top:6px;border-top:1px solid #26231f;width:100%;">{{ z4.verdict }}</span>
+              <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%;border-top:1px solid #26231f;padding-top:10px;"><sc-for list="{{ z4.stats }}" as="s"><div style="display:flex;flex-direction:column;gap:2px;"><span style="font:700 18px 'Unbounded',sans-serif;">{{ s.v }}</span><span style="font:700 9px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#7d776f;">{{ s.k }}</span></div></sc-for></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;min-width:0;height:100%;">
+              <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#c3affe;">− Argues against · {{ z4.nneg }}</span>
+              <!-- CHANGED 2026-10-21: every link is listed; the column scrolls when they do not fit -->
+              <div class="zcol" style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:8px;">
+              <sc-for list="{{ z4.neg }}" as="n">
+                <div onClick="{{ n.pick }}" onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start;background:{{ n.bg }};border:1px solid {{ n.bd }};border-left:3px solid #c3affe;padding:7px 8px;flex:none;transition:background .2s,border-color .2s;cursor:pointer;">
+                  <div style="width:44px;height:44px;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+                    <span style="font:700 13px/1.25 'Onest',sans-serif;">{{ n.name }}</span>
+                    <span style="font:400 10px 'JetBrains Mono',monospace;color:#c3affe;">{{ n.rel }}</span>
+                    <span style="font:400 12px/1.4 'Onest',sans-serif;color:#9a948b;display:-webkit-box;-webkit-line-clamp:{{ n.lines }};-webkit-box-orient:vertical;overflow:hidden;">{{ n.tldr }}</span>
+                  </div>
+                </div>
+              </sc-for>
+              </div>
+              <sc-if value="{{ z4.negNone }}" hint-placeholder-val="{{ false }}"><span style="font:400 12px 'Onest',sans-serif;color:#7d776f;padding:8px;border:1px dashed #3a3531;">Nothing on this side yet.</span></sc-if>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:12px;">
+        <button onClick="{{ zPrev }}" style="cursor:pointer;background:transparent;border:0;color:#9a948b;font:400 24px 'Onest',sans-serif;height:44px;" style-hover="color:#efeae2;">‹</button>
+        <div style="display:flex;flex-direction:column;gap:6px;text-align:center;min-height:62px;justify-content:center;">
+          <span style="font:500 19px/1.4 'Onest',sans-serif;color:#efeae2;text-wrap:balance;">{{ zCap }}</span>
+          <span style="font:400 13px/1.5 'Onest',sans-serif;color:#9a948b;text-wrap:pretty;">{{ zSub }}</span>
+        </div>
+        <button onClick="{{ zNext }}" style="cursor:pointer;background:transparent;border:0;color:#9a948b;font:400 24px 'Onest',sans-serif;height:44px;" style-hover="color:#efeae2;">›</button>
+      </div>
+<sc-if value="{{ side4a }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeSide }}" style="position:absolute;inset:0;z-index:50;background:rgba(6,5,4,.6);"></div>
+  <aside style="position:absolute;top:0;right:0;bottom:0;width:440px;z-index:51;background:#11100e;border-left:1px solid #2e2b28;border-top:4px solid {{ side.c }};padding:24px 26px 32px;box-sizing:border-box;overflow:auto;display:flex;flex-direction:column;gap:14px;box-shadow:-24px 0 60px rgba(0,0,0,.6);font-family:'Onest',sans-serif;color:#efeae2;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+      <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ side.c }};padding-top:12px;">{{ side.role }}</span>
+      <button onClick="{{ closeSide }}" style="cursor:pointer;background:transparent;border:0;color:#9a948b;font:400 26px 'Onest',sans-serif;width:44px;height:44px;" style-hover="color:#efeae2;">×</button>
+    </div>
+    <div style="width:140px;height:140px;background-image:url({{ side.img }});background-size:contain;background-repeat:no-repeat;"></div>
+    <span style="font:700 26px/1.15 'Unbounded',sans-serif;text-wrap:balance;">{{ side.name }}</span>
+    <span style="font:400 12px/1.5 'JetBrains Mono',monospace;color:#9a948b;">{{ side.meta }}</span>
+    <span style="font:400 17px/1.55 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty;">{{ side.tldr }}</span>
+    <span style="font:400 13px 'Onest',sans-serif;color:#7d776f;">{{ side.author }}</span>
+    <a href="{{ side.href }}" target="_blank" style="align-self:flex-start;display:flex;align-items:center;gap:8px;background:{{ side.c }};color:#0c0b0a;padding:11px 16px;min-height:44px;box-sizing:border-box;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;" style-hover="color:#0c0b0a;opacity:.85;">Read full text →</a>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid #26231f;border-bottom:1px solid #26231f;padding:12px 0;">
+      <sc-for list="{{ side.stats }}" as="s"><div style="display:flex;flex-direction:column;gap:3px;"><span style="font:700 22px 'Unbounded',sans-serif;">{{ s.v }}</span><span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;font-size:10px;color:#7d776f;">{{ s.k }}</span></div></sc-for>
+    </div>
+    <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;padding-top:4px;">Comes from · {{ side.nin }}</span>
+    <div style="display:flex;flex-direction:column;"><sc-for list="{{ side.inc }}" as="n"><button onClick="{{ n.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:1px solid #1f1d1a;padding:8px 0;display:flex;align-items:center;gap:10px;text-align:left;color:#cfc8bd;min-height:40px;width:100%;" style-hover="color:#efeae2;"><div style="width:28px;height:28px;flex:none;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 13px 'Onest',sans-serif;flex:1;min-width:0;">{{ n.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ n.c }};white-space:nowrap;">{{ n.rel }}</span></button></sc-for></div>
+    <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a;padding-top:8px;">Leads to · {{ side.nout }}</span>
+    <div style="display:flex;flex-direction:column;"><sc-for list="{{ side.out }}" as="n"><button onClick="{{ n.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:1px solid #1f1d1a;padding:8px 0;display:flex;align-items:center;gap:10px;text-align:left;color:#cfc8bd;min-height:40px;width:100%;" style-hover="color:#efeae2;"><div style="width:28px;height:28px;flex:none;background-image:url({{ n.img }});background-size:contain;background-repeat:no-repeat;"></div><span style="font:500 13px 'Onest',sans-serif;flex:1;min-width:0;">{{ n.name }}</span><span style="font:400 10px 'JetBrains Mono',monospace;color:{{ n.c }};white-space:nowrap;">{{ n.rel }}</span></button></sc-for></div>
+  </aside>
+</sc-if>
+    </div>
+  </div>
+</section>
+<!-- CHANGED 2026-10-27: blocks 2b (An idea feeds) and 2c (An idea is fed) are replaced by the owner's design, The whole bestiary (2w) and An idea feeds — and is fed (2f), over every beast; one selection is shared with Zooming in -->
+<section data-screen-label="Genealogy" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px;display:flex;flex-direction:column;gap:36px;">
+  <div style="display:flex;flex-direction:column;gap:12px;max-width:1100px;">
+    <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:#d8a24a;">Bestiarium · genealogy</span>
+    <h1 style="margin:0;font:900 44px/1 'Unbounded',sans-serif;letter-spacing:-.02em;text-transform:uppercase;">Where ideas <span style="color:#d8a24a;">come from and lead</span></h1>
+    <span style="font:400 17px/1.5 'Onest',sans-serif;color:#9a948b;max-width:860px;text-wrap:pretty;">An idea feeds what comes after it, and an idea is fed by what came before it. Pick a beast in either block and the other blocks follow it.</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:40px;align-items:flex-start;">
+
+    <div id="2f" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font:700 26px 'Unbounded',sans-serif;">An idea feeds — and is fed</span>
+          <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:700px;text-wrap:pretty;">One idea, both ways at once: what it grew out of builds to the left, what grows out of it builds to the right, step by step. Click any idea in the tree to grow from it.</span>
+        </div>
+        <span style="display:flex;gap:10px;"><button onClick="{{ fToggle }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;" style-hover="border-color:#efeae2;">{{ fPlayLabel }}</button><button onClick="{{ fReplay }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;" style-hover="border-color:#efeae2;">↻ Replay</button></span>
+      </div>
+      <div style="display:flex;gap:4px 22px;flex-wrap:wrap;align-items:center;border-bottom:1px solid #26231f;">
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Grow along</span>
+        <sc-for list="{{ gTabs }}" as="a" hint-placeholder-count="5">
+          <button onClick="{{ a.go }}" style="cursor:pointer;background:transparent;border:0;border-bottom:2px solid {{ a.line }};margin-bottom:-1px;padding:8px 0;min-height:40px;color:{{ a.fg }};font:500 15px 'Onest',sans-serif;" style-hover="color:#efeae2;">{{ a.label }}</button>
+        </sc-for>
+        <span style="flex:1;"></span>
+        <span style="font:400 12px 'Onest',sans-serif;color:#7d776f;">{{ gHint }}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative;">
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;margin-right:6px;">Root</span>
+        <div style="display:flex;align-items:center;gap:8px;border:1px solid {{ fPBorder }};background:#0f0e0c;padding:0 10px;height:32px;width:240px;box-sizing:border-box;">
+          <span style="color:#7d776f;font-size:13px;">⌕</span>
+          <input value="{{ fQ }}" onInput="{{ fOnQ }}" onFocus="{{ fPOpen }}" onKeyDown="{{ fKey }}" placeholder="{{ fPHolder }}" style="flex:1;min-width:0;background:transparent;border:0;outline:none;color:#efeae2;font:500 13px 'Onest',sans-serif;">
+        </div>
+        <sc-for list="{{ fChips }}" as="c" hint-placeholder-count="5"><button onClick="{{ c.go }}" style="cursor:pointer;display:flex;gap:5px;align-items:center;height:32px;padding:0 11px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font:500 13px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ c.name }}<span style="color:{{ c.nc }};">{{ c.n }}</span></button></sc-for>
+        <button onClick="{{ fPToggle }}" style="cursor:pointer;display:flex;gap:6px;align-items:center;height:32px;padding:0 12px;background:transparent;border:1px dashed #d8a24a;color:#d8a24a;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;" style-hover="border-style:solid;">All {{ total }} {{ fPCaret }}</button>
+        <sc-if value="{{ fPIsOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:10;background:#151311;border:1px solid #3a3531;box-shadow:0 18px 40px rgba(0,0,0,.6);display:flex;flex-direction:column;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #26231f;font:400 12px 'Onest',sans-serif;color:#9a948b;">
+              <span>{{ pTitle }}</span>
+              <button onClick="{{ pClose }}" style="cursor:pointer;background:transparent;border:0;color:#efeae2;font:400 12px 'Onest',sans-serif;white-space:nowrap;" style-hover="color:#d8a24a;">close ✕</button>
+            </div>
+            <div style="display:grid;grid-template-columns:{{ pGrid }};max-height:340px;overflow:auto;" class="zcol">
+              <sc-for list="{{ pCols }}" as="col">
+                <div style="display:flex;flex-direction:column;border-right:1px solid #1f1d1a;padding:10px 0;min-width:0;">
+                  <div style="display:flex;justify-content:space-between;gap:4px;padding:0 10px 8px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ col.hc }};"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ col.label }}</span><span style="color:#7d776f;">{{ col.n }}</span></div>
+                  <sc-for list="{{ col.items }}" as="it"><div onClick="{{ it.go }}" style="display:flex;justify-content:space-between;gap:6px;padding:3px 10px;font:400 12px 'Onest',sans-serif;cursor:pointer;color:{{ it.fg }};background:{{ it.bg }};border-left:2px solid {{ it.mark }};" style-hover="background:#24211e;color:#efeae2;"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ it.name }}</span><span style="color:#7d776f;font:400 10.5px 'JetBrains Mono',monospace;">{{ it.n }}</span></div></sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px;border-left:3px solid {{ fCapC }};padding-left:12px;">
+        <span style="font:700 15px 'Onest',sans-serif;">{{ fName }} · {{ fInfo }}</span>
+        <span style="font:400 12px/1.45 'Onest',sans-serif;color:#9a948b;">{{ fTldr }}</span>
+      </div>
+      <sc-if value="{{ fEmpty }}" hint-placeholder-val="{{ false }}">
+        <span style="font:400 13px/1.5 'Onest',sans-serif;color:#9a948b;padding:14px 16px;border:1px dashed #3a3531;">{{ fEmptyText }}</span>
+      </sc-if>
+      <sc-if value="{{ fTree }}" hint-placeholder-val="{{ true }}">
+        <div style="position:relative;width:1136px;height:{{ fH }};">
+          <sc-for list="{{ fHeads }}" as="c"><div style="position:absolute;top:0;bottom:0;left:{{ c.x }};width:{{ c.w }};box-sizing:border-box;border-left:1px solid #1f1d1a;padding:4px 8px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ c.c }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .4s;">{{ c.label }}</div></sc-for>
+          <svg viewBox="0 0 1136 {{ fHn }}" style="position:absolute;inset:0;width:1136px;height:{{ fH }};pointer-events:none;">
+            <sc-for list="{{ fEdges }}" as="e"><path d="{{ e.d }}" fill="none" stroke="{{ e.c }}" stroke-width="{{ e.w }}" opacity="{{ e.o }}" stroke-dasharray="{{ e.dash }}"></path></sc-for>
+          </svg>
+          <sc-for list="{{ fNodes }}" as="n"><div onClick="{{ n.go }}" title="{{ n.title }}" style="cursor:pointer;position:absolute;left:{{ n.x }};top:{{ n.y }};width:{{ n.w }};height:26px;display:flex;align-items:center;padding:0 8px;box-sizing:border-box;background:{{ n.bg }};color:{{ n.fg }};border:1px solid {{ n.bd }};border-left:3px solid {{ n.c }};font:500 12px 'Onest',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" style-hover="outline:1px solid #efeae2;">{{ n.name }}</div></sc-for>
+        </div>
+      </sc-if>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  // CHANGED 2026-10-27: The whole bestiary, Zooming in and An idea feeds — and is fed share one selection (`sel`, on the Role ladder axis at first)
+  state = { data: null, tick: 0, sel: 'power', ax: 'role', wQ: '', fQ: '', fOpen: false, fStep: 0, fPlay: true, recent: [] };
+  static FAM = { misalign: ['Misalignment', '#C0453A'], deception: ['Deception', '#8E5DB0'], control: ['Control', '#E08A3C'], oversight: ['Oversight', '#3FA07E'], strategy: ['Takeoff & strategy', '#D9A441'], robustness: ['Robustness', '#6FA85B'], interp: ['Interpretability', '#2E9AA6'], mind: ['Philosophy of mind', '#4C7FC0'], ethics: ['Ethical lenses', '#C77BB0'], critical: ['Critical lens', '#B34F63'], myth: ['Cultural myths', '#A98A5B'], decision: ['Decision theory', '#7C93C4'], 'moral-status': ['Moral status of AI', '#B57ED9'] };
+  static ROLE = { 'провал': ['Failure mode', '#fea199'], 'механизм': ['Mechanism', '#1cddae'], 'тезис': ['Thesis', '#76c7ff'], 'решение': ['Approach', '#ffd84a'], 'метафора': ['Metaphor', '#ffa752'], 'линза': ['Lens', '#ff96d3'], 'критика': ['Critique', '#c3affe'], 'эмпирика': ['Empirics', '#96d35f'] };
+  static ERAS = [['E0', 'Myths / undated'], ['E1', '<1900'], ['E2', '1900–55'], ['E3', '1956–99'], ['E4', '2000–15'], ['E5', '2016–21'], ['E6', '2022+']];
+  static REL = { 'специализация': 'specializes', 'вытекает': 'follows from', 'предпосылка': 'prerequisite', 'часть': 'part of', 'порождает': 'gives rise to', 'усугубляет': 'aggravates', 'смягчает': 'mitigates', 'решает': 'solves', 'измеряется': 'measured by', 'демонстрирует': 'demonstrates', 'мотивирует': 'motivates', 'операционализирует': 'operationalizes', 'напряжение': 'tension', 'противоречит': 'contradicts', 'альтернатива': 'alternative', 'контрпример': 'counterexample', 'критикует': 'critiques', 'тот-же-механизм': 'same mechanism', 'тематически': 'related', 'дуал': 'dual', 'аналогия': 'analogy', 'иллюстрирует': 'illustrates', 'развивает': 'develops', 'переименование': 'renaming', 'одна-школа': 'same school', 'исторически-предшествует': 'precedes', 'мост-канонов': 'canon bridge' };
+  static POS = ['порождает', 'вытекает', 'предпосылка', 'специализация', 'часть', 'развивает', 'решает', 'смягчает', 'мотивирует', 'операционализирует', 'демонстрирует', 'иллюстрирует', 'тот-же-механизм', 'измеряется'];
+  static NEG = ['противоречит', 'критикует', 'напряжение', 'контрпример', 'альтернатива'];
+
+  componentDidMount() {
+    this.sprites = {}; this.queue = [];
+    fetch('data/bestiary-interactives.json').then(r => r.json()).then(d => {
+      const nodes = d.nodes.map(([id, name, fam, role, era, track, cen, tldr, author]) => ({ id, name, fam, role, era, track, cen, tldr, author, adj: [] }));
+      const by = {}; nodes.forEach(n => by[n.id] = n);
+      d.edges.forEach(([a, b, g, t]) => { if (by[a] && by[b]) { by[a].adj.push([b, t, g, 1]); by[b].adj.push([a, t, g, -1]); } });
+      // CHANGED 2026-10-27: the dominant link kind of every beast (the Links layer of Zooming in) is set here; it was set by the removed 3d view
+      nodes.forEach(n => { const c = {}; n.adj.forEach(a => c[a[2]] = (c[a[2]] || 0) + 1); n.lk = Object.keys(c).sort((p, q) => c[q] - c[p])[0] || 'D'; });
+      this.by = by; this.buildAxes(nodes);
+      const top = [...this.axes.role.C.flat()].sort((p, q) => this.axes.role.steps[q][0] + this.axes.role.steps[q][1] - this.axes.role.steps[p][0] - this.axes.role.steps[p][1]).filter(id => id !== 'power').slice(0, 4);
+      this.setState({ data: nodes, recent: ['power', ...top] });
+    });
+    const img = new Image();
+    Promise.all([fetch('assets/monster/spritesheet_default.xml').then(r => r.text()), new Promise(res => { img.onload = res; img.src = 'assets/monster/spritesheet_default.png'; })]).then(([xml]) => {
+      const frames = {}; const re = /name="([^"]+)"\s+x="(\d+)"\s+y="(\d+)"\s+width="(\d+)"\s+height="(\d+)"/g; let m;
+      while ((m = re.exec(xml))) frames[m[1]] = { x: +m[2], y: +m[3], w: +m[4], h: +m[5] };
+      this.sheet = { img, frames }; this.forceUpdate();
+    });
+    this.auto = {};
+    this.autoT = setInterval(() => {
+      const s = this.state; if (!s.data) return; const A = this.auto;
+      if ((s.zL ?? 0) === 1 && s.zM == null && !s.zIs && (s.zCyc ?? 0) < 5) { A.zc = (A.zc || 0) + 250; if (A.zc >= 1800) { A.zc = 0; this.setState({ zCyc: (s.zCyc ?? 0) + 1 }); } }
+      else if (s.zPlay !== false && !s.zHover && (s.zL ?? 0) === 1 && s.zM == null) { A.zc = (A.zc || 0) + 250; if (A.zc >= 1800) { A.zc = 0; this.setState({ zL: 2, zCyc: null }); this.zRestart(); } }
+      else if (s.zPlay !== false && !s.zHover) { A.z = (A.z || 0) + 250; if (A.z >= 4500) { A.z = 0; const L = s.zL ?? 0; if (L === 0 && s.zM == null) { A.zc = 0; this.setState({ zL: 1, zCyc: 0 }); this.zRestart(); return; } if (L < 4) this.setState({ zL: L + 1 }); else { const P = this.zPicksIds || []; const i = Math.max(0, P.indexOf(s.zB)); this.setState({ zL: 0, zB: P[(i + 1) % (P.length || 1)] }); } this.zRestart(); } }
+    }, 250);
+    setTimeout(() => this.zRestart(), 400);
+    // CHANGED 2026-10-27: An idea feeds — and is fed grows one link a side per tick while it is on screen, and stops when grown (no auto-advance: the selection is the reader's)
+    this.fVis = false; new IntersectionObserver(([e]) => { this.fVis = e.isIntersecting; }).observe(document.getElementById('2f'));
+    this.fT = setInterval(() => { const s = this.state; if (s.data && s.fPlay && this.fVis && s.fStep < this.fTotal) this.setState({ fStep: s.fStep + 1 }); }, 450);
+    this.flush = setInterval(() => {
+      if (!this.sheet || !this.queue.length) return;
+      const batch = this.queue.splice(0, 14); batch.forEach(id => { if (!this.sprites[id]) this.sprites[id] = this.draw(this.by[id]); });
+      this.setState(s => ({ tick: s.tick + 1 }));
+    }, 60);
+  }
+  componentWillUnmount() { clearInterval(this.flush); clearInterval(this.autoT); clearTimeout(this.zPT); clearInterval(this.fT); }
+
+  sp(id) { if (this.sprites[id]) return this.sprites[id]; if (!this.queue.includes(id)) this.queue.push(id); return ''; }
+  draw(n) {
+    const { img, frames } = this.sheet; let a = 0; for (let i = 0; i < n.id.length; i++) a = Math.imul(a ^ n.id.charCodeAt(i), 2654435761) + i | 0;
+    const rnd = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const P = arr => arr[(rnd() * arr.length) | 0], has = k => !!frames[k], S = 360;
+    const part = (x, nm, cx, cy, sc, mir, anc) => { const f = frames[nm]; if (!f) return; const w = f.w * sc, h = f.h * sc; x.save(); x.translate(cx, cy); x.scale(mir ? -1 : 1, 1); const oy = anc === 't' ? 0 : anc === 'b' ? -h : -h / 2; x.drawImage(img, f.x, f.y, f.w, f.h, -w / 2, oy, w, h); x.restore(); };
+    const c = document.createElement('canvas'); c.width = c.height = S; const x = c.getContext('2d'); x.translate(S / 2, S / 2);
+    const bn = 'body_white' + P(['A', 'B', 'C', 'D', 'E', 'F']) + '.png', bf = frames[bn] || { w: 160, h: 180 };
+    const sc = Math.min(1.2, 210 / bf.h), bw = bf.w * sc, bh = bf.h * sc, bcy = -bh * .06, bTop = bcy - bh / 2, bBot = bcy + bh / 2;
+    const arm = 'arm_white' + P(['A', 'B', 'C', 'D', 'E']) + '.png', leg = 'leg_white' + P(['A', 'B', 'C', 'D', 'E']) + '.png';
+    let det = null; if (rnd() < .55) { const dl = ['detail_white_horn_large.png', 'detail_white_horn_small.png', 'detail_white_antenna_large.png', 'detail_white_ear.png', 'detail_white_ear_round.png'].filter(has); if (dl.length) det = P(dl); }
+    part(x, arm, -bw * .46, bcy - bh * .12, sc, false, 't'); part(x, arm, bw * .46, bcy - bh * .12, sc, true, 't');
+    part(x, leg, -bw * .22, bBot - bh * .04, sc, false, 't'); part(x, leg, bw * .22, bBot - bh * .04, sc, true, 't');
+    part(x, bn, 0, bcy, sc, false, 'c'); if (det) { part(x, det, -bw * .26, bTop + bh * .05, sc, false, 'b'); part(x, det, bw * .26, bTop + bh * .05, sc, true, 'b'); }
+    x.globalCompositeOperation = 'source-atop'; x.globalAlpha = .9; x.fillStyle = Component.ROLE[n.role][1]; x.fillRect(-S / 2, -S / 2, S, S); x.globalAlpha = 1; x.globalCompositeOperation = 'source-over';
+    const eyes = ['eye_blue', 'eye_human', 'eye_cute_light', 'eye_cute_dark', 'eye_angry_red', 'eye_psycho_light', 'eye_closed_happy'].map(s => s + '.png').filter(has);
+    const en = P(eyes); part(x, en, -bw * .17, bcy - bh * .14, sc, false, 'c'); part(x, en, bw * .17, bcy - bh * .14, sc, true, 'c');
+    const mouths = ['mouthA', 'mouthB', 'mouthC', 'mouthD', 'mouth_closed_fangs', 'mouth_closed_teeth'].map(s => s + '.png').filter(has); if (mouths.length) part(x, P(mouths), 0, bcy + bh * .12, sc, false, 'c');
+    const o = document.createElement('canvas'); o.width = o.height = 160; const ox = o.getContext('2d');
+    const sil = document.createElement('canvas'); sil.width = sil.height = S; const sx = sil.getContext('2d'); sx.drawImage(c, 0, 0); sx.globalCompositeOperation = 'source-in'; sx.fillStyle = '#0c0b0a'; sx.fillRect(0, 0, S, S);
+    for (let i = 0; i < 12; i++) { const an = i / 12 * 6.2832; ox.drawImage(sil, Math.cos(an) * 5, Math.sin(an) * 5, 160, 160); }
+    ox.drawImage(c, 0, 0, 160, 160); return this.blobURL(o);
+  }
+
+  hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967296; }
+  eraI(e) { return Component.ERAS.findIndex(x => x[0] === e); }
+  static ROLEORD = ['метафора', 'линза', 'тезис', 'провал', 'механизм', 'решение', 'эмпирика', 'критика'];
+  // CHANGED 2026-10-27: the axes of the new genealogy blocks; `hint` explains the columns, `first` names the leftmost column of a link axis, `kind` its links
+  static TAXES = [
+    { k: 'time', label: 'Time', hint: 'columns = era · every link from an earlier era to a later one, coloured by its kind; genealogical links are bold' },
+    { k: 'logic', label: 'Logic', g: 'A', kind: 'logical', first: 'Premises', hint: 'columns = logical steps · a premise feeds what follows from it, a general idea feeds its special cases and its parts' },
+    { k: 'cause', label: 'Cause', g: 'B', kind: 'causal', first: 'First causes', hint: 'columns = causal steps · a cause feeds what it gives rise to or aggravates, a problem feeds what mitigates or solves it, an idea feeds the work that operationalizes it' },
+    { k: 'debate', label: 'Debate', g: 'C', kind: 'debate', first: 'Openers', hint: 'columns = turns of the debate · an idea feeds its critique; tension, contradiction and alternatives run from the earlier idea to the later one' },
+    { k: 'role', label: 'Role ladder', hint: 'columns = role in the argument · every link from one role to a later one, coloured by its kind; genealogical links are bold' },
+  ];
+  // CHANGED 2026-10-27: which way a link feeds. A directed link is stored as "a <type> b"; for these types b is the earlier idea and feeds a
+  // (a special case follows its general idea, a critique what it critiques, a remedy the problem it mitigates or solves); a link with no direction runs from the earlier era
+  static DIRT = ['специализация', 'вытекает', 'предпосылка', 'часть', 'порождает', 'усугубляет', 'смягчает', 'решает', 'измеряется', 'демонстрирует', 'мотивирует', 'операционализирует', 'критикует', 'иллюстрирует', 'развивает', 'исторически-предшествует'];
+  static REV = ['специализация', 'вытекает', 'развивает', 'критикует', 'иллюстрирует', 'операционализирует', 'смягчает', 'решает'];
+  static GCOL = { A: '#76c7ff', B: '#1cddae', C: '#c3affe', D: '#9a948b', E: '#ffa752', F: '#ff96d3' };
+  feeds(n, [b, t, , d]) {
+    if (Component.DIRT.includes(t)) { const [p, q] = d === 1 ? [n.id, b] : [b, n.id]; return Component.REV.includes(t) ? [q, p] : [p, q]; }
+    const m = this.by[b], RO = Component.ROLEORD, k = x => [this.eraI(x.era), RO.indexOf(x.role), x.id];
+    const [x, y] = [k(n), k(m)], first = x[0] - y[0] || x[1] - y[1] || (x[2] < y[2] ? -1 : 1);
+    return first < 0 ? [n.id, b] : [b, n.id];
+  }
+  // CHANGED 2026-10-27: every axis puts every beast in a column and keeps only the links that run from left to right.
+  // Time and Role ladder have fixed columns (era, role) and take every link; Logic, Cause and Debate lay their own links out in steps
+  // from the ideas nothing feeds, after dropping the links that close a loop. Beasts without a link of that kind sit apart, in `un`,
+  // and their tree is the nearest chain of that kind one link away (`bridge`: up to three neighbours on the axis, most linked first);
+  // on Time and Role ladder the same holds for a beast whose links all stay inside its own column.
+  buildAxes(nodes) {
+    const R = Component.ROLE, RO = Component.ROLEORD, PAL = RO.map(r => R[r][1]);
+    this.axes = {};
+    for (const a of Component.TAXES) {
+      const OUT = {}, INN = {}, col = {}, K = {}; nodes.forEach(n => { OUT[n.id] = []; INN[n.id] = []; });
+      const link = (p, q, t, gg) => { if (p !== q && !OUT[p].includes(q)) { OUT[p].push(q); INN[q].push(p); K[p + '|' + q] = [t, gg]; } };
+      let labels;
+      if (a.g) {
+        const raw = {}; nodes.forEach(n => n.adj.forEach(e => { if (e[2] !== a.g) return; const [p, q] = this.feeds(n, e); if (p === n.id) (raw[p] = raw[p] || []).push([q, e[1]]); }));
+        const seen = {}, dfs = u => { seen[u] = 1; (raw[u] || []).forEach(([v, t]) => { if (seen[v] !== 1) { link(u, v, t, a.g); if (!seen[v]) dfs(v); } }); seen[u] = 2; };
+        nodes.forEach(n => { if (!seen[n.id]) dfs(n.id); });
+        const L = {}, lay = u => L[u] ?? (L[u] = INN[u].length ? Math.max(...INN[u].map(lay)) + 1 : 0);
+        nodes.forEach(n => col[n.id] = OUT[n.id].length || INN[n.id].length ? lay(n.id) : -1);
+        labels = Array.from({ length: Math.max(...Object.values(col)) + 1 }, (_, k) => k ? `${k} step${k > 1 ? 's' : ''} on` : a.first);
+      } else {
+        const f = a.k === 'time' ? n => this.eraI(n.era) : n => RO.indexOf(n.role);
+        nodes.forEach(n => col[n.id] = f(n));
+        nodes.forEach(n => n.adj.forEach(([b, t, gg]) => { if (col[n.id] < col[b]) link(n.id, b, t, gg); }));
+        labels = a.k === 'time' ? Component.ERAS.map(e => e[1]) : RO.map(r => R[r][0]);
+      }
+      const n = labels.length, g = { ...a, labels, n, col, OUT, INN, K, bridge: {}, color: k => k < 0 ? '#7d776f' : PAL[n > 1 ? Math.round(k * 7 / (n - 1)) : 0], steps: {} };
+      const deg = m => OUT[m].length + INN[m].length;
+      nodes.forEach(m => { if (!deg(m.id)) g.bridge[m.id] = [...new Set(m.adj.map(e => e[0]).filter(b => deg(b)))].sort((p, q) => deg(q) - deg(p)).slice(0, 3); });
+      nodes.forEach(m => { const nb = this.near(g, m.id); g.steps[m.id] = [nb.up, nb.down]; });
+      const tot = m => g.steps[m][0] + g.steps[m][1], ord = (p, q) => tot(q) - tot(p) || (this.by[p].name < this.by[q].name ? -1 : 1);
+      // CHANGED 2026-10-27: a beast with no link of the axis's kind stands, faded, in the column of its first bridge neighbour (or the first column); there is no list apart
+      g.ghost = new Set(nodes.filter(m => col[m.id] < 0).map(m => m.id)); g.ghost.forEach(m => col[m] = g.bridge[m].length ? col[g.bridge[m][0]] : 0);
+      g.C = labels.map((_, k) => nodes.filter(m => col[m.id] === k).map(m => m.id).sort((p, q) => g.ghost.has(p) - g.ghost.has(q) || ord(p, q)));
+      g.un = [];
+      this.axes[a.k] = g;
+    }
+  }
+  // CHANGED 2026-10-27: what feeds `focus` and what it feeds, up to three steps each way; `tree` holds the link that first reached each idea, `cross` the other links among them
+  // CHANGED 2026-10-27: a beast off the axis starts from its bridge neighbours (dir 0, step 0) and the walk takes two more steps from them
+  near(g, focus) {
+    const seen = new Set([focus]), tree = [], cross = [], br = g.bridge[focus] || [];
+    br.forEach(v => { seen.add(v); tree.push({ p: focus, q: v, d: 0, dir: 0, far: v, bridge: 1 }); });
+    const start = br.length ? br : [focus], d0 = br.length ? 1 : 0;
+    const walk = (M, dir) => { let front = start; for (let d = d0; d < 3 && front.length; d++) { const next = []; front.forEach(u => M[u].forEach(v => { const e = dir < 0 ? { p: v, q: u } : { p: u, q: v }; if (seen.has(v)) cross.push(e); else { seen.add(v); next.push(v); tree.push({ ...e, d, dir, far: v }); } })); front = next; } };
+    const s0 = seen.size; walk(g.INN, -1); const up = seen.size - s0; walk(g.OUT, 1);
+    return { seen, tree, cross, br, up, down: seen.size - s0 - up };
+  }
+  // CHANGED 2026-10-27: one selection for both genealogy blocks and Zooming in; Zooming in follows it the way its own Follow chips do
+  pick(id, fromZoom) {
+    if (!fromZoom) this.auto.z = 0;
+    this.setState(s => ({ sel: id, wQ: '', fQ: '', fOpen: false, fStep: 0, fPlay: true, recent: s.recent.includes(id) ? s.recent : [id, ...s.recent].slice(0, 5),
+      ...(fromZoom ? {} : { zB: id, zL: 0, zPlay: false, zH: null, zIs: null }) }));
+  }
+  // CHANGED 2026-10-27: The whole bestiary (2w) and An idea feeds — and is fed (2f)
+  genVals() {
+    const st = this.state, R = Component.ROLE, g = this.axes[st.ax], by = this.by, id = st.sel, fc = by[id], N = st.data.length, axl = g.label;
+    const lc = s => s.toLowerCase(), has = (q, m) => lc(by[m].name).includes(q), tot = m => g.steps[m][0] + g.steps[m][1];
+    const nb = this.near(g, id), CW = 1136 / g.n, ROWH = 16, TOP = 26;
+    const gTabs = Component.TAXES.map(a => ({ label: a.label, fg: a.k === g.k ? '#efeae2' : '#9a948b', line: a.k === g.k ? '#d8a24a' : 'transparent', go: () => this.setState({ ax: a.k, fStep: 0, fPlay: true, fOpen: false }) }));
+    // 2w — every beast in its column; the selection's three steps each way light up
+    const wq = lc(st.wQ.trim()), wM = wq ? st.data.filter(m => has(wq, m.id)) : [];
+    // CHANGED 2026-10-27: a beast with no link of the axis's kind is faded and says so in its title
+    const wItem = (m, k) => { const root = m === id, ch = nb.seen.has(m), hit = wq && has(wq, m), gh = g.ghost.has(m);
+      return { name: by[m].name, title: `${by[m].name} · ${R[by[m].role][0]} · ${gh ? `no ${g.kind} links of its own, placed by its nearest neighbour · ` : ''}fed by ${g.steps[m][0]}, feeds ${g.steps[m][1]} along ${axl}`, go: () => this.pick(m),
+        fg: root ? '#0c0b0a' : ch || hit ? '#efeae2' : wq ? '#3a3732' : gh ? '#4d4842' : '#7d776f', bg: root ? '#d8a24a' : ch ? '#1f1d1a' : hit ? '#2a2418' : 'transparent', mark: root || ch || hit ? g.color(k) : 'transparent', weight: root || ch ? '700' : '400' }; };
+    const rowOf = {}; g.C.forEach(c => c.forEach((m, i) => rowOf[m] = i));
+    const pt = m => [g.col[m] * CW, TOP + rowOf[m] * ROWH + ROWH / 2];
+    // CHANGED 2026-10-27: on Time and Role ladder a link is coloured by its kind (genealogical ones bold); on the other axes by its step
+    const ek = e => g.K[e.p + '|' + e.q] || [], ec = (e, hot) => g.g ? hot ? '#d8a24a' : '#8a8273' : Component.GCOL[ek(e)[1]];
+    const ew = (e, hot, a, b) => g.g ? hot ? a : b : ek(e)[1] === 'E' ? '2.2' : '1.1';
+    const own = g.g ? `No ${g.kind} links of its own` : `Every link stays inside its own ${g.k === 'time' ? 'era' : 'role'}`;
+    const brNames = nb.br.map(v => `${by[v].name} (${Component.REL[fc.adj.find(e => e[0] === v)[1]]})`).join(', ');
+    const wEdges = [...nb.tree, ...nb.cross].filter(e => !e.bridge).map(e => { const a = pt(e.p), b = pt(e.q), x1 = a[0] + CW - 6, x2 = b[0] + 4, mx = (x1 + x2) / 2, one = e.d === 0;
+      return { d: `M${x1} ${a[1]}C${mx} ${a[1]} ${mx} ${b[1]} ${x2} ${b[1]}`, c: ec(e, one), w: ew(e, one, '1.6', '1.1'), o: e.far ? '.85' : '.45' }; });
+    const wHn = TOP + Math.max(...g.C.map(c => c.length)) * ROWH + 6;
+    const wInfo = wq ? `${wM.length} of ${N} match · Enter selects the first` : nb.br.length ? `${own} · one link away: ${brNames} · ← ${nb.up} feed them · they feed ${nb.down} →`
+      : nb.up || nb.down ? `← ${nb.up} feed it · it feeds ${nb.down} → · within three steps · click any idea to select it` : `Along ${axl}, nothing feeds it and it feeds nothing · click any idea to select it`;
+    // 2f — the same three steps, grown one link a side per tick; a beast off the axis is drawn next to its bridge neighbours, joined by dashed links
+    const back = nb.tree.filter(e => e.dir < 0), fwd = nb.tree.filter(e => e.dir > 0), brE = nb.tree.filter(e => e.bridge);
+    const total = Math.max(back.length, fwd.length, brE.length ? 1 : 0), s = Math.min(st.fStep, total); this.fTotal = total;
+    const shown = [...brE, ...back.slice(0, s), ...fwd.slice(0, s)], lastE = new Set([back[s - 1], fwd[s - 1]].filter(Boolean)), lastN = new Set([...lastE].map(e => e.far));
+    const fcol = nb.br.length ? Math.min(...nb.br.map(v => g.col[v])) : 0, colOf = m => g.col[m] >= 0 ? g.col[m] : fcol;
+    const FW = CW - 14, place = {}, cnt = Array(g.n).fill(0), put = m => { if (!place[m]) { const k = colOf(m); place[m] = [k * CW + 6, 28 + cnt[k]++ * 34, k]; } };
+    if (total) { put(id); shown.forEach(e => put(e.far)); }
+    const fNodes = Object.entries(place).map(([m, p]) => ({ name: by[m].name, title: by[m].tldr, x: `${p[0]}px`, y: `${p[1]}px`, w: `${FW}px`, c: g.color(p[2]), bg: m === id ? '#d8a24a' : '#171513', fg: m === id ? '#0c0b0a' : '#efeae2', bd: lastN.has(m) ? '#d8a24a' : '#3a3531', go: () => this.pick(m) }));
+    const fEdges = [...shown, ...nb.cross.filter(e => place[e.p] && place[e.q])].map(e => { const a = place[e.p], b = place[e.q], y1 = a[1] + 13, y2 = b[1] + 13, L = lastE.has(e);
+      if (e.bridge) { const same = a[2] === b[2], x1 = same ? a[0] : a[0] + FW, x2 = b[0], m1 = same ? x1 - 26 : (x1 + x2) / 2, m2 = same ? x2 - 26 : (x1 + x2) / 2;
+        return { d: `M${x1} ${y1}C${m1} ${y1} ${m2} ${y2} ${x2} ${y2}`, c: '#9a948b', w: '1.4', o: '1', dash: '4 4' }; }
+      const x1 = a[0] + FW, x2 = b[0], mx = (x1 + x2) / 2;
+      return { d: `M${x1} ${y1}C${mx} ${y1} ${mx} ${y2} ${x2} ${y2}`, c: L ? '#d8a24a' : ec(e, false), w: L ? '2' : ew(e, false, '1.2', '1.2'), o: e.far ? '1' : '.5', dash: 'none' }; });
+    const used = new Set(Object.values(place).map(p => p[2])), fHn = Math.max(180, 28 + Math.max(...cnt) * 34 + 10);
+    const fInfo = nb.br.length ? `${own.toLowerCase()} · one link away: ${brNames} · ← fed by ${Math.min(s, back.length)}/${back.length} · feeds ${Math.min(s, fwd.length)}/${fwd.length} →`
+      : `${back.length ? `← fed by ${Math.min(s, back.length)}/${back.length}` : `nothing feeds it along ${axl}`} · ${fwd.length ? `feeds ${Math.min(s, fwd.length)}/${fwd.length} →` : `it feeds nothing along ${axl}`}`;
+    const kin = fc.adj.filter(([, , gg]) => !g.g || gg === g.g).length;
+    const why = g.g ? `it has no ${g.kind} links, and none of its neighbours has one either`
+      : kin ? `all ${kin} of its links stay inside its own ${g.k === 'time' ? `era, ${Component.ERAS[this.eraI(fc.era)][1]}` : `column, ${R[fc.role][0]}`}` : 'it has no links';
+    const elsewhere = Component.TAXES.filter(a => a.k !== g.k && this.axes[a.k].steps[id].some(x => x)).map(a => a.label);
+    const fEmptyText = `Along ${axl}, nothing feeds ${fc.name} and nothing grows out of it: ${why}. ${elsewhere.length ? `It does grow along ${elsewhere.join(', ')}.` : 'It grows along no axis yet.'}`;
+    // Root row: search, recent picks and the panel with every beast, grouped by the axis columns
+    const fq = lc(st.fQ.trim()), fM = fq ? st.data.filter(m => has(fq, m.id)) : [];
+    const groups = [...g.labels.map((l, k) => [l, g.C[k], k]), ...(g.un.length ? [[`No ${g.kind} links`, g.un, -1]] : [])];
+    const pCols = groups.map(([l, ids, k]) => { const it = ids.filter(m => !fq || has(fq, m));
+      return { label: l, n: fq ? `${it.length}/${ids.length}` : String(ids.length), hc: it.length ? g.color(k) : '#4a4540', items: it.map(m => ({ name: by[m].name, n: String(tot(m)), go: () => this.pick(m), fg: m === id ? '#0c0b0a' : '#cfc8bd', bg: m === id ? '#d8a24a' : 'transparent', mark: g.color(k) })) }; });
+    const fChips = st.recent.map(m => { const on = m === id; return { name: by[m].name, n: String(tot(m)), go: () => this.pick(m), bd: on ? '#d8a24a' : '#3a3531', bg: on ? '#d8a24a' : 'transparent', fg: on ? '#0c0b0a' : '#efeae2', nc: on ? 'rgba(12,11,10,.6)' : '#8a8273' }; });
+    const enter = list => e => { if (e.key === 'Enter' && list.length) this.pick(list[0].id); };
+    return { total: String(N), gTabs, gHint: g.hint,
+      wHead: { name: fc.name, n: `←${nb.up} ${nb.down}→` }, wQ: st.wQ, wOnQ: e => this.setState({ wQ: e.target.value }), wKey: enter(wM), wInfo,
+      wCols: g.labels.map((l, k) => ({ label: l, n: String(g.C[k].length), hc: g.color(k), items: g.C[k].map(m => wItem(m, k)) })), wEdges, wGrid: `repeat(${g.n}, ${CW}px)`, wH: `${wHn}px`, wHn: String(wHn),
+      wUnOn: g.un.length > 0, wUnTitle: `No ${g.kind} links of their own · ${g.un.length} · pick one to grow the nearest ${g.kind} chain, one link away`, wUn: g.un.map(m => wItem(m, -1)),
+      fName: fc.name, fInfo, fTldr: fc.tldr, fCapC: R[fc.role][1], fEmpty: !total, fEmptyText, fTree: total > 0, fNodes, fEdges, fH: `${fHn}px`, fHn: String(fHn),
+      fHeads: g.labels.map((l, k) => ({ label: l, x: `${k * CW}px`, w: `${CW}px`, c: used.has(k) ? '#efeae2' : '#4a4540' })),
+      fPlayLabel: st.fPlay && s < total ? 'Ⅱ Pause' : '▶ Play', fToggle: () => this.setState(s >= total ? { fStep: 0, fPlay: true } : { fPlay: !st.fPlay }), fReplay: () => this.setState({ fStep: 0, fPlay: true }),
+      fQ: st.fQ, fOnQ: e => this.setState({ fQ: e.target.value, fOpen: true }), fPOpen: () => this.setState({ fOpen: true }), fKey: enter(fM), fPHolder: `Search ${N} ideas…`,
+      fChips, fPToggle: () => this.setState({ fOpen: !st.fOpen, fQ: '' }), fPCaret: st.fOpen ? '▴' : '▾', fPIsOpen: st.fOpen, fPBorder: st.fOpen ? '#d8a24a' : '#3a3531',
+      pTitle: fq ? `“${st.fQ.trim()}” · ${fM.length} of ${N}` : `All ${N} ideas by ${axl} columns · the number is how many ideas it reaches within three steps · click to pick`,
+      pClose: () => this.setState({ fOpen: false, fQ: '' }), pGrid: `repeat(${groups.length}, minmax(140px,1fr))`, pCols };
+  }
+  zRestart() { clearTimeout(this.zPT); this.setState({ zProg: 0 }); this.zPT = setTimeout(() => this.setState({ zProg: 1 }), 60); }
+  zIsl(D, field, keys, names, STEP, W, x0, y0, H, GX, GY) {
+    const fk = Object.keys(Component.FAM);
+    const isl = keys.map(k => {
+      const mem = D.filter(n => n[field] === k).sort((p, q) => fk.indexOf(p.fam) - fk.indexOf(q.fam) || (p.id < q.id ? -1 : 1));
+      if (!mem.length) return null;
+      const RR = Math.ceil(Math.sqrt(mem.length / Math.PI)) + 3, cells = [];
+      for (let i = -RR; i <= RR; i++) for (let j = -RR; j <= RR; j++) cells.push([i, j, Math.hypot(i * .92, j * 1.08) + this.hash(k + field + i + ',' + j) * 1.3]);
+      cells.sort((p, q) => p[2] - q[2]); const pick = cells.slice(0, mem.length);
+      const xs = pick.map(c => c[0]), ys = pick.map(c => c[1]), mx = Math.min(...xs), my = Math.min(...ys), cx = (Math.max(...xs) + mx) / 2, cy = (Math.max(...ys) + my) / 2;
+      pick.sort((p, q) => (Math.atan2(p[1] - cy, p[0] - cx) - Math.atan2(q[1] - cy, q[0] - cx)) || (p[2] - q[2]));
+      return { k, label: names[k], mem, pick, mx, my, w: (Math.max(...xs) - mx + 1) * STEP, h: (Math.max(...ys) - my + 1) * STEP };
+    }).filter(Boolean);
+    const rows = []; let row = [], rw = 0;
+    isl.forEach(s => { if (row.length && rw + s.w + GX > W) { rows.push([row, rw]); row = []; rw = 0; } rw += s.w + (row.length ? GX : 0); row.push(s); });
+    if (row.length) rows.push([row, rw]);
+    const total = rows.reduce((t, [r]) => t + Math.max(...r.map(s => s.h)), 0) + GY * (rows.length - 1);
+    let y = y0 + Math.max(0, (H - total) / 2); const tp = {};
+    rows.forEach(([r, w]) => { const rh = Math.max(...r.map(s => s.h)); let x = x0 + (W - w) / 2; r.forEach(s => { s.x = x; s.y = y + (rh - s.h) / 2; s.mem.forEach((n, i) => { const c = s.pick[i]; tp[n.id] = [s.x + (c[0] - s.mx) * STEP, s.y + (c[1] - s.my) * STEP]; }); x += s.w + GX; }); y += rh + GY; });
+    return { isl, tp };
+  }
+  zoomVals(D, meta) {
+    const st = this.state, F = Component.FAM, R = Component.ROLE, fk = Object.keys(F), rk = Object.keys(R);
+    const GC = { A: '#76c7ff', B: '#1cddae', C: '#c3affe', D: '#9a948b', E: '#ffa752', F: '#ff96d3' };
+    // CHANGED 2026-10-27: Follow is the beast picked in The whole bestiary, then its Alongside neighbours (links with no direction); Play walks through them
+    const sid = this.by[st.sel] ? st.sel : 'power', alongN = [...new Set(this.by[sid].adj.filter(e => !Component.DIRT.includes(e[1])).map(e => e[0]))];
+    const picks = [sid, ...alongN]; this.zPicksIds = picks;
+    const fid = picks.includes(st.zB) ? st.zB : picks[0], fn = this.by[fid], ff = fn.fam, lvl = st.zL ?? 0;
+    if (!this.edgesList) { this.edgesList = []; const seen = new Set(); D.forEach(n => n.adj.forEach(([b]) => { const k = n.id < b ? n.id + '|' + b : b + '|' + n.id; if (!seen.has(k)) { seen.add(k); this.edgesList.push([n.id, b]); } })); }
+    if (!this.zCache) {
+      const LKN = { A: 'Logical', B: 'Causal', C: 'Debated', D: 'Associative', E: 'Genealogical', F: 'Canon bridge' };
+      const pres = (f, o) => Object.fromEntries(Object.entries(o).filter(([k]) => D.some(n => n[f] === k)));
+      const specs = [['track', 'Canon', { tech: 'Techno-rationalist', hum: 'Humanities-critical' }], ['cen', 'Weight', { Core: 'Core', Major: 'Major', Supporting: 'Supporting' }], ['lk', 'Links', LKN], ['era', 'Era', Object.fromEntries(Component.ERAS.map(e => [e[0], e[1]]))], ['role', 'Role', Object.fromEntries(rk.map(k => [k, R[k][0]]))], ['fam', 'Family', Object.fromEntries(fk.map(k => [k, F[k][0]]))]].map(([f, l, o]) => [f, l, pres(f, o)]);
+      this.zCache = { l0: specs.map(([f, l, nm], r) => ({ f, l, nm, n: Object.keys(nm).length, y0: 8 + r * 98, ...this.zIsl(D, f, Object.keys(nm), nm, 5.5, 960, 160, 8 + r * 98, 90, 12, 8) })),
+        l1: this.zIsl(D, 'fam', fk, Object.fromEntries(fk.map(k => [k, F[k][0]])), 15, 1080, 28, 50, 520, 44, 60) };
+    }
+    // L0
+    const L0 = this.zCache.l0, dm = L0.findIndex(r => r.f === 'fam'), mi = st.zM ?? (lvl === 1 && st.zCyc != null ? (dm + 1 + st.zCyc) % 6 : dm), MP = L0[mi], tb = st.zH && this.by[st.zH] ? st.zH : fid, tbn = this.by[tb];
+    const famMem = D.filter(n => n.fam === tbn.fam).map(n => n.id), fset0 = new Set(famMem);
+    const z0Rows = L0.map((r, i) => ({ go: () => { this.auto.z = 0; this.setState({ zM: i, zL: 1, zPlay: false, zIs: null }); }, c: i === mi ? '#d8a24a' : '#efeae2', band: i === mi ? '#d8a24a14' : 'transparent', bandY: `${r.y0 - 2}px`, label: r.l, sub: `${r.n} groups`, y: `${r.y0 + 26}px`, line: i < L0.length - 1 ? `${r.y0 + 93}px` : '-10px' }));
+    const z0Tiles = []; L0.forEach(r => D.forEach(n => { const p = r.tp[n.id]; z0Tiles.push({ x: `${p[0]}px`, y: `${p[1]}px`, sz: '5px', c: F[n.fam][1], o: fset0.has(n.id) ? '1' : '.4', enter: () => this.setState({ zH: n.id }), pick: () => this.openSide(n.id, '4a') }); }));
+    const thread = id => { const pts = L0.map(r => [r.tp[id][0] + 2.5, r.tp[id][1] + 2.5]); let d = `M${pts[0][0]},${pts[0][1]}`; for (let i = 1; i < pts.length; i++) { const a = pts[i - 1], b = pts[i], my = (a[1] + b[1]) / 2; d += ` C${a[0]},${my} ${b[0]},${my} ${b[0]},${b[1]}`; } return d; };
+    const z0Threads = famMem.filter(id => id !== tb).map(id => ({ d: thread(id), c: '#9a948b', w: '1', o: '.25' })).concat([{ d: thread(tb), c: '#d8a24a', w: '2.5', o: '1' }]);
+    const z0Labels = L0.map(r => { const s = r.isl.find(x => x.k === tbn[r.f]); return { x: `${Math.min(1080, Math.max(220, s.x + s.w + 8))}px`, y: `${Math.max(0, s.y + s.h / 2 - 10)}px`, label: s.label, c: '#efeae2' }; })
+      .concat([{ x: `${L0[L0.length - 1].tp[tb][0] + 2}px`, y: `${Math.min(580, L0[L0.length - 1].tp[tb][1] + 10)}px`, label: tbn.name, c: '#d8a24a' }]);
+    // L1 — which map we zoom into
+    const mf = MP.f, mnm = MP.nm, gk = fn[mf];
+    // CHANGED 2026-10-21: one grid step per layer, and every tile 2px smaller than it, so tiles stay apart on every layer
+    const step1 = Object.keys(mnm).length <= 3 ? 13 : 15, tile1 = `${step1 - 2}px`;
+    const ck = 'l1' + mf; if (!this.zCache[ck]) { const many = Object.keys(mnm).length; this.zCache[ck] = this.zIsl(D, mf, Object.keys(mnm), mnm, step1, 1080, 28, 80, 500, many <= 3 ? 90 : 44, 60); }
+    const L1 = this.zCache[ck], hi = st.zIs || gk, ctr = {}; L1.isl.forEach(s => ctr[s.k] = [s.x + s.w / 2, s.y + s.h / 2]);
+    const cross = {}; this.edgesList.forEach(([p, q]) => { const a = this.by[p][mf], b = this.by[q][mf]; if (a === b || (a !== hi && b !== hi)) return; const o = a === hi ? b : a; cross[o] = (cross[o] || 0) + 1; });
+    const tops = Object.entries(cross).sort((a, b) => b[1] - a[1]).slice(0, 7), mxC = tops.length ? tops[0][1] : 1, topSet = new Set(tops.map(t => t[0]));
+    const z1Roads = tops.map(([o, c]) => { const A = ctr[hi], B = ctr[o], mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2 - Math.hypot(B[0] - A[0], B[1] - A[1]) * .2; return { d: `M${A[0]},${A[1]} Q${mx},${my} ${B[0]},${B[1]}`, w: String(1.5 + 6 * c / mxC) }; });
+    const z1Isl = L1.isl.map(s => ({ x: `${s.x - 8}px`, y: `${s.y - 8}px`, w: `${s.w + 16}px`, h: `${s.h + 16}px`, ring: s.k === hi ? '#d8a24a' : '#24211e', o: s.k === hi || topSet.has(s.k) ? '1' : '.45', enter: () => this.setState({ zIs: s.k }) }));
+    const tcol = n => mf === 'role' ? F[n.fam][1] : R[n.role][1];
+    const z1Tiles = D.map(n => { const p = L1.tp[n.id]; return { pick: () => this.openSide(n.id, '4a'), x: `${p[0]}px`, y: `${p[1]}px`, sz: tile1, c: tcol(n), ol: n.id === fid ? '2px solid #efeae2' : 'none', d: `${Math.round(this.hash(n.id) * 260)}ms` }; });
+    const z1Labels = L1.isl.map(s => ({ x: `${s.x + s.w / 2}px`, y: `${Math.max(2, s.y - 34)}px`, label: s.label, c: s.k === hi ? '#d8a24a' : '#cfc8bd' }));
+    // L2 — the beast's district inside the chosen map
+    const grp = D.filter(n => n[mf] === gk), nbS = new Set(fn.adj.map(a => a[0]));
+    const mem = (grp.length > 30 ? [fn, ...grp.filter(n => n !== fn).sort((a, b) => (nbS.has(b.id) - nbS.has(a.id)) || b.adj.length - a.adj.length).slice(0, 29)] : grp).sort((a, b) => rk.indexOf(a.role) - rk.indexOf(b.role) || b.adj.length - a.adj.length);
+    const cols = mem.length <= 12 ? 6 : mem.length <= 24 ? 8 : 10, cw = 1080 / cols, ch = 122, oy = Math.max(10, (600 - Math.ceil(mem.length / cols) * ch) / 2);
+    const cp = {}; mem.forEach((n, i) => cp[n.id] = [28 + (i % cols) * cw, oy + Math.floor(i / cols) * ch]);
+    const foc = st.zC && cp[st.zC] ? st.zC : fid, fset = new Set(this.by[foc].adj.map(a => a[0]));
+    const z2Cards = mem.map(n => ({ x: `${cp[n.id][0]}px`, y: `${cp[n.id][1]}px`, w: `${cw - 8}px`, img: this.sp(n.id), name: n.name, c: R[n.role][1], bd: n.id === fid ? '#d8a24a' : n.id === foc ? '#efeae2' : '#2e2b28', o: n.id === foc || fset.has(n.id) ? '1' : '.38', enter: () => this.setState({ zC: n.id }), leave: () => this.setState({ zC: null }), pick: () => this.openSide(n.id, '4a') }));
+    const z2Links = this.by[foc].adj.filter(a => cp[a[0]]).map(([b, t, g]) => { const A = cp[foc], B = cp[b]; return { d: `M${A[0] + cw / 2 - 4},${A[1] + 36} L${B[0] + cw / 2 - 4},${B[1] + 36}`, c: GC[g] || '#9a948b' }; });
+    const rc = {}; mem.forEach(n => rc[n.role] = (rc[n.role] || 0) + 1); const r2 = Object.entries(rc).sort((a, b) => b[1] - a[1]);
+    // L3
+    // CHANGED 2026-10-27: every link is drawn (it was the first 7 a side), on the side it feeds from (`feeds`, as in the genealogy blocks); past 12 a side the rows go compact
+    // CHANGED 2026-10-27: links with no direction (related, analogy, same mechanism, dual, tension, alternative) sit apart, in Alongside along the bottom; the sides then take the upper 340px
+    const dirl = e => Component.DIRT.includes(e[1]), al = fn.adj.filter(e => !dirl(e)), cyC = al.length ? 200 : 300, YH = al.length ? 340 : 540;
+    const inc = fn.adj.filter(e => dirl(e) && this.feeds(fn, e)[1] === fid), out = fn.adj.filter(e => dirl(e) && this.feeds(fn, e)[0] === fid);
+    const mk = side => ([b, t, g], i, arr) => { const m = this.by[b], sp = YH / (arr.length + 1), h = Math.min(40, Math.floor(sp) - 2), y = 40 + (i + 1) * sp - h / 2, cy = y + h / 2, on = !st.zP || st.zP === b;
+      return { x: side === 'L' ? '40px' : '796px', y: `${y}px`, h: `${h}px`, sz: h >= 34 ? '32px' : '0px', img: this.sp(b), name: m.name, rel: Component.REL[t] || t, c: GC[g] || '#9a948b', o: on ? '1' : '.35', lo: on ? '.9' : '.12',
+        d: side === 'L' ? `M340,${cy} C420,${cy} 400,${cyC} 468,${cyC}` : `M668,${cyC} C736,${cyC} 716,${cy} 796,${cy}`, enter: () => this.setState({ zP: b }), leave: () => this.setState({ zP: null }), pick: () => this.openSide(b, '4a') }; };
+    const z3L = inc.map(mk('L')), z3R = out.map(mk('R'));
+    const z3A = al.map(([b, t, g], i) => { const on = !st.zP || st.zP === b; return { x: `${40 + (i % 4) * 266}px`, y: `${420 + Math.floor(i / 4) * 23}px`, name: this.by[b].name, rel: Component.REL[t] || t, c: GC[g] || '#9a948b', o: on ? '1' : '.35',
+      enter: () => this.setState({ zP: b }), leave: () => this.setState({ zP: null }), pick: () => this.openSide(b, '4a') }; });
+    const z3 = { pick: () => this.openSide(fid, '4a'), img: this.sp(fid), name: fn.name, c: R[fn.role][1], nin: String(inc.length), nout: String(out.length), nal: String(al.length), alOn: al.length > 0,
+      top: al.length ? '110px' : '190px', h: al.length ? '180px' : '220px' };
+    // L4 — CHANGED 2026-10-21: pros and cons of the followed beast
+    const zPos = fn.adj.filter(a => Component.POS.includes(a[1])), zNeg = fn.adj.filter(a => Component.NEG.includes(a[1])), zBal = zPos.length - zNeg.length;
+    const zItem = ([b, t]) => { const m = this.by[b], on = st.zH4 === b; return { name: m.name, rel: Component.REL[t] || t, tldr: m.tldr, img: this.sp(b), lines: on ? '5' : '2', bg: on ? '#1c1a17' : '#151311', bd: on ? '#4a4540' : '#26231f', enter: () => this.setState({ zH4: b }), leave: () => this.setState({ zH4: null }), pick: () => this.openSide(b, '4a') }; };
+        const z4 = { pick: () => this.openSide(fid, '4a'), pos: zPos.map(zItem), neg: zNeg.map(zItem), npos: String(zPos.length), nneg: String(zNeg.length), posNone: !zPos.length, negNone: !zNeg.length,
+      verdict: `${zPos.length} for · ${zNeg.length} against · ${zBal > 0 ? 'mostly built on' : zBal < 0 ? 'mostly contested' : 'evenly split'}`,
+      img: this.sp(fid), name: fn.name, meta: meta(fn), tldr: fn.tldr, c: R[fn.role][1], stats: [{ k: 'Links', v: String(fn.adj.length) }, { k: 'Families touched', v: String(new Set(fn.adj.map(a => this.by[a[0]].fam)).size) }, { k: 'In its district', v: String(fn.adj.filter(a => this.by[a[0]][mf] === gk).length) }, { k: 'Weight', v: fn.cen }] };
+    // nav
+    const TABS = ['Bestiary', 'Layer', 'District', 'Circuit', 'Pros and cons'], zOn = st.zPlay !== false && !st.zHover;
+    const LS = i => ({ o: i === lvl ? '1' : '0', s: i === lvl ? '1' : i < lvl ? '1.25' : '.85', p: i === lvl ? 'auto' : 'none' });
+    const zTabs = TABS.map((l, i) => ({ label: l, go: () => { this.auto.z = 0; this.auto.zc = 0; this.setState({ zL: i, zPlay: false, zCyc: i === 1 ? 0 : null, zM: i === 1 ? null : st.zM }); }, color: i === lvl ? '#efeae2' : '#9a948b', dot: i === lvl ? '#d8a24a' : '#4a4540',
+      prog: i < lvl ? '100%' : i === lvl ? (zOn ? (st.zProg ? '100%' : '0%') : '100%') : '0%', trans: i === lvl && zOn && st.zProg ? `width ${lvl === 1 && st.zM == null ? 10700 : 4400}ms linear` : 'none' }));
+    // CHANGED 2026-10-27: a Follow chip also selects the beast in the genealogy blocks; the extra chip has a gold border
+    const chipOf = id => ({ name: this.by[id].name, go: () => { this.auto.z = 0; this.setState({ zB: id, zL: 0, zPlay: false, zH: null, zIs: null }); this.pick(id, true); }, bg: id === fid ? '#d8a24a' : 'transparent', fg: id === fid ? '#0c0b0a' : '#cfc8bd', bd: id === sid ? '#d8a24a' : '#3a3531' });
+    const zPicks = [chipOf(sid)], zAl = alongN.map(chipOf), zAlN = String(alongN.length);
+    const capt = [
+      [`Six resolutions of one bestiary, from 2 groups to 13. The gold thread follows ${tbn.name} through all of them.`, `Grey threads are the rest of ${F[tbn.fam][0]}. Hover any tile to follow another beast.`],
+      [`${st.zM == null && lvl === 1 && st.zCyc != null ? `Layer ${st.zCyc + 1} of 6 · ${MP.l}.` : `The ${MP.l} layer.`} ${fn.name} lives in ${mnm[gk]}; ${mnm[hi]} has the most roads to ${tops[0] ? mnm[tops[0][0]] : '—'} (${tops[0] ? tops[0][1] : 0} links).`, `Tiles are coloured by ${mf === 'role' ? 'family' : 'role'}. Hover an island for its roads; pick a layer on top to stay on it.`],
+      [`Inside ${mnm[gk]} (${MP.l}): ${grp.length} beasts, mostly ${({ 'Thesis': 'theses', 'Lens': 'lenses', 'Empirics': 'empirics' })[R[r2[0][0]][0]] || R[r2[0][0]][0].toLowerCase() + 's'}. ${fn.name} has ${fn.adj.filter(a => this.by[a[0]][mf] === gk).length} neighbours here.`, grp.length > 30 ? 'Showing its 29 closest neighbours. Hover a beast to see its links inside the district.' : 'Hover a beast to see its links inside the district.'],
+      [`${fn.name}: ${z3.nin} ideas lead into it, it leads to ${z3.nout}${al.length ? `, and ${z3.nal} sit alongside it` : ''}.`, `Lines are coloured by kind of link: logical, causal, dialectical, associative, genealogical. ${al.length ? 'Alongside holds the links with no direction: related, analogy, same mechanism, dual, tension, alternative. ' : ''}Hover one to isolate it.`],
+      [`${fn.name}: ${zPos.length} ideas support it, ${zNeg.length} argue with it.`, `${R[fn.role][0]} · ${mnm[gk]} on the ${MP.l} layer · scroll a column for every link, hover a card to read it, click to open the beast · then the next beast, from the top.`],
+    ][lvl];
+    const zMaps = L0.map((r, i) => ({ label: r.l, n: String(r.n), go: () => { this.auto.z = 0; this.setState({ zM: i, zPlay: false, zIs: null, zL: Math.max(1, lvl) }); }, bg: i === mi ? '#d8a24a' : 'transparent', fg: i === mi ? '#0c0b0a' : '#9a948b', bd: '' }));
+    const zMapNote = st.zM != null ? 'your pick' : lvl === 1 ? 'cycling through all six, landing on this beast’s layer' : 'cycles on the Layer step';
+    return { zMaps, zMapNote, zTabs, zPicks, zAl, zAlN, zL0: LS(0), zL1: LS(1), zL2: LS(2), zL3: LS(3), zL4: LS(4), z0Rows, z0Tiles, z0Threads, z0Labels, z1Isl, z1Roads, z1Tiles, z1Labels, z2Cards, z2Links, z3L, z3R, z3A, z3, z4, zCap: capt[0], zSub: capt[1],
+      zPlayLabel: st.zPlay === false ? '▶ Play' : 'Ⅱ Pause', zToggle: () => { this.auto.z = 0; this.setState({ zPlay: st.zPlay === false }); this.zRestart(); },
+      zPrev: () => { const n = (lvl + 4) % 5; this.auto.z = 0; this.auto.zc = 0; this.setState({ zL: n, zPlay: false, zCyc: n === 1 ? 0 : null }); }, zNext: () => { const n = (lvl + 1) % 5; this.auto.z = 0; this.auto.zc = 0; this.setState({ zL: n, zPlay: false, zCyc: n === 1 ? 0 : null }); },
+      zIn: () => this.setState({ zHover: true }), zLeave: () => { this.auto.z = 0; this.setState({ zHover: false, zH: null, zIs: null, zC: null, zP: null }); this.zRestart(); } };
+  }
+  openSide(id, p) { this.setState({ side: id, sideP: p || this.state.sideP || '4a', zPlay: false }); }
+  sideVals(meta) {
+    const st = this.state, n = st.side && this.by && this.by[st.side];
+    const blank = { c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' };
+    if (!n) return { side4a: false, hasSide: false, side: blank, closeSide: () => this.setState({ side: null }) };
+    const R = Component.ROLE, F = Component.FAM, GC = { A: '#76c7ff', B: '#1cddae', C: '#c3affe', D: '#9a948b', E: '#ffa752', F: '#ff96d3' };
+    const it = ([b, t, g]) => { const m = this.by[b]; return { name: m.name, rel: Component.REL[t] || t, c: GC[g] || '#9a948b', img: this.sp(b), go: () => this.setState({ side: b }) }; };
+    // CHANGED 2026-10-27: sides by which way a link feeds, every link listed (the panel scrolls)
+    const inc = n.adj.filter(e => this.feeds(n, e)[1] === n.id), out = n.adj.filter(e => this.feeds(n, e)[0] === n.id);
+    const P = st.sideP || '4a'; return { side4a: P === '4a', hasSide: true, closeSide: () => this.setState({ side: null }), side: { href: '/bestiarium/wiki#/n/' + n.id, c: R[n.role][1], role: R[n.role][0] + ' · ' + F[n.fam][0], img: this.sp(n.id), name: n.name, meta: meta(n), tldr: n.tldr, author: n.author || '',
+      stats: [{ k: 'Links', v: String(n.adj.length) }, { k: 'Families', v: String(new Set(n.adj.map(a => this.by[a[0]].fam)).size) }, { k: 'Weight', v: n.cen }],
+      inc: inc.map(it), out: out.map(it), nin: String(inc.length), nout: String(out.length) } };
+  }
+
+  blobURL(cv) { const b = atob(cv.toDataURL('image/png').split(',')[1]), a = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return URL.createObjectURL(new Blob([a], { type: 'image/png' })); }
+  renderVals() {
+    const st = this.state, D = st.data, F = Component.FAM, R = Component.ROLE;
+    // CHANGED 2026-10-27: the values of the removed views (2b, 2c and the unused 2d, 3a–3e) are gone; the genealogy blocks come from genVals
+    const empty = { side4a: false, hasSide: false, side: { href: '#', c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' }, closeSide: () => {}, zMaps: [], zMapNote: '', zTabs: [], zPicks: [], zAl: [], zAlN: '0', zL0: { o: '0', s: '1', p: 'none' }, zL1: { o: '0', s: '1', p: 'none' }, zL2: { o: '0', s: '1', p: 'none' }, zL3: { o: '0', s: '1', p: 'none' }, zL4: { o: '0', s: '1', p: 'none' }, z0Rows: [], z0Tiles: [], z0Threads: [], z0Labels: [], z1Isl: [], z1Roads: [], z1Tiles: [], z1Labels: [], z2Cards: [], z2Links: [], z3L: [], z3R: [], z3A: [], z3: { img: '', name: '', c: '#3a3531', nin: '', nout: '', nal: '', alOn: false, top: '190px', h: '220px' }, z4: { img: '', name: '', meta: '', tldr: '', c: '#3a3531', stats: [], pos: [], neg: [], npos: '', nneg: '', posNone: false, negNone: false, verdict: '' }, zCap: '', zSub: '', zPlayLabel: 'Ⅱ Pause', zToggle: () => {}, zPrev: () => {}, zNext: () => {}, zIn: () => {}, zLeave: () => {},
+      gTabs: [], wCols: [], wEdges: [], wUn: [], wH: '0px', wHn: '0', wHead: { name: '', n: '' }, wUnOn: false, fNodes: [], fEdges: [], fHeads: [], fChips: [], pCols: [], fH: '0px', fHn: '0', fEmpty: false, fTree: false, fPIsOpen: false, fCapC: '#3a3531', fPlayLabel: 'Ⅱ Pause' };
+    if (!D) return empty;
+    const meta = n => `${R[n.role][0]} · ${F[n.fam][0]} · ${Component.ERAS[this.eraI(n.era)][1]}`;
+    return { ...empty, ...this.zoomVals(D, meta), ...this.sideVals(meta), ...this.genVals() };
+  }
+}
+</script>
+</body>
+</html>

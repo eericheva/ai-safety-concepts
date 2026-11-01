@@ -1,11 +1,15 @@
 {
   "title": "Alignment Bestiary",
-  "desc": "227 AI safety concepts as a 3D world map and a searchable wiki.",
+  "desc": "227 AI safety concepts as a 3D world map, a searchable wiki and three interactive views.",
   "files": {
     "bestiary-world-map.html": "bestiary-world-map.html",
     "bestiary-wiki.html": "bestiary-wiki.html",
+    "bestiary-interactives.html": "bestiary-interactives.html",
+    "support.js": "support.js",
+    "bestiary-demo.js": "bestiary-demo.js",
     "preview-map.jpg": "site/preview-map.jpg",
     "preview-wiki.jpg": "site/preview-wiki.jpg",
+    "preview-interactives.jpg": "site/preview-interactives.jpg",
     "data/": "data/",
     "assets/": "assets/"
   }
