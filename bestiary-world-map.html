@@ -494,89 +494,6 @@
       white-space: nowrap
     }
 
-    #reader {
-      position: fixed;
-      inset: 0;
-      z-index: 15;
-      display: none;
-      background: rgba(8, 9, 16, .72);
-      backdrop-filter: blur(4px)
-    }
-
-    #reader.show {
-      display: block
-    }
-
-    #rdbody {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: min(680px, 92vw);
-      overflow: auto;
-      padding: 46px 46px 60px;
-      background: #12141d;
-      border-left: 1px solid var(--line);
-      box-shadow: -20px 0 60px -20px #000
-    }
-
-    #rdbody h3 {
-      font: 600 20px/1.3 "Iowan Old Style", Palatino, Georgia, serif;
-      margin: 22px 0 8px;
-      color: #f1ead9
-    }
-
-    #rdbody h3:first-child {
-      margin-top: 0
-    }
-
-    #rdbody p {
-      font-size: 14px;
-      line-height: 1.72;
-      color: #d8d2c4;
-      margin: 0 0 13px
-    }
-
-    #rdbody li {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #d8d2c4;
-      margin: 0 0 6px 18px
-    }
-
-    #rdbody b {
-      color: #f1ead9
-    }
-
-    #rdbody a {
-      color: #c9a86a;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(201, 168, 106, .35)
-    }
-
-    #rdbody a:hover {
-      border-bottom-color: #c9a86a
-    }
-
-    .rd-close {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 16;
-      width: 34px;
-      height: 34px;
-      border: none;
-      background: #ffffff14;
-      color: #ece6d6;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 20px
-    }
-
-    .rd-close:hover {
-      background: #ffffff26
-    }
-
     #tip {
       position: fixed;
       pointer-events: none;
@@ -959,7 +876,7 @@
     <div class="tags" id="pt"></div>
     <p class="tldr" id="pl"></p>
     <p class="desc" id="pd"></p>
-    <button id="readfull">Читать полностью →</button>
+    <button id="readfull">Открыть в вики →</button>
     <div class="rel-h" id="prh" style="display:none">Соседи по карте</div>
     <div class="rels" id="pr"></div>
   </aside>
@@ -971,10 +888,6 @@
     <div class="cnt" id="rpc"></div>
     <div id="rpl"></div>
   </aside>
-  <div id="reader"><button class="rd-close" id="rdclose" aria-label="Close">×</button>
-    <div class="langsw2"><button data-l="ru">RU</button><button data-l="en">EN</button></div>
-    <div id="rdbody"></div>
-  </div>
   <div id="tip">
     <div class="tn"></div>
     <div class="te"></div>
@@ -1007,7 +920,7 @@
           biomesBy: 'Биомы по…', colorBy: 'Покраска зверей по…', legendBiomes: 'Биомы-регионы', legendColor: 'Покраска зверей',
           search: 'Найти зверя…', contrast: 'Контраст', contrastNote: 'Контраст к цвету биома (звери разноцветные)',
           edgesOn: 'Связи между биомами: показаны', edgesOff: 'Связи между биомами: скрыты',
-          readFull: 'Читать полностью →', neighbours: 'Соседи по карте', loading: 'Загрузка…',
+          readFull: 'Открыть в вики →', neighbours: 'Соседи по карте', loading: 'Загрузка…',
           beasts: n => n + ' ' + plural(n, 'зверь', 'зверя', 'зверей'),
           hint: 'левой кнопкой тащить — облёт · правой/двумя пальцами — сдвиг · колесо — зум · WASD/стрелки — двигаться · клик по зверю — досье',
           noFull: 'Полный лонгрид не найден.'
@@ -1018,7 +931,7 @@
           biomesBy: 'Biomes by…', colorBy: 'Beast colour by…', legendBiomes: 'Biome regions', legendColor: 'Beast colour',
           search: 'Find a beast…', contrast: 'Contrast', contrastNote: 'Contrasts with the biome colour (beasts multicoloured)',
           edgesOn: 'Cross-biome links: shown', edgesOff: 'Cross-biome links: hidden',
-          readFull: 'Read full text →', neighbours: 'Neighbours on the map', loading: 'Loading…',
+          readFull: 'Open in the wiki →', neighbours: 'Neighbours on the map', loading: 'Loading…',
           beasts: n => n + ' beast' + (n === 1 ? '' : 's'),
           hint: 'left-drag — orbit · right-drag/two fingers — pan · wheel — zoom · WASD/arrows — move · click a beast — dossier',
           noFull: 'Full longread not found.'
@@ -1723,7 +1636,9 @@
         document.getElementById("pl").textContent = nTldr(nd);
         const dsc = isEN() ? (nd.desc_en || nd.desc || "") : (nd.desc || "");
         document.getElementById("pd").textContent = dsc.length > 420 ? dsc.slice(0, 420).replace(/\s+\S*$/, "") + "…" : dsc;
-        document.getElementById("readfull").onclick = () => openFull(nd);
+        // CHANGED 2026-11-02: the full text opens as the beast's wiki page in a new tab, as in the interactives;
+        // on the site the map sits under /api/bestiarium/<code>/, standalone it sits next to bestiary-wiki.html
+        document.getElementById("readfull").onclick = () => window.open((location.pathname.includes("/api/bestiarium/") ? "/bestiarium/wiki" : "bestiary-wiki.html") + "#/n/" + nd.id, "_blank");
         const rels = [], seen = {}; for (const e of EDGES) { if (e.a === nd.id || e.b === nd.id) { const o = e.a === nd.id ? e.b : e.a; if (byId[o] && !seen[o]) { seen[o] = 1; rels.push([o, e.t]); } } }
         const pr = document.getElementById("pr"); pr.innerHTML = ""; document.getElementById("prh").style.display = rels.length ? "block" : "none";
         rels.slice(0, 18).forEach(([o, ty]) => { const el = document.createElement("div"); el.className = "rel"; el.innerHTML = `${nLabel(byId[o])} <span class="rt">${relLabel(ty)}</span>`; el.onclick = () => { select(byId[o]); flyToNode(byId[o]); }; pr.appendChild(el); });
@@ -1731,39 +1646,6 @@
       }
       document.getElementById("pclose").onclick = () => { selected = null; document.getElementById("panel").classList.remove("show"); document.getElementById("hud").style.visibility = "visible"; };
       // ---- full-text reader ----
-      let _txt = {};
-      function mdToHtml(md) {
-        md = md.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        // [подпись](url) — ссылки источников; затем **жирный**
-        const B = s => s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-                                 '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
-                        .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
-        const lines = md.split(/\n/); let h = "", p = false, li = false; const flush = () => { if (p) { h += "</p>"; p = false; } if (li) { h += "</ul>"; li = false; } };
-        for (let ln of lines) {
-          if (/^#{1,6}\s+/.test(ln)) { flush(); h += "<h3>" + B(ln.replace(/^#{1,6}\s+/, "")) + "</h3>"; continue; }
-          if (/^[-*]\s+/.test(ln)) { if (p) { h += "</p>"; p = false; } if (!li) { h += "<ul>"; li = true; } h += "<li>" + B(ln.replace(/^[-*]\s+/, "")) + "</li>"; continue; }
-          if (ln.trim() === "") { flush(); continue; }
-          if (li) { h += "</ul>"; li = false; }
-          if (!p) { h += "<p>"; p = true; } else h += " "; h += B(ln);
-        } flush(); return h;
-      }
-      function showReader(html) { const rb = document.getElementById("rdbody"); rb.innerHTML = html; rb.scrollTop = 0; document.getElementById("reader").classList.add("show"); }
-      function openFull(nd) {
-        const key = nd.id + '|' + LANG;                                  // EN longreads live next to RU as <id>.en.md
-        if (_txt[key]) { showReader(_txt[key]); return; }
-        showReader('<p style="color:#8f8ca0">' + tr('loading') + '</p>');
-        const url = "data/longtext/" + nd.id + (isEN() ? ".en" : "") + ".md";
-        fetch(url).then(r => { if (!r.ok) throw 0; return r.text(); })
-          .then(t => { _txt[key] = mdToHtml(t); showReader(_txt[key]); })
-          .catch(() => {
-            const hintTxt = isEN()
-              ? 'If you opened this file directly (file://), run <b>python3 -m http.server</b> in the project folder and open it via localhost — then full texts load.'
-              : 'Если страница открыта двойным кликом (file://), запусти в папке проекта <b>python3 -m http.server</b> и открой через localhost — тогда полные тексты подгрузятся.';
-            showReader("<h3>" + nLabel(nd) + "</h3><p>" + (nTldr(nd) || "") + '</p><p style="color:#8f8ca0;font-size:12px">' + tr('noFull') + ' ' + hintTxt + '</p>');
-          });
-      }
-      document.getElementById("rdclose").onclick = () => document.getElementById("reader").classList.remove("show");
-      document.addEventListener("keydown", e => { if (e.key === "Escape") document.getElementById("reader").classList.remove("show"); });
 
       // ---- controls UI ----
       const axEl = document.getElementById("axis"), colEl = document.getElementById("colorseg");
@@ -1896,7 +1778,6 @@
         const b = e.target.closest && e.target.closest('[data-l]'); if (!b) return;
         const l = b.dataset.l; if (l === LANG) return;
         LANG = l; try { localStorage.setItem('bestiaryLang', l); } catch (err) { }
-        _txt = {};                       // drop cached longreads of the other language
         applyLang();
       });
       function boot() { buildWorld(); buildBiomes(); buildColorLegend(); applyLang(); }

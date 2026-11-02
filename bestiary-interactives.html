@@ -26,7 +26,7 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
 </helmet>
 <!-- CHANGED 2026-10-27: The whole bestiary comes first: the beast is picked here, and Zooming in and An idea feeds — and is fed follow it -->
 <section data-screen-label="Bestiary" style="background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif;padding:56px 56px 0;display:flex;flex-direction:column;gap:36px;">
-    <div id="2w" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
+    <div id="2w" style="position:relative;flex:none;width:100%;min-width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
       <div style="display:flex;flex-direction:column;gap:8px;">
         <span style="font:700 26px 'Unbounded',sans-serif;">The whole bestiary</span>
         <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:760px;text-wrap:pretty;">Every idea at once, laid out along the axis you grow it by. Pick any one: what feeds it lights up to the left, what it feeds, to the right. Zooming in and An idea feeds — and is fed, further down, follow your pick.</span>
@@ -48,8 +48,8 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
         </div>
         <span style="font:400 12.5px 'Onest',sans-serif;color:#9a948b;">{{ wInfo }}</span>
       </div>
-      <div style="position:relative;width:1136px;height:{{ wH }};">
-        <svg viewBox="0 0 1136 {{ wHn }}" style="position:absolute;inset:0;width:1136px;height:{{ wH }};pointer-events:none;overflow:visible;">
+      <div style="position:relative;width:{{ gW }};height:{{ wH }};">
+        <svg viewBox="0 0 {{ gWn }} {{ wHn }}" style="position:absolute;inset:0;width:{{ gW }};height:{{ wH }};pointer-events:none;overflow:visible;">
           <sc-for list="{{ wEdges }}" as="e"><path d="{{ e.d }}" fill="none" stroke="{{ e.c }}" stroke-width="{{ e.w }}" opacity="{{ e.o }}"></path></sc-for>
         </svg>
         <div style="display:grid;grid-template-columns:{{ wGrid }};position:relative;">
@@ -76,7 +76,7 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
     <span style="font:400 17px/1.5 'Onest',sans-serif;color:#9a948b;max-width:860px;text-wrap:pretty;">Follow one beast from the whole bestiary down to what supports it and what argues with it, five steps, then on to the next beast.</span>
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;">
-    <div id="4a" onMouseEnter="{{ zIn }}" onMouseLeave="{{ zLeave }}" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;">
+    <div id="4a" onMouseEnter="{{ zIn }}" onMouseLeave="{{ zLeave }}" style="position:relative;flex:none;width:100%;min-width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;">
         <div style="display:flex;flex-direction:column;gap:8px;">
           <span style="font:700 26px 'Unbounded',sans-serif;">Zooming in</span>
@@ -98,7 +98,8 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;padding:0 6px 0 10px;">Alongside · {{ zAlN }}</span>
         <sc-for list="{{ zAl }}" as="p" hint-placeholder-count="8"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button></sc-for>
       </div>
-      <div style="position:relative;width:1136px;height:600px;overflow:hidden;background:#0f0e0c;">
+      <!-- CHANGED 2026-11-02: the canvas is laid out in fixed coordinates, so it stays 1136 wide and sits in the middle of the stretched block -->
+      <div style="position:relative;width:1136px;height:600px;overflow:hidden;background:#0f0e0c;align-self:center;">
         <div style="position:absolute;inset:0;opacity:{{ zL0.o }};transform:scale({{ zL0.s }});pointer-events:{{ zL0.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
           <sc-for list="{{ z0Rows }}" as="r"><i style="position:absolute;left:0;right:0;top:{{ r.bandY }};height:94px;background:{{ r.band }};pointer-events:none;transition:background .3s;"></i><div onClick="{{ r.go }}" style="cursor:pointer;position:absolute;left:24px;top:{{ r.y }};display:flex;flex-direction:column;gap:3px;"><span style="font:700 15px 'Unbounded',sans-serif;color:{{ r.c }};">{{ r.label }}</span><span style="font:400 11px 'JetBrains Mono',monospace;color:#7d776f;">{{ r.sub }}</span></div><i style="position:absolute;left:24px;right:24px;top:{{ r.line }};height:1px;background:#1f1d1a;"></i></sc-for>
           <sc-for list="{{ z0Tiles }}" as="t"><i onClick="{{ t.pick }}" onMouseEnter="{{ t.enter }}" style="cursor:pointer;position:absolute;left:{{ t.x }};top:{{ t.y }};width:5px;height:5px;background:{{ t.c }};opacity:{{ t.o }};transition:opacity .3s;"></i></sc-for>
@@ -225,7 +226,7 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
   </div>
   <div style="display:flex;flex-direction:column;gap:40px;align-items:flex-start;">
 
-    <div id="2f" style="position:relative;flex:none;width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
+    <div id="2f" style="position:relative;flex:none;width:100%;min-width:1200px;background:#11100e;border:1px solid #26231f;border-top:4px solid #d8a24a;padding:30px 32px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;">
         <div style="display:flex;flex-direction:column;gap:8px;">
           <span style="font:700 26px 'Unbounded',sans-serif;">An idea feeds — and is fed</span>
@@ -274,9 +275,9 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
         <span style="font:400 13px/1.5 'Onest',sans-serif;color:#9a948b;padding:14px 16px;border:1px dashed #3a3531;">{{ fEmptyText }}</span>
       </sc-if>
       <sc-if value="{{ fTree }}" hint-placeholder-val="{{ true }}">
-        <div style="position:relative;width:1136px;height:{{ fH }};">
+        <div style="position:relative;width:{{ gW }};height:{{ fH }};">
           <sc-for list="{{ fHeads }}" as="c"><div style="position:absolute;top:0;bottom:0;left:{{ c.x }};width:{{ c.w }};box-sizing:border-box;border-left:1px solid #1f1d1a;padding:4px 8px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ c.c }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .4s;">{{ c.label }}</div></sc-for>
-          <svg viewBox="0 0 1136 {{ fHn }}" style="position:absolute;inset:0;width:1136px;height:{{ fH }};pointer-events:none;">
+          <svg viewBox="0 0 {{ gWn }} {{ fHn }}" style="position:absolute;inset:0;width:{{ gW }};height:{{ fH }};pointer-events:none;">
             <sc-for list="{{ fEdges }}" as="e"><path d="{{ e.d }}" fill="none" stroke="{{ e.c }}" stroke-width="{{ e.w }}" opacity="{{ e.o }}" stroke-dasharray="{{ e.dash }}"></path></sc-for>
           </svg>
           <sc-for list="{{ fNodes }}" as="n"><div onClick="{{ n.go }}" title="{{ n.title }}" style="cursor:pointer;position:absolute;left:{{ n.x }};top:{{ n.y }};width:{{ n.w }};height:26px;display:flex;align-items:center;padding:0 8px;box-sizing:border-box;background:{{ n.bg }};color:{{ n.fg }};border:1px solid {{ n.bd }};border-left:3px solid {{ n.c }};font:500 12px 'Onest',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" style-hover="outline:1px solid #efeae2;">{{ n.name }}</div></sc-for>
@@ -290,7 +291,8 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   // CHANGED 2026-10-27: The whole bestiary, Zooming in and An idea feeds — and is fed share one selection (`sel`, on the Role ladder axis at first)
-  state = { data: null, tick: 0, sel: 'power', ax: 'role', wQ: '', fQ: '', fOpen: false, fStep: 0, fPlay: true, recent: [] };
+  // CHANGED 2026-11-02: W is the measured inner width of The whole bestiary; its columns and An idea feeds — and is fed are laid out on it
+  state = { W: 1136, data: null, tick: 0, sel: 'power', ax: 'role', wQ: '', fQ: '', fOpen: false, fStep: 0, fPlay: true, recent: [] };
   static FAM = { misalign: ['Misalignment', '#C0453A'], deception: ['Deception', '#8E5DB0'], control: ['Control', '#E08A3C'], oversight: ['Oversight', '#3FA07E'], strategy: ['Takeoff & strategy', '#D9A441'], robustness: ['Robustness', '#6FA85B'], interp: ['Interpretability', '#2E9AA6'], mind: ['Philosophy of mind', '#4C7FC0'], ethics: ['Ethical lenses', '#C77BB0'], critical: ['Critical lens', '#B34F63'], myth: ['Cultural myths', '#A98A5B'], decision: ['Decision theory', '#7C93C4'], 'moral-status': ['Moral status of AI', '#B57ED9'] };
   static ROLE = { 'провал': ['Failure mode', '#fea199'], 'механизм': ['Mechanism', '#1cddae'], 'тезис': ['Thesis', '#76c7ff'], 'решение': ['Approach', '#ffd84a'], 'метафора': ['Metaphor', '#ffa752'], 'линза': ['Lens', '#ff96d3'], 'критика': ['Critique', '#c3affe'], 'эмпирика': ['Empirics', '#96d35f'] };
   static ERAS = [['E0', 'Myths / undated'], ['E1', '<1900'], ['E2', '1900–55'], ['E3', '1956–99'], ['E4', '2000–15'], ['E5', '2016–21'], ['E6', '2022+']];
@@ -300,6 +302,9 @@ class Component extends DCLogic {
 
   componentDidMount() {
     this.sprites = {}; this.queue = [];
+    // ADDED 2026-11-02: the blocks stretch with the window; 64 is the block's side padding
+    this.ro = new ResizeObserver(([e]) => { const W = Math.max(1136, Math.floor(e.target.clientWidth - 64)); if (W !== this.state.W) this.setState({ W }); });
+    this.ro.observe(document.getElementById('2w'));
     fetch('data/bestiary-interactives.json').then(r => r.json()).then(d => {
       const nodes = d.nodes.map(([id, name, fam, role, era, track, cen, tldr, author]) => ({ id, name, fam, role, era, track, cen, tldr, author, adj: [] }));
       const by = {}; nodes.forEach(n => by[n.id] = n);
@@ -333,7 +338,7 @@ class Component extends DCLogic {
       this.setState(s => ({ tick: s.tick + 1 }));
     }, 60);
   }
-  componentWillUnmount() { clearInterval(this.flush); clearInterval(this.autoT); clearTimeout(this.zPT); clearInterval(this.fT); }
+  componentWillUnmount() { this.ro.disconnect(); clearInterval(this.flush); clearInterval(this.autoT); clearTimeout(this.zPT); clearInterval(this.fT); }
 
   sp(id) { if (this.sprites[id]) return this.sprites[id]; if (!this.queue.includes(id)) this.queue.push(id); return ''; }
   draw(n) {
@@ -438,7 +443,7 @@ class Component extends DCLogic {
   genVals() {
     const st = this.state, R = Component.ROLE, g = this.axes[st.ax], by = this.by, id = st.sel, fc = by[id], N = st.data.length, axl = g.label;
     const lc = s => s.toLowerCase(), has = (q, m) => lc(by[m].name).includes(q), tot = m => g.steps[m][0] + g.steps[m][1];
-    const nb = this.near(g, id), CW = 1136 / g.n, ROWH = 16, TOP = 26;
+    const nb = this.near(g, id), CW = st.W / g.n, ROWH = 16, TOP = 26;
     const gTabs = Component.TAXES.map(a => ({ label: a.label, fg: a.k === g.k ? '#efeae2' : '#9a948b', line: a.k === g.k ? '#d8a24a' : 'transparent', go: () => this.setState({ ax: a.k, fStep: 0, fPlay: true, fOpen: false }) }));
     // 2w — every beast in its column; the selection's three steps each way light up
     const wq = lc(st.wQ.trim()), wM = wq ? st.data.filter(m => has(wq, m.id)) : [];
@@ -486,7 +491,7 @@ class Component extends DCLogic {
       return { label: l, n: fq ? `${it.length}/${ids.length}` : String(ids.length), hc: it.length ? g.color(k) : '#4a4540', items: it.map(m => ({ name: by[m].name, n: String(tot(m)), go: () => this.pick(m), fg: m === id ? '#0c0b0a' : '#cfc8bd', bg: m === id ? '#d8a24a' : 'transparent', mark: g.color(k) })) }; });
     const fChips = st.recent.map(m => { const on = m === id; return { name: by[m].name, n: String(tot(m)), go: () => this.pick(m), bd: on ? '#d8a24a' : '#3a3531', bg: on ? '#d8a24a' : 'transparent', fg: on ? '#0c0b0a' : '#efeae2', nc: on ? 'rgba(12,11,10,.6)' : '#8a8273' }; });
     const enter = list => e => { if (e.key === 'Enter' && list.length) this.pick(list[0].id); };
-    return { total: String(N), gTabs, gHint: g.hint,
+    return { total: String(N), gTabs, gHint: g.hint, gW: `${st.W}px`, gWn: String(st.W),
       wHead: { name: fc.name, n: `←${nb.up} ${nb.down}→` }, wQ: st.wQ, wOnQ: e => this.setState({ wQ: e.target.value }), wKey: enter(wM), wInfo,
       wCols: g.labels.map((l, k) => ({ label: l, n: String(g.C[k].length), hc: g.color(k), items: g.C[k].map(m => wItem(m, k)) })), wEdges, wGrid: `repeat(${g.n}, ${CW}px)`, wH: `${wHn}px`, wHn: String(wHn),
       wUnOn: g.un.length > 0, wUnTitle: `No ${g.kind} links of their own · ${g.un.length} · pick one to grow the nearest ${g.kind} chain, one link away`, wUn: g.un.map(m => wItem(m, -1)),
@@ -625,7 +630,7 @@ class Component extends DCLogic {
     const st = this.state, D = st.data, F = Component.FAM, R = Component.ROLE;
     // CHANGED 2026-10-27: the values of the removed views (2b, 2c and the unused 2d, 3a–3e) are gone; the genealogy blocks come from genVals
     const empty = { side4a: false, hasSide: false, side: { href: '#', c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' }, closeSide: () => {}, zMaps: [], zMapNote: '', zTabs: [], zPicks: [], zAl: [], zAlN: '0', zL0: { o: '0', s: '1', p: 'none' }, zL1: { o: '0', s: '1', p: 'none' }, zL2: { o: '0', s: '1', p: 'none' }, zL3: { o: '0', s: '1', p: 'none' }, zL4: { o: '0', s: '1', p: 'none' }, z0Rows: [], z0Tiles: [], z0Threads: [], z0Labels: [], z1Isl: [], z1Roads: [], z1Tiles: [], z1Labels: [], z2Cards: [], z2Links: [], z3L: [], z3R: [], z3A: [], z3: { img: '', name: '', c: '#3a3531', nin: '', nout: '', nal: '', alOn: false, top: '190px', h: '220px' }, z4: { img: '', name: '', meta: '', tldr: '', c: '#3a3531', stats: [], pos: [], neg: [], npos: '', nneg: '', posNone: false, negNone: false, verdict: '' }, zCap: '', zSub: '', zPlayLabel: 'Ⅱ Pause', zToggle: () => {}, zPrev: () => {}, zNext: () => {}, zIn: () => {}, zLeave: () => {},
-      gTabs: [], wCols: [], wEdges: [], wUn: [], wH: '0px', wHn: '0', wHead: { name: '', n: '' }, wUnOn: false, fNodes: [], fEdges: [], fHeads: [], fChips: [], pCols: [], fH: '0px', fHn: '0', fEmpty: false, fTree: false, fPIsOpen: false, fCapC: '#3a3531', fPlayLabel: 'Ⅱ Pause' };
+      gTabs: [], gW: '1136px', gWn: '1136', wCols: [], wEdges: [], wUn: [], wH: '0px', wHn: '0', wHead: { name: '', n: '' }, wUnOn: false, fNodes: [], fEdges: [], fHeads: [], fChips: [], pCols: [], fH: '0px', fHn: '0', fEmpty: false, fTree: false, fPIsOpen: false, fCapC: '#3a3531', fPlayLabel: 'Ⅱ Pause' };
     if (!D) return empty;
     const meta = n => `${R[n.role][0]} · ${F[n.fam][0]} · ${Component.ERAS[this.eraI(n.era)][1]}`;
     return { ...empty, ...this.zoomVals(D, meta), ...this.sideVals(meta), ...this.genVals() };
