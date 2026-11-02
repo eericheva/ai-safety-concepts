@@ -2,7 +2,7 @@
 
 There is a familiar picture of the end: a cold planet, the rusted hulks of cities, not a single eye to see it. Emptiness. We fear it — and we are right to. But imagine you were offered a choice between this emptiness and something else. Not extinction, but — continuation. Trillions of years, galaxies settled to the brim, computing power the size of star systems. And all of it works. And all of it hurts.
 
-S-risks (suffering risks) are about outcomes in which the future does not go dark but fills up with suffering on an astronomical scale. Not "bad," but bad to a degree that human language buckles under: a number of suffering beings exceeding everything that ever lived on Earth by many orders of magnitude. And the central, uncomfortable thesis of this concept can be put this way: **a dead world is better than a world full of torment.** An s-risk is worse than an x-risk. Because extinction has a floor — zero. Suffering has no floor.
+S-risks (suffering risks) are about outcomes in which the future does not go dark but fills up with suffering on an astronomical scale. Not "bad," but bad to a degree that human language buckles under: a number of suffering beings exceeding the total number of beings that ever lived on Earth by many orders of magnitude. And the central, uncomfortable thesis of this concept can be put this way: **a dead world is better than a world full of torment.** An s-risk is worse than an x-risk. Because extinction has a floor — zero. Suffering has no floor.
 
 This is a 180-degree turn from the usual perspective. Classic longtermism looks upward: how many beautiful lives we will lose if we cut the thread now. S-risks are longtermism turned downward, into the cellar. The same arithmetic of vast numbers, but with a minus sign. If the future can be astronomically good, then it can be astronomically bad too — and the second branch somehow almost always stays in the blind spot.
 
@@ -30,7 +30,7 @@ Ideologically, s-risks are a child of the expanding circle of morality: if compa
 
 **Speculativeness.** The whole construction stands on a tower of hypotheses: that complex simulations are conscious, that a superintelligence will arise at all, that the game-theoretic horrors will materialize. Each floor is shaky, and the probabilities multiply. Opponents say: this is not risk management but science fiction with formulas.
 
-**A disputable asymmetry.** Much rests on the intuition that suffering "weighs" more than happiness — that to prevent torture is more important than to grant joy. For negative utilitarians this is obvious. For most, it is not. If happiness and suffering are symmetric, then an astronomical hell is opposed by an astronomical heaven, and a focus solely on the cellar looks arbitrary.
+**A disputable asymmetry.** Much rests on the intuition that suffering "weighs" more than happiness — that to prevent torture is more important than to grant joy. For negative utilitarians this is obvious. For most, it is not. If happiness and suffering are symmetric, then an astronomical hell is weighed against an astronomical heaven, and a focus solely on the cellar looks arbitrary.
 
 **Demotivation and a slant toward negative utilitarianism.** There is also a practical reproach: a focus on the worst corrodes the will to act. Negative utilitarianism carried to its limit yields a monstrous conclusion — that the best world is an empty world, since it alone is free of suffering. Critics warn: the concept risks quietly justifying the very extinction it was trying to avoid.
 

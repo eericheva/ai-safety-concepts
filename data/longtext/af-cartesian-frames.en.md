@@ -4,7 +4,7 @@ Draw a vertical line on a sheet of paper. On the left — "me," the agent; on th
 
 And now a question that breaks the picture: where exactly does the line run? My brain is part of the world. My body is part of the world. The atoms with which I "act" obey the same physics as the atoms of the environment. If an agent is embedded — made of the same stuff as the world, and wholly lodged inside it — then the boundary between it and the environment is not given by nature. An observer draws it. And draws it arbitrarily.
 
-Cartesian frames are Scott Garrabrant's formalism for drawing it openly: instead of hiding the boundary, it turns the boundary into an explicit object one can manipulate.
+Cartesian frames are Scott Garrabrant's formalism for drawing it openly: instead of hiding the boundary, the formalism turns the boundary into an explicit object one can manipulate.
 
 The definition is deceptively simple. A Cartesian frame over a set of worlds W is a triple (A, E, ·), where A is the set of possible "decisions" of the agent, E is the set of possible states of the environment, and the outcome function · maps a pair (decision, environment) to a concrete world. It is convenient to picture this as a matrix: rows are elements of A, columns are elements of E, and in cell (a, e) sits the world a·e. The agent chooses a row, the environment chooses a column, and the universe is at the intersection.
 

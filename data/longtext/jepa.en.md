@@ -10,7 +10,7 @@ One specific criticism comes from Steven Byrnes, who argued in 2023 that specify
 
 Beyond this specific objection, we can raise two broader concerns. First, an explicit goal does not abolish the problem of specifying it: a poorly specified goal, however open and explicit, still leads to the proverbial paperclips, and instrumental convergence doesn't go away. Second — and this matters more — a competent agent with a world model, capable of planning and acting, is precisely the objective-driven intelligence that all the classic alignment anxieties are aimed at. A passive text predictor, which only answers a query, may in this sense be safer than an autonomous planner that builds its own multi-step schemes inside a world model to reach a goal. That is, a JEPA-like AI may make some things safer (explicit, readable goals) and others more dangerous (genuine agency and planning). The dispute is unresolved.
 
-Architecture is not a detail but a risk parameter. The threat profile of an autoregressive chatbot differs from that of a planning agent with a world model, and each calls for its own methods of evaluation and control. And since the field may well shift from LLMs to systems in the spirit of JEPA, it is worth preparing these methods in advance — while "world model + planner" has not yet become mainstream.
+Architecture is not a detail but a risk parameter. The threat profile of an autoregressive chatbot differs from that of a planning agent with a world model, and each calls for its own methods of evaluation and control. And since the field may well shift from LLMs to systems in the spirit of JEPA, it is worth preparing these methods in advance — before "world model + planner" becomes mainstream.
 
 ---
 

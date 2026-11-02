@@ -8,7 +8,7 @@ The quantilizer is Jessica Taylor's attempt to answer the question: what if we d
 
 The whole construction rests on a single inequality. Let a quantilizer with level $q$ sample from the distribution $\gamma$, truncated to the top $q$ by utility and renormalized. Then the density of the new distribution at any action $a$ does not exceed $\gamma(a)/q$: we took a fraction $q$ of the whole probability mass and "smeared" it over the same set, so the local density grew by at most a factor of $1/q$.
 
-Hence the main guarantee. Let $c(a) \ge 0$ be any nonnegative function of the "harm" or "catastrophicity" of an action, about which the quantilizer itself knows nothing. Then
+Hence the main guarantee. Let $c(a) \ge 0$ be any nonnegative function measuring the "harm" or "catastrophicity" of an action, about which the quantilizer itself knows nothing. Then
 
 $$\mathbb{E}_{\text{quant}}[c] \le \frac{1}{q}\,\mathbb{E}_{\gamma}[c].$$
 
@@ -38,9 +38,9 @@ No practical "switch on the quantilizer in your RLHF pipeline" follows from the 
 
 First, the quantilizer gave the first *quantitative* bridge between "safety" and "optimization power": it turned the vague "don't optimize too hard" into an inequality with an explicit price of $1/q$. This is a rare case where mild optimization has a theorem and not only an intuition.
 
-Second, it clearly localized where the difficulty is hidden. The alignment problem does not disappear — it moves from "write the right utility function" to "produce the right base distribution of safe actions." This may be a step forward: modeling "normal human behavior" is sometimes more sensible than formalizing "human values."
+Second, it made clear where the difficulty lies. The alignment problem does not disappear — it moves from "write the right utility function" to "produce the right base distribution of safe actions." This may be a step forward: modeling "normal human behavior" is sometimes more sensible than formalizing "human values."
 
-Third, the idea lives on in its relatives. KL-regularization in modern RLHF — a penalty for the fine-tuned policy's deviation from the base model — is in spirit the same quantilizer: don't stray far from the "normal" distribution, buying utility at the price of a controlled divergence. Impact measures such as attainable utility preservation (AUP) attack the same disease of edge instantiation from another side — penalizing not the deviation of actions but the change to the attainable future.
+Third, the idea lives on in its relatives. KL-regularization in modern RLHF — a penalty for the fine-tuned policy's deviation from the base model — shares the quantilizer's guiding intuition: don't stray far from the "normal" distribution, buying utility at the price of a controlled divergence. Impact measures such as attainable utility preservation (AUP) attack the same disease of edge instantiation from another side — penalizing not the deviation of actions but the change to the attainable future.
 
 The quantilizer is worth remembering as a neatly drawn counterexample to maximization: it shows that the catastrophes of reward hacking and Goodhart live precisely in the tails, that one can buy them off with a bound on the tail — and that the bill for this trade-off grows with the number of steps faster than one would like.
 

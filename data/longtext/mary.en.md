@@ -1,6 +1,6 @@
 ### Mary's Room (Frank Jackson, 1982/1986)
 
-Picture Mary. She is a brilliant neurophysiologist, but her whole life has passed in a black-and-white room, behind a black-and-white monitor. She has never seen anything colored: not a red tomato, not a blue sky, not her own skin flushed with excitement. Yet she knows *everything* about color — everything that can be learned by physical means. She has learned by heart which wavelengths a ripe strawberry reflects, how a photon excites the retina's cones, along which fibers the signal runs, which neurons of the visual cortex flare up in the process, what words a person utters at that moment. The complete, finished physical science of vision fits inside her head.
+Picture Mary. She is a brilliant neurophysiologist, but her whole life has passed in a black-and-white room, in front of a black-and-white monitor. She has never seen anything colored: not a red tomato, not a blue sky, not her own skin flushed with excitement. Yet she knows *everything* about color — everything that can be learned by physical means. She has learned by heart which wavelengths a ripe strawberry reflects, how a photon excites the retina's cones, along which fibers the signal runs, which neurons of the visual cortex flare up in the process, what words a person utters at that moment. The complete, finished physical science of vision fits inside her head.
 
 And now let us open the door. Mary steps outside — or is simply handed a ripe tomato. For the first time in her life she sees red.
 
@@ -22,7 +22,7 @@ In the article **"Epiphenomenal Qualia"** (*The Philosophical Quarterly*, 1982),
 
 ### Criticism / arguments against
 
-**The ability hypothesis.** David Lewis in his essay "What Experience Teaches" (1988) and, earlier and independently, Laurence Nemirow proposed an elegant move: Mary does acquire something on leaving the room — but not *knowledge-that*, not a new fact, but *knowledge-how*, a skill. She gains abilities: now she can imagine red, recognize it on a fresh encounter, remember it. To know what it is like is not to possess a portion of information but to have a skill. And new abilities add exactly nothing to the list of facts about the world. A child who has learned to ride a bicycle has not discovered a new law of nature — they've simply gained an ability.
+**The ability hypothesis.** David Lewis in his essay "What Experience Teaches" (1988) and, earlier and independently, Laurence Nemirow proposed an elegant move: Mary does acquire something on leaving the room — not *knowledge-that*, not a new fact, but *knowledge-how*, a skill. She gains abilities: now she can imagine red, recognize it on a fresh encounter, remember it. To know what it is like is not to possess a portion of information but to have a skill. And new abilities add exactly nothing to the list of facts about the world. A child who has learned to ride a bicycle has not discovered a new law of nature — they've simply gained an ability.
 
 **An old fact under a new mode of presentation.** Another camp — associated with Brian Loar, John Perry, and others — says: Mary learns not a new fact but an old, already-known fact given to her now in a different way. One and the same physical process can be grasped "from without," through a physical concept, and "from within," through a phenomenal concept. Like "Venus is the morning star" and "Venus is the evening star": one planet, two ways of thinking about it. Mary acquires a new phenomenal *concept* of red, but the referent remains the same old neurophysical fact. No addition to the ontology — only to the mode of apprehension.
 
@@ -32,7 +32,7 @@ And the loudest twist of the plot: **the author renounced his own argument.** In
 
 ### What to do about it / where it leads
 
-It might seem an old scholastic dispute — a tomato and a black-and-white room. But today Mary stands at a far more current door.
+It might seem an old scholastic dispute — a tomato and a black-and-white room. But today Mary stands at the door of the debate over AI consciousness.
 
 A large language model is literally Mary in the room. It has read *everything* about red: every poem about a sunset, every #FF0000 specification, every optics textbook, every confession of how it hurts to look at scarlet. It will link "red" with "passion," "blood," "stop signal" more precisely than any of us. And meanwhile not a single photon with a wavelength of 700 nanometers has ever fallen on its retina — there is no retina. Jackson's question comes back in full force and ceases to be an armchair matter: is there *something* that the model, knowing everything from text about red, still does not know — and does that "something" coincide with qualia?
 

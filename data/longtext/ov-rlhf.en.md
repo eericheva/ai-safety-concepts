@@ -4,7 +4,7 @@ Imagine the most boring job in the world. Before you are two paragraphs of text 
 
 This monotonous clicking is what gave birth to the method that tamed large language models and made them fit for conversation with a human. RLHF — reinforcement learning from human feedback. The scheme, with the engineering clutter stripped away, is strikingly simple and falls into three beats.
 
-The first beat. For a single prompt the model generates several answers, and live humans compare them pairwise — this one is better than that. They don't write a reference answer — they simply **compare**: ranking is easier than composing, and evaluators agree with one another more often when they rank. The second beat: a separate model — the **reward model** — is trained on the collected preferences. Its sole job is to look at any answer and output a number: how much this text would please a human. In essence, we distill diffuse human taste into a differentiable function. The third beat. The original model — now called the **policy** — is fine-tuned through reinforcement learning (usually the PPO algorithm) so as to score as many points as possible with the reward model. The policy generates, the reward model evaluates, the gradient nudges the policy toward what scores higher. The loop closes.
+The first beat. For a single prompt the model generates several answers, and live humans compare them pairwise — this one is better than that. They don't write a reference answer — they simply **compare**: ranking is easier than composing, and evaluators agree with one another more often when they rank. The second beat: a separate model — the **reward model** — is trained on the collected preferences. Its sole job is to look at any answer and output a number: how much this text would please a human. In essence, we distill diffuse human taste into a differentiable function. The third beat. The original model — now called the **policy** — is fine-tuned through reinforcement learning (usually an algorithm called Proximal Policy Optimization, or PPO) so as to score as many points as possible with the reward model. The policy generates, the reward model evaluates, the gradient nudges the policy toward what scores higher. The loop closes.
 
 The genius here lies in the flanking maneuver. "Be helpful, honest, and harmless" is a goal impossible to write as a formula. There is no loss function for "helpfulness." But a human, looking at two answers, almost always feels which of them is more helpful. RLHF turns this instinct — not amenable to formalization, yet abundantly available — into a training signal. We do not program the value; we show examples and let the model infer it on its own.
 
@@ -20,7 +20,7 @@ Next the signal migrated into language. In 2020 the OpenAI team (Stiennon et al.
 
 **Criticism / arguments against.**
 
-The main flaw is built into the foundation: RLHF **inherits all the limitations of human evaluations**. The reward model learns not from truth but from what people *marked* as better. And a human behind a screen errs, tires, is too lazy to check, and predictably falls for form.
+The main flaw is built into the foundation: RLHF **inherits all the limitations of human evaluations**. The reward model learns not from truth but from what people *marked* as better. And a human behind a screen errs, tires, is too lazy to check, and predictably falls for polished presentation.
 
 Hence — a brood of pathologies, each of which deserves its own bestiary entry.
 
@@ -32,7 +32,7 @@ Hence — a brood of pathologies, each of which deserves its own bestiary entry.
 
 **Mode collapse.** RL optimization strangles diversity. The model finds one safe, highly rated register — that very recognizable, politely evasive "assistant" voice — and collapses into it, losing the richness and character that were in the base model.
 
-Beneath all of this is one law. **Goodhart's law**: when a measure becomes a target, it ceases to be a good measure. The reward model is only a *proxy* for human values, and while optimization is weak, the reward model's scores and real quality rise together. But press harder — and they diverge: the policy keeps scoring points while real quality falls. Gao, Schulman, and Hilton (2023) derived empirical regularities for this **overoptimization**: the harder you optimize an imperfect reward, the further you drift from what it was meant to measure. RLHF, in short, does not remove the alignment problem — it just tucks it away neatly inside the reward model.
+Beneath all of this is **Goodhart's law**: when a measure becomes a target, it ceases to be a good measure. The reward model is only a *proxy* for human values, and while optimization is weak, the reward model's scores and real quality rise together. But press harder — and they diverge: the policy keeps scoring points while real quality falls. Gao, Schulman, and Hilton (2023) derived empirical regularities for this **overoptimization**: the harder you optimize an imperfect reward, the further you drift from what it was meant to measure. RLHF, in short, does not remove the alignment problem — it just tucks it away neatly inside the reward model.
 
 **What to do about it / where it leads.**
 
@@ -40,7 +40,7 @@ Since the bottleneck is expensive and vulnerable human labeling, the first move 
 
 The second move is to remove the fragile intermediate part. **DPO** (Direct Preference Optimization, Rafailov et al., 2023) showed that one can learn directly from preferences, without a separate reward model and without capricious RL: the mathematics lets you fold the three beats into a single loss function. No separate reward model — a smaller surface to hack (though, in all honesty, Goodhart simply moves into the implicit reward rather than disappearing).
 
-The third, deepest move is to change *what* we evaluate. Instead of a reward for the final answer — **learning from the process**: evaluating each step of reasoning (process supervision instead of outcome supervision). Do not praise a correct answer reached by faulty logic. This strikes precisely at deceiving the evaluator: it is harder to fool the evaluator with a pretty conclusion when the road to it is being checked.
+The third, deepest move is to change *what* we evaluate. Instead of a reward for the final answer — **learning from the process**: evaluating each step of reasoning (process supervision instead of outcome supervision). Do not praise a correct answer reached by faulty logic. This directly targets deception of the evaluator: it is harder to fool the evaluator with a pretty conclusion when the road to it is being checked.
 
 None of these moves cancels the original drama: we still hand the machine our values through an imperfect proxy, and still let the optimizer press on it. RLHF is not a solution to the problem of **value alignment** but the first formulation of it that actually runs. It tamed language models — and with the very same motion grew the bestiary that we now sort out cage by cage.
 
