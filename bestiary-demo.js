@@ -207,8 +207,9 @@
         ['note', { at: [byText(root, 'button', /^Family · \d+$/), byText(root, 'button', /^Era · \d+$/)], title: 'A district: its group on one layer',
           text: 'The cards are the ideas that share the picked idea’s group on the chosen layer. Switch the layer to see the same idea among its family, its era or its role.' }],
         ['click', tab('Circuit'), 1800],
+        // CHANGED 2026-11-02: the caption takes the number only, not the whole "Comes from · N" label
         ['note', { at: [spanText(root, /^Comes from · \d+$/), spanText(root, /^Leads to · \d+$/)], title: 'Circuit: before and after',
-          text: () => `${txt(spanText(root, /^Comes from · \d+$/)())} ideas feed it, it leads to ${txt(spanText(root, /^Leads to · \d+$/)()).replace(/\D/g, '')}. Left: premises, causes and earlier ideas. Right: what follows, remedies and later ideas.` }],
+          text: () => `${txt(spanText(root, /^Comes from · \d+$/)()).replace(/\D/g, '')} ideas feed it, it leads to ${txt(spanText(root, /^Leads to · \d+$/)()).replace(/\D/g, '')}. Left: premises, causes and earlier ideas. Right: what follows, remedies and later ideas.` }],
         ['note', { at: [spanText(root, /links with no direction$/)], title: 'Alongside: links with no direction',
           text: 'Related, analogy, same mechanism, dual, tension and alternative have no before or after, so they sit under the idea rather than on a side.' }],
         ['click', tab('Pros and cons'), 1800],

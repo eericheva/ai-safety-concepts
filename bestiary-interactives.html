@@ -268,7 +268,8 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
         </sc-if>
       </div>
       <div style="display:flex;flex-direction:column;gap:3px;border-left:3px solid {{ fCapC }};padding-left:12px;">
-        <span style="font:700 15px 'Onest',sans-serif;">{{ fName }} · {{ fInfo }}</span>
+        <!-- CHANGED 2026-11-02: hugs its text, so the demo frame on it does not span the whole stretched block -->
+        <span style="font:700 15px 'Onest',sans-serif;align-self:flex-start;">{{ fName }} · {{ fInfo }}</span>
         <span style="font:400 12px/1.45 'Onest',sans-serif;color:#9a948b;">{{ fTldr }}</span>
       </div>
       <sc-if value="{{ fEmpty }}" hint-placeholder-val="{{ false }}">
