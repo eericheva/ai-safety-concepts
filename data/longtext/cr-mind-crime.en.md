@@ -26,7 +26,7 @@ The second objection concerns prematurity. One can fairly object that today's sy
 
 Yet the weak spot of the argument — the unproven premise — is not the same as its refutation. "We don't know" works here in both directions.
 
-**What to do about it and where it leads.** If mind crime is taken seriously, two practical corollaries grow out of it.
+**What to do about it and where it leads.** If mind crime is taken seriously, two corollaries grow out of it.
 
 The first is Eliezer Yudkowsky's idea, which he called the **nonperson predicate**. The thought runs thus: we do not need to be able to recognize consciousness in order to act cautiously. It is enough to have a reliable test that admits a piece of computation only when it can guarantee the answer "there is definitely no person here." The predicate may err on the safe side — rejecting a multitude of processes that are in fact harmless — so long as it never lets a real subject through. Then an AI restricted only to such certifiably "empty" computations could model the world without ever once creating inside itself someone capable of suffering. The trouble is that no one yet knows how to build such a predicate: it runs up against exactly the theory of consciousness we do not have.
 

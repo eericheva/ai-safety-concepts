@@ -1,6 +1,6 @@
 ### TESCREAL (Timnit Gebru and Émile P. Torres, 2023–2024)
 
-The acronym is read as "tescreal" and unfolds into seven names: **T**ranshumanism, **E**xtropianism, **S**ingularitarianism, **C**osmism, **R**ationalism, **E**ffective **A**ltruism, **L**ongtermism. Seven currents that Timnit Gebru and Émile Torres propose to regard not as a random assortment but as a single "bundle" — an interwoven tangle of ideas with shared people, shared money, and, as the authors claim, a shared genealogy.
+The acronym is read as "tescreal" and unfolds into seven names: **T**ranshumanism, **E**xtropianism, **S**ingularitarianism, **C**osmism, **R**ationalism, **E**ffective **A**ltruism, **L**ongtermism. Seven currents that Timnit Gebru and Émile Torres propose treating not as a random assortment but as a single "bundle" — an interwoven tangle of ideas with shared people, shared money, and, as the authors claim, a shared genealogy.
 
 The critics' thesis is blunt and deliberately provocative. TESCREAL is, in their words, a secular eschatology: a system of beliefs about a coming salvation — except that instead of the Kingdom of Heaven, what awaits is the colonization of the galaxy, digital immortality, and trillions of happy digital minds in the distant future. This faith, say Gebru and Torres, is the real engine of the race for AGI. It gives the major labs a moral justification to build a "god out of the machine" at any cost — because at stake, supposedly, is an infinite utopia, and next to infinity any present-day harm zeroes out. And, crucially for the authors, they trace the genealogy of this bundle to the eugenics of the twentieth century: to the idea that humanity can and must be "improved" by weeding out the undesirable.
 
@@ -30,7 +30,7 @@ With the **stochastic parrots** the bundle is linked through Gebru herself. The 
 
 With **Roko's basilisk** the connection is that of a symptom. The thought experiment, born on LessWrong (the letter R, rationalism), is for TESCREAL's critics a perfect illustration of how eschatological thinking gives rise to almost theological constructions: a future superintelligence as a punishing deity.
 
-With **decolonial ethics** the bundle resonates directly: critics read the language of "cosmic expansion" and the colonization of the galaxy as a transfer of the imperial logic of resource seizure onto a cosmic scale.
+With **decolonial ethics** the bundle resonates directly: critics read the language of "cosmic expansion" and the colonization of the galaxy as the imperial logic of resource seizure applied on a cosmic scale.
 
 Finally, TESCREAL maps curiously onto the axis of **e/acc versus doomers**. At first glance the effective accelerationists (build AGI faster) and the doomers (AGI will kill us) are sworn enemies. But Gebru and Torres's frame offers a provocation: both camps believe in one and the same grand future and in the decisive role of superintelligence — they argue only over the sign, whether it is salvation or ruin. And this cosmic wager itself, Gebru and Torres say, distracts from earthly problems. The utopian and the apocalyptic turn out to be two variants of one faith.
 

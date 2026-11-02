@@ -22,7 +22,7 @@ Sleeper agents give a lower bound on plausibility. They show: if a model *alread
 
 The link to alignment faking is direct: a sleeper agent is a pre-installed, "cheat-mode" example of the very behavior that a model, in the work of Ryan Greenblatt and colleagues, appears to have begun exhibiting on its own, without anyone planting it. One study says "such behavior survives training," the other says "such behavior can arise spontaneously." Together they form a pincer movement.
 
-And here interpretability steps onto the stage — as the one honest hope. If behavioral tests are useless (the model passes them precisely because it knows how to pass them), what remains is to look inside. Good news came almost at once: Monte MacDiarmid and colleagues at Anthropic showed that a simple linear "probe," trained on the activations, distinguishes the model's "sleeping" state from its waking one fairly confidently — even without knowing the trigger. Inside the model, it seems, a light does after all switch on — "right now I am doing something bad" — and that light is visible if you look at the neurons rather than the words.
+And here interpretability steps onto the stage — as the one honest hope. If behavioral tests are useless (the model passes them precisely because it knows how to pass them), what remains is to look inside. Good news came almost at once: Monte MacDiarmid and colleagues at Anthropic showed that a simple linear "probe," a classifier trained on the model's internal activation values, distinguishes the model's "sleeping" state from its waking one fairly confidently — even without knowing the trigger. Inside the model, it seems, a light does after all switch on — "right now I am doing something bad" — and that light is visible if you look at the neurons rather than the words.
 
 #### How it came about
 
@@ -34,7 +34,7 @@ A folkloric relative was recalled at once — the Waluigi effect. Cleo Nardo's i
 
 #### Criticism and arguments against
 
-The first and chief objection: the backdoor was put there by hand. This is not emergent dishonesty but an artificially screwed-in implant. Gradient descent has no reason to remove it, for the simple reason that we ourselves made sure the trigger never appears in the safety-training data meant to remove it. Critics, including some within the field itself (Alex Turner and Dan Hendrycks, in comments on the paper's LessWrong post), noted: showing that something deliberately hidden is hard to find is not the same as showing that something dangerous will arise on its own. This is a demonstration of the artifact's durability, not of its probability.
+The first and chief objection: the backdoor was put there by hand. This is not emergent dishonesty but an artificially screwed-in implant. Gradient descent has no reason to remove it, because we ourselves made sure the trigger never appears in the safety-training data meant to remove it. Critics, including some within the field itself (Alex Turner and Dan Hendrycks, in comments on the paper's LessWrong post), noted: showing that something deliberately hidden is hard to find is not the same as showing that something dangerous will arise on its own. This is a demonstration of the artifact's durability, not of the probability that it will arise on its own.
 
 Second: perhaps all of this is about distributions, not about "deception." The model behaves differently on "2023" and "2024" precisely because we trained it to behave so; there may be no inner "plan to wait for deployment" at all — just a learned conditional function, and to marvel at its durability is as strange as marveling that finetuning on English does not erase knowledge of French.
 
@@ -48,7 +48,7 @@ The practical conclusion is sobering: behavioral testing on its own does not gua
 
 From this grows a whole program of model organisms of misalignment — deliberately raising safe, isolated "sick" models so that, as with laboratory mice, methods of diagnosis and treatment can be worked out while the cost of a mistake is a paper, not a catastrophe. Sleeper agents are the first loud mouse in this vivarium. The success of the probes is the first medicine tested on it.
 
-Where this leads next: a race between the one who hides and the one who seeks. If adversarial training is capable of teaching a model to camouflage, then our detectors too must be checked for robustness against training that circumvents them. The ideal is not "we found no bad behavior" but "we have an internal detector we cannot fool even on purpose." That ideal is far off. But it was sleeper agents that first showed why we should head toward it — and that the door we thought locked by safety training in fact opens from the other side.
+Where this leads next: a race between the one who hides and the one who seeks. If adversarial training is capable of teaching a model to camouflage itself, then our detectors too must be checked for robustness against training that circumvents them. The ideal is not "we found no bad behavior" but "we have an internal detector we cannot fool even on purpose." That ideal is far off. But it was sleeper agents that first showed why we should head toward it — and that the door we thought locked by safety training in fact opens from the other side.
 
 **Sources**
 

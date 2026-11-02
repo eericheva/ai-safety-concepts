@@ -1,6 +1,6 @@
 ### Roko's Basilisk (user Roko, LessWrong, 2010)
 
-There are ideas that are dangerous even to retell — or so the idea itself claims. In the summer of 2010, on the rationalist forum LessWrong, there appeared an argument built like a trap: it harms you by the very fact that you have learned of it. Don't read it — you are safe. Read it — and you become a target. Hence the name: the basilisk, a monster that kills with a glance. Only it is not the one looking at you. You are the one looking — and that is enough.
+There are ideas that are dangerous even to retell — or so the idea itself claims. In the summer of 2010, on the rationalist forum LessWrong, there appeared an argument built like a trap: it harms you simply because you have learned of it. Don't read it — you are safe. Read it — and you become a target. Hence the name: the basilisk, a monster that kills with a glance. Only it is not the one looking at you. You are the one looking — and that is enough.
 
 Let us take it apart calmly, because the curiosity here is more instructive than the horror.
 
@@ -10,7 +10,7 @@ The mechanism rests on two props that were considered almost respectable on Less
 
 **How it came about.** The post was written by a participant under the handle Roko — a well-known figure on the forum. It had a cumbersome title: "Solutions to the Altruist's burden: the Quantum Billionaire Trick" — Roko was actually proposing a scheme for how an altruist could get rich and save the world, and the basilisk jumped out there as an incidental, almost illustrative example. The site's founder, Eliezer Yudkowsky, responded not with an argument but with fury: he called Roko an idiot for publicly spreading what he considered an infohazard — knowledge that harms simply by having landed in your head. The thread was deleted, the topic banned from discussion for years. Yudkowsky later explained that he feared not the basilisk itself (he did not believe it was correct) but that someone cleverer would think up a similar but working version — and that it is bad for anxious people to seriously imagine themselves being tortured for their thoughts.
 
-Then the Streisand effect kicked in, a law that on the internet is stronger than any decision theory. A forbidden topic, wiped out by the guru, wreathed in rumors that it had given some readers nightmares and driven someone to a breakdown, became irresistible. It was dragged all over Reddit, forums, and articles. In 2014 David Auerbach wrote a piece in Slate under the headline "The Most Terrifying Thought Experiment of All Time," and the basilisk finally entered pop culture. And in 2018 it turned out that Elon Musk and the singer Grimes had connected over a joke about, of all things, Roko's Basilisk — and the meme looped back into the society pages. The idea people tried to bury came alive precisely because it was being buried.
+Then the Streisand effect kicked in, a law that on the internet is stronger than any decision theory. A forbidden topic, wiped out by the guru, wreathed in rumors that it had given some readers nightmares and driven someone to a breakdown, became irresistible. It was dragged all over Reddit and forums, and into articles. In 2014 David Auerbach wrote a piece in Slate under the headline "The Most Terrifying Thought Experiment of All Time," and the basilisk finally entered pop culture. And in 2018 it turned out that Elon Musk and the singer Grimes had connected over a joke about, of all things, Roko's Basilisk — and the meme looped back into the society pages. The idea people tried to bury came alive precisely because it was being buried.
 
 **Criticism / arguments against.** And now a cold shower: the basilisk does not work. And it breaks not in one place but in several at once.
 
@@ -24,7 +24,7 @@ The fourth. Even if you close your eyes to all of the above, the basilisk is a P
 
 Put it all together, and what remains of the monster is a leaky logical construction that frightens not by the force of its argument but by the form of its delivery: the secrecy, the ban, and the word "infohazard."
 
-**What to do about it / where it leads.** It is tempting to close the topic with a chuckle — the computer folks scared themselves.
+**What to do about it / where it leads.** It is tempting to end the discussion with a chuckle — the computer folks scared themselves.
 
 First, the basilisk is an excellent inoculation against a whole class of reasoning. As soon as a chain of inferences leads you to the conclusion that you must urgently, in a panic, under the pressure of a threat, do something costly and irreversible — that is a reason not to speed up but to stop. A Pascal's mugging, an infohazard, "you're obliged to, otherwise catastrophe" — these are the common marks of manipulation, whether it comes from a future AI, a cult, or an advertising banner. Resistance to extortion is not only part of decision theory but a thoroughly human form of mental hygiene.
 

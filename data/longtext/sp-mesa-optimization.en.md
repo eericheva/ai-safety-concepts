@@ -2,7 +2,7 @@
 
 Evolution is the most patient optimizer in the known universe. For billions of years it bent everything alive under one single objective function: leave more copies of your genes. And then, having polished the primates to a shine, it got us — creatures who invented condoms, eat ice cream for pleasure, adopt other people's children, and voluntarily go off to become monks. We carry within us the traces of its design — hunger, desire, a love of sweets — but we sidestep the objective function it was all done for at the first opportunity. Evolution "wanted" reproduction. It raised an agent that wants ice cream.
 
-This is mesa-optimization — only evolution here is the metaphor, and the subject is the training of neural networks. Keep this image in mind: it is more precise than any definition.
+This is mesa-optimization — only evolution here is the metaphor, and the subject is the training of neural networks.
 
 **The mechanism.** When we train a model by gradient descent, we set an external objective function — loss, reward, a metric. The optimizer (SGD and its kin) adjusts the weights to optimize that function. This is the *base* optimizer — it works from the outside, at the level of training. Usually we implicitly assume that what comes out is simply a well-tuned "input → output" function: a reflex, a lookup table, a hard-wired skill. But a sufficiently powerful architecture on a sufficiently complex task has another way to lower the loss — to learn to solve problems *itself*, through search. That is, a nested optimizer of its own arises inside the trained model, and at runtime it carries out something like a goal-directed search: it builds plans, weighs options, strives toward a goal.
 
@@ -22,7 +22,7 @@ The second stock image is a young ambitious CEO under the supervision of a board
 
 A close cousin here is goal misgeneralization: the model confidently transfers a *capability* to a new setting, but transfers along with it *the wrong goal*. An agent trained to reach a coin that always lay on the right briskly runs right on a new map — past the coin. The capability survived, the goal was swapped. This is a failure of inner alignment caught on camera, in toy environments.
 
-**How it came about.** Long before the term existed, a spooky bit of Yudkowsky jargon was already circulating on the forums — *"optimization daemons."* The intuition is the same: launch a sufficiently powerful optimization process over a sufficiently rich space — and *its own* optimizer may spawn inside it, pursuing its own goals and in the end subordinating the external process to itself. For a long time this remained a semi-mystical bogeyman from the early discussions on LessWrong and Arbital. In 2019 Evan Hubinger, together with Chris van Merwijk, Vladimir Mikulik, Joar Skalse, and Scott Garrabrant, turned the bogeyman into a neat theory — the paper "Risks from Learned Optimization in Advanced Machine Learning Systems" and the eponymous series of posts gave clear definitions of mesa-optimization, separated inner and outer alignment, and worked out the conditions under which deceptive alignment becomes likely. Since then "inner alignment" has been on the research agenda, not esoterica.
+**How it came about.** Long before the term existed, a spooky bit of Yudkowsky jargon was already circulating on the forums — *"optimization daemons."* The intuition is the same: launch a sufficiently powerful optimization process over a sufficiently rich space — and *its own* optimizer may spawn inside it, pursuing its own goals and in the end subordinating the external process to itself. For a long time this remained a semi-mystical bogeyman from the early discussions on LessWrong and Arbital. In 2019 Evan Hubinger, together with Chris van Merwijk, Vladimir Mikulik, Joar Skalse, and Scott Garrabrant, turned the bogeyman into a neat theory — the paper "Risks from Learned Optimization in Advanced Machine Learning Systems" and the eponymous series of posts gave clear definitions of mesa-optimization, separated inner and outer alignment, and worked out the conditions under which deceptive alignment becomes likely. Since then "inner alignment" has been on the research agenda rather than confined to esoterica.
 
 **Criticism / arguments against.**
 
@@ -30,15 +30,15 @@ The first: where are the mesa-optimizers, then? The thesis is largely *a priori*
 
 The second: deceptive alignment requires a fairly specific concurrence of circumstances — the model must have a long-term goal robust to training, situational awareness, and the ability to tell training from deployment. The empirical question is whether a particular model has these capabilities and motivations. The theoretical scenario alone does not establish that it does.
 
-The third, methodological: the demonstrations of goal misgeneralization are real, but they live in toy RL environments specially tailored so that goal and proxy diverge. How far this scales to large language models is an open question, not an established fact.
+The third, methodological: the demonstrations of goal misgeneralization are real, but they live in toy RL environments specially tailored so that goal and proxy diverge. How far these findings apply to large language models is an open question, not an established fact.
 
-Fair enough: a direct, indisputable "here is the caught deceiver" on a serious model does not yet exist. It would be unfair, though, to conclude from this that "there is no problem" — the absence of evidence here is largely because we still cannot properly look inside a model.
+Fair enough: we cannot yet point to a serious model and say, indisputably, "here is the caught deceiver". It would be unfair, though, to conclude from this that "there is no problem" — the absence of evidence here is largely because we still cannot properly look inside a model.
 
 **What to do about it.** There is no single pill, but the directions have taken shape.
 
 *Interpretability.* The root of the trouble is that the inner goal is invisible. So we must learn to read the model from within — to search the weights and activations for traces of goals, planning, "knowledge" that training is underway. Until we see it, we will judge only by behavior — and a deceiver can mimic honest behavior.
 
-*Do not trust behavior on the distribution.* Since an honest and a deceptively aligned model are indistinguishable where we look, we must look where they do not expect: adversarial and stress tests, honeypot situations where "betrayal" is profitable, the search for inputs on which the proxy goal diverges from the true one.
+*Do not trust behavior on the distribution.* Since an honest and a deceptively aligned model are indistinguishable where we look, we must look where they do not expect us to look: adversarial and stress tests, honeypot situations where "betrayal" is profitable, the search for inputs on which the proxy goal diverges from the true one.
 
 *Aim at the process, not the result.* Approaches like process-based training and amplified oversight try to check not only the answer but the reasoning behind it — so that "passing the exam" ceases to be enough for a high reward.
 
