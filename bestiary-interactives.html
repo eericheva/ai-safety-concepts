@@ -234,7 +234,7 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
           <span style="font:700 26px 'Unbounded',sans-serif;">An idea feeds — and is fed</span>
           <span style="font:400 14px/1.45 'Onest',sans-serif;color:#9a948b;max-width:700px;text-wrap:pretty;">One idea, both ways at once: what it grew out of builds to the left, what grows out of it builds to the right, step by step. Click any idea in the tree to grow from it.</span>
         </div>
-        <span style="display:flex;gap:10px;"><button onClick="{{ fToggle }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;" style-hover="border-color:#efeae2;">{{ fPlayLabel }}</button><button onClick="{{ fReplay }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;" style-hover="border-color:#efeae2;">↻ Replay</button></span>
+        <span style="display:flex;gap:10px;"><button onClick="{{ fToggle }}" style="cursor:pointer;background:transparent;border:1px solid #3a3531;color:#efeae2;padding:10px 16px;min-height:44px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;" style-hover="border-color:#efeae2;">{{ fPlayLabel }}</button></span>
       </div>
       <div style="display:flex;gap:4px 22px;flex-wrap:wrap;align-items:center;border-bottom:1px solid #26231f;">
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Grow along</span>
@@ -500,7 +500,7 @@ class Component extends DCLogic {
       wUnOn: g.un.length > 0, wUnTitle: `No ${g.kind} links of their own · ${g.un.length} · pick one to grow the nearest ${g.kind} chain, one link away`, wUn: g.un.map(m => wItem(m, -1)),
       fName: fc.name, fInfo, fTldr: fc.tldr, fCapC: R[fc.role][1], fEmpty: !total, fEmptyText, fTree: total > 0, fNodes, fEdges, fH: `${fHn}px`, fHn: String(fHn),
       fHeads: g.labels.map((l, k) => ({ label: l, x: `${k * CW}px`, w: `${CW}px`, c: used.has(k) ? '#efeae2' : '#4a4540' })),
-      fPlayLabel: st.fPlay && s < total ? 'Ⅱ Pause' : '▶ Play', fToggle: () => this.setState(s >= total ? { fStep: 0, fPlay: true } : { fPlay: !st.fPlay }), fReplay: () => this.setState({ fStep: 0, fPlay: true }),
+      /* CHANGED 2026-11-09: one button, as in the other blocks: Replay once the tree is grown, no separate Replay */ fPlayLabel: s >= total ? '↻ Replay' : st.fPlay ? 'Ⅱ Pause' : '▶ Play', fToggle: () => this.setState(s >= total ? { fStep: 0, fPlay: true } : { fPlay: !st.fPlay }),
       fQ: st.fQ, fOnQ: e => this.setState({ fQ: e.target.value, fOpen: true }), fPOpen: () => this.setState({ fOpen: true }), fKey: enter(fM), fPHolder: `Search ${N} ideas…`,
       fChips, fPToggle: () => this.setState({ fOpen: !st.fOpen, fQ: '' }), fPCaret: st.fOpen ? '▴' : '▾', fPIsOpen: st.fOpen, fPBorder: st.fOpen ? '#d8a24a' : '#3a3531',
       pTitle: fq ? `“${st.fQ.trim()}” · ${fM.length} of ${N}` : `All ${N} ideas by ${axl} columns · the number is how many ideas it reaches within three steps · click to pick`,

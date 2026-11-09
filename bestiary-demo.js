@@ -271,16 +271,16 @@
       const tree = () => { const c = rootCard(); return c && c.parentElement }
       const picks = () => { const a = byText(root, 'button', /^All 227/)(); return a ? [...a.parentElement.children].filter((e) => e !== a && e.tagName !== 'SPAN') : [] }
       return [
-        ['click', tab('Logic')],
-        ['click', byText(root, 'button', /Replay/), 2600],
+        // CHANGED 2026-11-09: a new tab regrows the tree by itself; the separate Replay button is gone
+        ['click', tab('Logic'), 2600],
         // CHANGED 2026-11-02: `clear` keeps the card off the tree, its count line and the root picks
         ['note', { at: [rootCard], clear: [tree, head, picks], title: 'One idea, grown both ways',
           text: 'The gold card is the picked idea. Each tick adds one link on each side: to the left what feeds it, to the right what it feeds, up to three steps.' }],
         // CHANGED 2026-11-02: `clear` keeps the card off the tree, the column hint and the root picks
         ['note', { at: [head], clear: [tree, hint(root), picks], title: 'The count',
           text: () => `${txt(head())}. The numbers say how much of each side has grown so far and how much there is in all.` }],
-        ['click', tab('Cause')],
-        ['click', byText(root, 'button', /Replay/), 2600],
+        // CHANGED 2026-11-09: a new tab regrows the tree by itself; the separate Replay button is gone
+        ['click', tab('Cause'), 2600],
         // CHANGED 2026-11-02: as in The count
         ['note', { at: [rootCard, head], clear: [tree, hint(root), picks], title: 'Same idea, causal chain',
           text: 'On Cause a problem feeds what mitigates or solves it, and a cause feeds what it gives rise to. Dashed lines, when they appear, join an idea with no causal link of its own to the nearest neighbour that has one.' }],
