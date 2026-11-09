@@ -42,6 +42,8 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Selected</span>
         <span style="display:flex;gap:6px;align-items:center;height:32px;padding:0 11px;background:#d8a24a;color:#0c0b0a;font:700 13px 'Onest',sans-serif;">{{ wHead.name }}<span style="opacity:.6;font-weight:500;">{{ wHead.n }}</span></span>
+        <!-- ADDED 2026-11-09: the way from the selected beast to its full text -->
+        <a href="{{ wiki }}" target="_blank" style="display:flex;align-items:center;height:32px;padding:0 12px;border:1px solid #d8a24a;color:#d8a24a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#d8a24a;color:#0c0b0a;">Read in wiki →</a>
         <div style="display:flex;align-items:center;gap:8px;border:1px solid #3a3531;background:#0f0e0c;padding:0 10px;height:32px;width:260px;box-sizing:border-box;">
           <span style="color:#7d776f;font-size:13px;">⌕</span>
           <input value="{{ wQ }}" onInput="{{ wOnQ }}" onKeyDown="{{ wKey }}" placeholder="Highlight in the bestiary…" style="flex:1;min-width:0;background:transparent;border:0;outline:none;color:#efeae2;font:500 13px 'Onest',sans-serif;">
@@ -97,6 +99,8 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
         <sc-for list="{{ zPicks }}" as="p" hint-placeholder-count="6"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button></sc-for>
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;padding:0 6px 0 10px;">Alongside · {{ zAlN }}</span>
         <sc-for list="{{ zAl }}" as="p" hint-placeholder-count="8"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button></sc-for>
+        <!-- ADDED 2026-11-09: the followed beast's full text -->
+        <a href="{{ zWiki.href }}" target="_blank" style="display:flex;margin-left:auto;align-items:center;height:32px;padding:0 12px;border:1px solid #d8a24a;color:#d8a24a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#d8a24a;color:#0c0b0a;">Read {{ zWiki.name }} in wiki →</a>
       </div>
       <!-- CHANGED 2026-11-02: the canvas is laid out in fixed coordinates, so it stays 1136 wide and sits in the middle of the stretched block -->
       <div style="position:relative;width:1136px;height:600px;overflow:hidden;background:#0f0e0c;align-self:center;">
@@ -250,6 +254,8 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
         </div>
         <sc-for list="{{ fChips }}" as="c" hint-placeholder-count="5"><button onClick="{{ c.go }}" style="cursor:pointer;display:flex;gap:5px;align-items:center;height:32px;padding:0 11px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font:500 13px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ c.name }}<span style="color:{{ c.nc }};">{{ c.n }}</span></button></sc-for>
         <button onClick="{{ fPToggle }}" style="cursor:pointer;display:flex;gap:6px;align-items:center;height:32px;padding:0 12px;background:transparent;border:1px dashed #d8a24a;color:#d8a24a;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;" style-hover="border-style:solid;">All {{ total }} {{ fPCaret }}</button>
+        <!-- ADDED 2026-11-09: the root beast's full text -->
+        <a href="{{ wiki }}" target="_blank" style="display:flex;align-items:center;height:32px;padding:0 12px;border:1px solid #d8a24a;color:#d8a24a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#d8a24a;color:#0c0b0a;">Read {{ wHead.name }} in wiki →</a>
         <sc-if value="{{ fPIsOpen }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:10;background:#151311;border:1px solid #3a3531;box-shadow:0 18px 40px rgba(0,0,0,.6);display:flex;flex-direction:column;">
             <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #26231f;font:400 12px 'Onest',sans-serif;color:#9a948b;">
@@ -493,7 +499,7 @@ class Component extends DCLogic {
     const fChips = st.recent.map(m => { const on = m === id; return { name: by[m].name, n: String(tot(m)), go: () => this.pick(m), bd: on ? '#d8a24a' : '#3a3531', bg: on ? '#d8a24a' : 'transparent', fg: on ? '#0c0b0a' : '#efeae2', nc: on ? 'rgba(12,11,10,.6)' : '#8a8273' }; });
     const enter = list => e => { if (e.key === 'Enter' && list.length) this.pick(list[0].id); };
     return { total: String(N), gTabs, gHint: g.hint, gW: `${st.W}px`, gWn: String(st.W),
-      wHead: { name: fc.name, n: `←${nb.up} ${nb.down}→` }, wQ: st.wQ, wOnQ: e => this.setState({ wQ: e.target.value }), wKey: enter(wM), wInfo,
+      wHead: { name: fc.name, n: `←${nb.up} ${nb.down}→` }, wiki: '/bestiarium/wiki#/n/' + id, /* ADDED 2026-11-09 */ wQ: st.wQ, wOnQ: e => this.setState({ wQ: e.target.value }), wKey: enter(wM), wInfo,
       wCols: g.labels.map((l, k) => ({ label: l, n: String(g.C[k].length), hc: g.color(k), items: g.C[k].map(m => wItem(m, k)) })), wEdges, wGrid: `repeat(${g.n}, ${CW}px)`, wH: `${wHn}px`, wHn: String(wHn),
       wUnOn: g.un.length > 0, wUnTitle: `No ${g.kind} links of their own · ${g.un.length} · pick one to grow the nearest ${g.kind} chain, one link away`, wUn: g.un.map(m => wItem(m, -1)),
       fName: fc.name, fInfo, fTldr: fc.tldr, fCapC: R[fc.role][1], fEmpty: !total, fEmptyText, fTree: total > 0, fNodes, fEdges, fH: `${fHn}px`, fHn: String(fHn),
@@ -607,7 +613,9 @@ class Component extends DCLogic {
     ][lvl];
     const zMaps = L0.map((r, i) => ({ label: r.l, n: String(r.n), go: () => { this.auto.z = 0; this.setState({ zM: i, zPlay: false, zIs: null, zL: Math.max(1, lvl) }); }, bg: i === mi ? '#d8a24a' : 'transparent', fg: i === mi ? '#0c0b0a' : '#9a948b', bd: '' }));
     const zMapNote = st.zM != null ? 'your pick' : lvl === 1 ? 'cycling through all six, landing on this beast’s layer' : 'cycles on the Layer step';
-    return { zMaps, zMapNote, zTabs, zPicks, zAl, zAlN, zL0: LS(0), zL1: LS(1), zL2: LS(2), zL3: LS(3), zL4: LS(4), z0Rows, z0Tiles, z0Threads, z0Labels, z1Isl, z1Roads, z1Tiles, z1Labels, z2Cards, z2Links, z3L, z3R, z3A, z3, z4, zCap: capt[0], zSub: capt[1],
+    // ADDED 2026-11-09: the followed beast's wiki page
+    const zWiki = { href: '/bestiarium/wiki#/n/' + fid, name: fn.name };
+    return { zWiki, zMaps, zMapNote, zTabs, zPicks, zAl, zAlN, zL0: LS(0), zL1: LS(1), zL2: LS(2), zL3: LS(3), zL4: LS(4), z0Rows, z0Tiles, z0Threads, z0Labels, z1Isl, z1Roads, z1Tiles, z1Labels, z2Cards, z2Links, z3L, z3R, z3A, z3, z4, zCap: capt[0], zSub: capt[1],
       zPlayLabel: st.zPlay === false ? '▶ Play' : 'Ⅱ Pause', zToggle: () => { this.auto.z = 0; this.setState({ zPlay: st.zPlay === false }); this.zRestart(); },
       zPrev: () => { const n = (lvl + 4) % 5; this.auto.z = 0; this.auto.zc = 0; this.setState({ zL: n, zPlay: false, zCyc: n === 1 ? 0 : null }); }, zNext: () => { const n = (lvl + 1) % 5; this.auto.z = 0; this.auto.zc = 0; this.setState({ zL: n, zPlay: false, zCyc: n === 1 ? 0 : null }); },
       zIn: () => this.setState({ zHover: true }), zLeave: () => { this.auto.z = 0; this.setState({ zHover: false, zH: null, zIs: null, zC: null, zP: null }); this.zRestart(); } };
@@ -630,8 +638,8 @@ class Component extends DCLogic {
   renderVals() {
     const st = this.state, D = st.data, F = Component.FAM, R = Component.ROLE;
     // CHANGED 2026-10-27: the values of the removed views (2b, 2c and the unused 2d, 3a–3e) are gone; the genealogy blocks come from genVals
-    const empty = { side4a: false, hasSide: false, side: { href: '#', c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' }, closeSide: () => {}, zMaps: [], zMapNote: '', zTabs: [], zPicks: [], zAl: [], zAlN: '0', zL0: { o: '0', s: '1', p: 'none' }, zL1: { o: '0', s: '1', p: 'none' }, zL2: { o: '0', s: '1', p: 'none' }, zL3: { o: '0', s: '1', p: 'none' }, zL4: { o: '0', s: '1', p: 'none' }, z0Rows: [], z0Tiles: [], z0Threads: [], z0Labels: [], z1Isl: [], z1Roads: [], z1Tiles: [], z1Labels: [], z2Cards: [], z2Links: [], z3L: [], z3R: [], z3A: [], z3: { img: '', name: '', c: '#3a3531', nin: '', nout: '', nal: '', alOn: false, top: '190px', h: '220px' }, z4: { img: '', name: '', meta: '', tldr: '', c: '#3a3531', stats: [], pos: [], neg: [], npos: '', nneg: '', posNone: false, negNone: false, verdict: '' }, zCap: '', zSub: '', zPlayLabel: 'Ⅱ Pause', zToggle: () => {}, zPrev: () => {}, zNext: () => {}, zIn: () => {}, zLeave: () => {},
-      gTabs: [], gW: '1136px', gWn: '1136', wCols: [], wEdges: [], wUn: [], wH: '0px', wHn: '0', wHead: { name: '', n: '' }, wUnOn: false, fNodes: [], fEdges: [], fHeads: [], fChips: [], pCols: [], fH: '0px', fHn: '0', fEmpty: false, fTree: false, fPIsOpen: false, fCapC: '#3a3531', fPlayLabel: 'Ⅱ Pause' };
+    const empty = { side4a: false, hasSide: false, side: { href: '#', c: '#3a3531', role: '', img: '', name: '', meta: '', tldr: '', author: '', stats: [], inc: [], out: [], nin: '', nout: '' }, closeSide: () => {}, zWiki: { href: '#', name: '' }, zMaps: [], zMapNote: '', zTabs: [], zPicks: [], zAl: [], zAlN: '0', zL0: { o: '0', s: '1', p: 'none' }, zL1: { o: '0', s: '1', p: 'none' }, zL2: { o: '0', s: '1', p: 'none' }, zL3: { o: '0', s: '1', p: 'none' }, zL4: { o: '0', s: '1', p: 'none' }, z0Rows: [], z0Tiles: [], z0Threads: [], z0Labels: [], z1Isl: [], z1Roads: [], z1Tiles: [], z1Labels: [], z2Cards: [], z2Links: [], z3L: [], z3R: [], z3A: [], z3: { img: '', name: '', c: '#3a3531', nin: '', nout: '', nal: '', alOn: false, top: '190px', h: '220px' }, z4: { img: '', name: '', meta: '', tldr: '', c: '#3a3531', stats: [], pos: [], neg: [], npos: '', nneg: '', posNone: false, negNone: false, verdict: '' }, zCap: '', zSub: '', zPlayLabel: 'Ⅱ Pause', zToggle: () => {}, zPrev: () => {}, zNext: () => {}, zIn: () => {}, zLeave: () => {},
+      gTabs: [], gW: '1136px', gWn: '1136', wCols: [], wEdges: [], wUn: [], wH: '0px', wHn: '0', wHead: { name: '', n: '' }, wiki: '#', wUnOn: false, fNodes: [], fEdges: [], fHeads: [], fChips: [], pCols: [], fH: '0px', fHn: '0', fEmpty: false, fTree: false, fPIsOpen: false, fCapC: '#3a3531', fPlayLabel: 'Ⅱ Pause' };
     if (!D) return empty;
     const meta = n => `${R[n.role][0]} · ${F[n.fam][0]} · ${Component.ERAS[this.eraI(n.era)][1]}`;
     return { ...empty, ...this.zoomVals(D, meta), ...this.sideVals(meta), ...this.genVals() };
