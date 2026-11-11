@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"><!-- ADDED 2026-11-09: the site's text face for the interface -->
-  <title>Бестиарий алайнмента — единый мир</title>
+  <title>Bestiary of Alignment — one world</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
@@ -547,29 +547,29 @@
     }
   </style>
   <script>
-    /* ===== BestiarySearch engine (умный поиск, инъекция) ===== */
+    /* ===== BestiarySearch engine (smart search, injected) ===== */
     /* ============================================================================
-       BestiarySearch — автономный «умный» поисковый движок для Бестиария.
-       Без зависимостей. Работает и в вики, и в картах (одна копия кода).
+       BestiarySearch — a self-contained "smart" search engine for the Bestiary.
+       No dependencies. Works in both the wiki and the maps (one copy of the code).
     
-       Возможности:
-         • полнотекстовый индекс по взвешенным полям (имя / автор / tldr / текст…)
-         • устойчивость к опечаткам (ограниченное расст. Дамерау–Левенштейна)
-         • префиксное совпадение + автодополнение
-         • ранжирование: точное имя ≫ префикс имени ≫ поля ≫ fuzzy, с нормировкой длины
-         • виджет-дропдаун автодополнения с клавиатурой (↑↓ Enter Esc)
+       Features:
+         • full-text index over weighted fields (name / author / tldr / text…)
+         • typo tolerance (bounded Damerau–Levenshtein distance)
+         • prefix matching + autocomplete
+         • ranking: exact name ≫ name prefix ≫ fields ≫ fuzzy, length-normalised
+         • autocomplete dropdown widget with keyboard support (↑↓ Enter Esc)
     
-       API (глобальный window.BestiarySearch):
+       API (global window.BestiarySearch):
          createIndex(docs, opts)      docs:[{id,ref,label,en,sub,fields:[{text,w}]}]
-         fromNodes(nodes, opts)       строит индекс из узлов Бестиария (label/en/author/tldr/desc/text)
+         fromNodes(nodes, opts)       builds the index from Bestiary nodes (label/en/author/tldr/desc/text)
          query(index, q, {limit})  -> [{id,ref,score,label,en,sub}]
-         attach(cfg)               автодополнение к <input> (см. ниже)
-         mountMapSearch(cfg)        подключение к поиску карты (highlight + фокус)
+         attach(cfg)               autocomplete for an <input> (see below)
+         mountMapSearch(cfg)        wires up the map search (highlight + focus)
        ========================================================================== */
     (function (global) {
       "use strict";
 
-      /* ---------- нормализация текста ---------- */
+      /* ---------- text normalisation ---------- */
       function fold(s) {
         return (s || "").toString().toLowerCase().replace(/ё/g, "е")
           .normalize("NFKD").replace(/[̀-ͯ]/g, "");
@@ -586,7 +586,7 @@
         return out;
       }
 
-      /* ---------- ограниченное расстояние Дамерау–Левенштейна ---------- */
+      /* ---------- bounded Damerau–Levenshtein distance ---------- */
       function damlev(a, b, max) {
         const la = a.length, lb = b.length;
         if (Math.abs(la - lb) > max) return -1;
@@ -611,16 +611,16 @@
         return d <= max ? d : -1;
       }
 
-      /* ---------- построение индекса ---------- */
+      /* ---------- index construction ---------- */
       function createIndex(docs, opts) {
         opts = opts || {};
-        const postings = new Map();   // token -> Map(docIdx -> накопл. вес)
+        const postings = new Map();   // token -> Map(docIdx -> accumulated weight)
         const vocab = new Map();      // token -> df
-        const byLen = new Map();      // длина -> [токены]  (для fuzzy-прунинга)
-        const D = [];                 // документы (для вывода)
+        const byLen = new Map();      // length -> [tokens]  (for fuzzy pruning)
+        const D = [];                 // documents (for output)
         const idIndex = new Map();
 
-        const nokey = s => fold(s).replace(/[^0-9a-zа-я]/g, "");   // имя без пробелов/дефисов
+        const nokey = s => fold(s).replace(/[^0-9a-zа-я]/g, "");   // name without spaces/hyphens
         docs.forEach(d => {
           const di = D.length;
           D.push({
@@ -658,7 +658,7 @@
         return res;
       }
 
-      /* ---------- запрос ---------- */
+      /* ---------- query ---------- */
       function query(idx, q, o) {
         o = o || {};
         const limit = o.limit || 30;
@@ -677,12 +677,12 @@
 
         qtoks.forEach((qt, qi) => {
           if (idx.vocab.has(qt)) contribute(qt, 1.0, qi);
-          // префикс (живой ввод «меза» → «мезаоптимизация»)
+          // prefix (live typing "mesa" → "mesaoptimization")
           if (qt.length >= 2) {
             for (const tk of idx.vocab.keys())
               if (tk.length > qt.length && tk.startsWith(qt)) contribute(tk, 0.55, qi);
           }
-          // опечатки
+          // typos
           if (qt.length >= 4) {
             const maxD = qt.length >= 8 ? 2 : 1;
             for (const [tk, d] of fuzzyCands(idx, qt, maxD)) {
@@ -692,7 +692,7 @@
           }
         });
 
-        // совпадение по имени без разделителей — ловит слитный ввод («мезаоптимиз» → «Меза-оптимизация»)
+        // match on the name without separators — catches run-together input ("mesaoptimiz" → "Mesa-optimization")
         const qkey = fold(q).replace(/[^0-9a-zа-я]/g, "");
         if (qkey.length >= 3) {
           idx.docs.forEach((d, di) => {
@@ -711,8 +711,8 @@
         score.forEach((sc, di) => {
           const d = idx.docs[di];
           const cv = (cover.get(di) || new Set()).size;
-          let s = sc / Math.sqrt(d.len);          // нормировка длины (BM25-lite)
-          s *= (1 + 0.4 * (cv - 1));                // покрытие: сколько слов запроса найдено
+          let s = sc / Math.sqrt(d.len);          // length normalisation (BM25-lite)
+          s *= (1 + 0.4 * (cv - 1));                // coverage: how many query words were found
           const lab = fold(d.label), en = fold(d.en);
           if (qfold && (lab === qfold || en === qfold)) s += 100;
           else if (qfold && (lab.startsWith(qfold) || en.startsWith(qfold))) s += 28;
@@ -723,12 +723,12 @@
         return out.slice(0, limit);
       }
 
-      /* ---------- индекс из стандартных узлов Бестиария ---------- */
+      /* ---------- index from standard Bestiary nodes ---------- */
       function fromNodes(nodes, opts) {
         opts = opts || {};
         const W = Object.assign({ name: 12, author: 6, tldr: 4, tags: 3, body: 1 }, opts.weights || {});
         const stripHtml = h => (h || "").replace(/<[^>]+>/g, " ");
-        const catText = opts.catText || (() => "");   // (node)->строка меток семейства/роли/эпохи (опц.)
+        const catText = opts.catText || (() => "");   // (node)->string of family/role/era labels (optional)
         const docs = nodes.map(n => {
           const label = opts.label ? opts.label(n) : (n.label || n.en || n.id);
           const en = n.en || "";
@@ -747,7 +747,7 @@
         return createIndex(docs, opts);
       }
 
-      /* ---------- виджет автодополнения ---------- */
+      /* ---------- autocomplete widget ---------- */
       let cssInjected = false;
       function injectCss() {
         if (cssInjected) return; cssInjected = true;
@@ -775,7 +775,7 @@
         const max = cfg.max || 8;
         const box = document.createElement("div");
         box.className = "bs-ac"; box.setAttribute("role", "listbox");
-        // позиционируем относительно ближайшего позиционированного контейнера
+        // position relative to the nearest positioned container
         const holder = cfg.container || input.parentElement;
         if (holder && getComputedStyle(holder).position === "static") holder.style.position = "relative";
         (holder || document.body).appendChild(box);
@@ -825,7 +825,7 @@
         return { update, hide, box, refresh: showItems };
       }
 
-      /* ---------- подключение к поиску карты ---------- */
+      /* ---------- map search wiring ---------- */
       function mountMapSearch(cfg) {
         const idx = fromNodes(cfg.nodes, cfg);
         return attach({
@@ -852,20 +852,20 @@
 <body>
   <canvas id="cv"></canvas>
   <div id="hud" class="plate">
-    <h1 id="hudTitle">Бестиарий · единый мир</h1>
-    <p class="sub" id="hudSub"><b>227</b> зверей · <b>795</b> связей · одна карта</p>
+    <h1 id="hudTitle">Bestiary · one world</h1>
+    <p class="sub" id="hudSub"><b>227</b> beasts · <b>795</b> links · one map</p>
     <div id="langsw"><button data-l="ru">RU</button><button data-l="en">EN</button></div>
-    <div class="eyebrow" id="ebBiomes">Биомы по…</div>
+    <div class="eyebrow" id="ebBiomes">Biomes by…</div>
     <div class="seg" id="axis"></div>
-    <div class="eyebrow" id="ebColor" style="margin-top:11px">Покраска зверей по…</div>
+    <div class="eyebrow" id="ebColor" style="margin-top:11px">Beast colour by…</div>
     <div class="seg" id="colorseg"></div>
-    <input id="search" placeholder="Найти зверя…" autocomplete="off" spellcheck="false">
-    <button id="edgeToggle" class="etbtn on">Связи между биомами: показаны</button>
+    <input id="search" placeholder="Find a beast…" autocomplete="off" spellcheck="false">
+    <button id="edgeToggle" class="etbtn on">Cross-biome links: shown</button>
   </div>
   <div id="legend" class="plate">
-    <div class="eyebrow" id="lgBiomes" style="margin-top:0">Биомы-регионы</div>
+    <div class="eyebrow" id="lgBiomes" style="margin-top:0">Biome regions</div>
     <div id="biomes"></div>
-    <div class="eyebrow" id="lgColor" style="margin-top:13px">Покраска зверей</div>
+    <div class="eyebrow" id="lgColor" style="margin-top:13px">Beast colour</div>
     <div id="clegend"></div>
   </div>
   <aside id="panel" class="plate">
@@ -877,8 +877,8 @@
     <div class="tags" id="pt"></div>
     <p class="tldr" id="pl"></p>
     <p class="desc" id="pd"></p>
-    <button id="readfull">Открыть в вики →</button>
-    <div class="rel-h" id="prh" style="display:none">Соседи по карте</div>
+    <button id="readfull">Open in the wiki →</button>
+    <div class="rel-h" id="prh" style="display:none">Neighbours on the map</div>
     <div class="rels" id="pr"></div>
   </aside>
   <aside id="rpanel" class="plate">
@@ -893,12 +893,11 @@
     <div class="tn"></div>
     <div class="te"></div>
   </div>
-  <div id="hint">левой кнопкой тащить — облёт · правой/двумя пальцами — сдвиг · колесо — зум · WASD/стрелки — двигаться
-    · клик по зверю — досье</div>
+  <div id="hint">left-drag — orbit · right-drag/two fingers — pan · wheel — zoom · WASD/arrows — move · click a beast — dossier</div>
   <div id="err">
     <div>
-      <h2>Не загрузился Three.js</h2>
-      <p>Нужен интернет (библиотека берётся с CDN). Открой при подключении к сети.</p>
+      <h2>Three.js did not load</h2>
+      <p>An internet connection is needed (the library comes from a CDN). Open the page while online.</p>
     </div>
   </div>
 
@@ -991,7 +990,7 @@
       const ROT = ['peaks', 'crystal', 'volcano', 'ice', 'garden', 'fortress', 'ruins', 'maze', 'swamp', 'plateau'];
       const CEN = { Core: 1.5, Major: 1.05, Supporting: 0.8 };
       const SAND = [.85, .75, .53], SNOW = [.95, .97, 1], WATER = [.16, .3, .44];
-      const TEXALIAS = { volcano: 'peaks' };// volcano ground = dark rock (лава живёт в декоре), чтобы красные звери не тонули
+      const TEXALIAS = { volcano: 'peaks' };// volcano ground = dark rock (the lava lives in the decor), so red beasts do not sink into it
       // raw ground images (for baking map ground identical to the legend swatches)
       const GIMG = {}, GROUNDS = ['garden', 'plateau', 'swamp', 'ice', 'ruins', 'maze', 'fortress', 'crystal', 'volcano', 'peaks', 'sand'];
       function loadGroundImgs() { return Promise.all(GROUNDS.map(b => new Promise(res => { const im = new Image(); im.onload = im.onerror = () => res(); im.src = 'assets/ground/' + b + '.jpg'; GIMG[b] = im; }))); }
@@ -1019,27 +1018,27 @@
         crystal: { d: 0.75, mix: [['crystal', 0x8fe2ee, 52, 4], ['shard', 0xb08fee, 36, 2], ['rock', 0x6d7f92, 20, 1], ['geode', 0x9fd0e6, 24, 0.9], ['floatcrystal', 0x9fe6ee, 30, 0.7], ['firefly', 0x8fe2ee, 11, 0.5]] },
         fortress: { d: 0.62, mix: [['boulder', 0x9c958c, 46, 3], ['rock', 0xb0a898, 24, 2.2], ['grass', 0x6f7a45, 18, 1], ['brick', 0xa89e90, 22, 1.5], ['column', 0xb0a694, 44, 0.7], ['torch', 0xff7a2a, 30, 0.3]] },
         ruins: { d: 0.66, mix: [['boulder', 0xbaaa8a, 42, 2.2], ['rock', 0xc8b896, 22, 2], ['grass', 0x8a8a52, 20, 1.6], ['bush', 0x9a9a5a, 30, 0.7], ['column', 0xc0b090, 44, 0.8], ['brick', 0xc2b090, 20, 1], ['dune', 0xceb98a, 26, 0.8], ['tumble', 0xb7a06a, 20, 0.5]] },
-        // «пустыня» — сухой тёплый биом: кактусы, кусты, жухлая трава, барханы, кости, перекати-поле
+        // "desert" — a dry warm biome: cacti, bushes, withered grass, dunes, bones, tumbleweed
         sand: { d: 0.62, mix: [['cactus', 0x5f8a4a, 54, 1.3], ['bush', 0x9db06a, 34, 1.8], ['grass', 0xbfb277, 22, 2.2], ['boulder', 0xccb58c, 36, 1], ['dune', 0xdcc890, 28, 1.4], ['bones', 0xe6ded0, 16, 0.4], ['tumble', 0xc7b070, 22, 0.7]] }
       };
       // per-region colour nudges (offsetHSL) so regions that SHARE a biome still look distinct.
       // keyed by category key; anything not listed gets an automatic spread among its biome-siblings.
-      // col = абсолютный цвет тинта (перебивает цвет категории); white = насколько выбелить (меньше = насыщеннее).
-      // h/s/l = сдвиги offsetHSL относительно цвета категории (для мягких случаев).
+      // col = absolute tint colour (overrides the category colour); white = how much to whiten (less = more saturated).
+      // h/s/l = offsetHSL shifts relative to the category colour (for mild cases).
       const REGIONVAR = {
-        'moral-status': { col: 0x74d13f, white: 0.12 },   // луг — СОЧНО-зелёный
-        'ethics': { h: -0.03, s: -0.12, l: -0.05 },   // второй луг — приглушённый оливковый
-        'critical': { col: 0xd9c17a, white: 0.34 },   // единственная пустыня — тёплый жёлтый песок (охра)
-        'myth': { col: 0x9a9c8a, white: 0.40 },   // РАЗРУШЕННАЯ КРЕПОСТЬ — замшелый серо-зелёный камень
-        'deception': { col: 0x5f7444, white: 0.36 }    // БОЛОТО — топкий зелёно-бурый, чтобы читалось
+        'moral-status': { col: 0x74d13f, white: 0.12 },   // meadow — LUSH green
+        'ethics': { h: -0.03, s: -0.12, l: -0.05 },   // second meadow — muted olive
+        'critical': { col: 0xd9c17a, white: 0.34 },   // the only desert — warm yellow sand (ochre)
+        'myth': { col: 0x9a9c8a, white: 0.40 },   // RUINED FORTRESS — mossy grey-green stone
+        'deception': { col: 0x5f7444, white: 0.36 }    // SWAMP — boggy green-brown, so it reads as a swamp
       };
-      // per-region decor override (перебивает DECOR[biome] для КОНКРЕТНОГО региона пары с общим биомом)
+      // per-region decor override (overrides DECOR[biome] for ONE region of a pair sharing a biome)
       const DECORVAR = {
-        // РАЗРУШЕННАЯ КРЕПОСТЬ (мифы): поваленные колонны, кирпичные обломки, мшистая заросль, валуны-руины
+        // RUINED FORTRESS (myths): fallen columns, brick rubble, mossy undergrowth, ruin boulders
         'myth': { d: 0.66, mix: [['column', 0x9a9082, 46, 2.2], ['brick', 0xa2988a, 22, 2.6], ['boulder', 0x8f9488, 40, 1.3], ['grass', 0x6f8048, 18, 1.6], ['bush', 0x66794a, 26, 0.9], ['rock', 0x9a9288, 20, 1.2]] },
-        // сочно-зелёный луг (мор.статус) — с палками
+        // lush green meadow (moral status) — with sticks
         'moral-status': { d: 0.98, mix: [['grass', 0x5f9a3d, 30, 12], ['grass', 0x6faa46, 26, 6], ['log', 0x7a5a38, 24, 2.5], ['flower', 0, 24, 2], ['bush', 0x4f8a37, 42, 1]] },
-        // Takeoff / strategy / coordination (peaks, общий с oversight): без белых камней — только пеньки и брёвна
+        // Takeoff / strategy / coordination (peaks, shared with oversight): no white stones — only stumps and logs
         'strategy': { d: 0.7, mix: [['stump', 0x7a5a38, 22, 3], ['log', 0x6b5236, 22, 3], ['stump', 0x8a6a44, 18, 1.6], ['log', 0x5b4632, 20, 1.6]] }
       };
 
@@ -1119,7 +1118,7 @@
       function fbm(x, z, seed, oct) { let n = 0, amp = 1, freq = 0.006, sum = 0; for (let o = 0; o < oct; o++) { n += amp * vnoise(x * freq + seed, z * freq + seed); sum += amp; amp *= 0.5; freq *= 2; } return n / sum; }
 
       // ---- one connected world: anchors (regions) on a plane ----
-      const AXES = [["fam", "Семейство"], ["era", "Эпоха"], ["role", "Роль"], ["track", "Канон"]];
+      const AXES = [["fam", "Family"], ["era", "Era"], ["role", "Role in the argument"], ["track", "Canon"]];
       let axis = "fam"; let anchors = []; let LAND = 2600, SIG = 900, H0 = 680;
       let CLEAR = [];
       function zoneMul(an, x, z) {
