@@ -295,7 +295,8 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
 class Component extends DCLogic {
   // CHANGED 2026-10-27: The whole bestiary, Zooming in and An idea feeds — and is fed share one selection (`sel`, on the Role ladder axis at first)
   // CHANGED 2026-11-02: W is the measured inner width of The whole bestiary; its columns and An idea feeds — and is fed are laid out on it
-  state = { W: 1136, data: null, tick: 0, sel: 'power', ax: 'role', wQ: '', fQ: '', fOpen: false, fStep: 0, fPlay: true, recent: [] };
+  // CHANGED 2026-11-12: a link to #/n/<id> (posts on Substack, the wiki) opens with that beast selected
+  state = { W: 1136, data: null, tick: 0, sel: (location.hash.match(/^#\/n\/([\w-]+)/) || [])[1] || 'power', ax: 'role', wQ: '', fQ: '', fOpen: false, fStep: 0, fPlay: true, recent: [] };
   static FAM = { misalign: ['Misalignment', '#C0453A'], deception: ['Deception', '#8E5DB0'], control: ['Control', '#E08A3C'], oversight: ['Oversight', '#3FA07E'], strategy: ['Takeoff & strategy', '#D9A441'], robustness: ['Robustness', '#6FA85B'], interp: ['Interpretability', '#2E9AA6'], mind: ['Philosophy of mind', '#4C7FC0'], ethics: ['Ethical lenses', '#C77BB0'], critical: ['Critical lens', '#B34F63'], myth: ['Cultural myths', '#A98A5B'], decision: ['Decision theory', '#7C93C4'], 'moral-status': ['Moral status of AI', '#B57ED9'] };
   static ROLE = { 'провал': ['Failure mode', '#fea199'], 'механизм': ['Mechanism', '#1cddae'], 'тезис': ['Thesis', '#76c7ff'], 'решение': ['Approach', '#ffd84a'], 'метафора': ['Metaphor', '#ffa752'], 'линза': ['Lens', '#ff96d3'], 'критика': ['Critique', '#c3affe'], 'эмпирика': ['Empirics', '#96d35f'] };
   static ERAS = [['E0', 'Myths / undated'], ['E1', '<1900'], ['E2', '1900–55'], ['E3', '1956–99'], ['E4', '2000–15'], ['E5', '2016–21'], ['E6', '2022+']];
@@ -305,6 +306,9 @@ class Component extends DCLogic {
 
   componentDidMount() {
     this.sprites = {}; this.queue = [];
+    // ADDED 2026-11-12: the site rewrites the frame's hash without a reload; a new #/n/<id> selects that beast as a click would
+    this.onHash = () => { const m = location.hash.match(/^#\/n\/([\w-]+)/); if (m && this.by && this.by[m[1]] && m[1] !== this.state.sel) this.pick(m[1]); };
+    window.addEventListener('hashchange', this.onHash);
     // ADDED 2026-11-02: the blocks stretch with the window; 64 is the block's side padding
     this.ro = new ResizeObserver(([e]) => { const W = Math.max(1136, Math.floor(e.target.clientWidth - 64)); if (W !== this.state.W) this.setState({ W }); });
     this.ro.observe(document.getElementById('2w'));
@@ -315,8 +319,9 @@ class Component extends DCLogic {
       // CHANGED 2026-10-27: the dominant link kind of every beast (the Links layer of Zooming in) is set here; it was set by the removed 3d view
       nodes.forEach(n => { const c = {}; n.adj.forEach(a => c[a[2]] = (c[a[2]] || 0) + 1); n.lk = Object.keys(c).sort((p, q) => c[q] - c[p])[0] || 'D'; });
       this.by = by; this.buildAxes(nodes);
-      const top = [...this.axes.role.C.flat()].sort((p, q) => this.axes.role.steps[q][0] + this.axes.role.steps[q][1] - this.axes.role.steps[p][0] - this.axes.role.steps[p][1]).filter(id => id !== 'power').slice(0, 4);
-      this.setState({ data: nodes, recent: ['power', ...top] });
+      const s0 = by[this.state.sel] ? this.state.sel : 'power'; // CHANGED 2026-11-12: an unknown #/n/<id> falls back to Power-seeking
+      const top = [...this.axes.role.C.flat()].sort((p, q) => this.axes.role.steps[q][0] + this.axes.role.steps[q][1] - this.axes.role.steps[p][0] - this.axes.role.steps[p][1]).filter(id => id !== s0).slice(0, 4);
+      this.setState({ data: nodes, sel: s0, recent: [s0, ...top] });
     });
     const img = new Image();
     Promise.all([fetch('assets/monster/spritesheet_default.xml').then(r => r.text()), new Promise(res => { img.onload = res; img.src = 'assets/monster/spritesheet_default.png'; })]).then(([xml]) => {
@@ -341,7 +346,7 @@ class Component extends DCLogic {
       this.setState(s => ({ tick: s.tick + 1 }));
     }, 60);
   }
-  componentWillUnmount() { this.ro.disconnect(); clearInterval(this.flush); clearInterval(this.autoT); clearTimeout(this.zPT); clearInterval(this.fT); }
+  componentWillUnmount() { window.removeEventListener('hashchange', this.onHash); this.ro.disconnect(); clearInterval(this.flush); clearInterval(this.autoT); clearTimeout(this.zPT); clearInterval(this.fT); }
 
   sp(id) { if (this.sprites[id]) return this.sprites[id]; if (!this.queue.includes(id)) this.queue.push(id); return ''; }
   draw(n) {
