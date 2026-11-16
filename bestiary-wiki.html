@@ -161,7 +161,11 @@ a{color:inherit;text-decoration:none}
 }
 
 /* essay body */
+/* ADDED 2026-11-16: the explanatory picture under the epigraph */
+.beast-fig{margin:4px 0 26px;max-width:66ch}.beast-fig img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--rule)}
 .article{font-size:17.5px;line-height:1.78;max-width:66ch}
+/* ADDED 2026-11-16 */
+.site-back{display:inline-block;margin:10px 0 2px;font-family:var(--ui);font-size:12px;letter-spacing:.06em;color:var(--ink-faint)}.site-back:hover{color:var(--gold)}
 .article p{margin:0 0 1.15em}
 .article h3{
   font-size:14px;font-family:var(--ui);font-weight:600;letter-spacing:.12em;text-transform:uppercase;
@@ -259,6 +263,8 @@ a{color:inherit;text-decoration:none}
       <h1 id="brand-title">Alignment<br>Bestiary</h1>
       <span class="sub" id="brand-sub">a map of AI-safety concepts</span>
     </div>
+    <!-- ADDED 2026-11-16: on the site the wiki has no site header, so the way back to the site is here -->
+    <a class="site-back" id="site-back" href="/#bestiarium" hidden>← Mrs Wallbreaker</a>
     <div class="topctl">
       <div class="langtog" id="langtog">
         <button data-lang="en">EN</button>
@@ -610,6 +616,11 @@ const FAMCOL = id => F.fam.cats[BY[id].fam].color;
    map's recipe (beastMonsterCanvas, seeded by the beast's id) and tinted by era, the map's default
    colouring, so a beast looks the same on the map and here. Until the sheet loads - or if it cannot,
    when the file is opened from disk - the drawn silhouette (drawBlob) stands in. */
+// ADDED 2026-11-16: on mrswallbreakermaps.com the wiki is the page itself (owner's decision): the home is /bestiarium/wiki
+// and a beast is /bestiarium/wiki/<id>, so search engines read each beast at its own address; the bundle's files
+// are served from /api/bestiarium/. Opened as a file or elsewhere, the wiki keeps its #/n/<id> addresses.
+const ON_SITE=location.pathname.startsWith("/bestiarium/wiki");
+const ASSETS=ON_SITE?"/api/bestiarium/":"";
 const MON={img:new Image(),frames:{},ready:false};
 const WAITING=new Set();
 function monHas(n){return !!MON.frames[n];}
@@ -649,8 +660,8 @@ function drawBeast(cv, node, opts={}){
   g.drawImage(monBeast(node.id,F.era.cats[node.era].color),0,0,cv.width,cv.height);
 }
 Promise.all([
-  fetch("assets/monster/spritesheet_default.xml").then(r=>r.text()),
-  new Promise((res,rej)=>{MON.img.onload=res; MON.img.onerror=rej; MON.img.src="assets/monster/spritesheet_default.png";}),
+  fetch(ASSETS+"assets/monster/spritesheet_default.xml").then(r=>r.text()),
+  new Promise((res,rej)=>{MON.img.onload=res; MON.img.onerror=rej; MON.img.src=ASSETS+"assets/monster/spritesheet_default.png";}),
 ]).then(([xml])=>{
   const re=/name="([^"]+)"\s+x="(\d+)"\s+y="(\d+)"\s+width="(\d+)"\s+height="(\d+)"/g; let m;
   while((m=re.exec(xml))) MON.frames[m[1]]={x:+m[2],y:+m[3],w:+m[4],h:+m[5]};
@@ -768,7 +779,12 @@ const sortName=(a,b)=>nName(a).localeCompare(nName(b), curLang()==="en"?"en":"ru
 /* ---------- utilities ---------- */
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
 const esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
-function go(hash){location.hash=hash;}
+function go(hash){
+  // CHANGED 2026-11-16: on the site the home and a beast are real addresses (see ON_SITE)
+  const m=ON_SITE&&hash.match(/^#\/n\/(.+)$/);
+  if(ON_SITE&&(m||hash==="#/")){ history.pushState(null,"",m?"/bestiarium/wiki/"+m[1]:"/bestiarium/wiki"); router(); return; }
+  location.hash=hash;
+}
 function scrollTop(){window.scrollTo({top:0,behavior:"instant"in window?"instant":"auto"});}
 
 /* ---------- sidebar: chips ---------- */
@@ -980,6 +996,11 @@ function renderEntry(id){
   col.appendChild(headRow);
 
   if(nTldr(n)) col.appendChild(el("div","epigraph",esc(nTldr(n))));
+  // ADDED 2026-11-16: the beast's explanatory picture, kept in Notion (Bestiary beasts, column Picture) and served by the
+  // site at /bestiary-figs/<id>.png; a beast without one shows nothing, and so does the file opened outside the site
+  const fig=el("figure","beast-fig"), img=new Image();
+  img.alt=nName(n); img.onerror=()=>fig.remove(); img.src="/bestiary-figs/"+n.id+".png";
+  fig.appendChild(img); col.appendChild(fig);
 
   const art=el("div","article");
   art.innerHTML = nBody(n) || `<p>${esc(nCard(n)||T("fallback"))}</p>`;
@@ -1064,7 +1085,9 @@ function buildRelations(n){
 /* ---------- ROUTER ---------- */
 function router(){
   entryLang=null;   // navigation resets the per-page language to the global one
-  const h=location.hash||"#/";
+  // CHANGED 2026-11-16: on the site /bestiarium/wiki/<id> opens that beast (see ON_SITE)
+  const pathId=ON_SITE?(location.pathname.match(/^\/bestiarium\/wiki\/([^/]+)/)||[])[1]:null;
+  const h=location.hash||(pathId?"#/n/"+pathId:"#/");
   // role keys are Cyrillic; the hash percent-encodes them → decode every part
   const parts=h.replace(/^#\//,"").split("/").map(p=>{try{return decodeURIComponent(p);}catch(e){return p;}});
   if(parts[0]==="") return renderHome();
@@ -1153,5 +1176,7 @@ BestiarySearch.attach({
 applyLangStatic();
 buildChips();
 window.addEventListener("hashchange",()=>{ if(qInput.value.trim().length<2) router(); });
+window.addEventListener("popstate",()=>{ if(ON_SITE) router(); });   // ADDED 2026-11-16: back and forward between beasts
+if(ON_SITE) document.getElementById("site-back").hidden=false;
 router();
 </script>
