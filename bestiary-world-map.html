@@ -1638,7 +1638,7 @@
         document.getElementById("pd").textContent = dsc.length > 420 ? dsc.slice(0, 420).replace(/\s+\S*$/, "") + "…" : dsc;
         // CHANGED 2026-11-02: the full text opens as the beast's wiki page in a new tab, as in the interactives;
         // on the site the map sits under /api/bestiarium/<code>/, standalone it sits next to bestiary-wiki.html
-        document.getElementById("readfull").onclick = () => window.open((location.pathname.includes("/api/bestiarium/") ? "/bestiarium/wiki" : "bestiary-wiki.html") + "#/n/" + nd.id, "_blank");
+        document.getElementById("readfull").onclick = () => window.open(location.pathname.includes("/api/bestiarium/") ? "/bestiarium/wiki/" + nd.id : "bestiary-wiki.html#/n/" + nd.id, "_blank");  // CHANGED 2026-11-16: the beast's wiki page
         const rels = [], seen = {}; for (const e of EDGES) { if (e.a === nd.id || e.b === nd.id) { const o = e.a === nd.id ? e.b : e.a; if (byId[o] && !seen[o]) { seen[o] = 1; rels.push([o, e.t]); } } }
         const pr = document.getElementById("pr"); pr.innerHTML = ""; document.getElementById("prh").style.display = rels.length ? "block" : "none";
         rels.slice(0, 18).forEach(([o, ty]) => { const el = document.createElement("div"); el.className = "rel"; el.innerHTML = `${nLabel(byId[o])} <span class="rt">${relLabel(ty)}</span>`; el.onclick = () => { select(byId[o]); flyToNode(byId[o]); }; pr.appendChild(el); });
