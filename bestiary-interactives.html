@@ -296,6 +296,7 @@ class Component extends DCLogic {
   // CHANGED 2026-10-27: The whole bestiary, Zooming in and An idea feeds — and is fed share one selection (`sel`, on the Role ladder axis at first)
   // CHANGED 2026-11-02: W is the measured inner width of The whole bestiary; its columns and An idea feeds — and is fed are laid out on it
   // CHANGED 2026-11-12: a link to #/n/<id> (posts on Substack, the wiki) opens with that beast selected
+  // CHANGED 2026-11-16: every link to a beast's text goes to its wiki page, /bestiarium/wiki/<id> (owner's decision)
   state = { W: 1136, data: null, tick: 0, sel: (location.hash.match(/^#\/n\/([\w-]+)/) || [])[1] || 'power', ax: 'role', wQ: '', fQ: '', fOpen: false, fStep: 0, fPlay: true, recent: [] };
   static FAM = { misalign: ['Misalignment', '#C0453A'], deception: ['Deception', '#8E5DB0'], control: ['Control', '#E08A3C'], oversight: ['Oversight', '#3FA07E'], strategy: ['Takeoff & strategy', '#D9A441'], robustness: ['Robustness', '#6FA85B'], interp: ['Interpretability', '#2E9AA6'], mind: ['Philosophy of mind', '#4C7FC0'], ethics: ['Ethical lenses', '#C77BB0'], critical: ['Critical lens', '#B34F63'], myth: ['Cultural myths', '#A98A5B'], decision: ['Decision theory', '#7C93C4'], 'moral-status': ['Moral status of AI', '#B57ED9'] };
   static ROLE = { 'провал': ['Failure mode', '#fea199'], 'механизм': ['Mechanism', '#1cddae'], 'тезис': ['Thesis', '#76c7ff'], 'решение': ['Approach', '#ffd84a'], 'метафора': ['Metaphor', '#ffa752'], 'линза': ['Lens', '#ff96d3'], 'критика': ['Critique', '#c3affe'], 'эмпирика': ['Empirics', '#96d35f'] };
@@ -497,10 +498,10 @@ class Component extends DCLogic {
     const groups = [...g.labels.map((l, k) => [l, g.C[k], k]), ...(g.un.length ? [[`No ${g.kind} links`, g.un, -1]] : [])];
     const pCols = groups.map(([l, ids, k]) => { const it = ids.filter(m => !fq || has(fq, m));
       return { label: l, n: fq ? `${it.length}/${ids.length}` : String(ids.length), hc: it.length ? g.color(k) : '#4a4540', items: it.map(m => ({ name: by[m].name, n: String(tot(m)), go: () => this.pick(m), fg: m === id ? '#0c0b0a' : '#cfc8bd', bg: m === id ? '#d8a24a' : 'transparent', mark: g.color(k) })) }; });
-    const fChips = st.recent.map(m => { const on = m === id; return { on, wiki: '/bestiarium/wiki#/n/' + m /* ADDED 2026-11-09 */, name: by[m].name, n: String(tot(m)), go: () => this.pick(m), bd: on ? '#d8a24a' : '#3a3531', bg: on ? '#d8a24a' : 'transparent', fg: on ? '#0c0b0a' : '#efeae2', nc: on ? 'rgba(12,11,10,.6)' : '#8a8273' }; });
+    const fChips = st.recent.map(m => { const on = m === id; return { on, wiki: '/bestiarium/wiki/' + m /* ADDED 2026-11-09 */, name: by[m].name, n: String(tot(m)), go: () => this.pick(m), bd: on ? '#d8a24a' : '#3a3531', bg: on ? '#d8a24a' : 'transparent', fg: on ? '#0c0b0a' : '#efeae2', nc: on ? 'rgba(12,11,10,.6)' : '#8a8273' }; });
     const enter = list => e => { if (e.key === 'Enter' && list.length) this.pick(list[0].id); };
     return { total: String(N), gTabs, gHint: g.hint, gW: `${st.W}px`, gWn: String(st.W),
-      wHead: { name: fc.name, n: `←${nb.up} ${nb.down}→` }, wiki: '/bestiarium/wiki#/n/' + id, /* ADDED 2026-11-09 */ wQ: st.wQ, wOnQ: e => this.setState({ wQ: e.target.value }), wKey: enter(wM), wInfo,
+      wHead: { name: fc.name, n: `←${nb.up} ${nb.down}→` }, wiki: '/bestiarium/wiki/' + id, /* ADDED 2026-11-09 */ wQ: st.wQ, wOnQ: e => this.setState({ wQ: e.target.value }), wKey: enter(wM), wInfo,
       wCols: g.labels.map((l, k) => ({ label: l, n: String(g.C[k].length), hc: g.color(k), items: g.C[k].map(m => wItem(m, k)) })), wEdges, wGrid: `repeat(${g.n}, ${CW}px)`, wH: `${wHn}px`, wHn: String(wHn),
       wUnOn: g.un.length > 0, wUnTitle: `No ${g.kind} links of their own · ${g.un.length} · pick one to grow the nearest ${g.kind} chain, one link away`, wUn: g.un.map(m => wItem(m, -1)),
       fName: fc.name, fInfo, fTldr: fc.tldr, fCapC: R[fc.role][1], fEmpty: !total, fEmptyText, fTree: total > 0, fNodes, fEdges, fH: `${fHn}px`, fHn: String(fHn),
@@ -603,7 +604,7 @@ class Component extends DCLogic {
     const zTabs = TABS.map((l, i) => ({ label: l, go: () => { this.auto.z = 0; this.auto.zc = 0; this.setState({ zL: i, zPlay: false, zCyc: i === 1 ? 0 : null, zM: i === 1 ? null : st.zM }); }, color: i === lvl ? '#efeae2' : '#9a948b', dot: i === lvl ? '#d8a24a' : '#4a4540',
       prog: i < lvl ? '100%' : i === lvl ? (zOn ? (st.zProg ? '100%' : '0%') : '100%') : '0%', trans: i === lvl && zOn && st.zProg ? `width ${lvl === 1 && st.zM == null ? 10700 : 4400}ms linear` : 'none' }));
     // CHANGED 2026-10-27: a Follow chip also selects the beast in the genealogy blocks; the extra chip has a gold border
-    const chipOf = id => ({ name: this.by[id].name, go: () => { this.auto.z = 0; this.setState({ zB: id, zL: 0, zPlay: false, zH: null, zIs: null }); this.pick(id, true); }, bg: id === fid ? '#d8a24a' : 'transparent', fg: id === fid ? '#0c0b0a' : '#cfc8bd', bd: id === sid ? '#d8a24a' : '#3a3531', on: id === fid, wiki: '/bestiarium/wiki#/n/' + id /* ADDED 2026-11-09 */ });
+    const chipOf = id => ({ name: this.by[id].name, go: () => { this.auto.z = 0; this.setState({ zB: id, zL: 0, zPlay: false, zH: null, zIs: null }); this.pick(id, true); }, bg: id === fid ? '#d8a24a' : 'transparent', fg: id === fid ? '#0c0b0a' : '#cfc8bd', bd: id === sid ? '#d8a24a' : '#3a3531', on: id === fid, wiki: '/bestiarium/wiki/' + id /* ADDED 2026-11-09 */ });
     const zPicks = [chipOf(sid)], zAl = alongN.map(chipOf), zAlN = String(alongN.length);
     const capt = [
       [`Six resolutions of one bestiary, from 2 groups to 13. The gold thread follows ${tbn.name} through all of them.`, `Grey threads are the rest of ${F[tbn.fam][0]}. Hover any tile to follow another beast.`],
@@ -628,7 +629,7 @@ class Component extends DCLogic {
     const it = ([b, t, g]) => { const m = this.by[b]; return { name: m.name, rel: Component.REL[t] || t, c: GC[g] || '#9a948b', img: this.sp(b), go: () => this.setState({ side: b }) }; };
     // CHANGED 2026-10-27: sides by which way a link feeds, every link listed (the panel scrolls)
     const inc = n.adj.filter(e => this.feeds(n, e)[1] === n.id), out = n.adj.filter(e => this.feeds(n, e)[0] === n.id);
-    const P = st.sideP || '4a'; return { side4a: P === '4a', hasSide: true, closeSide: () => this.setState({ side: null }), side: { href: '/bestiarium/wiki#/n/' + n.id, c: R[n.role][1], role: R[n.role][0] + ' · ' + F[n.fam][0], img: this.sp(n.id), name: n.name, meta: meta(n), tldr: n.tldr, author: n.author || '',
+    const P = st.sideP || '4a'; return { side4a: P === '4a', hasSide: true, closeSide: () => this.setState({ side: null }), side: { href: '/bestiarium/wiki/' + n.id, c: R[n.role][1], role: R[n.role][0] + ' · ' + F[n.fam][0], img: this.sp(n.id), name: n.name, meta: meta(n), tldr: n.tldr, author: n.author || '',
       stats: [{ k: 'Links', v: String(n.adj.length) }, { k: 'Families', v: String(new Set(n.adj.map(a => this.by[a[0]].fam)).size) }, { k: 'Weight', v: n.cen }],
       inc: inc.map(it), out: out.map(it), nin: String(inc.length), nout: String(out.length) } };
   }
