@@ -9,6 +9,7 @@
   const SVG = 'http://www.w3.org/2000/svg'
   const CARD_W = 340
   const CURSOR = '<svg width="22" height="22" viewBox="0 0 22 22"><path d="M3 2 L3 18 L7.5 14 L10.5 20.5 L13.2 19.3 L10.3 13 L16.5 13 Z" fill="#efeae2" stroke="#0c0b0a" stroke-width="1.4" stroke-linejoin="round"/></svg><span style="position:absolute;left:-9px;top:-9px;width:22px;height:22px;border:2px solid #f2c200;border-radius:50%;opacity:0;transform:scale(.4);transition:all .45s;"></span>'
+  // CHANGED 2026-11-22: the tour card's buttons are actions, 44px (brand book sizes)
   const CSS = `
 .bd-cursor{position:absolute;left:0;top:0;width:22px;height:22px;pointer-events:none;z-index:70;opacity:0;transition:transform .75s cubic-bezier(.45,0,.2,1),opacity .3s}
 .bd-btn{position:absolute;right:32px;top:30px;z-index:5;padding:6px 12px;background:transparent;border:1px solid #f2c200;color:#f2c200;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
@@ -23,7 +24,7 @@
 .bd-tip b{font:700 15px/1.3 'Unbounded',sans-serif;color:#f2c200}
 .bd-tip p{margin:0;font:400 14px/1.55 'Onest',sans-serif;color:#efeae2;text-wrap:pretty}
 .bd-tip div{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}
-.bd-tip button{padding:5px 10px;background:transparent;border:1px solid #4a4540;color:#cfc8bd;cursor:pointer;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.bd-tip button{min-height:44px;padding:0 12px;background:transparent;border:1px solid #4a4540;color:#cfc8bd;cursor:pointer;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
 .bd-tip button:last-child{border-color:#f2c200;color:#f2c200}
 .bd-tip button:hover{background:#f2c200;color:#0c0b0a}
 .bd-tip.held i{opacity:.35}
@@ -191,7 +192,7 @@
       .sort((p, q) => p.getBoundingClientRect().top - q.getBoundingClientRect().top).slice(0, n)
   }
   const info = (root) => () => all(root, 'span').find((e) => /feed it|nothing feeds it|feeds them|of its own/.test(txt(e)) && e.children.length === 0) || null
-  const selChip = (root) => () => all(root, 'span').find((e) => e.style.background === 'rgb(216, 162, 74)' && e.style.height === '32px') || null
+  const selChip = (root) => () => all(root, 'span').find((e) => e.style.background === 'rgb(216, 162, 74)' && e.style.height === '40px') || null /* CHANGED 2026-11-22: the picked beast is 40px (brand book sizes) */
   const hint = (root) => () => all(root, 'span').find((e) => /^columns =/.test(txt(e))) || null
 
   const BEAST = 'Instrumental convergence'
