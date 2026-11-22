@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1165" height="475" viewBox="25.5 198 582.7 237.6" fill="none">
+  <g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="c15-props">
+      <g id="c15-inspection-eye">
+        <path d="M57 382V421" stroke="#2E4649" stroke-width="12" />
+        <path d="M57 382V421" stroke="#C8A268" stroke-width="6" />
+        <path d="M39 430C39 418 47 413 57 413C68 413 77 419 77 430Z" fill="#C8A268" />
+        <ellipse cx="57" cy="366" rx="29" ry="31" fill="#9FB479" />
+        <ellipse cx="57" cy="366" rx="23" ry="25" fill="#F5E8CA" />
+        <ellipse cx="66" cy="367" rx="10" ry="14" fill="#2E4649" stroke="none" />
+        <circle cx="69" cy="361" r="3.5" fill="white" stroke="none" />
+      </g>
+      <g id="c15-tower">
+        <g id="c15-tower-support" stroke="#587777">
+          <path d="M99 429V405H143V429" />
+        </g>
+        <g id="c15-tower-lower-block" fill="#9FB479">
+          <rect x="98" y="365" width="46" height="39" rx="4" />
+        </g>
+        <g id="c15-tower-middle-block" fill="#9FB479">
+          <path d="M94 321L136 317L141 360L98 364Z" />
+        </g>
+        <g id="c15-tower-upper-block" fill="#9FB479">
+          <path d="M88 278L127 266L140 308L99 320Z" />
+        </g>
+        <g id="c15-building-block" fill="#9FB479">
+          <path d="M106 224L147 234L136 274L95 264Z" />
+        </g>
+      </g>
+      <g id="c15-stolen-block">
+        <rect x="283" y="389" width="44" height="41" rx="4" fill="#9FB479" />
+      </g>
+      <g id="c15-motion-marks" stroke="#D8A24A" stroke-width="4">
+        <path d="M92 218L86 211M105 211L102 200M86 230L76 226" />
+        <path d="M82 283Q74 288 72 297M74 277Q65 284 63 294" />
+        <path d="M273 412Q266 407 264 399M263 418Q255 411 253 404" />
+      </g>
+    </g>
+    <g id="c15-body" fill="#C8A268" style="fill:#C8A268;">
+      <g id="c15-front-building-arm">
+        <path d="M202 270C181 257 171 235 154 222C142 212 126 211 120 219C115 227 124 229 132 226L148 234C157 250 166 273 184 287Z" />
+      </g>
+      <g id="c15-rear-hidden-arm">
+        <path d="M476 364C463 388 417 407 352 411C341 423 323 425 316 415C309 407 316 397 325 394C335 391 343 394 351 398C405 393 445 377 452 357Z" />
+        <path d="M317 405Q327 402 335 407" fill="none" />
+      </g>
+      <g id="c15-back-leg">
+        <path d="M518 348C541 362 552 391 555 409C571 412 580 420 576 428C572 435 547 432 535 432C526 432 527 422 524 410C521 396 510 386 503 382Z" />
+        <path d="M525 395C529 404 531 416 532 425H572C573 428 568 429 555 429H538C531 430 531 419 529 411Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+      </g>
+      <g id="c15-long-torso">
+        <path d="M221 309C248 313 259 302 279 300C340 284 405 293 459 315L502 326L520 338C517 354 511 365 513 380C515 391 506 400 496 391C474 370 444 365 416 363C357 357 310 362 273 377C251 387 227 390 208 381L190 355Z" />
+        <path d="M221 368C242 378 265 366 289 359C339 344 392 345 435 352C461 356 487 366 506 382L505 391C480 371 449 365 416 363C359 357 310 362 273 377C250 387 226 389 211 382Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+        <g id="c15-back-spots" fill="#F5E8CA" stroke="none">
+          <ellipse cx="342" cy="315" rx="12" ry="7" transform="rotate(-12 342 315)" />
+          <ellipse cx="385" cy="312" rx="21" ry="10" transform="rotate(6 385 312)" />
+          <ellipse cx="429" cy="322" rx="13" ry="7" transform="rotate(17 429 322)" />
+        </g>
+      </g>
+      <g id="c15-front-leg">
+        <path d="M232 370C212 385 204 399 202 413C190 413 178 423 181 429C185 436 208 432 219 432C230 432 230 424 233 415C237 401 249 389 262 380" />
+      </g>
+      <g id="c15-rear-leg">
+        <path d="M481 368C501 380 506 395 506 412C520 414 527 423 523 429C519 434 494 432 485 432C476 432 479 419 478 407C476 393 465 386 457 382" />
+      </g>
+      <g id="c15-front-supporting-arm">
+        <path d="M239 321C220 339 204 346 189 342C172 337 167 326 153 325C139 324 130 332 134 343C138 354 148 354 159 355C190 380 218 378 266 345" />
+        <path d="M136 336Q145 331 153 336" fill="none" />
+      </g>
+      <g id="c15-front-head">
+        <path d="M175 270C169 244 182 222 202 215C213 203 228 199 239 201L241 214C254 207 268 204 276 209C281 213 278 223 274 230C288 228 298 231 299 237C300 245 294 254 289 261C296 282 284 308 264 320C242 333 213 332 194 319C181 308 176 289 175 270Z" />
+      </g>
+      <g id="c15-rear-head">
+        <path d="M509 324C494 316 492 301 500 288C505 282 513 279 517 278C510 271 508 261 511 257C516 253 527 258 535 262C532 250 534 244 540 245C552 248 560 256 569 264C576 254 582 253 588 259C601 273 607 288 605 304C608 321 601 338 587 347C566 361 541 353 524 342Z" />
+      </g>
+    </g>
+    <g id="c15-face">
+      <g id="c15-front-face">
+        <path d="M183 242C193 227 204 236 213 248L227 266C235 276 248 270 259 268C275 264 286 276 285 289C283 307 268 320 250 324C227 329 205 322 192 307C179 292 176 261 183 242Z" fill="#F5E8CA" />
+        <ellipse cx="195" cy="263" rx="7.5" ry="11" fill="#2E4649" stroke="none" transform="rotate(8 195 263)" />
+        <ellipse cx="247" cy="283" rx="9" ry="12" fill="#2E4649" stroke="none" transform="rotate(8 247 283)" />
+        <circle cx="196" cy="259" r="2.5" fill="white" stroke="none" />
+        <circle cx="249" cy="279" r="3" fill="white" stroke="none" />
+        <ellipse cx="183" cy="280" rx="5" ry="7" fill="#DC9E91" stroke="none" />
+        <ellipse cx="259" cy="305" rx="10" ry="6" fill="#DC9E91" stroke="none" transform="rotate(12 259 305)" />
+        <path d="M204 289Q211 304 226 299" stroke-width="3.5" />
+      </g>
+      <g id="c15-rear-face">
+        <path d="M520 313C518 292 529 282 540 288C554 294 561 312 572 316C581 319 590 311 602 313C602 331 591 344 576 347C553 351 533 340 522 329" fill="#F5E8CA" />
+        <ellipse cx="546" cy="312" rx="8" ry="11" fill="#2E4649" stroke="none" transform="rotate(8 546 312)" />
+        <ellipse cx="589" cy="326" rx="5.5" ry="9" fill="#2E4649" stroke="none" transform="rotate(16 589 326)" />
+        <circle cx="548" cy="309" r="2.5" fill="white" stroke="none" />
+        <circle cx="590" cy="323" r="2" fill="white" stroke="none" />
+        <ellipse cx="525" cy="324" rx="9" ry="5.5" fill="#DC9E91" stroke="none" transform="rotate(20 525 324)" />
+        <ellipse cx="589" cy="339" rx="5" ry="3" fill="#DC9E91" stroke="none" />
+        <path d="M559 335Q565 344 574 339" stroke-width="3.5" />
+      </g>
+    </g>
+  </g>
+</svg>

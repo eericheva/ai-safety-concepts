@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./dc-runtime.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&amp;family=Onest:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>html,body{margin:0;height:100%;background:#0c0b0a;overflow:hidden}a{color:#d8a24a;text-decoration:none}a:hover{color:#efeae2}</style>
+</helmet>
+<div ref="{{ wrapRef }}" style="position:relative;width:100%;height:100vh;min-height:560px;overflow:hidden;background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif">
+  <canvas ref="{{ cvRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:{{ cursor }}"></canvas>
+
+  <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
+  <div style="position:absolute;left:16px;top:16px;bottom:16px;width:310px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:16px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
+    <div style="flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d8a24a">Bestiarium · map</span>
+      <span style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font:700 20px/1.15 'Unbounded',sans-serif">The Wandering Map</span><button onClick="{{ openIntro }}" title="How this world works" style="width:30px;height:30px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">?</button></span>
+    </div>
+    <div style="display:flex;gap:4px">
+      <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3">
+        <button onClick="{{ m.go }}" style="flex:1;min-height:36px;padding:6px 4px;border:1px solid {{ m.bd }};background:{{ m.bg }};color:{{ m.fg }};font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
+      </sc-for>
+    </div>
+    <sc-if value="{{ questOn }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:10px;background:#171513;border:1px solid #2e2b28;padding:12px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+          <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">New expedition along · click to restart</span>
+          <sc-for list="{{ rules }}" as="ru" hint-placeholder-count="4">
+            <button onClick="{{ ru.go }}" title="{{ ru.tip }}" style="min-height:30px;border:1px solid #4a4540;background:{{ ru.bg }};color:{{ ru.fg }};font:700 10px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">{{ ru.label }}</button>
+          </sc-for>
+        </div>
+        <span style="font:400 12.5px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">Find a path from the start to the flag. {{ qRuleText }} Click a neighbour once to read about it, click it a second time (or press Step) to move there. Fewest hops wins.</span>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline">
+          <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Start</span>
+          <span style="font:500 13px/1.3 'Onest',sans-serif">{{ qStart }}</span>
+          <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a">Flag</span>
+          <span style="font:700 14px/1.25 'Unbounded',sans-serif;color:#efeae2">{{ qTarget }}</span>
+          <span></span>
+          <span style="display:flex;flex-direction:column;gap:3px"><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ qFlagCol }}">lives on: {{ qFlagFam }}</span><span style="font:400 12px/1.4 'Onest',sans-serif;color:#9a948b;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ qFlagBlurb }}</span><span style="font:400 11.5px/1.4 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty"><b style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#d8a24a">Flag's neighbours: </b>{{ qFlagNb }}</span></span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #2e2b28;padding-top:10px">
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font:900 22px/1 'Unbounded',sans-serif;color:{{ qTrendCol }}">{{ qAway }}</span>
+            <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:{{ qTrendCol }}">{{ qTrend }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
+            <span style="font:400 12px 'JetBrains Mono',monospace;color:#efeae2">hops made: {{ qHops }}</span>
+            <span style="font:400 12px 'JetBrains Mono',monospace;color:#9a948b">best possible: {{ qBest }}</span>
+          </div>
+        </div>
+        <sc-if value="{{ wonResult }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ openReport }}" style="min-height:36px;background:#d8a24a;border:0;color:#0c0b0a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Show expedition report</button>
+        </sc-if>
+        <sc-if value="{{ qHasSteps }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:0;max-height:190px;overflow:auto;border-top:1px solid #2e2b28;padding-top:6px">
+            <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">Your journey</span>
+            <sc-for list="{{ qSteps }}" as="st" hint-placeholder-count="0">
+              <div style="display:grid;grid-template-columns:18px 1fr;gap:8px;padding:5px 0;border-bottom:1px solid #1f1d1a">
+                <span style="font:700 11px 'JetBrains Mono',monospace;color:#d8a24a">{{ st.n }}</span>
+                <span style="display:flex;flex-direction:column;gap:1px">
+                  <span style="font:400 11px/1.3 'JetBrains Mono',monospace;color:{{ st.col }}">{{ st.rel }}</span>
+                  <span style="font:500 13px/1.3 'Onest',sans-serif;color:#efeae2">{{ st.name }}</span>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+      <sc-if value="{{ qPlaying }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px">
+        <button onClick="{{ qHint }}" title="Light up the next hop on a shortest path" style="min-height:36px;border:1px solid #d8a24a;background:transparent;color:#d8a24a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Hint</button>
+        <button onClick="{{ qUndo }}" title="Step back to where you were" style="min-height:36px;border:1px solid #4a4540;background:transparent;color:#efeae2;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:{{ qUndoOp }}">Undo</button>
+        <button onClick="{{ giveUp }}" title="Show a shortest route" style="min-height:36px;border:1px solid #4a4540;background:transparent;color:#efeae2;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Give up</button>
+      </div>
+      </sc-if>
+    </sc-if>
+    <sc-if value="{{ showDetails }}" hint-placeholder-val="{{ true }}">
+    <sc-if value="{{ searchOn }}" hint-placeholder-val="{{ true }}">
+    <p style="margin:0;font:400 13.5px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ help }}</p>
+    </sc-if>
+    <sc-if value="{{ searchOn }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:4px;position:relative">
+      <input value="{{ q }}" onChange="{{ onQ }}" placeholder="Find a beast…" style="height:38px;padding:0 12px;background:#0c0b0a;border:1px solid #4a4540;color:#efeae2;font:400 14px 'Onest',sans-serif;outline:none;border-radius:0">
+      <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;border:1px solid #2e2b28;background:#171513">
+          <sc-for list="{{ results }}" as="r" hint-placeholder-count="0">
+            <button onClick="{{ r.go }}" style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:8px 12px;background:transparent;border:0;border-bottom:1px solid #26231f;color:#efeae2;text-align:left;cursor:pointer" style-hover="background:#26231f">
+              <span style="font:500 13.5px 'Onest',sans-serif">{{ r.name }}</span>
+              <span style="font:400 11px 'JetBrains Mono',monospace;color:#9a948b;white-space:nowrap">{{ r.sub }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+    </sc-if>
+    </sc-if>
+    <sc-if value="{{ wOn }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1 1 auto;min-height:220px;display:flex;flex-direction:column;gap:0;background:#171513;border:1px solid #2e2b28;padding:10px 12px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:4px">
+          <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Your wanderings</span>
+          <span style="font:400 11px 'JetBrains Mono',monospace;color:#9a948b">{{ wCount }}</span>
+        </div>
+        <div style="flex:1 1 0;min-height:0;display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#4a4540 #171513">
+          <sc-if value="{{ wEmpty }}" hint-placeholder-val="{{ false }}"><span style="font:400 12.5px/1.45 'Onest',sans-serif;color:#9a948b;padding:6px 0">No stops yet. Click any beast to start your trail.</span></sc-if>
+          <sc-for list="{{ wSteps }}" as="ws" hint-placeholder-count="0">
+            <button onClick="{{ ws.go }}" title="Go back to this beast" style="display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:7px 6px;background:{{ ws.bg }};border:0;color:#efeae2;text-align:left;cursor:pointer" style-hover="background:#1e1c19">
+              <span style="min-width:20px;height:17px;margin-top:1px;box-sizing:border-box;border:1px solid {{ ws.col }};display:flex;align-items:center;justify-content:center;font:700 10px 'JetBrains Mono',monospace;color:#efeae2">{{ ws.n }}</span>
+              <span style="display:flex;flex-direction:column;gap:2px">
+                <span style="font:500 14px/1.3 'Onest',sans-serif">{{ ws.name }}</span>
+                <span style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><span style="font:400 12px/1.35 'Onest',sans-serif;color:#9a948b">{{ ws.rel }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ ws.famCol }}">{{ ws.fam }}</span></span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;padding-top:8px">
+          <button onClick="{{ wBack }}" title="Step back to where you were" style="min-height:32px;border:1px solid #4a4540;background:transparent;color:#efeae2;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:{{ wBackOp }}">← Back</button>
+          <button onClick="{{ wClear }}" title="Forget this trail" style="min-height:32px;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Clear trail</button>
+        </div>
+      </div>
+    </sc-if>
+    </div>
+    <div style="flex:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid #2e2b28;padding-top:12px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center">
+        <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Beast colour by</span>
+        <sc-for list="{{ cbs }}" as="cb" hint-placeholder-count="4">
+          <button onClick="{{ cb.go }}" style="min-height:30px;border:1px solid #4a4540;background:{{ cb.bg }};color:{{ cb.fg }};font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase;cursor:pointer">{{ cb.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font:400 11.5px 'Onest',sans-serif;color:#9a948b">
+        <sc-for list="{{ colLegend }}" as="cl" hint-placeholder-count="6">
+          <span style="display:flex;align-items:center;gap:5px"><i style="width:9px;height:9px;background:{{ cl.c }}"></i>{{ cl.l }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+
+
+  <sc-if value="{{ hasFocus }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;right:16px;top:16px;bottom:16px;width:350px;max-width:calc(100% - 32px);background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;box-sizing:border-box">
+      <sc-if value="{{ peeking }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ backHost }}" style="display:flex;align-items:center;gap:8px;padding:9px 18px;background:#171513;border:0;border-bottom:1px solid #26231f;color:#cfc8bd;text-align:left;cursor:pointer;font:400 12.5px/1.3 'Onest',sans-serif" style-hover="color:#efeae2">
+          <span style="font:700 12px 'JetBrains Mono',monospace;color:#d8a24a">←</span><span>Visiting <b style="color:#efeae2">{{ hostName }}</b> · you are looking at a neighbour</span>
+        </button>
+      </sc-if>
+      <div style="padding:16px 18px 14px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid #26231f;flex:none;box-sizing:border-box">
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
+          <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ fFamCol }}">{{ fFam }}</span>
+          <button onClick="{{ close }}" style="width:28px;height:28px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">×</button>
+        </div>
+        <span style="font:700 21px/1.18 'Unbounded',sans-serif;text-wrap:pretty">{{ fName }}</span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <span style="display:flex;align-items:center;gap:6px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px"><i style="width:8px;height:8px;background:{{ fRoleCol }}"></i>{{ fRole }}</span>
+          <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ fWeight }}</span>
+          <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ fEra }}</span>
+        </div>
+        <p style="margin:0;font:400 14.5px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ fBlurb }}</p>
+        <span style="font:400 12px 'JetBrains Mono',monospace;color:#9a948b">{{ fWho }}</span>
+        <a href="{{ fWiki }}" target="_blank" rel="noopener" style="align-self:flex-start;display:flex;align-items:center;gap:6px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#d8a24a">Read the full entry in the wiki ↗</a>
+                <div style="display:flex;flex-direction:column;gap:6px;border-top:1px solid #26231f;padding-top:10px">
+          <div style="display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:4px;align-items:center"><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b;padding-right:4px">Arrange</span>
+            <sc-for list="{{ arrs }}" as="ar" hint-placeholder-count="3">
+              <button onClick="{{ ar.go }}" style="min-height:30px;border:1px solid #4a4540;background:{{ ar.bg }};color:{{ ar.fg }};font:700 10px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">{{ ar.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="flex:none;padding:6px 18px 18px;display:flex;flex-direction:column;gap:16px">
+        <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div style="display:flex;align-items:center;gap:10px;padding:12px 0 6px">
+              <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#efeae2;white-space:nowrap">{{ sec.title }}</span>
+              <i style="flex:1;height:1px;background:#2e2b28"></i>
+              <span style="font:400 12px 'JetBrains Mono',monospace;color:#9a948b">{{ sec.n }}</span>
+            </div>
+            <span style="font:400 12px 'Onest',sans-serif;color:#9a948b;padding-bottom:4px">{{ sec.sub }}</span>
+            <sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="2">
+              <div style="display:flex;align-items:center;gap:6px;background:{{ it.sel }}" onMouseEnter="{{ it.enter }}" onMouseLeave="{{ it.leave }}">
+              <button onClick="{{ it.go }}" style="flex:1;min-width:0;display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:7px 6px;background:transparent;border:0;color:#efeae2;text-align:left;cursor:pointer" style-hover="background:#1e1c19">
+                <span style="min-width:20px;height:17px;margin-top:1px;box-sizing:border-box;border:1px solid {{ it.col }};display:flex;align-items:center;justify-content:center;font:700 10px 'JetBrains Mono',monospace;color:#efeae2">{{ it.num }}</span>
+                <span style="display:flex;flex-direction:column;gap:2px">
+                  <span style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><span style="font:500 14px/1.3 'Onest',sans-serif">{{ it.name }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#0c0b0a;background:#d8a24a;padding:0 4px;display:{{ it.flagDisp }}">{{ it.flagTag }}</span></span>
+                  <span style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><span style="font:400 12px/1.35 'Onest',sans-serif;color:#9a948b">{{ it.rel }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ it.famCol }}">{{ it.fam }}</span></span>
+                </span>
+              </button>
+              <button onClick="{{ it.step }}" title="Step to this beast" style="display:{{ it.stepDisp }};flex:none;align-items:center;min-height:30px;margin-right:6px;padding:0 10px;background:#d8a24a;border:0;color:#0c0b0a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Step →</button>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;align-items:center;max-width:calc(100% - 32px)">
+    <sc-if value="{{ chronOn }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:16px;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:12px 16px;width:min(640px,calc(100vw - 32px));box-sizing:border-box">
+        <button onClick="{{ togglePlay }}" style="width:44px;height:44px;flex:none;background:#d8a24a;border:0;color:#0c0b0a;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">{{ playLabel }}</button>
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px;min-width:0">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
+            <span style="font:700 15px 'Unbounded',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ eraLabel }}</span>
+            <span style="font:400 12px 'JetBrains Mono',monospace;color:#9a948b;white-space:nowrap">{{ alive }}</span>
+          </div>
+          <input type="range" min="0" max="6" step="1" value="{{ era }}" onChange="{{ onEra }}" style="width:100%;accent-color:#d8a24a">
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+    <sc-if value="{{ legendOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:{{ legL }}px;bottom:16px;display:flex;flex-direction:column;gap:6px;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:10px 10px 8px;width:{{ legW }}px;max-width:860px;box-sizing:border-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:0 4px"><span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#cfc8bd">How to read the lines · hover to light up, click to hide</span><sc-if value="{{ anyOff }}" hint-placeholder-val="{{ false }}"><button onClick="{{ showAll }}" style="min-height:28px;padding:0 10px;background:#d8a24a;border:0;color:#0c0b0a;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Show all links</button></sc-if></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:4px">
+      <sc-for list="{{ legend }}" as="g" hint-placeholder-count="4">
+        <button onClick="{{ g.toggle }}" onMouseEnter="{{ g.enter }}" onMouseLeave="{{ g.leave }}" title="{{ g.tip }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:8px 10px;background:transparent;border:1px solid #26231f;cursor:pointer;text-align:left;opacity:{{ g.op }}" style-hover="border-color:#4a4540;background:#171513">
+          <span style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:0;border-top:{{ g.line }}"></span><span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ g.col }}">{{ g.name }}</span></span>
+          <sc-if value="{{ legFull }}" hint-placeholder-val="{{ true }}"><span style="font:400 12px/1.35 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ g.verb }}</span></sc-if>
+        </button>
+      </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+  <sc-if value="{{ islandsOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;right:16px;top:16px;bottom:{{ isB }};width:330px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;box-sizing:border-box">
+      <button onClick="{{ toggleIs }}" style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:12px 14px;background:transparent;border:0;color:#efeae2;text-align:left;cursor:pointer">
+        <span style="display:flex;flex-direction:column;gap:4px">
+          <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a">Islands = {{ grpTitle }}</span>
+          <span style="font:400 12.5px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ grpNote }} Neighbouring islands are joined by bridges; far ones by ship or plane.</span>
+        </span>
+        <span style="font:700 14px 'JetBrains Mono',monospace;color:#9a948b">{{ isToggle }}</span>
+      </button>
+      <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;border-top:1px solid #26231f">
+          <sc-for list="{{ islands }}" as="il" hint-placeholder-count="13">
+            <button onClick="{{ il.go }}" onMouseEnter="{{ il.enter }}" onMouseLeave="{{ il.leave }}" style="display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:start;padding:7px 14px;background:transparent;border:0;border-bottom:1px solid #1f1d1a;color:#efeae2;text-align:left;cursor:pointer" style-hover="background:#1e1c19">
+              <i style="width:12px;height:12px;margin-top:2px;background:{{ il.col }}"></i>
+              <span style="display:flex;flex-direction:column;gap:1px">
+                <span style="font:700 12.5px/1.3 'Onest',sans-serif">{{ il.name }}</span>
+                <span style="font:400 12px/1.35 'Onest',sans-serif;color:#9a948b">{{ il.desc }}</span>
+              </span>
+              <span style="font:400 12px 'JetBrains Mono',monospace;color:#9a948b">{{ il.n }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center;flex:none;padding:12px 14px;border-top:1px solid #2e2b28">
+        <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Islands by</span>
+        <sc-for list="{{ grps }}" as="gp" hint-placeholder-count="4">
+          <button onClick="{{ gp.go }}" style="min-height:30px;border:1px solid #4a4540;background:{{ gp.bg }};color:{{ gp.fg }};font:700 10px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">{{ gp.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ hasPeek }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;bottom:16px;left:{{ pkL }}px;width:{{ pkW }}px;max-height:200px;overflow:auto;background:#11100e;border:1px solid #2e2b28;border-top:4px solid {{ pkFamCol }};padding:12px 14px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box;z-index:3">
+      <span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Look before you step</span>
+      <span style="font:700 18px/1.2 'Unbounded',sans-serif;text-wrap:pretty">{{ pkName }}</span>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ pkFamCol }};border:1px solid {{ pkFamCol }};padding:3px 7px">{{ pkFam }}</span>
+        <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 7px">{{ pkRole }}</span>
+      </div>
+      <p style="margin:0;font:400 13px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ pkBlurb }}</p>
+      <div style="display:flex;flex-direction:column;gap:3px;background:#171513;border:1px solid #26231f;padding:8px 10px">
+        <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:{{ pkRelCol }}">The road · {{ pkRelTag }}</span>
+        <span style="font:400 13px/1.4 'Onest',sans-serif;color:#efeae2;text-wrap:pretty">{{ pkRel }}</span>
+      </div>
+      <sc-if value="{{ pkSame }}" hint-placeholder-val="{{ false }}"><span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;color:#d8a24a">Lives on the flag's island</span></sc-if>
+      <div style="display:flex;gap:8px">
+        <button onClick="{{ step }}" style="flex:1;min-height:44px;background:#d8a24a;border:0;color:#0c0b0a;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer">Step here →</button>
+        <button onClick="{{ unpeek }}" style="min-height:44px;padding:0 14px;background:transparent;border:1px solid #4a4540;color:#efeae2;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer">Look elsewhere</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ introOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;background:rgba(12,11,10,.8);display:flex;align-items:center;justify-content:center;padding:20px;z-index:5">
+      <div style="width:min(880px,100%);max-height:100%;overflow:auto;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:26px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d8a24a">How this world works</span>
+          <span style="font:700 26px/1.15 'Unbounded',sans-serif">227 ideas live here as <span style="color:#d8a24a">beasts</span></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px">
+          <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #2e2b28;padding-top:12px"><span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#efeae2">Islands = families</span><span style="font:400 14px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">Each of the 13 islands is one family of ideas on one topic: misalignment, deception, interpretability, philosophy of mind… Islands that share many links sit next to each other, so walking towards an island usually brings you closer to its beasts. Hover an island to see whom it trades with.</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #2e2b28;padding-top:12px"><span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#efeae2">Beasts = ideas</span><span style="font:400 14px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">Body colour is the idea's role in the argument: red failure modes, green solutions, yellow theses, blue lenses, brown critiques, white mechanisms and evidence. Bigger beasts are the core canon.</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #2e2b28;padding-top:12px"><span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#efeae2">Lines = relations</span><span style="font:400 14px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">Click a beast and its neighbours come to it: what feeds it on the left, what follows from it on the right, rivals above, kin below. Each kind of line moves differently: beads for logic, flowing dashes for cause, a zigzag for debate, dots for kinship, paw prints for history.</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;background:#171513;border:1px solid #26231f;padding:14px 16px">
+          <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#d8a24a">Three ways to play</span>
+          <span style="font:400 14px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty"><b style="color:#efeae2">Wander</b>: click any beast and read its council. <b style="color:#efeae2">Expedition</b>: get from one beast to the flag by hopping along links; pick a rule (any link, logic, cause, or through time), read a neighbour before stepping, watch warmer / colder. <b style="color:#efeae2">Chronicle</b>: watch the bestiary grow from myths to the LLM era.</span>
+        </div>
+        <button onClick="{{ closeIntro }}" style="align-self:flex-start;min-height:44px;padding:0 22px;background:#d8a24a;border:0;color:#0c0b0a;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Start wandering →</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ hasHover }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:{{ hx }}px;top:{{ hy }}px;transform:translate(16px,16px);pointer-events:none;background:#171513;border:1px solid #2e2b28;padding:9px 12px;display:flex;flex-direction:column;gap:3px;max-width:300px">
+      <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ hCol }}">{{ hTag }}</span>
+      <span style="font:700 14px/1.25 'Unbounded',sans-serif">{{ hTitle }}</span>
+      <span style="font:400 12.5px/1.4 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ hSub }}</span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:50%;top:{{ toastTop }}px;transform:translateX(-50%);background:#d8a24a;color:#0c0b0a;padding:10px 16px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.06em;pointer-events:none;max-width:80%">{{ toast }}</div>
+  </sc-if>
+
+  <sc-if value="{{ reportOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;background:rgba(12,11,10,.72);display:flex;align-items:center;justify-content:center;padding:20px">
+      <div style="width:min(720px,100%);max-height:calc(100% - 40px);overflow:auto;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:24px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box">
+        <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d8a24a">Expedition report</span>
+        <span style="font:700 24px/1.15 'Unbounded',sans-serif">{{ rGrade }}</span>
+        <span style="font:400 15px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ rLine }}</span>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+          <sc-if value="{{ rHasMine }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column">
+            <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">Your route · start: {{ rStart }}</span>
+            <sc-for list="{{ rMineSteps }}" as="ms" hint-placeholder-count="0">
+              <div style="display:grid;grid-template-columns:18px 1fr;gap:8px;padding:5px 0;border-bottom:1px solid #1f1d1a">
+                <span style="font:700 11px 'JetBrains Mono',monospace;color:#d8a24a">{{ ms.n }}</span>
+                <span style="display:flex;flex-direction:column;gap:1px">
+                  <span style="font:400 11px/1.3 'JetBrains Mono',monospace;color:{{ ms.col }}">{{ ms.rel }}</span>
+                  <span style="font:500 13px/1.3 'Onest',sans-serif;color:#efeae2">{{ ms.name }}</span>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+          </sc-if>
+          <div style="display:flex;flex-direction:column">
+            <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">A shortest route · start: {{ rStart }}</span>
+            <sc-for list="{{ rShortSteps }}" as="ss" hint-placeholder-count="0">
+              <div style="display:grid;grid-template-columns:18px 1fr;gap:8px;padding:5px 0;border-bottom:1px solid #1f1d1a">
+                <span style="font:700 11px 'JetBrains Mono',monospace;color:#d8a24a">{{ ss.n }}</span>
+                <span style="display:flex;flex-direction:column;gap:1px">
+                  <span style="font:400 11px/1.3 'JetBrains Mono',monospace;color:{{ ss.col }}">{{ ss.rel }}</span>
+                  <span style="font:500 13px/1.3 'Onest',sans-serif;color:#efeae2">{{ ss.name }}</span>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button onClick="{{ newQuest }}" style="min-height:44px;padding:0 20px;background:#d8a24a;border:0;color:#0c0b0a;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">New expedition →</button>
+          <sc-if value="{{ rGave }}" hint-placeholder-val="{{ false }}"><button onClick="{{ keepTrying }}" style="min-height:44px;padding:0 18px;background:transparent;border:1px solid #d8a24a;color:#d8a24a;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Keep trying</button></sc-if>
+          <sc-if value="{{ wonResult }}" hint-placeholder-val="{{ false }}"><button onClick="{{ closeReport }}" style="min-height:44px;padding:0 18px;background:transparent;border:1px solid #4a4540;color:#efeae2;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Close</button></sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#9a948b;pointer-events:none">Waking the beasts…</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;gather&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;World&quot;},&quot;routes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;World&quot;}}">
+const FAM={misalign:['Misalignment & instrumental goals','volcano',[0,0]],deception:['Deception & inner misalignment','swamp',[440,-180]],control:['Control & corrigibility','fortress',[430,320]],oversight:['Oversight & alignment methods','plateau',[0,440]],robustness:['Specification & robustness','ice',[-400,300]],strategy:['Takeoff, strategy & coordination','peaks',[-460,-220]],interp:['Interpretability','crystal',[60,-480]],decision:['Decision theory','maze',[520,-600]],mind:['Philosophy of mind','garden',[-980,80]],'moral-status':['Moral status of AI','ice',[-860,560]],ethics:['Ethical lenses','sand',[-560,720]],critical:['Critical & political lens','ruins',[960,160]],myth:['Cultural myths','sand',[900,640]]};
+const FCOL={misalign:'#e0603f',deception:'#b07ce0',control:'#5b8fe0',oversight:'#3fc1b0',robustness:'#9cc9e8',strategy:'#f2c200',interp:'#46d0d9',decision:'#b8bf55',mind:'#7ad13a','moral-status':'#ff7fb5',ethics:'#c49a6c',critical:'#e08a5f',myth:'#e8cf8a'};
+const FSHORT={misalign:'Misalignment',deception:'Deception',control:'Control',oversight:'Oversight',robustness:'Robustness',strategy:'Strategy',interp:'Interpretability',decision:'Decision theory',mind:'Mind','moral-status':'Moral status',ethics:'Ethics',critical:'Critical lens',myth:'Myths'};
+const FDESC={misalign:'Why an AI’s goals drift away from ours',deception:'Models that look aligned but are not',control:'Keeping limits and the off-switch',oversight:'How humans check and train models',robustness:'Specs that break under pressure',strategy:'Takeoff, races, coordination, risk',interp:'Looking inside the network',decision:'How an ideal agent should choose',mind:'Can a machine think or feel?','moral-status':'Do AIs deserve moral concern?',ethics:'Moral frameworks for the far future',critical:'Power, politics and critiques of the field',myth:'Old stories that foreshadow AI'};
+const FAM0={...FAM}, FCOL0={...FCOL}, FSHORT0={...FSHORT}, FDESC0={...FDESC};
+const TEX=['volcano','swamp','fortress','plateau','ice','peaks','crystal','maze','garden','sand','ruins'];
+const ERA={E0:'Myths & undated',E1:'Before the 20th century',E2:'Cybernetics · 1900–55',E3:'Classical AI · 1956–99',E4:'Rationalists & MIRI · 2000–15',E5:'Deep learning · 2016–21',E6:'LLM era · 2022+'};
+const ERAK=['E0','E1','E2','E3','E4','E5','E6'];
+const ROLE={'провал':['Failure mode','red','#ff4a63'],'решение':['Solution','green','#2fcc71'],'тезис':['Thesis','yellow','#ffb800'],'критика':['Critique','dark','#6b5845'],'линза':['Lens','blue','#45d7e5'],'механизм':['Mechanism','white','#e8e6e6'],'эмпирика':['Evidence','white','#e8e6e6'],'метафора':['Metaphor','white','#e8e6e6']};
+const G={A:{name:'Roots',verb:'logic: premise → conclusion',col:'#f2c200',line:'2px solid #f2c200'},B:{name:'Currents',verb:'cause → effect',col:'#3fc1b0',line:'2px dashed #3fc1b0'},C:{name:'Duels',verb:'debate & critique',col:'#ff6b5e',line:'2px solid #ff6b5e'},D:{name:'Kin',verb:'analogy, shared theme',col:'#a58cff',line:'2px dotted #a58cff'},E:{name:'Lineage',verb:'history: older → newer',col:'#c49a6c',line:'3px dotted #c49a6c'},F:{name:'Bridges',verb:'between canons',col:'#7ad13a',line:'3px double #7ad13a'}};
+const GEXP={A:'Logic. Beads flow from a premise to the idea that follows from it.',B:'Cause and effect. Dashes run from a cause to what it gives rise to, worsens or mitigates.',C:'Debate. A crackling zigzag: the two ideas critique, contradict or rival each other.',D:'Kinship. Dots, no direction: an analogy, a shared theme or the same mechanism.',E:'History. Paw prints walk from the older idea to the newer one that grew out of it.',F:'A bridge between the technical canon and the humanities canon.'};
+const RULES={any:['Any link','Hop along any meaningful link (loose “shares a theme” links don’t count).'],A:['Logic chain','Follow Roots only: premise → conclusion.'],B:['Cause chain','Follow Currents only: cause → effect, problem → remedy.'],E:['Through time','Follow Lineage only: an older idea → the idea that grew from it.']};
+const KL={'напряжение':'is in tension with','тематически':'shares a theme with','специализация':'is a special case of','аналогия':'is an analogy for','иллюстрирует':'illustrates','вытекает':'follows from','исторически-предшествует':'came before','часть':'is part of','порождает':'gives rise to','развивает':'develops','смягчает':'mitigates','тот-же-механизм':'shares a mechanism with','критикует':'critiques','одна-школа':'is from the same school as','демонстрирует':'demonstrates','измеряется':'is measured by','предпосылка':'is a premise of','усугубляет':'worsens','альтернатива':'is an alternative to','мотивирует':'motivates','операционализирует':'operationalizes','решает':'solves','противоречит':'contradicts','контрпример':'is a counterexample to','дуал':'is the dual of','мост-канонов':'bridges canons with','переименование':'was renamed as'};
+const REV=new Set(['вытекает','специализация','часть','развивает']);
+const SIDE_T={left:['Comes from','premises, causes and ancestors — what feeds it'],right:['Leads to','consequences, remedies and heirs — what it feeds'],top:['Argues with','tension, critique, rivals'],bottom:['Kin & echoes','analogies, shared themes, same school']};
+const SIDE_L={left:'COMES FROM',right:'LEADS TO',top:'ARGUES WITH',bottom:'KIN & ECHOES'};
+const ARR={rel:{name:'Relation',L:SIDE_L,T:null,note:'Sides by kind of link: left feeds it, right follows from it, top argues with it, bottom is kin.'},time:{name:'Time',L:{left:'OLDER IDEAS',right:'NEWER IDEAS',top:'',bottom:'SAME ERA'},T:{left:['Older ideas','came before it in time'],right:['Newer ideas','came after it in time'],top:['',''],bottom:['Same era','from the same period']},note:'Sides by era: older neighbours on the left, newer on the right, same era below.'},role:{name:'Role',L:{left:'PROBLEMS',right:'SOLUTIONS',top:'CLAIMS & CRITIQUES',bottom:'LENSES & EVIDENCE'},T:{left:['Problems','failure modes'],right:['Solutions','fixes and methods'],top:['Claims & critiques','theses and objections'],bottom:['Lenses & evidence','lenses, mechanisms, findings, metaphors']},note:'Sides by the neighbour’s role in the argument: problems left, solutions right.'}};
+const SPR={blue:{A:[366,472,165,165],B:[0,192,192,192],C:[677,0,141,194],D:[192,546,174,182],E:[683,1190,132,250],F:[366,0,170,236]},dark:{A:[531,472,165,165],B:[0,0,192,192],C:[677,194,141,194],D:[192,182,174,182],E:[697,388,132,250],F:[348,1200,170,236]},green:{A:[518,1129,165,165],B:[0,768,192,192],C:[536,194,141,194],D:[192,0,174,182],E:[824,888,132,250],F:[366,236,170,236]},red:{A:[518,964,165,165],B:[0,960,192,192],C:[536,0,141,194],D:[0,1152,174,182],E:[818,0,132,250],F:[192,728,170,236]},white:{A:[518,1294,165,165],B:[0,384,192,192],C:[683,996,141,194],D:[192,364,174,182],E:[815,1190,132,250],F:[362,728,170,236]},yellow:{A:[532,637,165,165],B:[0,576,192,192],C:[683,802,141,194],D:[174,1152,174,182],E:[824,638,132,250],F:[348,964,170,236]}};
+const EYE={cute:[1026,1410,64,69],core:[1090,1410,64,69],angry:[757,747,60,55]};
+const LSW='bestiary-wandering-trail';
+const bez=(p0,c,p1,u)=>[(1-u)*(1-u)*p0[0]+2*(1-u)*u*c[0]+u*u*p1[0],(1-u)*(1-u)*p0[1]+2*(1-u)*u*c[1]+u*u*p1[1]];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};
+
+class Component extends DCLogic {
+  state={ready:false,mode:'explore',focus:null,hover:null,groups:{A:true,B:true,C:true,D:true,E:true,F:true},q:'',era:6,playing:false,quest:null,result:null,toast:null,tick:0,peek:null,intro:false};
+  wrapRef=React.createRef(); cvRef=React.createRef();
+  cam={x:0,y:0,z:.5}; camT=null; camV={x:0,y:0,z:0}; camTs=0; ring={k:0,f:null,x:0,y:0,R:0}; ringE=0; leaving=new Map(); council=null; hoverId=null; hoverFam=null; listHover=null; wpath=[]; W=800; H=600; dpr=1;
+
+  componentDidMount(){ this.boot(); }
+  componentWillUnmount(){ this.dead=true; cancelAnimationFrame(this.raf); this.ro&&this.ro.disconnect(); clearInterval(this.playT); clearTimeout(this.toastT); this.off&&this.off(); }
+  componentDidUpdate(p){ if(this.nodes&&(p.gather!==this.props.gather)){ this.buildCouncil(); if(this.state.focus) this.frameFocus(); } }
+
+  async boot(){
+    const wrap=this.wrapRef.current, cv=this.cvRef.current; if(!wrap||!cv) return;
+    this.ro=new ResizeObserver(()=>this.resize()); this.ro.observe(wrap); this.resize();
+    this.bindInput(cv);
+    const load=src=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src;});
+    const [d,art,sheet,...tex]=await Promise.all([fetch('data/bestiary-interactives.json').then(r=>r.json()),fetch('assets/creatures/creatures.json').then(r=>r.json()),load('assets/monster/spritesheet_default.png'),...TEX.map(n=>load('assets/ground/'+n+'.jpg'))]);
+    if(this.dead) return;
+    this.art=art; this.artImgs={}; this.sheet=sheet; this.tex={}; TEX.forEach((n,i)=>this.tex[n]=tex[i]); this.pats={};
+    if(sheet){ const W=SPR.white; let x=0; this.wOff={}; 'ABCDEF'.split('').forEach(k=>{ const r=W[k]; this.wOff[k]={x,w:r[2],h:r[3]}; x+=r[2]+2; }); this.wAtlasW=x; this.tints={}; }
+    this.setup(d);
+    try{ this.wpath=JSON.parse(localStorage.getItem(LSW)||'[]').filter(id=>this.byId.has(id)); }catch(e){}
+    this.fitWorld(true);
+    let seen=false; try{seen=!!localStorage.getItem('bestiary-wandering-intro');}catch(e){} this.setState({ready:true,intro:!seen}); window.__bestiaryWorld=this;
+    const loop=ts=>{ if(this.dead) return; this.raf=requestAnimationFrame(loop); this.draw(ts); };
+    this.raf=requestAnimationFrame(loop);
+  }
+
+  setup(d){
+    const nodes=d.nodes.map(n=>{let h=7;for(const ch of n[0])h=(h*31+ch.charCodeAt(0))>>>0;const r=ROLE[n[3]]||['Idea','white','#e8e6e6'];
+      return {id:n[0],name:n[1],fam:FAM[n[2]]?n[2]:'myth',family:FAM[n[2]]?n[2]:'myth',rk:n[3],canon:n[5],roleL:r[0],col:r[1],roleCol:r[2],era:n[4],ei:Math.max(0,ERAK.indexOf(n[4])),w:n[6],blurb:n[7],who:n[8],shape:'ABCDEF'[h%6],ph:(h%997)/997*6.283,S:n[6]==='Core'?36:n[6]==='Major'?27:21,x:0,y:0,hx:0,hy:0,born:0,slot:null};});
+    this.nodes=nodes; this.byId=new Map(nodes.map(n=>[n.id,n]));
+    this.edges=d.edges.filter(e=>this.byId.has(e[0])&&this.byId.has(e[1])&&e[0]!==e[1]).map(e=>({a:e[0],b:e[1],g:G[e[2]]?e[2]:'D',k:e[3]}));
+    this.adj=new Map(nodes.map(n=>[n.id,[]])); this.edges.forEach(e=>{this.adj.get(e.a).push(e);this.adj.get(e.b).push(e);});
+    this.layoutIslands();
+  }
+
+  layoutIslands(){ const nodes=this.nodes;
+    const WO={Core:0,Major:1,Supporting:2};
+    const I=Object.keys(FAM).map((k,ix)=>{const list=nodes.filter(n=>n.fam===k).sort((a,b)=>(WO[a.w]??2)-(WO[b.w]??2)||a.ei-b.ei);return {k,label:FAM[k][0],tex:FAM[k][1],x:FAM[k][2][0],y:FAM[k][2][1],R:34*Math.sqrt(list.length)+92,list,s:[ix*1.7,ix*2.3+1,ix*.9+2]};}).filter(i=>i.list.length);
+    const pc0={}; this.edges.forEach(e=>{const fa=this.byId.get(e.a).fam,fb=this.byId.get(e.b).fam;if(FAM[fa]&&FAM[fb]&&fa!==fb){const k=fa<fb?fa+'|'+fb:fb+'|'+fa;pc0[k]=(pc0[k]||0)+1;}}); const cnt=(a,b)=>pc0[a<b?a+'|'+b:b+'|'+a]||0;
+    for(let it=0;it<700;it++){ const cool=1-it/700; for(let i=0;i<I.length;i++) for(let j=i+1;j<I.length;j++){ const a=I[i],b=I[j]; let dx=b.x-a.x,dy=b.y-a.y; const dd=Math.hypot(dx,dy)||1; dx/=dd; dy/=dd; const c=this.ordered?0:cnt(a.k,b.k), m=a.R+b.R+70, want=m+520/(1+c*.45); let f=0; if(dd<m) f=(dd-m)*.5; else if(c>0) f=(dd-want)*.03*cool; else if(dd<want&&!this.ordered) f=(dd-want)*.01*cool; a.x+=dx*f; a.y+=dy*f; b.x-=dx*f; b.y-=dy*f; } I.forEach(i=>{i.x*=1-.004*cool;i.y*=1-.004*cool;}); }
+    for(let it=0;it<200;it++) for(let i=0;i<I.length;i++) for(let j=i+1;j<I.length;j++){const a=I[i],b=I[j];let dx=b.x-a.x,dy=b.y-a.y;const dd=Math.hypot(dx,dy)||1,m=a.R+b.R+70;if(dd<m){const p=(m-dd)/2;dx/=dd;dy/=dd;a.x-=dx*p;a.y-=dy*p;b.x+=dx*p;b.y+=dy*p;}}
+    I.forEach(isl=>{ isl.list.forEach((n,i)=>{const r=32*Math.sqrt(i+.6)+52,a=i*2.39996+isl.s[0];n.hx=isl.x+Math.cos(a)*r;n.hy=isl.y+Math.sin(a)*r*.9;n.px=isl.x;n.py=isl.y-20;if(!this._laid){n.x=n.hx;n.y=n.hy;}});
+      isl.pts=[];for(let k=0;k<56;k++){const a=k/56*Math.PI*2,rr=isl.R*(1+.07*Math.sin(3*a+isl.s[0])+.045*Math.sin(5*a+isl.s[1])+.03*Math.sin(9*a+isl.s[2]));isl.pts.push([isl.x+Math.cos(a)*rr,isl.y+Math.sin(a)*rr]);} });
+    this.isl=I; this.islBy=Object.fromEntries(I.map(i=>[i.k,i]));
+    const pc={}; this.edges.forEach(e=>{const fa=this.byId.get(e.a).fam,fb=this.byId.get(e.b).fam;if(fa===fb)return;const k=fa<fb?fa+'|'+fb:fb+'|'+fa;pc[k]=(pc[k]||0)+1;});
+    this.routes=Object.entries(pc).map(([k,c])=>{const [a,b]=k.split('|'),A=this.islBy[a],B=this.islBy[b];const dx=B.x-A.x,dy=B.y-A.y,L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L;const p0=[A.x+ux*A.R*.92,A.y+uy*A.R*.92],p1=[B.x-ux*B.R*.92,B.y-uy*B.R*.92];const cp=[(p0[0]+p1[0])/2-uy*L*.1,(p0[1]+p1[1])/2+ux*L*.1];return {a,b,c,p0,p1,cp,mid:[(p0[0]+2*cp[0]+p1[0])/4,(p0[1]+2*cp[1]+p1[1])/4]};});
+    this.routeBy={}; this.routes.forEach(r=>{ this.routeBy[r.a+'|'+r.b]=r; const A=this.islBy[r.a],B=this.islBy[r.b]; const cd=Math.hypot(B.x-A.x,B.y-A.y), gap=cd-A.R-B.R; r.type=gap<150?'bridge':gap<560?'ship':'plane'; const ux=(B.x-A.x)/cd, uy=(B.y-A.y)/cd; const inset=r.type==='bridge'?.97:.85; r.p0=[A.x+ux*A.R*inset,A.y+uy*A.R*inset]; r.p1=[B.x-ux*B.R*inset,B.y-uy*B.R*inset]; const bend=r.type==='bridge'?.03:r.type==='ship'?.22:.32, ll=Math.hypot(r.p1[0]-r.p0[0],r.p1[1]-r.p0[1]); r.cp=[(r.p0[0]+r.p1[0])/2-uy*ll*bend,(r.p0[1]+r.p1[1])/2+ux*ll*bend]; r.mid=bez(r.p0,r.cp,r.p1,.5); const len=Math.hypot(r.p1[0]-r.p0[0],r.p1[1]-r.p0[1]); const n=Math.max(4,Math.floor(len/11)); r.w=6+Math.min(8,Math.sqrt(r.c)*1.4); r.pts=[]; r.planks=[]; r.railA=[]; r.railB=[];
+      for(let k=0;k<=n;k++){ const u=k/n, p=bez(r.p0,r.cp,r.p1,u), q=bez(r.p0,r.cp,r.p1,Math.min(1,u+.01)), p2=k===n?bez(r.p0,r.cp,r.p1,u-.01):p; let tx=q[0]-p2[0],ty=q[1]-p2[1]; if(k===n){tx=p[0]-p2[0];ty=p[1]-p2[1];} const tl=Math.hypot(tx,ty)||1, px=-ty/tl, py=tx/tl; r.pts.push(p); r.planks.push([p[0]-px*r.w,p[1]-py*r.w,p[0]+px*r.w,p[1]+py*r.w]); r.railA.push([p[0]-px*(r.w+1),p[1]-py*(r.w+1)]); r.railB.push([p[0]+px*(r.w+1),p[1]+py*(r.w+1)]); } });
+    let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9; I.forEach(i=>{x0=Math.min(x0,i.x-i.R);y0=Math.min(y0,i.y-i.R);x1=Math.max(x1,i.x+i.R);y1=Math.max(y1,i.y+i.R);}); this.wb={x0,y0,x1,y1};
+    this.waves=[];let sd=11;const rnd=()=>(sd=(sd*16807)%2147483647)/2147483647;for(let i=0;i<260;i++)this.waves.push({x:x0-300+rnd()*(x1-x0+600),y:y0-300+rnd()*(y1-y0+600),p:rnd()*6});
+    this._laid=true; }
+  groupTables(kind){
+    if(kind==='era'){ const C=['#c49a6c','#e8cf8a','#9cc9e8','#7ad13a','#b07ce0','#46d0d9','#f2c200'], SH=['Myths','Before 1900','Cybernetics','Classical AI','Rationalists','Deep learning','LLM era'], T=['sand','ruins','ice','garden','maze','crystal','volcano']; const o={FAM:{},FCOL:{},FSHORT:{},FDESC:{}}; ERAK.forEach((k,i)=>{ o.FAM[k]=[ERA[k],T[i],[-1500+i*500,(i%2?-260:260)]]; o.FCOL[k]=C[i]; o.FSHORT[k]=SH[i]; o.FDESC[k]=ERA[k].split('·')[1]?ERA[k].split('·')[1].trim():ERA[k]; }); o.key=n=>n.era; o.ordered=true; return o; }
+    if(kind==='role'){ const R=[['провал','Failure modes','How things go wrong','#ff4a63','volcano'],['решение','Solutions','Fixes, methods, agendas','#2fcc71','garden'],['тезис','Theses','Claims about AI and risk','#ffb800','sand'],['критика','Critiques','Objections to the field','#c9a27a','ruins'],['линза','Lenses','Ways of looking at the problem','#45d7e5','crystal'],['механизм','Mechanisms','How it works inside','#e8e6e6','maze'],['эмпирика','Evidence','Experiments and findings','#9cc9e8','ice'],['метафора','Metaphors','Stories and images','#ff7fb5','swamp']]; const o={FAM:{},FCOL:{},FSHORT:{},FDESC:{}}; R.forEach((r,i)=>{ const a=i/R.length*Math.PI*2; o.FAM[r[0]]=[r[1],r[4],[Math.cos(a)*700,Math.sin(a)*500]]; o.FCOL[r[0]]=r[3]; o.FSHORT[r[0]]=r[1]; o.FDESC[r[0]]=r[2]; }); o.key=n=>o.FAM[n.rk]?n.rk:'тезис'; return o; }
+    if(kind==='canon'){ return {FAM:{tech:['Technical canon','crystal',[-500,0]],hum:['Humanities canon','garden',[500,0]]},FCOL:{tech:'#46d0d9',hum:'#e08a5f'},FSHORT:{tech:'Technical',hum:'Humanities'},FDESC:{tech:'ML, alignment research, engineering',hum:'Philosophy, ethics, politics, culture'},key:n=>n.canon==='hum'?'hum':'tech'}; }
+    return {FAM:{...FAM0},FCOL:{...FCOL0},FSHORT:{...FSHORT0},FDESC:{...FDESC0},key:n=>n.family};
+  }
+  setGrouping(kind){ if(!this.nodes||kind===(this.state.grp||'family')) return; const T=this.groupTables(kind);
+    [[FAM,T.FAM],[FCOL,T.FCOL],[FSHORT,T.FSHORT],[FDESC,T.FDESC]].forEach(([o,nw])=>{ Object.keys(o).forEach(k=>delete o[k]); Object.assign(o,nw); });
+    this.nodes.forEach(n=>{ n.fam=T.key(n); }); this.ordered=!!T.ordered; this.layoutIslands(); this.pats={};
+    const now=performance.now(); this.nodes.forEach(n=>{ n.slot=null; const d=Math.hypot(n.hx-n.x,n.hy-n.y); n.atFam=n.fam; if(d<3){ n.path=null; return; } n.path=[[n.x,n.y],[n.hx,n.hy]]; n.seg=0; n.rs=0; n.re=1; n.veh='plane'; n.route=null; n.t0=now+Math.random()*700; n.spd=clamp(d/2.2,150,900); });
+    this.setState({grp:kind,peek:null},()=>{ this.buildCouncil(); if(this.state.focus) this.frameFocus(); else this.fitWorld(); });
+  }
+  tintCanvas(col){ if(this.tints[col]) return this.tints[col]; const c=document.createElement('canvas'); c.width=this.wAtlasW; c.height=252; const g=c.getContext('2d'); const W=SPR.white; const put=()=>'ABCDEF'.split('').forEach(k=>{ const r=W[k],o=this.wOff[k]; g.drawImage(this.sheet,r[0],r[1],r[2],r[3],o.x,0,r[2],r[3]); }); put(); if(!this.wMask){ const m=document.createElement('canvas'); m.width=c.width; m.height=c.height; m.getContext('2d').drawImage(c,0,0); this.wMask=m; } g.globalCompositeOperation='multiply'; g.fillStyle=col; g.fillRect(0,0,c.width,c.height); g.globalCompositeOperation='destination-in'; g.drawImage(this.wMask,0,0); this.tints[col]=c; return c; }
+  setColorBy(k){ if(k==='role'){ this.colTab=null; } else { const T=this.groupTables(k); this.colTab={key:T.key,FCOL:T.FCOL,FSHORT:T.FSHORT}; } this.setState({colorBy:k}); }
+  resize(){ const w=this.wrapRef.current,c=this.cvRef.current; if(!w||!c) return; this.W=w.clientWidth; this.H=w.clientHeight; this.dpr=Math.min(2,window.devicePixelRatio||1); c.width=Math.round(this.W*this.dpr); c.height=Math.round(this.H*this.dpr); if(this.nodes) this.setState({tick:this.state.tick+1}); }
+  cardHidden(){ return !!this.state.focus&&this.W<1250&&this.state.mode!=='quest'; }
+  journalHidden(){ return this.state.mode==='quest'&&this.W<1250; }
+  rightInset(){ return this.state.focus&&!this.journalHidden()&&this.W>900?370:0; }
+  leftInset(){ return this.W>700&&!this.cardHidden()?342:0; }
+  fitWorld(instant){ const b=this.wb; if(!b) return; const L=this.leftInset(); const z=clamp(Math.min((this.W-L-20)/(b.x1-b.x0+260),(this.H-60)/(b.y1-b.y0+220)),.2,1); const T={x:(b.x0+b.x1)/2-(L/2)/z,y:(b.y0+b.y1)/2+10/z,z}; if(instant) this.cam={...T}; else this.camT=T; }
+
+  bindInput(cv){
+    let down=null; const pos=e=>{const r=cv.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top];};
+    const pd=e=>{const [x,y]=pos(e);down={x,y,cx:this.cam.x,cy:this.cam.y,m:0};try{cv.setPointerCapture(e.pointerId);}catch(_){}};
+    const pm=e=>{const [x,y]=pos(e);if(down){const dx=x-down.x,dy=y-down.y;down.m=Math.max(down.m,Math.hypot(dx,dy));if(down.m>4){this.camT=null;this.cam.x=down.cx-dx/this.cam.z;this.cam.y=down.cy-dy/this.cam.z;}}else this.pointHover(x,y);};
+    const pu=e=>{const [x,y]=pos(e);if(down&&down.m<=4)this.pointClick(x,y);down=null;};
+    const pl=()=>{if(!down){this.hoverId=null;this.hoverFam=null;if(this.state.hover)this.setState({hover:null});}};
+    const wh=e=>{e.preventDefault();const [x,y]=pos(e),c=this.cam;const wx=(x-this.W/2)/c.z+c.x,wy=(y-this.H/2)/c.z+c.y;const nz=clamp(c.z*Math.exp(-e.deltaY*.0015),.2,3.2);this.camT=null;c.z=nz;c.x=wx-(x-this.W/2)/nz;c.y=wy-(y-this.H/2)/nz;};
+    cv.addEventListener('pointerdown',pd);cv.addEventListener('pointermove',pm);cv.addEventListener('pointerup',pu);cv.addEventListener('pointerleave',pl);cv.addEventListener('wheel',wh,{passive:false});
+    this.off=()=>{cv.removeEventListener('pointerdown',pd);cv.removeEventListener('pointermove',pm);cv.removeEventListener('pointerup',pu);cv.removeEventListener('pointerleave',pl);cv.removeEventListener('wheel',wh);};
+  }
+  toWorld(x,y){const c=this.cam;return [(x-this.W/2)/c.z+c.x,(y-this.H/2)/c.z+c.y];}
+  vis(n){ return this.state.mode!=='chronicle'||n.ei<=this.state.era; }
+  pickAt(x,y){ if(!this.nodes) return null; const [wx,wy]=this.toWorld(x,y); const C=this.council; let best=null,bd=1;
+    for(const n of this.nodes){ if(!this.vis(n)) continue; const inC=C&&(n.id===C.f||C.map.has(n.id)); const sc=n.id===this.state.focus?1.55:1; const r=Math.max(n.S*.6*sc,10/this.cam.z); const d=Math.hypot(wx-n.x,wy-(n.y-n.S*.05))/r; const dd=inC?d*.7:d; if(dd<bd){bd=dd;best=n.id;} }
+    return best; }
+  famAt(x,y){ const [wx,wy]=this.toWorld(x,y); const i=this.isl&&this.isl.find(i=>Math.hypot(wx-i.x,wy-i.y)<i.R); return i?i.k:null; }
+  edgeAt(x,y){ const C=this.council; if(!C) return null; let best=null,bd=9; const c=this.cam, S=(wx,wy)=>[(wx-c.x)*c.z+this.W/2,(wy-c.y)*c.z+this.H/2];
+    for(const v of C.map.values()){ if(this.groupHov&&v.e.g!==this.groupHov) continue; const a=this.byId.get(v.up),b=this.byId.get(v.down); const [ax,ay]=S(a.x,a.y),[bx,by]=S(b.x,b.y); const dx=bx-ax,dy=by-ay,L2=dx*dx+dy*dy||1; const u=clamp(((x-ax)*dx+(y-ay)*dy)/L2,.08,.92); const d=Math.hypot(x-ax-u*dx,y-ay-u*dy); if(d<bd){bd=d;best=v;} } return best; }
+  pointHover(x,y){ let id=this.pickAt(x,y); const ev=id?null:this.edgeAt(x,y); this.edgeHov=ev?ev.o:null; if(ev){ if(this.hoverKey!=='e'+ev.o){ this.hoverKey='e'+ev.o; this.hoverId=null; const a=this.byId.get(ev.e.a),b=this.byId.get(ev.e.b); this.setState({hover:{x,y,tag:`${G[ev.e.g].name} · ${G[ev.e.g].verb}`,title:`${a.name} ${KL[ev.e.k]||ev.e.k} ${b.name}`,sub:GEXP[ev.e.g],col:G[ev.e.g].col}}); } return; } if(this.hoverKey&&this.hoverKey[0]==='e'){ this.hoverKey=null; this.hoverId=undefined; } this.hoverFam=id?null:this.famAt(x,y); if(!id){ const fk=this.state.focus?null:this.hoverFam; if(fk!==this.lastFamTip||this.hoverId){ this.lastFamTip=fk; this.hoverId=null; this.setState({hover:fk?this.famTip(fk,x,y):null}); } return; } this.lastFamTip=null; if(id!==this.hoverId){ this.hoverId=id; this.setState({hover:this.tipFor(id,x,y)}); } }
+  famTip(k,x,y){ const I=this.islBy[k]; const top=this.routes.filter(r=>r.a===k||r.b===k).sort((p,q)=>q.c-p.c).slice(0,3).map(r=>`${FSHORT[r.a===k?r.b:r.a]} (${r.c})`).join(', '); return {x,y,tag:'Island',title:I.label,sub:`${I.list.length} beasts on one topic. Most links go to: ${top}. Islands that share many links sit next to each other.`,col:FCOL[k]}; }
+  tipFor(id,x,y){ const n=this.byId.get(id);
+    const C=this.council, v=C&&C.map.get(id);
+    if(v){ const e=v.e; return {x,y,tag:`${G[e.g].name} · lives in ${FSHORT[n.fam]}`,title:n.name,sub:`${this.byId.get(e.a).name} ${KL[e.k]||e.k} ${this.byId.get(e.b).name}.`,col:G[e.g].col}; }
+    return {x,y,tag:FAM[n.fam][0],title:n.name,sub:`${n.roleL} · ${ERA[n.era]||''} · ${(this.adj.get(id)||[]).length} links`,col:'#d8a24a'}; }
+  pointClick(x,y){ const id=this.pickAt(x,y)||this.edgeHov; const inC=id&&this.council&&this.council.map.has(id);
+    if(id&&id===this.state.focus){ if(this.state.peek) this.setState({peek:null}); return; }
+    if(inC){ if(this.state.peek===id) this.travel(id); else this.setState({peek:id}); return; }
+    if(this.state.mode==='quest'){ if(id) this.travel(id); else if(this.state.peek) this.setState({peek:null}); return; }
+    if(this.state.peek&&!id){ this.setState({peek:null}); return; }
+    if(id){ this.travel(id); return; }
+    if(this.state.focus){ this.clearFocus(); return; }
+    const f=this.famAt(x,y); if(f){ const i=this.islBy[f]; this.camT={x:i.x,y:i.y,z:clamp(Math.min(this.W,this.H)/(i.R*2+140),.6,2.2)}; } }
+
+  ok(e,rule){ if(!rule) return true; if(rule==='any') return e.k!=='тематически'; return e.g===rule; }
+  qRule(){ return this.state.mode==='quest'&&this.state.quest?this.state.quest.rule:null; }
+  isNbr(a,b,rule){ return (this.adj.get(a)||[]).some(e=>(e.a===b||e.b===b)&&this.ok(e,rule)); }
+  toast(msg){ clearTimeout(this.toastT); this.setState({toast:msg}); this.toastT=setTimeout(()=>!this.dead&&this.setState({toast:null}),2800); }
+  travel(id,force){
+    const s=this.state,n=this.byId.get(id); if(!n) return;
+    let quest=s.quest,result=null;
+    if(s.mode==='quest'&&quest&&!force&&id!==s.focus){
+      if(s.focus&&!this.isNbr(s.focus,id,quest.rule)){ this.toast(quest.rule&&quest.rule!=='any'?`No ${G[quest.rule].name.toLowerCase()} link from here — this expedition follows ${G[quest.rule].name} only`:'No road from here — hop through one of its neighbours'); return; }
+      const ed=(this.adj.get(s.focus)||[]).find(e=>((e.a===s.focus&&e.b===id)||(e.b===s.focus&&e.a===id))&&this.ok(e,quest.rule)); const d0=quest.distT.get(s.focus), d1=quest.distT.get(id); this.hintId=null;
+      quest={...quest,hops:quest.hops+1,path:[...quest.path,id],steps:[...quest.steps,{from:s.focus,to:id,e:ed}],trend:d1<d0?'warmer':d1>d0?'colder':'same'}; if(id===quest.t) result=this.makeResult(quest,false);
+    }
+    if(s.mode==='explore'&&this.wpath[this.wpath.length-1]!==id) this.saveTrail([...this.wpath,id].slice(-80));
+    this.state.quest=quest;
+    this.hoverId=null;
+    this.setState({focus:id,quest,result,hover:null,q:'',peek:null},()=>{ this.buildCouncil(); const w=this.byId.get(id); if(w.path&&(w.route||Math.hypot(w.x-w.px,w.y-w.py)>400)) this.follow=id; else { this.follow=null; this.frameFocus(); } });
+  }
+  clearFocus(){ this.setState({focus:null,hover:null},()=>{ this.buildCouncil(); this.camT={x:this.cam.x,y:this.cam.y,z:Math.min(this.cam.z,.7)}; }); }
+
+  sidesFor(f){
+    const sides={left:[],right:[],top:[],bottom:[]},seen=new Map(),P={C:0,A:1,B:2,E:3,F:4,D:5},WO={Core:0,Major:1,Supporting:2};
+    const qr=this.qRule(); for(const e of this.adj.get(f)||[]){ if(!this.state.groups[e.g]||!this.ok(e,qr)) continue; const o=e.a===f?e.b:e.a; const on=this.byId.get(o); if(!this.vis(on)) continue;
+      let side,up=e.a,down=e.b; const arr=this.state.arr||'rel';
+      if(arr==='time'){ side=on.ei<this.byId.get(f).ei?'left':on.ei>this.byId.get(f).ei?'right':'bottom'; }
+      else if(arr==='role'){ side=on.col==='red'?'left':on.col==='green'?'right':(on.col==='yellow'||on.col==='dark')?'top':'bottom'; }
+      else if(e.g==='C') side='top'; else if(e.g==='D'||e.g==='F'||e.k==='одна-школа') side='bottom';
+      else { if(REV.has(e.k)){up=e.b;down=e.a;} side=down===f?'left':'right'; }
+      const cur=seen.get(o); if(!cur||P[e.g]<cur.pr) seen.set(o,{o,e,side,pr:P[e.g],up,down}); }
+    for(const v of seen.values()) sides[v.side].push(v);
+    Object.values(sides).forEach(L=>L.sort((a,b)=>(WO[this.byId.get(a.o).w]??2)-(WO[this.byId.get(b.o).w]??2)||this.byId.get(a.o).name.localeCompare(this.byId.get(b.o).name)));
+    return sides;
+  }
+  planPath(n,tx,ty,toFam,t0){
+    const from=n.atFam||n.fam, pts=[[n.x,n.y]]; let route=null;
+    if(from!==toFam&&this.islBy[from]&&this.islBy[toFam]){ const key=from<toFam?from+'|'+toFam:toFam+'|'+from, r=this.routeBy[key];
+      if(r){ route=key; const fwd=r.a===from; const P=fwd?r.pts:[...r.pts].reverse(); n.rs=pts.length; P.forEach(p=>pts.push(p)); n.re=pts.length-1; n.veh=r.type; }
+      else { const A=this.islBy[from],B=this.islBy[toFam],dx=B.x-A.x,dy=B.y-A.y,l=Math.hypot(dx,dy)||1; pts.push([A.x+dx/l*A.R*.9,A.y+dy/l*A.R*.9]); pts.push([B.x-dx/l*B.R*.9,B.y-dy/l*B.R*.9]); } }
+    else { const mx=(n.x+tx)/2+(ty-n.y)*.18, my=(n.y+ty)/2-(tx-n.x)*.18; for(let k=1;k<6;k++){ pts.push(bez([n.x,n.y],[mx,my],[tx,ty],k/6)); } }
+    if(!route){ n.rs=-1; n.re=-1; n.veh=null; } pts.push([tx,ty]); let len=0; for(let i=1;i<pts.length;i++) len+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);
+    if(len<2){ n.path=null; n.atFam=toFam; return; }
+    n.path=pts; n.seg=0; n.t0=t0; n.spd=clamp(len/(n.veh==='plane'?2.4:n.veh==='ship'?2.8:2.6),120,700); n.route=route; n.atFam=toFam; }
+  dismissCouncil(walker){ const now=performance.now(), old=this.ring.f; let k=0; const gone=[];
+    this.nodes.forEach(n=>{ if(!n.slot) return; n.slot=null; if(n.id===walker){ this.planPath(n,n.px,n.py,n.fam,now+1100); n.spd=clamp(n.spd*.8,90,420); } else { this.planPath(n,n.hx,n.hy,n.fam,n.id===old?now+750:now+150+(k++)*40); gone.push(n.id); } });
+    this.markLeaving(gone,now); this.council=null; this.setState({tick:this.state.tick+1}); }
+  // guests walking home get a dotted thread to their home spot, so it is clear where they go
+  markLeaving(ids,now){ ids.forEach(id=>this.leaving.set(id,now)); }
+  buildCouncil(){
+    if(!this.nodes) return; const prevSlot=new Map(this.nodes.filter(n=>n.slot).map(n=>[n.id,n.slot])); this.nodes.forEach(n=>n.slot=null); this._prevSlot=prevSlot;
+    { const pf=this._lastF, nowB=performance.now(); let k=0; if(!this.state.focus){ prevSlot.forEach((sl,id)=>{ const n=this.byId.get(id); this.planPath(n,n.hx,n.hy,n.fam,nowB+150+(k++)*35); this.leaving.set(id,nowB); }); } }
+    const f=this.state.focus; if(!f){ this.council=null; this.setState({tick:this.state.tick+1}); return; }
+    const fn=this.byId.get(f), sides=this.sidesFor(f), gather=this.props.gather!==false;
+    const ANG={right:0,bottom:Math.PI/2,left:Math.PI,top:-Math.PI/2}, HW=Math.PI*.21, now=performance.now(); let order=0,Rmax=150; const labels=[];
+    for(const side of ['left','right','top','bottom']){ const L=sides[side]; if(!L.length) continue; let i=0,ring=0,rEnd=150;
+      while(i<L.length){ const r=150+ring*76, cap=Math.max(2,Math.floor(r*HW*2/72)+1), m=Math.min(cap,L.length-i);
+        for(let j=0;j<m;j++,i++){ const a=ANG[side]+(m===1?0:-HW+2*HW*j/(m-1)); const nd=this.byId.get(L[i].o); if(gather) nd.slot={x:fn.px+Math.cos(a)*r,y:fn.py+Math.sin(a)*r*.86,t0:now+order*20}; order++; }
+        rEnd=r; ring++; }
+      Rmax=Math.max(Rmax,rEnd); labels.push({side,a:ANG[side],r:rEnd+(side==='bottom'?60:side==='top'?50:105),n:L.length}); }
+    if(gather) fn.slot={x:fn.px,y:fn.py};
+    { let k=1; ['left','right','top','bottom'].forEach(sd=>sides[sd].forEach(v=>{ v.num=k++; })); }
+    this.council={f,sides,labels,Rmax,map:new Map(Object.values(sides).flat().map(v=>[v.o,v]))};
+    { let k=0, back=0; this.nodes.forEach(n=>{ const was=this._prevSlot&&this._prevSlot.get(n.id); if(n.slot){ if(!was||Math.hypot(was.x-n.slot.x,was.y-n.slot.y)>1) this.planPath(n,n.slot.x,n.slot.y,fn.fam,n.id===f?now:now+200+(k++)*30); } else if(was){ this.planPath(n,n.hx,n.hy,n.fam,n.id===this.ring.f?now+300:now+100+(back++)*35); this.leaving.set(n.id,now); } }); }
+    this.setState({tick:this.state.tick+1});
+  }
+  frameFocus(){ const fn=this.byId.get(this.state.focus); if(!fn||!this.council) return; const panel=this.rightInset();
+    let cx=fn.px,cy=fn.py,R;
+    if(this.props.gather!==false) R=this.council.Rmax+90;
+    else { let m=120; this.council.map.forEach(v=>{const o=this.byId.get(v.o);m=Math.max(m,Math.hypot(o.hx-fn.px,o.hy-fn.py)+60);}); R=m; }
+    const L=this.leftInset(), B=this.H>620?190:120; const z=clamp(Math.min(this.W-panel-L-40,this.H-B-30)/(2*R),.2,1.9);
+    this.camT={x:cx-((L+(this.W-panel))/2-this.W/2)/z,y:cy+(B/2-10)/z,z}; }
+
+  bfs(s,rule){ const dist=new Map([[s,0]]),prev=new Map(),q=[s]; while(q.length){const u=q.shift();for(const e of this.adj.get(u)){if(!this.ok(e,rule))continue;const v=e.a===u?e.b:e.a;if(!dist.has(v)){dist.set(v,dist.get(u)+1);prev.set(v,u);q.push(v);}}} return {dist,prev}; }
+  newQuest(rule){
+    clearInterval(this.playT); rule=rule||(this.state.quest&&this.state.quest.rule)||'any';
+    const deg=n=>(this.adj.get(n.id)||[]).filter(e=>this.ok(e,rule)).length; let pool=this.nodes.filter(n=>n.w==='Core'&&deg(n)>=2); if(pool.length<5) pool=this.nodes.filter(n=>n.w!=='Supporting'&&deg(n)>=2); let s,t,best=0;
+    for(let k=0;k<80&&!t;k++){ s=pool[Math.floor(Math.random()*pool.length)].id; const {dist}=this.bfs(s,rule); for(const want of (rule==='any'?[4,3]:[4,3,2])){ const c=[...dist].filter(([id,d])=>d===want).map(x=>x[0]); if(c.length){ t=c[Math.floor(Math.random()*c.length)]; best=want; break; } } }
+    const quest={s,t,rule,hops:0,path:[s],best,steps:[],hints:0,distT:this.bfs(t,rule).dist,trend:''}; this.hintId=null;
+    this.setState({mode:'quest',quest,result:null,showReport:false,playing:false,era:6,focus:null,peek:null,groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>{ this.travel(s,true); });
+  }
+  makeResult(q,gave){ const {prev}=this.bfs(q.s,q.rule); const sp=[q.t]; while(sp[0]!==q.s) sp.unshift(prev.get(sp[0])); const nm=id=>this.byId.get(id).name;
+    const grade=gave?'Here is the way':q.hops<=q.best?'Perfect pathfinder':q.hops<=q.best+2?'Good wandering':'The scenic route';
+    return {gave,grade,line:gave?`The flag was ${q.best} hops away. Follow the shortest route below — each arrow is one link on the map.`:`You reached ${nm(q.t)} in ${q.hops} hops${q.hints?` with ${q.hints} hint${q.hints>1?'s':''}`:''}. The shortest possible route takes ${q.best}.`,mine:q.path.length>1?q.path.map(nm).join('  →  '):'',short:sp.map(nm).join('  →  '),sp,path:q.path,rule:q.rule}; }
+  routeRows(ids,rule){ const sh=id=>{const nm=this.byId.get(id).name;return nm.length>24?nm.slice(0,22)+'…':nm;}; return ids.slice(1).map((id,i)=>{ const p=ids[i], e=(this.adj.get(p)||[]).find(e=>(e.a===id||e.b===id)&&this.ok(e,rule))||(this.adj.get(p)||[]).find(e=>e.a===id||e.b===id); return {n:String(i+1),rel:`${sh(e.a)} ${KL[e.k]||e.k} ${sh(e.b)}`,col:G[e.g].col,name:this.byId.get(id).name}; }); }
+  hint(){ const q=this.state.quest, f=this.state.focus; if(!q||!f) return; const d=q.distT.get(f); const nx=(this.adj.get(f)||[]).filter(e=>this.ok(e,q.rule)).map(e=>e.a===f?e.b:e.a).find(o=>q.distT.get(o)===d-1); if(!nx) return; this.hintId=nx; this.setState({quest:{...q,hints:q.hints+1}}); this.toast(`Hint: try ${this.byId.get(nx).name}`); }
+  saveTrail(p){ this.wpath=p; try{localStorage.setItem(LSW,JSON.stringify(p));}catch(e){} }
+  edgeBetween(a,b){ return (this.adj.get(a)||[]).find(e=>e.a===b||e.b===b); }
+  wanderBack(){ const p=this.wpath; if(p.length<2) return; this.saveTrail(p.slice(0,-1)); const back=p[p.length-2];
+    this.setState({focus:back,hover:null,peek:null},()=>{this.buildCouncil();this.frameFocus();}); }
+  undo(){ const q=this.state.quest; if(!q||q.path.length<2) return; const path=q.path.slice(0,-1), steps=q.steps.slice(0,-1), back=path[path.length-1]; this.hintId=null; this.setState({quest:{...q,path,steps,hops:Math.max(0,q.hops-1),trend:'back'},focus:back,hover:null,peek:null},()=>{this.buildCouncil();this.frameFocus();}); }
+  giveUp(){ const q=this.state.quest; if(q) this.setState({result:this.makeResult(q,true)}); }
+
+  setMode(k){
+    clearInterval(this.playT);
+    if(k==='quest'){ this.newQuest(); return; }
+    if(k==='explore'){ this.setState({mode:'explore',quest:null,result:null,focus:null,peek:null,playing:false,era:6},()=>{this.buildCouncil();this.fitWorld();}); return; }
+    this.setState({mode:'chronicle',quest:null,result:null,focus:null,era:0,playing:false},()=>{ this.buildCouncil(); this.eraChanged(-1); this.fitWorld(); this.togglePlay(); });
+  }
+  setEra(v){ const prev=this.state.era; this.setState({era:v},()=>{ this.eraChanged(prev); this.buildCouncil(); }); }
+  eraChanged(prev){ const now=performance.now(), e=this.state.era;
+    for(const n of this.nodes){ if(n.ei<=e&&n.ei>prev){ n.born=now+Math.random()*500; let par=null,pd=9;
+      for(const ed of this.adj.get(n.id)){ const o=this.byId.get(ed.a===n.id?ed.b:ed.a); if(o.ei<n.ei&&o.ei<=prev){ const d=n.ei-o.ei+(ed.g==='E'||ed.g==='A'?0:.5); if(d<pd){pd=d;par=o;} } }
+      if(par){ n.x=par.hx; n.y=par.hy; } else { n.x=n.hx; n.y=n.hy; } } } }
+  togglePlay(){ if(this.state.playing){ clearInterval(this.playT); this.setState({playing:false}); return; }
+    if(this.state.era>=6) this.setEra(0);
+    this.setState({playing:true}); this.playT=setInterval(()=>{ if(this.state.era>=6){ clearInterval(this.playT); this.setState({playing:false}); return; } this.setEra(this.state.era+1); },1900); }
+  toggleGroup(g){ this.setState(s=>({groups:{...s.groups,[g]:!s.groups[g]}}),()=>this.buildCouncil()); }
+
+  pat(ctx,name){ if(this.pats[name]!==undefined) return this.pats[name]; const img=this.tex[name]; let p=null; if(img){ p=ctx.createPattern(img,'repeat'); try{p.setTransform(new DOMMatrix().scale(.55));}catch(e){} } this.pats[name]=p; return p; }
+  blob(ctx,I){ ctx.beginPath(); I.pts.forEach((p,k)=>k?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])); ctx.closePath(); }
+  edge(ctx,g,ax,ay,bx,by,t,z,hl){
+    const dx=bx-ax,dy=by-ay,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L,px=-uy,py=ux,col=G[g].col;
+    ctx.save(); ctx.strokeStyle=col; ctx.fillStyle=col; ctx.lineWidth=(hl?3.4:1.8)/z; ctx.globalAlpha=hl?1:.8; ctx.lineCap='round';
+    const line=()=>{ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);ctx.stroke();};
+    if(g==='A'){ line(); for(let k=0;k<3;k++){const f=(t*.3+k/3)%1;ctx.beginPath();ctx.arc(ax+dx*f,ay+dy*f,(hl?4.5:3.2)/z,0,7);ctx.fill();} }
+    else if(g==='B'){ ctx.setLineDash([10/z,7/z]); ctx.lineDashOffset=-t*46/z; line(); ctx.setLineDash([]); const f=.58,mx=ax+dx*f,my=ay+dy*f,s=8/z; ctx.beginPath(); ctx.moveTo(mx+ux*s,my+uy*s); ctx.lineTo(mx-ux*s+px*s*.7,my-uy*s+py*s*.7); ctx.lineTo(mx-ux*s-px*s*.7,my-uy*s-py*s*.7); ctx.closePath(); ctx.fill(); }
+    else if(g==='C'){ const n=Math.max(6,Math.floor(L/13)); ctx.beginPath(); for(let i=0;i<=n;i++){const f=i/n,j=(i===0||i===n)?0:Math.sin(t*16+i*2.3)*5.5*(i%2?1:-1);const x=ax+dx*f+px*j,y=ay+dy*f+py*j;i?ctx.lineTo(x,y):ctx.moveTo(x,y);} ctx.stroke(); }
+    else if(g==='D'){ ctx.setLineDash([.5/z,7/z]); ctx.lineWidth=(hl?5:3.2)/z; line(); }
+    else if(g==='E'){ const step=14,n=Math.floor(L/step),shown=Math.min(n,Math.floor(((t*.55)%1.3)*n)+2); ctx.globalAlpha=hl?1:.85; const ang=Math.atan2(dy,dx);
+      for(let i=0;i<shown;i++){const f=(i+.5)/n,s=i%2?1:-1;ctx.beginPath();ctx.ellipse(ax+dx*f+px*s*3.4,ay+dy*f+py*s*3.4,3.6,2.1,ang,0,7);ctx.fill();} }
+    else { const o=2.4/z; ctx.lineWidth=1.4/z; ctx.beginPath(); ctx.moveTo(ax+px*o,ay+py*o); ctx.lineTo(bx+px*o,by+py*o); ctx.moveTo(ax-px*o,ay-py*o); ctx.lineTo(bx-px*o,by-py*o); ctx.stroke(); }
+    ctx.restore();
+  }
+  // celebration: rockets rise from the pedestal and burst into sparks
+  fireworks(ctx,x,y,T,z){ const PAL=['#d8a24a','#ff6b5e','#45d7e5','#2fcc71','#a58cff','#ffb800','#efeae2'];
+    ctx.save(); for(let i=0;i<8;i++){ const s0=i*.42, u=T-s0; if(u<0||u>2) continue; const cx=x+Math.cos(i*2.4)*(70+(i%3)*70), cy=y-150-((i*53)%5)*28, col=PAL[i%PAL.length];
+      if(u<.4){ const k=u/.4, e=1-(1-k)*(1-k); ctx.globalAlpha=1; ctx.fillStyle='#efeae2'; ctx.beginPath(); ctx.arc(x+(cx-x)*e,y+(cy-y)*e,3/z+1,0,7); ctx.fill(); continue; }
+      const w=u-.4, e=1-Math.pow(1-Math.min(w/1.1,1),3); ctx.globalAlpha=Math.max(0,1-w/1.6); ctx.fillStyle=col; ctx.strokeStyle=col; ctx.lineWidth=1.6/z;
+      for(let k=0;k<28;k++){ const a=k/28*Math.PI*2+i, v=95*(.65+((k*37)%10)/28), px=cx+Math.cos(a)*v*e, py=cy+Math.sin(a)*v*e+38*w*w;
+        ctx.beginPath(); ctx.moveTo(px-Math.cos(a)*9*(1-e),py-Math.sin(a)*9*(1-e)); ctx.lineTo(px,py); ctx.stroke(); ctx.beginPath(); ctx.arc(px,py,2.4,0,7); ctx.fill(); } }
+    ctx.restore(); }
+  // little particles that say what kind of relation a council guest has with the beast in the centre
+  aura(ctx,n,e,t,z,a){ const S=Math.max(n.S*1.15,26), x0=n.x, y0=n.y-n.S*.6, k=e.k, g=e.g, col=G[g].col;
+    const rise=(sp,cnt,fn)=>{ for(let i=0;i<cnt;i++){ const u=(t*sp+n.ph*.37+i/cnt)%1; ctx.globalAlpha=a*Math.sin(Math.PI*u); fn(x0+Math.sin(u*5+i*2.1+n.ph)*S*.3,y0-u*S*1.3,u,i); } };
+    const glyph=(ch,c,sz)=>(x,y,u)=>{ ctx.fillStyle=c; ctx.font=`700 ${sz*(0.7+u*.5)}px sans-serif`; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(ch,x,y); };
+    ctx.save();
+    if(k==='смягчает'||k==='решает') rise(.45,3,glyph('+','#2fcc71',S*.65));                       // healing pluses
+    else if(k==='усугубляет'){ rise(.9,5,(x,y,u)=>{ ctx.fillStyle=u<.5?'#ffb800':'#ff6b5e'; ctx.beginPath(); ctx.arc(x,y+S*.4,S*.07*(1-u)+.5,0,7); ctx.fill(); }); } // embers
+    else if(g==='D') rise(.35,3,glyph('♥','#ff7eb6',S*.55));                                              // kin: hearts
+    else if(g==='C'){ for(let i=0;i<2;i++){ const u=(t*1.6+n.ph+i*.5)%1; if(u>.35) continue; ctx.globalAlpha=a*(1-u/.35); ctx.strokeStyle=col; ctx.lineWidth=1.8/z; const sx=x0+(i?S*.45:-S*.45), sy=y0-S*.35;
+        ctx.beginPath(); ctx.moveTo(sx,sy-S*.25); ctx.lineTo(sx+S*.1,sy-S*.05); ctx.lineTo(sx-S*.06,sy); ctx.lineTo(sx+S*.06,sy+S*.2); ctx.stroke(); } } // sparks of a quarrel
+    else if(g==='A'){ for(let i=0;i<2;i++){ const u=(t*.5+n.ph*.3+i*.5)%1; ctx.globalAlpha=a*(1-u)*.8; ctx.strokeStyle=col; ctx.lineWidth=1.6/z; ctx.beginPath(); ctx.ellipse(x0,n.y+S*.45,S*(.4+u*.9),S*(.14+u*.32),0,0,7); ctx.stroke(); } } // logic: calm rings
+    else if(g==='B') rise(.6,4,(x,y,u)=>{ ctx.strokeStyle=col; ctx.lineWidth=1.3/z; ctx.beginPath(); ctx.arc(x,y,S*(.05+u*.09),0,7); ctx.stroke(); }); // cause: fizzing bubbles
+    else if(g==='E') rise(.22,3,(x,y,u)=>{ const r=S*.13*(1-Math.abs(u-.5)); ctx.fillStyle=col; ctx.beginPath(); ctx.moveTo(x,y-r*2); ctx.quadraticCurveTo(x,y,x+r*2,y); ctx.quadraticCurveTo(x,y,x,y+r*2); ctx.quadraticCurveTo(x,y,x-r*2,y); ctx.quadraticCurveTo(x,y,x,y-r*2); ctx.fill(); }); // history: old-gold twinkles
+    else if(g==='F'){ const ang=t*2.2+n.ph; ctx.globalAlpha=a; ctx.fillStyle=col; ctx.beginPath(); ctx.arc(x0+Math.cos(ang)*S*.75,n.y+Math.sin(ang)*S*.3,S*.09,0,7); ctx.fill(); } // bridge: a little moon orbiting
+    ctx.restore(); }
+  // hand-drawn creatures (assets/creatures): body recoloured to the current colouring, shade = darker body
+  artImg(id,col){ const key=id+col; if(this.artImgs[key]) return this.artImgs[key]; const h=parseInt(col.slice(1),16), sh='#'+[16,8,0].map(b=>Math.round(((h>>b)&255)*.74).toString(16).padStart(2,'0')).join('');
+    const im=new Image(); im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(this.art[id].svg.replaceAll('%B%',col).replaceAll('%S%',sh)); this.artImgs[key]=im; return im; }
+  beast(ctx,n,x,y,S,angry,alpha){
+    const A=this.art[n.id];
+    if(A){ const im=this.artImg(n.id,this.colTab?(this.colTab.FCOL[this.colTab.key(n)]||'#e8e6e6'):n.roleCol);
+      if(im.complete&&im.naturalWidth){ const k=S*1.35/Math.max(A.w,A.h), w=A.w*k, h=A.h*k;
+        ctx.globalAlpha=alpha*.5; ctx.fillStyle='#000'; ctx.beginPath(); ctx.ellipse(x,y+h/2-1,w*.4,Math.max(2,w*.1),0,0,7); ctx.fill(); ctx.globalAlpha=alpha;
+        ctx.drawImage(im,x-w/2,y-h/2,w,h); ctx.globalAlpha=1; return; } }
+    const r=SPR[n.col][n.shape], k=S/Math.max(r[2],r[3]), w=r[2]*k, h=r[3]*k;
+    ctx.globalAlpha=alpha*.5; ctx.fillStyle='#000'; ctx.beginPath(); ctx.ellipse(x,y+h/2-1,w*.44,Math.max(2,w*.12),0,0,7); ctx.fill(); ctx.globalAlpha=alpha;
+    const img=this.sheet;
+    if(this.colTab&&this.sheet){ const col=this.colTab.FCOL[this.colTab.key(n)]||'#e8e6e6'; const T=this.tintCanvas(col), o=this.wOff[n.shape]; ctx.drawImage(T,o.x,0,o.w,o.h,x-w/2,y-h/2,w,h); }
+    else if(img){ ctx.drawImage(img,r[0],r[1],r[2],r[3],x-w/2,y-h/2,w,h); } else { ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.arc(x,y,S/2,0,7); ctx.fill(); }
+    if(this.sheet){ const e=angry?EYE.angry:(n.w==='Core'?EYE.core:EYE.cute); const ew=Math.min(w,h)*.46, eh=ew*e[3]/e[2]; ctx.drawImage(this.sheet,e[0],e[1],e[2],e[3],x-ew/2,y-h/2+h*.2,ew,eh); }
+    ctx.globalAlpha=1;
+  }
+  text(ctx,str,x,y,font,col,align){ ctx.font=font; ctx.textAlign=align||'center'; ctx.textBaseline='middle'; ctx.lineWidth=4; ctx.lineJoin='round'; ctx.strokeStyle='rgba(12,11,10,.92)'; ctx.strokeText(str,x,y); ctx.fillStyle=col; ctx.fillText(str,x,y); }
+
+  draw(ts){
+    const cv=this.cvRef.current; if(!cv||!this.nodes) return; const ctx=cv.getContext('2d'), W=this.W, H=this.H, dpr=this.dpr, t=ts/1000, c=this.cam;
+    const cdt=Math.min(.05,(ts-(this.camTs||ts))/1000); this.camTs=ts;
+    // smooth camera: critically damped spring (starts from rest, no jerk), zoom moves in log space
+    if(this.camT){ const T=this.camT, v=this.camV, w=4.5, lz=Math.log(c.z);
+      v.x+=(w*w*(T.x-c.x)-2*w*v.x)*cdt; v.y+=(w*w*(T.y-c.y)-2*w*v.y)*cdt; v.z+=(w*w*(Math.log(T.z)-lz)-2*w*v.z)*cdt;
+      c.x+=v.x*cdt; c.y+=v.y*cdt; c.z=Math.exp(lz+v.z*cdt);
+      if(Math.abs(T.z-c.z)<.002&&Math.hypot(T.x-c.x,T.y-c.y)<.3&&Math.hypot(v.x,v.y)*c.z<4) this.camT=null; }
+    else this.camV={x:0,y:0,z:0};
+    const z=c.z, s=this.state, f=s.focus, fn=f?this.byId.get(f):null, C=fn?this.council:null, gather=this.props.gather!==false;
+    const dt=Math.min(.05,Math.max(0,(ts-(this.lastTs||ts))/1000)); this.lastTs=ts; const busy=new Set();
+    for(const n of this.nodes){ if(n.path){ if(ts<n.t0){ n.mv=false; continue; } let left=n.spd*dt; while(left>0&&n.path){ const b=n.path[n.seg+1]; const dx=b[0]-n.x, dy=b[1]-n.y, d=Math.hypot(dx,dy); if(Math.abs(dx)>.5) n.dir=dx>0?1:-1; if(d<=left){ n.x=b[0]; n.y=b[1]; left-=d; n.seg++; if(n.seg>=n.path.length-1){ n.path=null; n.route=null; } } else { n.x+=dx/d*left; n.y+=dy/d*left; left=0; } } n.mv=!!n.path; if(n.route) busy.add(n.route); }
+      else { const tg=n.slot||{x:n.hx,y:n.hy}; const dx=tg.x-n.x,dy=tg.y-n.y; n.x+=dx*.08; n.y+=dy*.08; n.mv=Math.hypot(dx,dy)>3; } }
+    if(this.follow){ const fw=this.byId.get(this.follow); if(!fw||this.state.focus!==this.follow){ this.follow=null; } else if(!fw.path&&Math.hypot(fw.x-fw.px,fw.y-fw.py)<2){ this.follow=null; this.frameFocus(); } else if(fw.path&&ts<fw.t0){ } else { const L=this.leftInset(), P=this.rightInset(), zz=this.camT?this.camT.z:c.z; const tz=Math.min(zz,Math.max(.55,c.z)); this.camT={x:fw.x-((L+(W-P))/2-W/2)/tz,y:fw.y+40/tz,z:tz}; } }
+    const ox=W/2-c.x*z, oy=H/2-c.y*z, scr=(x,y)=>[x*z+ox,y*z+oy];
+    ctx.setTransform(dpr,0,0,dpr,0,0); ctx.fillStyle='#0c0b0a'; ctx.fillRect(0,0,W,H);
+    ctx.setTransform(dpr*z,0,0,dpr*z,dpr*ox,dpr*oy);
+    ctx.strokeStyle='rgba(154,148,139,.10)'; ctx.lineWidth=1.3/z; ctx.beginPath(); for(const w of this.waves){const x=w.x+Math.sin(t*.4+w.p)*7;ctx.moveTo(x-8,w.y);ctx.quadraticCurveTo(x,w.y-4,x+8,w.y);} ctx.stroke();
+    for(const I of this.isl){ ctx.save(); ctx.translate(0,14); this.blob(ctx,I); ctx.fillStyle='#050504'; ctx.fill(); ctx.restore(); }
+    for(const I of this.isl){ const alive=s.mode!=='chronicle'||I.list.some(n=>n.ei<=s.era); this.blob(ctx,I); ctx.fillStyle=this.pat(ctx,I.tex)||'#26231f'; ctx.fill(); ctx.fillStyle=alive?'rgba(12,11,10,.42)':'rgba(12,11,10,.78)'; ctx.fill(); ctx.globalAlpha=.16; ctx.fillStyle=FCOL[I.k]; ctx.fill(); ctx.globalAlpha=1;
+      ctx.strokeStyle=FCOL[I.k]; ctx.globalAlpha=(this.hoverFam===I.k&&!fn)?1:.6; ctx.lineWidth=(this.hoverFam===I.k&&!fn?3.2:2)/z; ctx.stroke(); ctx.globalAlpha=1; }
+    for(const I of this.isl){ const occ=fn&&fn.fam===I.k&&gather; const px=I.x, py=I.y; ctx.fillStyle='#1a1714'; ctx.beginPath(); ctx.ellipse(px,py+8,34,14,0,0,7); ctx.fill(); ctx.fillStyle='#2e2b28'; ctx.fillRect(px-30,py-4,60,12); ctx.beginPath(); ctx.ellipse(px,py+8,30,12,0,0,Math.PI); ctx.fill(); ctx.fillStyle='#4a4540'; ctx.beginPath(); ctx.ellipse(px,py-4,30,12,0,0,7); ctx.fill(); ctx.strokeStyle=occ?'#d8a24a':FCOL[I.k]; ctx.globalAlpha=occ?1:.75; ctx.lineWidth=(occ?3:2)/z; ctx.stroke(); ctx.globalAlpha=1; if(!occ){ ctx.strokeStyle='rgba(239,234,226,.18)'; ctx.lineWidth=1/z; ctx.beginPath(); ctx.ellipse(px,py-4,18,7,0,0,7); ctx.stroke(); } }
+    if(this.props.routes!==false){ for(const r of this.routes){ const hl=!fn&&this.hoverFam&&(r.a===this.hoverFam||r.b===this.hoverFam), use=busy.has(r.a+'|'+r.b);
+        if(r.type!=='bridge'){ if(!use&&!hl) continue; ctx.save(); ctx.lineCap='round'; if(r.type==='ship'){ ctx.strokeStyle=hl&&!use?'rgba(216,162,74,.8)':'rgba(154,190,210,.45)'; ctx.lineWidth=2/z; ctx.setLineDash([1/z,8/z]); } else { ctx.strokeStyle=hl&&!use?'rgba(216,162,74,.8)':'rgba(239,234,226,.4)'; ctx.lineWidth=1.6/z; ctx.setLineDash([10/z,8/z]); ctx.lineDashOffset=-t*20/z; } ctx.beginPath(); r.pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])); ctx.stroke(); ctx.restore(); continue; }
+        const al=use||hl?1:.8;
+        ctx.save(); ctx.globalAlpha=al; ctx.lineCap='round'; ctx.strokeStyle='#211a14'; ctx.lineWidth=r.w*2+2; ctx.beginPath(); r.pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])); ctx.stroke();
+        ctx.strokeStyle=use?'#8a6f52':'#6b5845'; ctx.lineWidth=3.6; ctx.lineCap='butt'; ctx.beginPath(); for(const pl of r.planks){ ctx.moveTo(pl[0],pl[1]); ctx.lineTo(pl[2],pl[3]); } ctx.stroke();
+        ctx.strokeStyle=hl||use?'#d8a24a':'#9a948b'; ctx.lineWidth=1.6; for(const R of [r.railA,r.railB]){ ctx.beginPath(); R.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])); ctx.stroke(); } ctx.restore(); } }
+    // council ring: collapses into the old centre, then grows out of the new one
+    { const rg=this.ring, want=C&&gather&&Math.hypot(fn.x-fn.px,fn.y-fn.py)<25; if(want&&rg.f!==f&&rg.k<.02){ rg.f=f; rg.x=fn.px; rg.y=fn.py; rg.R=C.Rmax+115; } if(want&&rg.f===f) rg.R=C.Rmax+115;
+      const tgt=want&&rg.f===f?1:0; rg.k=clamp(rg.k+(tgt?cdt/.6:-cdt/.6),0,1); const e=rg.k<.5?2*rg.k*rg.k:1-Math.pow(-2*rg.k+2,2)/2; this.ringE=e;
+      if(e>0){ const R=rg.R*e; ctx.save(); ctx.globalAlpha=e; ctx.fillStyle='rgba(12,11,10,.62)'; ctx.beginPath(); ctx.ellipse(rg.x,rg.y,R,R*.9,0,0,7); ctx.fill();
+        ctx.strokeStyle='rgba(216,162,74,.35)'; ctx.lineWidth=1.2/z; ctx.setLineDash([3/z,7/z]); ctx.beginPath(); ctx.ellipse(rg.x,rg.y,R,R*.9,0,0,7); ctx.stroke(); ctx.setLineDash([]); ctx.restore(); } }
+    const q=s.quest; const flagFam=q&&q.t?this.byId.get(q.t).fam:null;
+    if(flagFam&&s.mode==='quest'){ const I=this.islBy[flagFam]; ctx.save(); this.blob(ctx,I); ctx.strokeStyle='#d8a24a'; ctx.lineWidth=3/z; ctx.setLineDash([12/z,8/z]); ctx.lineDashOffset=-t*20/z; ctx.stroke(); ctx.restore(); }
+    const fp=q?q.path:[];
+    if(fp.length>1){ ctx.fillStyle='rgba(196,154,108,.55)'; for(let i=1;i<fp.length;i++){ const a=this.byId.get(fp[i-1]),b=this.byId.get(fp[i]); if(!q&&!this.edgeBetween(a.id,b.id)) continue; const dx=b.hx-a.hx,dy=b.hy-a.hy,L=Math.hypot(dx,dy),n=Math.floor(L/18),ang=Math.atan2(dy,dx); for(let k=1;k<n;k++){const ff=k/n,sg=k%2?1:-1;ctx.beginPath();ctx.ellipse(a.hx+dx*ff-dy/L*sg*3,a.hy+dy*ff+dx/L*sg*3,3.4,2,ang,0,7);ctx.fill();} } }
+    const hov=this.hoverId||this.listHover||this.edgeHov||s.peek, gh=this.groupHov;
+    if(C&&gather){ for(const v of C.map.values()){ const n=this.byId.get(v.o); if(!this.vis(n)||n.fam===fn.fam) continue; const col=FCOL[n.fam], hl=hov===n.id; ctx.save(); ctx.globalAlpha=hl?.95:.42; ctx.strokeStyle=col; ctx.lineWidth=(hl?2.2:1.3)/z; ctx.setLineDash([2/z,5/z]); ctx.lineDashOffset=t*12/z;
+        const mx=(n.hx+n.x)/2+(n.y-n.hy)*.15, my=(n.hy+n.y)/2-(n.x-n.hx)*.15; ctx.beginPath(); ctx.moveTo(n.hx,n.hy); ctx.quadraticCurveTo(mx,my,n.x,n.y); ctx.stroke(); ctx.setLineDash([]);
+        ctx.restore(); } }
+    if(C){ for(const v of C.map.values()){ const up=this.byId.get(v.up),dn=this.byId.get(v.down); if(gh&&v.e.g!==gh){ ctx.save(); ctx.globalAlpha=.12; this.edge(ctx,v.e.g,up.x,up.y,dn.x,dn.y,t,z,false); ctx.restore(); continue; } this.edge(ctx,v.e.g,up.x,up.y,dn.x,dn.y,t,z,hov===v.o||gh===v.e.g); }
+      if(hov&&C.map.has(hov)){ ctx.save(); ctx.strokeStyle='rgba(239,234,226,.55)'; ctx.lineWidth=1.2/z; ctx.setLineDash([4/z,4/z]); for(const e of this.adj.get(hov)){ const o=e.a===hov?e.b:e.a; if(o!==f&&C.map.has(o)){ const a=this.byId.get(hov),b=this.byId.get(o); ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); } } ctx.restore(); } }
+    const list=this.nodes.filter(n=>this.vis(n)).sort((a,b)=>a.y-b.y); const inC=n=>n.id===f||(C&&C.map.has(n.id));
+    if(s.peek&&this.byId.get(s.peek)){ const pn=this.byId.get(s.peek); ctx.save(); ctx.strokeStyle='#efeae2'; ctx.lineWidth=2.6/z; ctx.setLineDash([5/z,4/z]); ctx.lineDashOffset=t*14/z; ctx.beginPath(); ctx.arc(pn.x,pn.y,pn.S*1.1+Math.sin(t*4)*1.5,0,7); ctx.stroke(); ctx.restore(); }
+    if(this.hintId&&q){ const hn=this.byId.get(this.hintId); const p=1+Math.sin(t*6)*.15; ctx.strokeStyle='#d8a24a'; ctx.lineWidth=3/z; ctx.beginPath(); ctx.arc(hn.x,hn.y,hn.S*.95*p,0,7); ctx.stroke(); }
+    if(fn){ const p=1+Math.sin(t*3)*.08; ctx.strokeStyle='#d8a24a'; ctx.lineWidth=2.4/z; ctx.beginPath(); ctx.ellipse(fn.x,fn.y+fn.S*.75,fn.S*.95*p,fn.S*.32*p,0,0,7); ctx.stroke(); }
+    for(const [id,t0] of this.leaving){ const n=this.byId.get(id); if(!n.path||n.slot){ this.leaving.delete(id); continue; }
+      const P=n.path, fade=clamp((ts-t0)/350,0,1), col=FCOL[n.fam]||'#9a948b'; ctx.save(); ctx.globalAlpha=.55*fade; ctx.strokeStyle=col; ctx.lineWidth=1.6/z; ctx.setLineDash([2/z,6/z]); ctx.lineDashOffset=-t*18/z;
+      ctx.beginPath(); ctx.moveTo(n.x,n.y); for(let i=n.seg+1;i<P.length;i++) ctx.lineTo(P[i][0],P[i][1]); ctx.stroke(); ctx.setLineDash([]);
+      const e=P[P.length-1]; ctx.globalAlpha=.8*fade; ctx.lineWidth=1.8/z; ctx.beginPath(); ctx.ellipse(e[0],e[1]+n.S*.45,n.S*.55,n.S*.2,0,0,7); ctx.stroke(); ctx.restore(); }
+    for(const pass of [0,1]) for(const n of list){ if(!!(inC(n)||n.mv)!==!!pass) continue;
+      const alpha=fn?(pass?1:.16):1; const sc=n.born&&ts<n.born+700?(ts<n.born?0:back(clamp((ts-n.born)/700,0,1))):1; if(sc<=0) continue;
+      const v=C&&C.map.get(n.id), duel=v&&v.e.g==='C';
+      n.bz=(n.bz||1)+((n.id===f?1.55:1)-(n.bz||1))*Math.min(1,cdt*5); const S=n.S*n.bz*sc*(hov===n.id?1.18:1);
+      const cheer=this.fwT&&ts-this.fwT<3800&&inC(n)?Math.abs(Math.sin(t*9+n.ph*3))*7:0, bob=Math.sin(t*(n.mv?10:2)+n.ph)*(n.mv?3:1.5)-cheer, sx=duel?Math.sin(t*28+n.ph)*1.3:0;
+      const inVeh=n.mv&&n.veh&&n.seg>=n.rs&&n.seg<n.re, HI=this.islBy[n.fam], away=HI&&Math.hypot(n.x-HI.x,(n.y-HI.y)/.9)>HI.R*.93;
+      if(away&&!inVeh&&alpha>.5){ const r0=SPR[n.col][n.shape], hh=r0[3]*S/Math.max(r0[2],r0[3]), rx=Math.min(Math.max(S*.95,20),36), ry=rx*.42, cy=n.y+hh/2+1; const I=this.islBy[n.fam]; ctx.beginPath(); ctx.ellipse(n.x,cy,rx,ry,0,0,7); ctx.fillStyle=(I&&this.pat(ctx,I.tex))||'#26231f'; ctx.fill(); ctx.globalAlpha=.45; ctx.fillStyle=FCOL[n.fam]; ctx.fill(); ctx.globalAlpha=1; ctx.strokeStyle=FCOL[n.fam]; ctx.lineWidth=2.5/z; ctx.stroke(); }
+      const veh=n.mv&&n.veh&&n.seg>=n.rs&&n.seg<n.re?n.veh:null;
+      if(veh==='ship'){ const d=n.dir||1, rk=Math.sin(t*3+n.ph)*.06; ctx.save(); ctx.translate(n.x,n.y); ctx.rotate(rk); ctx.strokeStyle='rgba(154,190,210,.5)'; ctx.lineWidth=1.4/z; for(let k=1;k<4;k++){ ctx.beginPath(); ctx.arc(-d*S*.9*k*.6,S*.55,S*.25*k*.6,0,Math.PI); ctx.stroke(); }
+          ctx.fillStyle='#efeae2'; ctx.beginPath(); ctx.moveTo(-d*S*.1,-S*1.05); ctx.lineTo(-d*S*.1,-S*.2); ctx.lineTo(-d*S*.75,-S*.25); ctx.closePath(); ctx.fill(); ctx.strokeStyle='#4a3b2e'; ctx.lineWidth=2/z; ctx.beginPath(); ctx.moveTo(-d*S*.1,-S*1.1); ctx.lineTo(-d*S*.1,S*.3); ctx.stroke(); ctx.translate(-n.x,-n.y);
+          this.beast(ctx,n,n.x+d*S*.18,n.y-S*.05,S*.8,false,1); ctx.translate(n.x,n.y); ctx.fillStyle='#6b4a32'; ctx.beginPath(); ctx.moveTo(-S*.85,S*.15); ctx.lineTo(S*.85,S*.15); ctx.lineTo(S*.6,S*.55); ctx.lineTo(-S*.6,S*.55); ctx.closePath(); ctx.fill(); ctx.fillStyle='#8a6f52'; ctx.fillRect(-S*.85,S*.12,S*1.7,S*.08); ctx.restore(); }
+      else if(veh==='plane'){ const d=n.dir||1, prog=(n.seg-n.rs)/Math.max(1,n.re-n.rs), alt=Math.sin(Math.PI*prog)*S*1.6+S*.4; ctx.save(); ctx.globalAlpha=.3; ctx.fillStyle='#000'; ctx.beginPath(); ctx.ellipse(n.x,n.y+S*.5,S*.9,S*.18,0,0,7); ctx.fill(); ctx.globalAlpha=1; const py=n.y-alt;
+          ctx.translate(n.x,py); ctx.rotate(Math.sin(t*4+n.ph)*.05); ctx.fillStyle='#cfc8bd'; ctx.beginPath(); ctx.ellipse(0,S*.32,S*.95,S*.2,0,0,7); ctx.fill(); ctx.fillStyle='#9a948b'; ctx.fillRect(-S*.25,S*.18,S*.5,S*.3); ctx.beginPath(); ctx.moveTo(-d*S*.95,S*.3); ctx.lineTo(-d*S*1.15,S*-.05); ctx.lineTo(-d*S*.75,S*.22); ctx.closePath(); ctx.fill(); ctx.strokeStyle='rgba(239,234,226,.7)'; ctx.lineWidth=1.5/z; const pr=Math.sin(t*40)*S*.28; ctx.beginPath(); ctx.moveTo(d*S*.98,S*.32-pr); ctx.lineTo(d*S*.98,S*.32+pr); ctx.stroke(); ctx.translate(-n.x,-py);
+          this.beast(ctx,n,n.x,py-S*.08,S*.72,false,1); ctx.restore(); }
+      else if(n.mv){ ctx.save(); ctx.translate(n.x,n.y); ctx.rotate(Math.sin(t*16+n.ph)*.14); ctx.translate(-n.x,-n.y); this.beast(ctx,n,n.x+sx,n.y+bob,S,duel,Math.max(alpha,.85)); ctx.restore(); } else this.beast(ctx,n,n.x+sx,n.y+bob,S,duel,alpha); }
+    if(C&&this.ringE>0) for(const v of C.map.values()){ const n=this.byId.get(v.o); if(n.mv||!this.vis(n)) continue; this.aura(ctx,n,v.e,t,z,this.ringE*(gh&&v.e.g!==gh?.15:1)); }
+    if(s.result&&!s.result.gave&&fn&&q&&fn.id===q.t&&Math.hypot(fn.x-fn.px,fn.y-fn.py)<25&&this.fwFor!==s.result){ this.fwFor=s.result; this.fwT=ts; }
+    if(this.fwT&&fn&&ts-this.fwT<4500) this.fireworks(ctx,fn.px,fn.py,(ts-this.fwT)/1000,z);
+    ctx.setTransform(dpr,0,0,dpr,0,0); if('letterSpacing' in ctx) ctx.letterSpacing='1.5px';
+    { const ip=[]; const iord=[...this.isl].sort((a,b)=>(b.k===this.hoverFam)-(a.k===this.hoverFam)||b.list.length-a.list.length); for(const I of iord){ let [sx,sy]=scr(I.x,I.y-I.R-18); let pinned=false; if(fn&&C&&gather){ if(!this._cbox||this._cboxT!==ts){ let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9; const add=n=>{ const [a,b]=scr(n.slot?n.slot.x:n.x,n.slot?n.slot.y:n.y), r=n.S*z*1.2; x0=Math.min(x0,a-r-70); x1=Math.max(x1,a+r+70); y0=Math.min(y0,b-r-14); y1=Math.max(y1,b+r+34); }; add(fn); C.map.forEach(v=>add(this.byId.get(v.o))); C.labels.forEach(l=>{ const [a,b]=scr(fn.px+Math.cos(l.a)*l.r,fn.py+Math.sin(l.a)*l.r*.86); x0=Math.min(x0,a-90); x1=Math.max(x1,a+90); y0=Math.min(y0,b-12); y1=Math.max(y1,b+12); }); this._cbox=[x0,y0,x1,y1]; this._cboxT=ts; } const B=this._cbox; ctx.font='700 11px "JetBrains Mono", monospace'; const tw0=ctx.measureText(`${(z<.5?FSHORT[I.k]:I.label).toUpperCase()} · ${I.list.length}`).width/2+30; const hit=(x,y)=>x+tw0>B[0]&&x-tw0<B[2]&&y+10>B[1]&&y-10<B[3]; if(hit(sx,sy)){ const p2=scr(I.x,I.y+I.R+22); if(hit(p2[0],p2[1])) continue; sx=p2[0]; sy=p2[1]; } if(I.k===fn.fam) continue; { const hp=scr(fn.px,fn.py-(C.Rmax+115)*.9); if(Math.abs(sy-Math.max(24,hp[1]))<36&&Math.abs(sx-hp[0])<330) continue; } const fl=this.leftInset()+130, fr=W-this.rightInset()-130; if(sy<28||sy>H-20||sx<fl-160||sx>fr+160) continue; sx=clamp(sx,fl,Math.max(fl,fr)); } else { const L0=this.leftInset()+16, R0=W-(s.intro?16:362); if(sy<28){ const cx=(L0+R0)/2, cy=H/2; const [wx,wy]=this.toWorld(cx,cy); if(Math.hypot(wx-I.x,wy-I.y)>I.R*.95) continue; sy=28; sx=cx; pinned=true; } else if(sy>H-20||sx<-200||sx>W+200) continue; } const isF0=s.mode==='quest'&&I.k===flagFam; const short=z<.5; const t1=`${isF0?'FLAG · ':''}${(short?FSHORT[I.k]:I.label).toUpperCase()} · ${I.list.length}`; ctx.font=`700 ${z<.5?10:11}px "JetBrains Mono", monospace`; let tw=ctx.measureText(t1).width/2+t1.length*.75+4; const showD=z>=.42&&!fn; if(showD){ ctx.font='400 11.5px Onest, sans-serif'; tw=Math.max(tw,ctx.measureText(FDESC[I.k]).width/2+4); } const rc=[sx-tw,sy-(showD?15:8),sx+tw,sy+(showD?16:8)]; if(I.k!==this.hoverFam&&ip.some(p=>rc[0]<p[2]&&rc[2]>p[0]&&rc[1]<p[3]&&rc[3]>p[1])) continue; ip.push(rc); const isF=s.mode==='quest'&&I.k===flagFam; if(pinned){ ctx.font='700 13px "JetBrains Mono", monospace'; const pw=ctx.measureText(t1).width+t1.length*1.5+28; ctx.fillStyle='rgba(17,16,14,.92)'; ctx.fillRect(sx-pw/2,sy-15,pw,46); ctx.fillStyle=FCOL[I.k]; ctx.fillRect(sx-pw/2,sy-15,pw,3); } this.text(ctx,t1,sx,sy-(z>=.42?7:0),`700 ${z<.5?10:11}px "JetBrains Mono", monospace`,isF?'#d8a24a':FCOL[I.k]); if(z>=.42){ if('letterSpacing' in ctx) ctx.letterSpacing='0px'; this.text(ctx,FDESC[I.k],sx,sy+8,'400 11.5px Onest, sans-serif','#cfc8bd'); if('letterSpacing' in ctx) ctx.letterSpacing='1.5px'; } } }
+    if(!fn){
+      if(this.hoverFam&&this.props.routes!==false){ for(const r of this.routes){ if(r.a!==this.hoverFam&&r.b!==this.hoverFam) continue; const [sx,sy]=scr(r.mid[0],r.mid[1]); this.text(ctx,`${r.c} LINKS`,sx,sy,'700 11px "JetBrains Mono", monospace','#d8a24a'); } } }
+    if('letterSpacing' in ctx) ctx.letterSpacing='0px';
+    const nameOf=n=>n.name.length>28?n.name.slice(0,26)+'…':n.name;
+    if(C){ const many=C.map.size>16;
+      const nPlaced=[]; { const [fx0,fy0]=scr(fn.x,fn.y); const fr=fn.S*1.55*z*.6; nPlaced.push([fx0-fr,fy0-fr*1.6,fx0+fr,fy0+fr*1.4]); nPlaced.push([fx0-90,fy0+fr*1.4,fx0+90,fy0+fr*1.4+22]); C.map.forEach(v=>{ const m=this.byId.get(v.o); const [a,b]=scr(m.x,m.y); const r=m.S*z*.55; nPlaced.push([a-r,b-r*1.3,a+r,b+r*1.1]); }); }
+      ctx.save(); ctx.globalAlpha*=this.ringE; if(gather){ ctx.font='700 11px "JetBrains Mono", monospace'; for(const l of C.labels){ const rs=Math.max(l.r*z,l.side==='left'||l.side==='right'?150:70)/z; const [a,b]=scr(fn.px+Math.cos(l.a)*rs,fn.py+Math.sin(l.a)*rs*.86); const w=ctx.measureText(SIDE_L[l.side]+' · 00').width/2+20; nPlaced.push([a-w,b-(l.side==='left'||l.side==='right'?28:10),a+w,b+(l.side==='left'||l.side==='right'?-8:10)]); } } ctx.restore();
+      const hit=rc=>nPlaced.some(p=>rc[0]<p[2]&&rc[2]>p[0]&&rc[1]<p[3]&&rc[3]>p[1]);
+      for(const v of C.map.values()){ const n=this.byId.get(v.o); const [bx,by]=scr(n.x+n.S*.42,n.y-n.S*.5); const t2=String(v.num); ctx.font='700 10px "JetBrains Mono", monospace'; const bw=Math.max(15,ctx.measureText(t2).width+7); ctx.fillStyle=hov===n.id?'#efeae2':'#0c0b0a'; ctx.fillRect(bx-bw/2,by-8,bw,15); ctx.strokeStyle=G[v.e.g].col; ctx.lineWidth=1.2; ctx.strokeRect(bx-bw/2+.5,by-7.5,bw-1,14); ctx.fillStyle=hov===n.id?'#0c0b0a':'#efeae2'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(t2,bx,by); nPlaced.push([bx-bw/2,by-8,bx+bw/2,by+7]); }
+      const nOrder=[...C.map.values()].sort((a,b)=>(b.o===hov)-(a.o===hov)||((this.byId.get(a.o).w==='Core')?0:1)-((this.byId.get(b.o).w==='Core')?0:1)); const fs=z<.6?10:z<.9?10.5:11.5;
+      for(const v of nOrder){ const n=this.byId.get(v.o); const isH=hov===n.id; const [bx,by]=scr(n.x,n.y); const half=n.S*z*.62; const full=n.name;
+        const cands=[full.length>28?full.slice(0,26)+'…':full, full.length>16?full.slice(0,14)+'…':full]; let placed=null;
+        for(const txt of cands){ ctx.font=`${isH?700:500} ${fs}px Onest, sans-serif`; const w=ctx.measureText(txt).width/2+3; for(const [dy,dir] of [[half+9,1],[-half-14,-1]]){ const cy=by+dy; const rc=[bx-w,cy-7,bx+w,cy+7]; if(isH||!hit(rc)){ placed={txt,cy,rc,dir,w}; break; } } if(placed) break; }
+        if(!placed) continue; nPlaced.push(placed.rc); this.text(ctx,placed.txt,bx,placed.cy,`${isH?700:500} ${fs}px Onest, sans-serif`,isH?'#efeae2':'#cfc8bd');
+        if(n.fam!==fn.fam&&z>=.6){ const fy=placed.cy+placed.dir*13; const ft='FROM '+FSHORT[n.fam].toUpperCase(); ctx.font='700 9px "JetBrains Mono", monospace'; const fw=ctx.measureText(ft).width/2+ft.length*.5+3; const rc2=[bx-fw,fy-6,bx+fw,fy+6]; if(isH||!hit(rc2)){ nPlaced.push(rc2); if('letterSpacing' in ctx) ctx.letterSpacing='1px'; this.text(ctx,ft,bx,fy,'700 9px "JetBrains Mono", monospace',FCOL[n.fam]); if('letterSpacing' in ctx) ctx.letterSpacing='0px'; } } }
+      { const all=C.map.size<=12&&z>=.75, placed=[]; ctx.font='500 11.5px Onest, sans-serif'; for(const v2 of C.map.values()){ const n2=this.byId.get(v2.o); if(hov!==n2.id&&(z<.75||(C.map.size>16&&n2.w!=='Core'))) continue; const [qx,qy]=scr(n2.x,n2.y+n2.S*.62); const w2=ctx.measureText(nameOf(n2)).width/2; placed.push([qx-w2-2,qy+1,qx+w2+2,qy+(n2.fam!==fn.fam?30:16)]); const r2=n2.S*z*.6; placed.push([qx-r2,qy-n2.S*z*1.25,qx+r2,qy]); } { const [qx,qy]=scr(fn.x,fn.y); const r2=fn.S*1.55*z*.6; placed.push([qx-r2,qy-r2*1.4,qx+r2,qy+r2*1.4+30]); } const vs=[...C.map.values()].sort((a,b)=>(b.o===hov)-(a.o===hov)); for(const v of vs){ const show=hov===v.o||(gh&&v.e.g===gh)||(all&&!gh&&!hov); if(!show) continue; const nb=this.byId.get(v.o); const [fx2,fy2]=scr(fn.x,fn.y),[nx,ny]=scr(nb.x,nb.y); const px=fx2+(nx-fx2)*.66, py=fy2+(ny-fy2)*.66; const words=KL[v.e.k]||v.e.k; const lab=v.down===fn.id?words+' →':'← '+words; const big=hov===v.o; ctx.font=`700 ${big?11:9.5}px "JetBrains Mono", monospace`; const tw=ctx.measureText(lab).width; const rc=[px-tw/2-7,py-10,px+tw/2+7,py+10]; if(hov!==v.o&&placed.some(p=>rc[0]<p[2]&&rc[2]>p[0]&&rc[1]<p[3]&&rc[3]>p[1])) continue; placed.push(rc); ctx.fillStyle='rgba(12,11,10,.88)'; ctx.fillRect(px-tw/2-5,py-8,tw+10,16); ctx.strokeStyle=G[v.e.g].col; ctx.lineWidth=1; ctx.strokeRect(px-tw/2-5+.5,py-8+.5,tw+9,15); ctx.fillStyle=G[v.e.g].col; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(lab,px,py+.5); } }
+      ctx.save(); ctx.globalAlpha*=this.ringE; if(gather){ const [hx2,hy2]=scr(fn.px,fn.py-(C.Rmax+115)*.9); const lab='HOME ISLAND · '+(FAM[fn.fam]?FAM[fn.fam][0]:'').toUpperCase(); if('letterSpacing' in ctx) ctx.letterSpacing='1.5px'; ctx.font='700 11px "JetBrains Mono", monospace'; const pw=ctx.measureText(lab).width+24; const yy=Math.max(24,hy2); ctx.fillStyle='rgba(17,16,14,.92)'; ctx.fillRect(hx2-pw/2,yy-12,pw,24); ctx.fillStyle=FCOL[fn.fam]||'#d8a24a'; ctx.fillRect(hx2-pw/2,yy-12,pw,3); this.text(ctx,lab,hx2,yy+1,'700 11px "JetBrains Mono", monospace',FCOL[fn.fam]||'#d8a24a'); if('letterSpacing' in ctx) ctx.letterSpacing='0px'; } ctx.restore();
+      const [fx,fy]=scr(fn.x,fn.y+fn.S*.95); this.text(ctx,fn.name.length>34?fn.name.slice(0,32)+'…':fn.name,fx,fy+14,'700 14px Unbounded, sans-serif','#d8a24a');
+      ctx.save(); ctx.globalAlpha*=this.ringE; if(gather){ if('letterSpacing' in ctx) ctx.letterSpacing='1.5px'; for(const l of C.labels){ const rs=Math.max(l.r*z,l.side==='left'||l.side==='right'?150:70)/z; let [sx,sy]=scr(fn.px+Math.cos(l.a)*rs,fn.py+Math.sin(l.a)*rs*.86); const lab=`${ARR[this.state.arr||'rel'].L[l.side]} · ${l.n}`; ctx.font='700 11px "JetBrains Mono", monospace'; const tw=ctx.measureText(lab).width/2+10, L0=this.leftInset(), R0=W-this.rightInset(); sx=clamp(sx,L0+tw,Math.max(L0+tw,R0-tw)); if(l.side==='left'||l.side==='right') sy-=18; this.text(ctx,lab,sx,sy,'700 11px "JetBrains Mono", monospace','#efeae2'); } if('letterSpacing' in ctx) ctx.letterSpacing='0px'; } ctx.restore(); }
+    else if(z>.95){ for(const n of list){ if(z<1.6&&n.w!=='Core') continue; const [sx,sy]=scr(n.x,n.y+n.S*.62); this.text(ctx,nameOf(n),sx,sy+7,'500 11px Onest, sans-serif','#cfc8bd'); } }
+    if(q&&q.path.length>1){ q.path.forEach((id,i)=>{ if(i===q.path.length-1) return; const n=this.byId.get(id); const [sx,sy]=scr(n.x,n.y-n.S*.7); ctx.fillStyle='#d8a24a'; ctx.fillRect(sx-9,sy-9,18,18); ctx.fillStyle='#0c0b0a'; ctx.font='700 11px "JetBrains Mono", monospace'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(i===0?'S':String(i),sx,sy+.5); }); }
+    if(q&&C&&s.mode==='quest'){ const tf=this.byId.get(q.t).fam; for(const v of C.map.values()){ const n=this.byId.get(v.o); if(n.fam!==tf||n.id===q.t||n.mv) continue; const [sx,sy]=scr(n.x+n.S*.45,n.y-n.S*.55); ctx.strokeStyle='#efeae2'; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(sx,sy-16); ctx.stroke(); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(sx,sy-16); ctx.lineTo(sx+11,sy-12.5); ctx.lineTo(sx,sy-9); ctx.closePath(); ctx.fill(); } }
+    if(q&&q.t){ const tn=this.byId.get(q.t); let [sx,sy]=scr(tn.x,tn.y-tn.S*(tn.id===f?.9:.6)); const m=46, fl=this.leftInset()+m, fr=W-this.rightInset()-m, off=sx<fl||sx>fr||sy<m||sy>H-m;
+      if(!off){ const b=Math.sin(t*3)*2; ctx.strokeStyle='#efeae2'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(sx,sy-2); ctx.lineTo(sx,sy-34+b); ctx.stroke(); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(sx,sy-34+b); ctx.lineTo(sx+20,sy-28+b); ctx.lineTo(sx,sy-22+b); ctx.closePath(); ctx.fill(); }
+      else { const cx=clamp(sx,fl,Math.max(fl,fr)), cy=clamp(sy,m,H-m), a=Math.atan2(sy-cy,sx-cx); ctx.save(); ctx.translate(cx,cy); ctx.rotate(a); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(16,0); ctx.lineTo(-8,-11); ctx.lineTo(-8,11); ctx.closePath(); ctx.fill(); ctx.restore(); this.text(ctx,'FLAG',cx-Math.cos(a)*24,cy-Math.sin(a)*24,'700 10px "JetBrains Mono", monospace','#d8a24a'); } }
+  }
+
+  renderVals(){
+    const s=this.state, ready=s.ready&&!!this.byId, fn=ready&&s.focus?this.byId.get(s.focus):null;
+    const modes=[['explore','Wander'],['quest','Expedition'],['chronicle','Chronicle']].map(([k,l])=>({label:l,bg:s.mode===k?'#d8a24a':'transparent',fg:s.mode===k?'#0c0b0a':'#cfc8bd',bd:s.mode===k?'#d8a24a':'#4a4540',go:()=>this.setMode(k)}));
+    const help={explore:'Click a beast to visit it. Click a neighbour once to read about it, a second time to step there. The coloured base and dotted thread show which island each guest came from.',quest:'Reach the flagged beast by hopping only along links — every hop must land on a neighbour of where you stand.',chronicle:'The bestiary grows era by era. Each new idea walks out of the older idea it descends from.'}[s.mode];
+        const qn=s.q.trim().toLowerCase(); const results=ready&&qn.length>1?this.nodes.filter(n=>n.name.toLowerCase().includes(qn)).slice(0,6).map(n=>({name:n.name,sub:FAM[n.fam][0].split(' ')[0],go:()=>this.travel(n.id)})):[];
+    let sections=[];
+    if(fn&&this.council){ const sd=this.council.sides; sections=['left','right','top','bottom'].filter(k=>sd[k].length).map(k=>({title:(ARR[s.arr||'rel'].T||SIDE_T)[k][0],sub:(ARR[s.arr||'rel'].T||SIDE_T)[k][1],n:sd[k].length,items:sd[k].map(v=>{const o=this.byId.get(v.o),e=v.e,kl=KL[e.k]||e.k;const onFlag=s.mode==='quest'&&s.quest&&this.byId.get(s.quest.t).fam===o.fam, isFlag=s.mode==='quest'&&s.quest&&s.quest.t===o.id; return {num:String(v.num||''), flagTag:isFlag?'the flag':onFlag?'flag island':'', flagDisp:(isFlag||onFlag)?'inline':'none', fo:isFlag?0:onFlag?1:2, fam:FSHORT[o.fam],famCol:FCOL[o.fam],name:o.name,rel:e.a===fn.id?`this one ${kl} it`:`${kl} this one`,col:G[e.g].col,sel:s.peek===o.id?'#26231f':'transparent', stepDisp:s.peek===o.id?'flex':'none', step:()=>this.travel(o.id), go:()=>this.setState({peek:o.id}),enter:()=>{this.listHover=o.id;},leave:()=>{this.listHover=null;}};}).sort((p,q)=>p.fo-q.fo)})); }
+    const gc={}; if(fn){ const qr=this.qRule(); const seenG={}; (this.adj.get(fn.id)||[]).forEach(e=>{ if(!this.ok(e,qr)) return; const o=e.a===fn.id?e.b:e.a; if(!this.vis(this.byId.get(o))) return; const k=e.g+o; if(seenG[k]) return; seenG[k]=1; gc[e.g]=(gc[e.g]||0)+1; }); }
+    const legend=Object.entries(G).filter(([k])=>gc[k]>0).map(([k,g])=>({name:`${g.name} · ${gc[k]}`,verb:GEXP[k],col:g.col,line:g.line,op:s.groups[k]?1:.4, name:s.groups[k]?`${g.name} · ${gc[k]}`:`${g.name} · hidden`,tip:`${GEXP[k]} Hover to light up, click to hide.`,toggle:()=>this.toggleGroup(k),enter:()=>{this.groupHov=k;},leave:()=>{this.groupHov=null;}}));
+    const q=s.quest, r=s.result, h=s.hover; const pk=ready&&s.peek?this.byId.get(s.peek):null, pv=pk&&this.council?this.council.map.get(pk.id):null, vn=pv?pk:fn, tn=q&&ready?this.byId.get(q.t):null;
+    const rules=Object.entries(RULES).map(([k,v])=>({label:v[0],on:q&&q.rule===k,bg:q&&q.rule===k?'#d8a24a':'transparent',fg:q&&q.rule===k?'#0c0b0a':'#cfc8bd',go:()=>this.newQuest(k), tip:`Start a new expedition: ${v[1]}`}));
+    const islands=ready?this.isl.map(I=>({name:FSHORT[I.k],desc:FDESC[I.k],n:I.list.length,col:FCOL[I.k],enter:()=>{this.hoverFam=I.k;},leave:()=>{this.hoverFam=null;},go:()=>{ this.camT={x:I.x,y:I.y,z:clamp(Math.min(this.W,this.H)/(I.R*2+140),.6,2.2)}; }})).sort((a,b)=>b.n-a.n):[];
+    const arrs=Object.entries(ARR).map(([k,v])=>({label:v.name,bg:(s.arr||'rel')===k?'#d8a24a':'transparent',fg:(s.arr||'rel')===k?'#0c0b0a':'#cfc8bd',go:()=>this.setState({arr:k},()=>this.buildCouncil())}));
+    const GRP={family:['Family','families of ideas','Every beast lives on the island of its topic; islands that share the most links sit side by side.'],era:['Era','periods of time','Every beast lives in the era its idea comes from, oldest on the left.'],role:['Role','roles in the argument','Every beast lives with ideas that play the same role: failure modes, solutions, theses, critiques…'],canon:['Canon','two canons','Two continents: the technical canon and the humanities canon.']}; const gk=s.grp||'family';
+    const grps=Object.entries(GRP).map(([k,v])=>({label:v[0],bg:gk===k?'#d8a24a':'transparent',fg:gk===k?'#0c0b0a':'#cfc8bd',go:()=>this.setGrouping(k)}));
+    const cbk=s.colorBy||'role'; const cbs=[['family','Family'],['era','Era'],['role','Role'],['canon','Canon']].map(([k,l])=>({label:l,bg:cbk===k?'#d8a24a':'transparent',fg:cbk===k?'#0c0b0a':'#cfc8bd',go:()=>this.setColorBy(k)}));
+    const colLegend=cbk==='role'||!this.colTab?[['#ff4a63','failure modes'],['#2fcc71','solutions'],['#ffb800','theses'],['#45d7e5','lenses'],['#6b5845','critiques'],['#e8e6e6','mechanisms, evidence']].map(([c,l])=>({c,l})):Object.entries(this.colTab.FCOL).map(([k,c])=>({c,l:this.colTab.FSHORT[k]}));
+    return {
+      cbs, colLegend, grps, grpTitle:GRP[gk][1], grpNote:GRP[gk][2], jBottom:this.H<700?16:104, arrs, arrNote:ARR[s.arr||'rel'].note, islands, islandsOn:ready&&!fn&&!s.intro, isOpen:(s.isOpen??(this.W>=1100))!==false, toggleIs:()=>this.setState({isOpen:!(s.isOpen??(this.W>=1100))}), isToggle:(s.isOpen??(this.W>=1100))?'–':'+', isBottom:16, isB:(s.isOpen??(this.W>=1100))?'16px':'auto',
+      rules, qRuleName:q?RULES[q.rule||'any'][0]:'', qRuleText:q?RULES[q.rule||'any'][1]:'', qFlagFam:tn?FAM[tn.fam][0]:'', qFlagCol:tn?FCOL[tn.fam]:'#d8a24a', qFlagBlurb:tn?tn.blurb:'', qFlagNb:tn?(()=>{ const WO={Core:0,Major:1,Supporting:2}; const L=[...new Set((this.adj.get(tn.id)||[]).filter(e=>this.ok(e,q.rule)).map(e=>e.a===tn.id?e.b:e.a))].map(id=>this.byId.get(id)).sort((a,b)=>(WO[a.w]??2)-(WO[b.w]??2)); return L.slice(0,4).map(n=>n.name).join(' · ')+(L.length>4?` · +${L.length-4} more`:''); })():'',
+      hasPeek:false, pkName:pk?pk.name:'', pkFam:pk?FAM[pk.fam][0]:'', pkFamCol:pk?FCOL[pk.fam]:'#d8a24a', pkRole:pk?pk.roleL:'', pkBlurb:pk?pk.blurb:'', pkRel:pv?`${this.byId.get(pv.e.a).name} ${KL[pv.e.k]||pv.e.k} ${this.byId.get(pv.e.b).name}`:'', pkRelCol:pv?G[pv.e.g].col:'#cfc8bd', pkRelTag:pv?G[pv.e.g].name:'', pkSame:!!(pk&&tn&&pk.fam===tn.fam), pkIsFlag:!!(pk&&tn&&pk.id===tn.id), pkL:this.leftInset()+16, pkW:Math.max(280,Math.min(640,this.W-this.leftInset()-this.rightInset()-32)), step:()=>s.peek&&this.travel(s.peek), unpeek:()=>this.setState({peek:null}),
+      introOn:!!s.intro&&ready, closeIntro:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); }, openIntro:()=>this.setState({intro:true}),
+      wrapRef:this.wrapRef, cvRef:this.cvRef, cursor:h?'pointer':'grab', loading:!ready,
+      modes, help, q:s.q, onQ:e=>this.setState({q:e.target.value}), results, hasResults:results.length>0,
+      
+      hasFocus:!!fn&&!this.journalHidden(), fFam:vn?FAM[vn.fam][0]:'', fFamCol:vn?FCOL[vn.fam]:'#d8a24a', fName:vn?vn.name:'', fRole:vn?vn.roleL:'', fRoleCol:vn?vn.roleCol:'#e8e6e6', fWeight:vn?vn.w:'', fEra:vn?(ERA[vn.era]||vn.era):'', fBlurb:vn?vn.blurb:'', fWho:vn?vn.who:'', fWiki:vn?`/bestiarium/wiki/${vn.id}`:'#', peeking:!!pv, notPeeking:!pv, hostName:fn?fn.name:'', backHost:()=>this.setState({peek:null}), stepLabel:pk?`Step to ${pk.name.length>26?pk.name.slice(0,24)+'…':pk.name} →`:'', sections, close:()=>this.clearFocus(),
+      legend, legendOn:!!fn&&legend.length>0, anyOff:Object.values(s.groups).some(v=>!v), showAll:()=>this.setState({groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>this.buildCouncil()), legL:this.leftInset()+16, legFull:this.W-this.leftInset()-this.rightInset()>760, legW:Math.max(300,this.W-this.leftInset()-this.rightInset()-32),
+      wOn:ready&&s.mode==='explore', wEmpty:this.wpath.length===0, wCount:`${this.wpath.length} stop${this.wpath.length===1?'':'s'}`, wBackOp:this.wpath.length>1?1:.4,
+      wBack:()=>this.wanderBack(), wClear:()=>{ this.saveTrail(s.focus?[s.focus]:[]); this.setState({tick:s.tick+1}); },
+      wSteps:ready?this.wpath.map((id,i)=>{ const p=this.wpath[i-1], e=p&&this.edgeBetween(p,id), n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):'';
+        return {n:String(i+1),rel:i===0?'start':!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name,bg:id===s.focus&&i===this.wpath.length-1?'#26231f':'transparent',go:()=>id===s.focus?this.frameFocus():this.travel(id)}; }).reverse():[],
+      questOn:s.mode==='quest'&&!!q&&ready, qTarget:q&&ready?this.byId.get(q.t).name:'', qStart:q&&ready?this.byId.get(q.s).name:'', qHops:q?q.hops:0, qBest:q?q.best:0, qAway:q&&ready&&s.focus?(()=>{const d=q.distT.get(s.focus);return d===0?'At the flag':d===1?'1 hop away':`${d} hops away`;})():'', qTrend:q?({warmer:'warmer — closer to the flag',colder:'colder — further away',same:'same distance',back:'stepped back','':'distance from here'}[q.trend]):'', qTrendCol:q?({warmer:'#7ad13a',colder:'#ff6b5e'}[q.trend]||'#efeae2'):'#efeae2', qHasSteps:!!(q&&q.steps.length), qSteps:q&&ready?q.steps.map((st,i)=>{const e=st.e; const sh=id=>{const nm=this.byId.get(id).name;return nm.length>24?nm.slice(0,22)+'…':nm;}; const rel=e?`${sh(e.a)} ${KL[e.k]||e.k} ${sh(e.b)}`:''; return {n:String(i+1),rel,col:e?G[e.g].col:'#9a948b',name:this.byId.get(st.to).name};}):[], qHint:()=>this.hint(), qUndo:()=>this.undo(), qUndoOp:q&&q.path.length>1?1:.4, giveUp:()=>this.giveUp(),
+      hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), rStart:r&&ready?this.byId.get(r.sp[0]).name:'', rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
+      chronOn:s.mode==='chronicle', playLabel:s.playing?'❚❚':'▶', eraLabel:ERA[ERAK[s.era]], era:s.era, onEra:e=>{clearInterval(this.playT);this.setState({playing:false});this.setEra(+e.target.value);}, togglePlay:()=>this.togglePlay(), alive:ready?`${this.nodes.filter(n=>n.ei<=s.era).length} beasts alive`:'',
+      hasHover:!!h, hx:h?h.x:0, hy:h?h.y:0, hTag:h?h.tag:'', hTitle:h?h.title:'', hSub:h?h.sub:'', hCol:h?h.col:'#d8a24a',
+      hasToast:!!s.toast, toast:s.toast||'', toastTop:16, showDetails:true, showCard:!this.cardHidden(),
+    };
+  }
+}
+</script>
+</body>
+</html>

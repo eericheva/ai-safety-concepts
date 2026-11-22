@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="982" height="1121" viewBox="123.4 34 491.1 560.5" fill="none">
+  <g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="c18-body" fill="#C8A268" style="fill:#C8A268;">
+      <g id="c18-feet">
+        <path d="M207 540 196 565Q187 590 216 592H242Q258 591 265 577L278 547Z" />
+        <path d="m358 547 12 30q7 14 23 15h24q29-2 20-27l-11-25Z" />
+        <path d="m206 550-8 20h66l10-20Zm159 0 9 20h64l-8-20Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+      </g>
+      <g id="c18-left-building-arm">
+        <path d="M223 323C151 309 124 270 126 219C128 180 147 148 174 130L196 160C171 184 162 211 166 236C170 259 188 277 226 281Z" />
+        <path d="M132 224c5 45 34 73 91 84v15c-72-14-99-53-97-104Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+      </g>
+      <g id="c18-right-building-arm">
+        <path d="M405 286C450 258 473 222 469 181C466 145 446 118 417 100L433 66C480 93 507 135 509 181C513 239 479 290 416 325Z" />
+        <path d="M493 155c20 68-16 123-80 156l3 14c63-35 97-86 93-144-1-10-3-19-6-28Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+      </g>
+      <g id="c18-tower-blocks">
+        <rect x="166" y="410" width="291" height="145" rx="20" />
+        <rect x="152" y="492" width="68" height="63" rx="13" />
+        <path d="M222 535h216q16 0 19-14v14q0 20-20 20H222Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+        <rect x="185" y="350" width="56" height="60" rx="12" />
+        <rect x="241" y="350" width="158" height="60" rx="8" />
+        <rect x="399" y="350" width="42" height="60" rx="12" />
+        <rect x="209" y="299" width="77" height="51" rx="9" />
+        <rect x="286" y="299" width="80" height="51" rx="7" />
+        <rect x="366" y="299" width="61" height="51" rx="9" />
+        <rect x="232" y="202" width="180" height="97" rx="11" />
+        <path d="M246 202v-36q0-9 9-9h30v45Z" />
+        <path d="M285 202v-47h31v23h48v-23h31q9 0 9 9v38Z" />
+        <path d="M187 396h251v9H187Zm25-60h212v10H212Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+      </g>
+    </g>
+    <g id="c18-face">
+      <path d="M278 215Q260 219 257 241Q252 281 281 293H363Q391 281 389 249Q388 223 371 215Q337 237 324 236Q308 235 278 215Z" fill="#F2E9D6" />
+      <ellipse cx="291" cy="248" rx="10" ry="16" fill="#2E4649" stroke="none" />
+      <ellipse cx="359" cy="248" rx="10" ry="16" fill="#2E4649" stroke="none" />
+      <ellipse cx="288" cy="241" rx="3" ry="4" fill="#F2E9D6" stroke="none" />
+      <ellipse cx="356" cy="241" rx="3" ry="4" fill="#F2E9D6" stroke="none" />
+      <ellipse cx="273" cy="273" rx="11" ry="5" fill="#DEA38D" stroke="none" />
+      <ellipse cx="377" cy="273" rx="11" ry="5" fill="#DEA38D" stroke="none" />
+      <path d="M313 272q12 11 24 0" />
+    </g>
+    <g id="c18-props">
+      <g id="c18-held-blocks" fill="#C8A268" style="fill:#C8A268;">
+        <g id="c18-left-held-block" transform="rotate(-13 220 136)">
+          <rect x="182" y="113" width="91" height="45" rx="7" />
+          <path d="M185 145h85v10h-85Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+        </g>
+        <g id="c18-right-held-block">
+          <rect x="322" y="91" width="78" height="43" rx="7" />
+          <path d="M326 121h70v10h-70Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+        </g>
+      </g>
+      <g id="c18-upper-hands" fill="#C8A268" style="fill:#C8A268;">
+        <g id="c18-left-upper-hand">
+          <path d="M171 159q-24-7-18-28q6-26 34-29q18-2 30 10q7 9-2 15q-7 4-21-1q19 4 14 20q-8 20-37 13Z" />
+          <path d="m194 126-9-3" />
+        </g>
+        <g id="c18-right-upper-hand">
+          <path d="M430 106q20-23-4-42q-20-18-44-11q-20 4-24 24q-3 12 9 14q9 1 13-10q-8 15 3 23q14 10 27 1q4 7 20 1Z" />
+          <path d="M380 81q1-8 9-13M410 105l7-5" />
+        </g>
+      </g>
+      <g id="c18-power-button">
+        <circle cx="356" cy="477" r="49" fill="#E47E68" />
+        <path d="M356 436v29M339 447a29 29 0 1 0 34 0" stroke="#F2E9D6" stroke-width="8" />
+      </g>
+      <g id="c18-external-finger">
+        <path d="M586 458q-23-1-41-5l-52-2q-14 0-14 12q0 12 14 13l24 1q-12 8-10 18q2 11 14 11q0 13 13 14q13 1 18-10q18 0 25-13l9-2Z" fill="#F2E9D6" />
+        <path d="M517 477l8-3M521 506q-1-8 7-13" />
+        <path d="M583 452q14-8 29-8v65q-16 1-29-7Z" fill="#86ADB8" />
+      </g>
+      <g id="c18-blocking-arm">
+        <path d="M204 459q-14 18 2 34q35 31 102 26l66-8-7-35-57 3q-46 4-77-21q-18-14-29 1Z" fill="#C8A268" style="fill:#C8A268;" />
+        <path d="M212 491q50 25 96 16l63-8 3 12-66 8q-66 5-96-28Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+        <path d="M373 515q-21-3-23-25l-2-39q0-12 8-12q8 0 9 11l1 18-1-46q0-11 9-11q9 0 9 11l1 38 1-47q0-10 9-10t9 11l-1 47 3-37q1-10 9-9q9 1 8 12l-3 45 7-13q5-9 12-5q8 4 3 15l-15 31q-15 22-43 15Z" fill="#F2E9D6" />
+      </g>
+      <g id="c18-action-marks" stroke="#F2E9D6" stroke-width="6">
+        <path d="m326 63-10-15m30 9-1-20m17 22 9-17M458 432l9-13m1 25 15-6" />
+      </g>
+    </g>
+  </g>
+</svg>

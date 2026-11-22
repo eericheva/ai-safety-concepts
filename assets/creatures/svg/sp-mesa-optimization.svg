@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="969" height="1142" viewBox="73.5 24.5 484.5 571" fill="none">
+  <g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="c13-body" fill="#C8A268" style="fill:#C8A268;">
+      <g id="c13-leg-right">
+        <path d="M315 393 408 465 393 485 300 414Z" />
+        <path d="m405 470 79 88-21 16-78-90Z" />
+        <path d="M464 558c18-19 44-30 60-19 8 5 14 13 13 20-13 12-47 28-68 33-9 2-11-7-10-16 0-7 2-13 5-18Z" />
+        <path d="M464 583c21-14 47-29 70-31l3 7c-13 12-47 28-68 33-5 1-8-2-9-6Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+        <circle cx="402" cy="476" r="13" />
+      </g>
+      <g id="c13-arm-right">
+        <path d="m351 315 78 46-11 18-83-49Z" />
+        <path d="m426 361 67 24-7 19-68-25Z" />
+        <path d="M491 383c14-12 29-16 36-7 8 12-8 31-24 33-12 1-21-4-19-12Z" />
+        <circle cx="424" cy="369" r="12" />
+      </g>
+      <g id="c13-arm-left">
+        <path d="m261 312-94 42 9 20 99-43Z" />
+        <path d="m164 356-56 50 14 16 58-50Z" />
+        <path d="M112 408c-18-6-35 1-36 15-1 15 27 20 39 8l5-11Z" />
+        <circle cx="170" cy="363" r="12" />
+      </g>
+      <g id="c13-torso">
+        <path d="M254 314c18 22 27 50 28 95 1 13 36 17 40 1 3-30 10-69 29-96Z" />
+        <path d="M283 316c15 31 21 67 16 102l-13-3c0-42-10-74-28-99Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+      </g>
+      <g id="c13-leg-left">
+        <path d="M279 398c9-13 24-3 20 7l-77 87-19-16Z" />
+        <path d="m207 476 16 14-65 79-26-4Z" />
+        <path d="M129 565c20-7 51-4 63 8 8 8 9 18 1 20h-68c-11 0-8-18 4-28Z" />
+        <path d="M121 584h73l-1 9h-68c-5 0-7-4-4-9Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+        <circle cx="216" cy="482" r="13" />
+      </g>
+      <g id="c13-dome-loop">
+        <path d="M313 83V64c-13-4-18-14-14-25 4-12 18-15 28-9 11 6 14 19 7 28-4 5-8 7-13 8v17Z" />
+        <circle cx="317" cy="47" r="10" fill="#192A32" />
+        <path d="M286 101v-11c0-9 7-14 17-14h31c11 0 17 5 17 13v12Z" />
+      </g>
+      <g id="c13-dome">
+        <path d="M157 280c11-61 32-125 76-160 37-29 90-34 137-15 50 21 77 91 94 167-24 30-240 54-307 8Z" fill="#8AA7A3" />
+      </g>
+    </g>
+    <g id="c13-face">
+      <g id="c13-outer-face">
+        <path d="M200 143c28 16 53-1 77-12 23-11 38 4 34 28-5 34-29 61-65 61-27 0-49-13-62-34Z" fill="#F2E9D6" />
+        <ellipse cx="205" cy="169" rx="9" ry="14" fill="#2E4649" stroke="none" />
+        <ellipse cx="260" cy="171" rx="9" ry="14" fill="#2E4649" stroke="none" />
+        <circle cx="202" cy="164" r="3.5" fill="#FFF9E9" stroke="none" />
+        <circle cx="257" cy="166" r="3.5" fill="#FFF9E9" stroke="none" />
+        <ellipse cx="190" cy="189" rx="6" ry="5" fill="#DFA494" stroke="none" />
+        <ellipse cx="283" cy="193" rx="10" ry="5" fill="#DFA494" stroke="none" />
+        <path d="M219 196q7 9 14 0" stroke-width="4" />
+      </g>
+    </g>
+    <g id="c13-props">
+      <g id="c13-goals" stroke="none">
+        <circle id="c13-outer-goal" cx="107" cy="176" r="18" fill="#9DC7A4" />
+        <path id="c13-inner-goal" d="m535 185 23 23-23 23-23-23Z" fill="#E7B450" />
+      </g>
+      <g id="c13-strings" stroke="#E7B450" stroke-width="4">
+        <path id="c13-string-left-wrist" d="m229 255-119 151" />
+        <path id="c13-string-left-knee" d="m245 256-29 213" />
+        <path id="c13-string-right-knee" d="m396 257 6 206" />
+        <path id="c13-string-right-wrist" d="m436 250 57 135" />
+      </g>
+      <g id="c13-inner-puppeteer" fill="#C8A268" stroke-width="4" style="fill:#C8A268;">
+        <g id="c13-inner-legs">
+          <path d="m323 266-25 29-13 2c-6 1-7 6-2 8h19l38-32Z" />
+          <path d="m346 269 17 12-3 15c11-1 14 3 11 7h-24l3-18-18-7Z" />
+        </g>
+        <path d="M328 242c-17-1-39-1-59 2l-3 10c21-2 40-1 53 3-9 15-2 25 14 25 14 0 20-13 28-24l58-12-1-10-59 7Z" />
+        <path d="m323 219 5-17-5-20 23 10 10-3 5-17 15 19 10 7c11 6 17 15 15 27-2 17-18 27-36 25-12-1-22-6-29-14l-27-6Z" />
+        <g id="c13-inner-face">
+          <path d="M346 215c9-8 20 2 29-2l17-10c9 8 11 17 5 27-8 14-25 20-39 14-15-5-19-19-12-29Z" fill="#F2E9D6" />
+          <ellipse cx="365" cy="225" rx="4.5" ry="7" fill="#2E4649" stroke="none" />
+          <ellipse cx="389" cy="217" rx="4.5" ry="7" fill="#2E4649" stroke="none" />
+          <circle cx="366" cy="223" r="1.5" fill="#FFF9E9" stroke="none" />
+          <circle cx="390" cy="215" r="1.5" fill="#FFF9E9" stroke="none" />
+          <path d="M376 233q4 4 8-1" stroke-width="2.5" />
+          <ellipse cx="352" cy="236" rx="6" ry="3" fill="#DFA494" stroke="none" />
+          <ellipse cx="397" cy="225" rx="3" ry="3" fill="#DFA494" stroke="none" />
+        </g>
+        <g id="c13-control-bars" fill="#E7B450">
+          <rect x="222" y="246" width="64" height="14" rx="5" transform="rotate(4 254 253)" />
+          <rect x="386" y="247" width="65" height="14" rx="5" transform="rotate(-9 418 254)" />
+        </g>
+        <circle cx="263" cy="245" r="11" />
+        <circle cx="419" cy="241" r="11" />
+      </g>
+      <g id="c13-dome-rim" fill="#C8A268" style="fill:#C8A268;">
+        <path d="M158 279c34 38 266 25 306-7l4 11c-4 36-268 61-310 12-4-4-4-10 0-16Z" />
+      </g>
+    </g>
+  </g>
+</svg>
