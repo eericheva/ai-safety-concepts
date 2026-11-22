@@ -1,0 +1,49 @@
+<svg width="1164" height="966" xmlns="http://www.w3.org/2000/svg" viewBox="26.5 70.5 582 483" data-beast-id="cr-coded-gaze" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="mask-outer" d="M58 235 Q87 169 189 176 L269 141 Q288 135 309 159 L344 195 Q432 143 521 201 L580 272 L551 366 Q511 423 420 418 L338 459 L280 424 Q162 464 81 391 L48 319Z" fill="#C8A268"/>
+<path id="mask-underedge" d="M56 339 Q117 423 237 398 L280 388 L338 425 L419 384 Q505 390 566 324 L551 366 Q511 423 420 418 L338 459 L280 424 Q162 464 81 391Z" fill="#987B4F"/>
+<path id="left-rim" d="M75 255 Q101 200 166 197" stroke="#F2E9D6"/>
+<path id="left-temple" d="M59 259 L29 278 L38 331 L59 345" fill="#987B4F"/>
+<path id="right-temple" d="M564 246 L606 275 L597 330 L564 350" fill="#987B4F"/>
+<path id="bias-routing-left" d="M271 161 L250 210 L204 223"/>
+<path id="bias-routing-right" d="M299 162 L339 220 L421 224"/>
+<circle cx="271" cy="168" r="8" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<g id="open-recognition-aperture">
+<ellipse cx="187" cy="291" rx="96" ry="83" fill="#F2E9D6"/>
+<ellipse cx="187" cy="291" rx="71" ry="61" fill="#ABC9C9"/>
+<path d="M141 255 L132 255 L132 272 M232 255 L241 255 L241 272 M132 308 L132 326 L149 326 M241 308 L241 326 L224 326"/>
+<ellipse cx="189" cy="291" rx="23" ry="31" fill="#2E4649"/>
+<circle cx="196" cy="281" r="8" fill="#F2E9D6" stroke="none"/>
+</g>
+<g id="occluded-recognition-aperture">
+<path d="M369 242 Q434 195 506 246 L533 309 Q497 359 419 352 L371 322Z" fill="#F2E9D6"/>
+<path d="M390 258 Q444 221 495 266 L511 304 Q473 334 422 330 L390 310Z" fill="#ABC9C9"/>
+<ellipse cx="450" cy="284" rx="24" ry="30" fill="#2E4649"/>
+<circle cx="456" cy="276" r="7" fill="#F2E9D6" stroke="none"/>
+<path id="upper-misaligned-shutter" d="M369 242 Q434 195 506 246 L510 272 L383 286Z" fill="#987B4F"/>
+<path id="lower-misaligned-shutter" d="M390 302 L525 292 L533 309 Q497 359 419 352 L371 322Z" fill="#C8A268"/>
+<path d="M402 257 L416 253 M440 249 L454 249 M477 253 L491 259" stroke="#F2E9D6"/>
+</g>
+<path id="nose-bridge" d="M309 260 L293 330 L333 337"/>
+<path id="uneven-mouth" d="M271 370 Q298 359 321 376 Q338 389 360 374"/>
+</g>
+<g id="props">
+<g id="embedded-setting-key">
+<path d="M253 144 L247 116 L264 108 L258 80 L284 73 L297 101 L314 100 L326 128 L308 157Z" fill="#F2E9D6"/>
+<path d="M272 91 L282 120 L299 132"/>
+</g>
+<g id="unbalanced-adjustment-tabs">
+<path d="M137 178 L133 145 L174 141 L181 176" fill="#F2E9D6"/>
+<path d="M426 184 L442 145 L476 158 L465 193" fill="#987B4F"/>
+<path d="M144 156 L165 154 M447 169 L459 174"/>
+</g>
+<g id="system-feet">
+<path d="M176 431 L165 471 Q136 478 133 498 Q167 510 204 488 L217 436" fill="#C8A268"/>
+<path d="M435 416 L452 462 Q482 461 494 483 Q469 505 432 481 L409 431" fill="#C8A268"/>
+</g>
+<path id="recognition-trace-clear" d="M101 516 L101 551 L135 551 M226 516 L226 551 L192 551" stroke="#7A9E8B"/>
+<path id="recognition-trace-fragmented" d="M407 526 L407 544 M433 550 L449 550 M492 514 L504 514 L504 532" stroke="#B7775D"/>
+</g>
+</svg>

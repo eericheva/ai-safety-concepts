@@ -1,0 +1,42 @@
+<svg width="1072" height="897" xmlns="http://www.w3.org/2000/svg" viewBox="46.5 102.5 536 448.6" data-beast-id="in-activation-steering">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="channel-shell" d="M92 267 C180 260 236 260 305 263 C375 264 429 237 467 192 L521 148 Q542 131 561 156 Q580 180 564 201 L519 253 C469 316 408 365 310 373 L99 380 Q64 375 61 326 Q60 281 92 267Z" fill="#B8D3CC" fill-opacity="0.45"/>
+<path id="lower-shell" d="M98 365 L310 358 C404 351 461 305 510 247 L555 195 Q566 184 561 171 Q577 187 564 201 L519 253 C469 316 408 365 310 373 L99 380Z" fill="#A6C5BC" stroke="none"/>
+<g id="fixed-weight-skeleton" fill="#C8A268">
+<path d="M128 265 Q101 316 130 378 L151 377 Q123 317 151 264Z"/>
+<path d="M221 262 Q194 315 224 375 L246 375 Q217 315 244 262Z"/>
+<path d="M321 262 Q306 313 336 370 L357 365 Q330 311 342 259Z"/>
+<path d="M414 234 Q417 286 452 319 L470 303 Q437 277 435 221Z"/>
+<path d="M487 175 Q490 216 521 248 L537 229 Q510 205 506 159Z"/>
+</g>
+<path id="tail-upper-lip" d="M91 268 L49 238 L57 288 L82 307" fill="#C8A268"/>
+<path id="tail-lower-lip" d="M85 346 L50 359 L50 407 L100 380" fill="#C8A268"/>
+<path id="belly-foot" d="M234 377 L220 412 Q238 425 257 409 L273 375" fill="#987B4F"/>
+</g>
+<g id="props">
+<g id="activation-stream" fill="none" stroke="#F2E9D6" stroke-width="12">
+<path d="M82 323 L279 323 Q378 323 435 263 L532 172"/>
+</g>
+<g id="activation-packets" fill="#F2E9D6">
+<path d="M165 309 L180 323 L165 337 L150 323Z"/>
+<path d="M266 309 L281 323 L266 337 L251 323Z"/>
+<path d="M388 286 L407 290 L403 309 L384 305Z"/>
+<path d="M480 209 L499 210 L498 229 L479 228Z"/>
+</g>
+<g id="direction-vector-fin">
+<path d="M299 507 Q325 447 325 377 L300 381 L351 298 L384 387 L358 381 Q356 471 330 520Z" fill="#C8A268"/>
+<path d="M330 496 Q346 448 342 370" fill="none" stroke="#F2E9D6" stroke-width="7"/>
+<path d="M299 507 L277 544 Q303 560 330 520Z" fill="#987B4F"/>
+</g>
+<path id="output-direction" d="M549 133 L578 107 M564 108 L580 105 L580 122" fill="none" stroke="#739C8E"/>
+</g>
+<g id="face">
+<path id="face-mask" d="M494 153 Q518 131 539 149 Q557 166 546 185 Q523 198 501 182Z" fill="#F2E9D6"/>
+<ellipse id="eye-left" cx="511" cy="161" rx="4" ry="7" fill="#2E4649" stroke="none" transform="rotate(-25 511 161)"/>
+<ellipse id="eye-right" cx="534" cy="164" rx="4" ry="7" fill="#2E4649" stroke="none" transform="rotate(-25 534 164)"/>
+<path id="mouth" d="M515 178 Q524 185 531 176" fill="none" stroke-width="3"/>
+<path id="brow" d="M502 148 L510 145" fill="none" stroke-width="3"/>
+</g>
+</g>
+</svg>

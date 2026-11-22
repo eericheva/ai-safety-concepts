@@ -1,0 +1,14 @@
+<svg width="1014" height="1004" xmlns="http://www.w3.org/2000/svg" viewBox="66.5 45.5 507 502" data-beast-id="ct-utility-indifference">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<g id="suspension"><path d="M320 130V88" fill="none"/><circle cx="320" cy="69" r="21" fill="#F2E9D6"/><path d="M320 112 295 157H345Z" fill="#987B4F"/></g>
+<path id="bilateral-body" d="M320 145C294 145 280 169 254 192 218 223 166 220 102 204L69 253C120 287 171 298 214 283 244 274 256 264 270 270L285 357Q320 385 355 357L370 270C384 264 396 274 426 283 469 298 520 287 571 253L538 204C474 220 422 223 386 192 360 169 346 145 320 145Z" fill="#C8A268"/>
+<path d="M76 254C135 280 183 284 224 268L270 244 270 270C245 267 223 291 176 291 135 292 102 274 76 254ZM564 254C505 280 457 284 416 268L370 244 370 270C395 267 417 291 464 291 505 292 538 274 564 254Z" fill="#987B4F" stroke="none"/>
+<path id="left-relaxed-arm" d="M281 313C253 325 239 354 245 375Q250 392 266 386L278 377" fill="#C8A268"/>
+<path id="right-relaxed-arm" d="M359 313C387 325 401 354 395 375Q390 392 374 386L362 377" fill="#C8A268"/>
+<g id="continuation-branch"><path d="M125 277V377M205 286V377" fill="none"/><path d="M111 377H219L206 431Q165 453 124 431Z" fill="#F2E9D6"/><circle cx="165" cy="410" r="20" fill="#C8A268"/><path d="M139 242H187M175 229 188 242 175 255" fill="none"/></g>
+<g id="interruption-branch"><path d="M435 286V377M515 277V377" fill="none"/><path d="M421 377H529L516 431Q475 453 434 431Z" fill="#F2E9D6"/><circle cx="475" cy="410" r="20" fill="#C8A268"/><path d="M463 229V255M487 229V255" fill="none" stroke-width="9"/></g>
+</g>
+<g id="face"><path d="M280 193Q320 174 360 193L350 247Q320 269 290 247Z" fill="#F2E9D6"/><path d="M292 215Q301 222 309 215M331 215Q339 222 348 215" fill="none"/><path d="M309 238Q320 245 331 238" fill="none"/><ellipse cx="292" cy="235" rx="7" ry="4" fill="#DCAA8D" stroke="none"/><ellipse cx="348" cy="235" rx="7" ry="4" fill="#DCAA8D" stroke="none"/></g>
+<g id="props"><g id="equalized-value"><path d="M307 295H333M307 309H333" fill="none"/></g><g id="accessible-off-switch"><path d="M320 371V468" fill="none"/><rect x="291" y="468" width="58" height="77" rx="22" fill="#F2E9D6"/><rect x="305" y="483" width="30" height="46" rx="11" fill="#C8A268"/><path d="M320 493V507M312 505Q305 518 320 521Q335 518 328 505" fill="none" stroke-width="4"/></g></g>
+</g></svg>

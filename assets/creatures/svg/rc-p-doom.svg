@@ -1,0 +1,23 @@
+<svg width="1015" height="1012" xmlns="http://www.w3.org/2000/svg" viewBox="62.8 78.4 507.7 506.1" data-beast-id="rc-p-doom" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path d="M281 502L263 562Q240 582 216 576L222 552L244 536L250 493Z" fill="#987B4F"/>
+<path d="M347 502L367 549L393 555L403 577Q371 591 347 566L321 511Z" fill="#C8A268"/>
+<path d="M258 104Q312 67 365 104L378 469Q377 522 316 534Q250 524 246 474Z" fill="#C8A268"/>
+<path d="M342 119L356 470Q354 498 326 510Q361 506 365 472L351 116Z" fill="#987B4F" stroke="none"/>
+<path d="M279 203L271 466Q272 490 310 497Q343 489 343 465L331 201Z" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<path d="M273 122Q288 113 299 122M321 120Q339 111 349 123"/>
+<ellipse cx="289" cy="142" rx="7" ry="12" fill="#2E4649" stroke="none"/><ellipse cx="333" cy="141" rx="7" ry="12" fill="#2E4649" stroke="none"/>
+<path d="M300 176Q310 165 322 175"/>
+<path d="M269 160L280 163M345 158L354 155" stroke="#BF8473"/>
+</g>
+<g id="props">
+<g id="open-scale"><path d="M305 229L305 283M305 324L305 380M305 424L305 468" stroke="#987B4F"/><path d="M289 237L305 237M295 263L305 263M290 337L305 337M295 364L305 364M289 445L305 445M295 468L305 468"/></g>
+<g id="subjective-pointer"><path d="M247 330L280 306L280 321L338 321L338 342L280 342L280 357Z" fill="#BF8473"/><circle cx="309" cy="332" r="7" fill="#F2E9D6"/></g>
+<g id="left-voice"><path d="M247 331Q193 324 178 230" stroke="#79A49A"/><path d="M67 139Q56 91 117 82Q182 75 199 112Q212 148 176 172L186 211L150 183Q83 189 67 139Z" fill="#A6C5BC"/><path d="M93 126L117 111L142 139L167 116"/><path d="M99 155L156 155" stroke="#F2E9D6"/></g>
+<g id="right-voice"><path d="M339 332Q415 353 446 292" stroke="#BF8473"/><path d="M444 172Q488 155 534 177Q581 202 563 250Q552 278 505 277L443 313L456 273Q415 254 421 216Q425 188 444 172Z" fill="#D1A08B"/><path d="M450 215L477 239L505 204L538 220"/><path d="M468 257L523 257" stroke="#F2E9D6"/></g>
+<g id="open-definition-boundary"><path d="M215 249L197 249L197 447L216 447" stroke="#79A49A"/><path d="M406 378L423 378L423 484L404 484" stroke="#79A49A"/><path d="M188 475L174 489M428 343L442 329" stroke="#79A49A"/></g>
+<g id="open-horizon"><path d="M85 514L179 514M453 514L556 514" stroke="#987B4F"/><path d="M92 503L85 514L92 525M549 503L556 514L549 525" stroke="#987B4F"/></g>
+</g>
+</svg>

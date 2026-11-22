@@ -1,0 +1,26 @@
+<svg width="1076" height="884" xmlns="http://www.w3.org/2000/svg" viewBox="48.5 109.5 538 442" data-beast-id="cs-ctm">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path d="M91 259 144 209 278 305 371 194 494 269 471 325 385 274 294 387 156 286 119 313Z" fill="#C8A268"/>
+<path d="m149 262 142 104 93-112 95 55-8 16-86-51-91 113-138-101-37 27-15-22Z" fill="#987B4F" stroke="none"/>
+<g id="ctm-rule-hinge-one"><circle cx="157" cy="259" r="40" fill="#F2E9D6"/><circle cx="157" cy="259" r="14" fill="#987B4F"/><path d="m128 243 12-15m33 56 12-14" fill="none"/></g>
+<g id="ctm-rule-hinge-two"><circle cx="289" cy="344" r="43" fill="#F2E9D6"/><circle cx="289" cy="344" r="14" fill="#987B4F"/><path d="m261 324 15-10m27 60 15-11" fill="none"/></g>
+<g id="ctm-rule-hinge-three"><circle cx="380" cy="235" r="39" fill="#F2E9D6"/><circle cx="380" cy="235" r="14" fill="#987B4F"/><path d="m356 214 13-9m24 56 12-12" fill="none"/></g>
+<path id="ctm-front-brace" d="m438 307-9 126 48 35 18-18-32-34 11-99Z" fill="#C8A268"/>
+<path id="ctm-rear-brace" d="m223 324-29 106-61 22 6 27 85-24 36-105Z" fill="#C8A268"/>
+<path id="ctm-open-grounding-root" d="M291 388v50c0 28-41 31-41 69m41-69c0 36 40 34 40 68m-40-42v66" fill="none"/>
+<circle cx="250" cy="517" r="8" fill="#F2E9D6"/><circle cx="331" cy="516" r="8" fill="#F2E9D6"/><circle cx="291" cy="541" r="8" fill="#F2E9D6"/>
+</g>
+<g id="props">
+<g id="ctm-incoming-representations"><path d="M74 230V142h115v74" fill="none"/><path d="M74 142h115" stroke="#C8A268" stroke-width="17"/><rect x="51" y="115" width="43" height="43" rx="5" fill="#F2E9D6"/><circle cx="180" cy="137" r="24" fill="#9BBAB2"/></g>
+<g id="ctm-rule-rewrite"><path d="m206 257 21 15m-9-23 10 23-25-2" fill="none"/><path d="m317 289 18-24m-19 9 19-9-3 23" fill="none"/></g>
+<g id="ctm-composed-representation"><path d="M450 217v-79h99v86" fill="none"/><path d="M459 138h61" fill="none"/><rect x="430" y="113" width="43" height="43" rx="5" fill="#F2E9D6"/><circle cx="544" cy="136" r="24" fill="#9BBAB2"/></g>
+</g>
+<g id="face">
+<path d="M460 228c23-24 67-24 91-6l33 30-20 27c-2 41-49 67-84 39-23-19-28-53-20-90Z" fill="#C8A268"/>
+<path d="M479 243c19-17 45-15 62-1 24 20 18 48-3 59-27 15-57-4-63-27Z" fill="#F2E9D6"/>
+<ellipse cx="492" cy="259" rx="7" ry="11" fill="#2E4649" stroke="none"/><ellipse cx="534" cy="259" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path d="M501 285q13 9 25-3" fill="none"/><path d="m483 238 12-4m31 0 13 5" fill="none"/>
+</g>
+</g>
+</svg>

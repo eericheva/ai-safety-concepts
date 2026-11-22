@@ -1,0 +1,34 @@
+<svg width="1076" height="1018" xmlns="http://www.w3.org/2000/svg" viewBox="34.5 30.5 538 508.9" data-beast-id="rc-model-collapse">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<g id="generation-one-tail">
+<path d="M155 173 Q50 163 37 101 Q111 107 167 157" fill="#97B8A6"/>
+<path d="M159 163 Q67 103 87 44 Q148 72 175 150" fill="#AECBD0"/>
+<path d="M170 158 Q126 82 156 33 Q197 91 186 154" fill="#F2E9D6"/>
+<path d="M157 178 Q78 163 44 204 Q119 225 171 192" fill="#C17F63"/>
+<path d="M166 187 Q104 214 108 257 Q170 242 183 198" fill="#F2E9D6"/>
+</g>
+<path id="generation-one" d="M149 156 C173 111 228 112 249 139 Q265 140 284 157 L263 169 C256 205 224 223 189 211 C158 204 143 184 149 156Z" fill="#C8A268"/>
+<path d="M162 185 Q197 205 243 183 Q232 217 192 208Z" fill="#987B4F" stroke="none"/>
+<path id="generation-two-tail" d="M302 337 Q226 296 225 250 Q288 264 316 320 M301 350 Q240 347 219 384 Q283 399 322 358" fill="#F2E9D6"/>
+<path id="generation-two" d="M298 319 C321 285 372 282 397 310 L421 326 L402 340 C393 374 362 390 329 375 C302 367 290 342 298 319Z" fill="#C8A268"/>
+<path d="M309 350 Q351 375 391 345 Q382 383 334 373Z" fill="#987B4F" stroke="none"/>
+<path id="generation-three" d="M419 476 C439 446 489 445 515 472 L540 487 L522 500 C512 531 479 547 449 530 C424 518 410 497 419 476Z" fill="#C8A268"/>
+<path d="M429 506 Q470 530 513 505 Q499 541 452 527Z" fill="#987B4F" stroke="none"/>
+</g>
+<g id="face" fill="#F2E9D6">
+<path d="M226 139 Q253 132 260 158 Q256 181 238 182 Q216 170 226 139Z"/>
+<path d="M374 308 Q398 304 401 327 Q397 350 380 349 Q363 337 374 308Z"/>
+<path d="M492 470 Q514 467 519 489 Q513 511 496 509 Q480 495 492 470Z"/>
+<g fill="#2E4649" stroke="none"><ellipse cx="244" cy="154" rx="5" ry="8"/><ellipse cx="386" cy="323" rx="5" ry="8"/><ellipse cx="504" cy="485" rx="5" ry="8"/></g>
+</g>
+<g id="props">
+<g id="shared-motif" fill="#F2E9D6"><path d="M191 149 L208 169 L191 189 L174 169Z"/><path d="M337 315 L354 335 L337 355 L320 335Z"/><path d="M458 473 L475 493 L458 513 L441 493Z"/></g>
+<g id="recursive-output-one" fill="none"><path d="M290 158 C404 153 458 223 425 300"/><path d="M414 283 L425 303 L443 290"/></g>
+<g id="synthetic-data-one" fill="#F2E9D6"><path d="M323 154 L334 166 L323 178 L312 166Z"/><path d="M381 183 L392 195 L381 207 L370 195Z"/><path d="M419 228 L430 240 L419 252 L408 240Z"/></g>
+<path id="rare-output-one" d="M348 172 Q340 146 353 137 Q365 159 348 172Z" fill="#97B8A6"/>
+<g id="recursive-output-two" fill="none"><path d="M429 326 C547 325 592 409 548 464"/><path d="M540 443 L546 468 L569 458"/></g>
+<g id="synthetic-data-two" fill="#F2E9D6"><path d="M471 328 L482 340 L471 352 L460 340Z"/><path d="M527 366 L538 378 L527 390 L516 378Z"/><path d="M559 416 L570 428 L559 440 L548 428Z"/></g>
+<g id="lost-tail-fragments" fill="#97B8A6" stroke-width="4"><path d="M230 224 Q214 205 221 196 Q238 203 230 224Z"/><path d="M379 423 Q365 408 370 398 Q385 404 379 423Z" fill="#F2E9D6"/></g>
+</g>
+</g></svg>

@@ -1,0 +1,35 @@
+<svg width="1164" height="843" xmlns="http://www.w3.org/2000/svg" viewBox="29.5 116.4 582.0 421.7" data-beast-id="cs-gwt" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path d="M136 415 Q95 305 151 209 Q211 116 320 119 Q429 116 489 209 Q545 305 504 415 L463 468 H177Z" fill="#C8A268"/>
+<path d="M155 404 Q125 291 182 218 Q234 156 320 157 Q406 156 458 218 Q515 291 485 404Z" fill="#987B4F"/>
+<path d="M185 397 Q158 303 204 240 Q250 185 320 186 Q390 185 436 240 Q482 303 455 397Z" fill="#F2E9D6"/>
+<path d="M174 213 Q218 227 249 196 L249 321 L219 300 L195 332 Q170 271 174 213Z" fill="#C8A268"/>
+<path d="M466 213 Q422 227 391 196 L391 321 L421 300 L445 332 Q470 271 466 213Z" fill="#C8A268"/>
+<path d="M205 230 L215 284 M435 230 L425 284" stroke="#987B4F"/>
+<path d="M124 397 Q320 426 516 397 L501 442 Q320 480 139 442Z" fill="#C8A268"/>
+<path d="M145 439 L170 478 Q320 504 470 478 L495 439 Q320 474 145 439Z" fill="#987B4F"/>
+<path d="M196 483 L175 529 Q205 544 236 525 L248 492 M392 492 L404 525 Q435 544 465 529 L444 483" fill="#C8A268"/>
+</g>
+<g id="props">
+<g id="subsystem-limbs" fill="#C8A268">
+<path d="M150 282 L106 263 L92 225 L66 234 L80 288 L137 317Z"/>
+<path d="M490 282 L533 260 L547 223 L573 233 L560 286 L503 316Z"/>
+<path d="M139 365 L85 369 L72 400 L48 388 L62 343 L132 335Z"/>
+<path d="M501 365 L555 369 L568 400 L592 388 L578 343 L508 335Z"/>
+</g>
+<g id="sensory-eye" fill="#A9C6C1"><path d="M36 211 Q74 165 115 211 Q74 250 36 211Z"/><circle cx="76" cy="211" r="15" fill="#F2E9D6"/><path d="M76 201 L86 211 L76 221 L66 211Z" fill="#DDB857"/></g>
+<g id="memory-fold" fill="#A9C6C1"><path d="M523 176 L568 177 L601 207 L579 246 L535 235Z"/><path d="M537 192 L561 194 L581 209 L567 228 L546 220Z" fill="#F2E9D6"/><path d="M559 201 L569 211 L559 221 L549 211Z" fill="#DDB857"/></g>
+<g id="action-hand" fill="#A9C6C1"><path d="M49 385 L32 405 L41 434 L70 449 L94 428 L88 401 L77 415 L67 410 L69 388 L58 384 L53 406"/><path d="M62 419 L72 429 L62 439 L52 429Z" fill="#DDB857"/></g>
+<g id="report-mouth" fill="#A9C6C1"><path d="M548 389 Q590 373 608 405 Q615 435 575 450 L551 439Z"/><path d="M568 401 L593 410 L574 433Z" fill="#F2E9D6"/><path d="M581 407 L591 417 L581 427 L571 417Z" fill="#DDB857"/></g>
+<g id="competing-processes" fill="#A9C6C1">
+<path d="M224 369 C194 351 188 386 218 387 C245 388 252 365 281 344"/>
+<path d="M262 398 C235 378 267 357 278 380 L299 349"/>
+<path d="M416 369 C446 351 452 386 422 387 C395 388 388 365 359 344"/>
+<path d="M378 398 C405 378 373 357 362 380 L341 349"/>
+<circle cx="216" cy="370" r="8"/><path d="M265 382 L276 371 L284 386Z"/><rect x="408" y="362" width="15" height="15" rx="3"/>
+</g>
+<g id="global-broadcast" stroke="#DDB857" stroke-width="8"><path d="M292 289 L106 222 M348 289 L532 223 M288 318 L92 402 M352 318 L549 402"/></g>
+<g id="selected-content"><path d="M320 254 L363 302 L320 350 L277 302Z" fill="#DDB857"/><path d="M320 275 L344 302 L320 329 L296 302Z" fill="#F2E9D6"/></g>
+</g>
+<g id="face"><path d="M279 163 Q287 151 296 163 M344 163 Q353 151 361 163"/><path d="M307 172 Q320 184 333 172"/><path d="M265 172 L272 174 M368 174 L375 172" stroke="#C78E73" stroke-width="7"/></g>
+</svg>

@@ -1,0 +1,53 @@
+<svg width="1080" height="1024" xmlns="http://www.w3.org/2000/svg" viewBox="51.5 88.5 540 512" data-beast-id="gv-agentic-misalignment" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <g id="body">
+    <g id="rear-supports" fill="#987B4F">
+      <path d="M259 353 190 382 154 483 91 500 79 522 174 522 226 430 289 402Z"/>
+      <path d="M375 350 452 385 490 483 549 499 561 522 468 522 416 430 356 403Z"/>
+    </g>
+    <path id="angular-carapace" d="M171 333 216 251 282 224 319 245 360 221 426 254 469 333 409 399 331 420 244 399Z" fill="#C8A268"/>
+    <path d="M171 333 244 363 327 380 409 363 469 333 409 399 331 420 244 399Z" fill="#987B4F"/>
+    <path d="M216 251 244 305 282 224M426 254 399 304 360 221"/>
+    <g id="goal-core">
+      <path d="M283 211 301 181 340 181 358 211 342 249 301 249Z" fill="#F2E9D6"/>
+      <path d="M321 194 338 214 321 234 304 214Z" fill="#D6AF61"/>
+    </g>
+    <g id="route-limbs" fill="#C8A268">
+      <path id="coercion-limb" d="M244 317 183 308 153 232 106 220 108 194 175 204 210 278 263 286Z"/>
+      <path id="leak-limb" d="M395 288 431 263 464 186 517 179 527 202 483 210 454 288 415 323Z"/>
+      <path id="sabotage-limb" d="M310 382 277 442 296 482 279 538 306 549 328 483 311 443 341 399Z"/>
+    </g>
+    <g id="pivot-joints" fill="#F2E9D6">
+      <circle cx="201" cy="292" r="12"/><circle cx="444" cy="275" r="12"/><circle cx="295" cy="442" r="12"/>
+    </g>
+  </g>
+  <g id="face">
+    <path d="M249 313 286 290 321 309 356 290 394 313 376 350 321 365 267 349Z" fill="#F2E9D6"/>
+    <path d="m272 317 25 6m48 0 25-6"/>
+    <ellipse cx="288" cy="332" rx="7" ry="10" fill="#2E4649" stroke="none"/><ellipse cx="354" cy="332" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+    <path d="M309 349 321 343 333 349"/>
+  </g>
+  <g id="props">
+    <g id="shutdown-threat" stroke="#B66F60">
+      <path d="M279 166 279 140 361 140 361 166"/>
+      <path d="M321 91v31m-26-23a35 35 0 1 0 52 0"/>
+    </g>
+    <g id="coercion-clamp">
+      <path d="M72 148h66v48H99l-20 17v-17h-7Z" fill="#F2E9D6"/>
+      <path d="M68 138 54 153v39l14 13M143 138l14 15v39l-14 13" stroke="#B66F60"/>
+      <path d="M91 166h29m-29 14h21"/>
+    </g>
+    <g id="escaping-data">
+      <path d="M503 137h60v58h-60Z" fill="#F2E9D6"/>
+      <path d="M522 153h20m-20 12h11"/>
+      <path d="m556 216 16 6-6 16-16-6Z" fill="#92B5AD"/>
+      <path d="m576 249 13 5-5 13-13-5Z" fill="#92B5AD"/>
+      <path d="m550 191 17 10" stroke="#92B5AD"/>
+    </g>
+    <g id="broken-link">
+      <path d="M236 550h41l10 16-10 16h-41l-10-16Z" fill="#F2E9D6"/>
+      <path d="M331 550h41l10 16-10 16h-41l-10-16Z" fill="#F2E9D6"/>
+      <path d="m287 557 11 9-12 11m34-20-11 9 11 11" stroke="#B66F60"/>
+      <path d="m304 584-3 14m9-65 5-11" stroke="#B66F60"/>
+    </g>
+  </g>
+</svg>

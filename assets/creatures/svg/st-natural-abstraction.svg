@@ -1,0 +1,50 @@
+<svg width="1068" height="1018" xmlns="http://www.w3.org/2000/svg" viewBox="51.5 55.5 534 509" data-beast-id="st-natural-abstraction">
+<g fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="soft-sensor-neck" fill="#C8A268" d="M280 309C222 300 151 275 115 227C83 184 102 126 143 111C124 148 137 181 161 204C199 242 257 242 301 262Z"/>
+<path fill="#987B4F" stroke="none" d="M120 199C144 254 217 281 280 289L280 309C222 300 151 275 115 227Z"/>
+<path id="angular-sensor-neck" fill="#C8A268" d="M349 275L396 196L458 164L493 185L435 223L392 309Z"/>
+<path fill="#987B4F" stroke="none" d="M361 290L412 211L477 175L493 185L435 223L392 309Z"/>
+<path id="spiral-sensor-neck" fill="#C8A268" d="M302 349C294 392 262 437 206 461C168 477 135 461 140 429C143 409 166 400 181 410C152 403 150 434 175 434C211 435 242 390 253 340Z"/>
+<path fill="#987B4F" stroke="none" d="M280 352C265 398 231 438 188 452C166 459 152 453 142 443C154 474 181 472 206 461C262 437 294 392 302 349Z"/>
+<path id="confluence-shell" fill="#C8A268" d="M246 276Q274 244 321 250Q377 243 400 285Q424 330 385 366Q354 396 302 381Q255 383 236 344Q222 305 246 276Z"/>
+<path fill="#987B4F" stroke="none" d="M239 338Q275 377 326 366Q373 369 405 327Q399 365 365 379Q285 401 249 362Z"/>
+<path id="sensory-fan" fill="#F2E9D6" d="M139 191C97 185 62 154 54 111Q92 109 118 129Q108 91 129 58Q164 79 170 111Q191 86 222 89Q223 141 188 172Q166 191 139 191Z"/>
+<path d="M139 163L84 132M139 163L138 91M139 163L199 113" stroke="#987B4F"/>
+<path id="prism-sensor" fill="#F2E9D6" d="M441 143L484 91L570 114L583 176L525 209L463 184Z"/>
+<path d="M441 143L504 143L484 91M504 143L525 209M504 143L570 114" stroke="#987B4F"/>
+<path id="coil-ear" fill="#F2E9D6" d="M156 448C105 466 64 432 72 387C80 346 121 330 155 346C184 359 188 392 167 409C152 421 130 414 127 400C123 387 136 377 146 382C140 388 145 396 151 392C158 386 150 373 139 371C114 367 99 389 109 409C118 427 138 423 151 417Z"/>
+</g>
+<g id="face">
+<path fill="#F2E9D6" d="M265 287Q312 264 370 285L380 330Q322 357 263 331Z"/>
+<ellipse cx="282" cy="302" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse cx="360" cy="302" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path d="M308 330Q320 339 333 329"/>
+<path id="shared-abstraction-node" fill="#89B4A4" d="M320 286L337 296L337 316L320 326L303 316L303 296Z"/>
+<path d="M311 305L318 311L330 299" stroke="#F2E9D6" stroke-width="4"/>
+<path fill="#89B4A4" d="M113 162Q138 137 166 160Q139 183 113 162Z"/>
+<ellipse cx="140" cy="160" rx="7" ry="11" fill="#2E4649"/>
+<path fill="#89B4A4" d="M502 153L547 140L550 169L519 181Z"/>
+<circle cx="532" cy="159" r="7" fill="#2E4649"/>
+</g>
+<g id="props">
+<g id="converging-summary-traces" stroke="#F2E9D6" stroke-width="5">
+<path d="M174 230Q214 261 250 268M220 251L250 268L228 270"/>
+<path d="M450 198L413 221L389 264M388 244L389 264L407 254"/>
+<path d="M215 431Q249 411 268 380M251 391L268 380L270 399"/>
+</g>
+<g id="shared-world" fill="#F2E9D6">
+<path d="M343 508Q379 470 420 480Q472 459 516 480Q558 488 568 521L536 555L384 562L342 537Z"/>
+<path fill="#89B4A4" d="M370 520Q392 484 417 509Q436 484 461 512L479 534L390 540Z"/>
+<path fill="#C8A268" d="M467 511L481 463L509 456L532 502L514 533Z"/>
+<path d="M481 463L502 491L532 502M502 491L514 533"/>
+<path d="M397 550Q427 530 453 546Q479 558 500 542" stroke="#89B4A4"/>
+</g>
+<g id="world-observation-lines" stroke="#89B4A4" stroke-width="4" stroke-dasharray="3 12">
+<path d="M365 493Q250 507 170 472"/>
+<path d="M561 468Q610 325 552 216"/>
+<path d="M338 494Q57 319 67 200"/>
+</g>
+</g>
+</g>
+</svg>

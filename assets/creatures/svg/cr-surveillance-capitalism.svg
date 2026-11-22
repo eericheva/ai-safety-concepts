@@ -1,0 +1,20 @@
+<svg width="1052" height="696" xmlns="http://www.w3.org/2000/svg" viewBox="44.5 143.5 525.9 348.0" data-beast-id="cr-surveillance-capitalism" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="behavior-traces" fill="#A8C5C0"><ellipse cx="83" cy="359" rx="10" ry="18" transform="rotate(-25 83 359)"/><ellipse cx="117" cy="378" rx="9" ry="16" transform="rotate(-25 117 378)"/><ellipse cx="132" cy="334" rx="8" ry="14" transform="rotate(12 132 334)"/><ellipse cx="163" cy="351" rx="7" ry="12"/></g>
+<g id="steered-path"><path d="M70 455 Q147 480 190 437 Q231 396 277 419" stroke="#A8C5C0" stroke-width="13"/><path d="m258 399 24 20-25 13" stroke="#A8C5C0" stroke-width="8"/></g>
+<g id="profit" fill="#E0BB64"><circle cx="473" cy="449" r="22"/><path d="M473 435v28m-9-14h18"/><circle cx="510" cy="467" r="22"/><path d="M510 453v28m-9-14h18"/></g>
+</g>
+<g id="body">
+<path id="steering-tail" d="M461 344 C559 326 592 236 550 181 C510 130 390 142 296 171 C207 198 140 201 84 190 L93 172 L47 184 L72 223 L75 206 C153 234 224 218 308 196 C416 167 495 158 525 197 C555 235 528 284 451 303Z" fill="#C8A268"/>
+<path id="low-siphon-body" d="M196 307 C233 272 266 246 333 248 C413 250 481 296 483 352 C485 408 429 440 354 428 L284 418 C248 416 227 396 212 368 L164 388 L130 417 L107 404 L128 373 L147 321 L145 288 L166 282Z" fill="#C8A268"/>
+<path d="M236 375 C300 416 422 425 479 354 C481 401 432 440 354 428 L284 418 C260 417 239 402 226 382Z" fill="#987B4F" stroke="none"/>
+<path id="siphon-mouth" d="M145 288 Q166 337 107 404 Q153 398 185 362 Q201 337 166 282Z" fill="#F2E9D6"/>
+<path d="M159 310 Q170 343 139 377"/>
+<path id="back-foot" d="m391 426 12 30 37 4 8-12-23-29" fill="#987B4F"/>
+<path id="front-foot" d="m265 413-20 31 29 10 32-32" fill="#C8A268"/>
+<g id="prediction-chamber"><path d="M270 307 Q296 273 337 278 Q394 279 421 319 L416 372 Q369 402 282 373Z" fill="#A8C5C0"/><path d="m288 350 25-26 27 17 31-35 29 20" stroke="#F2E9D6" stroke-width="8"/><path d="m382 309 18 17-23 4" stroke="#F2E9D6"/><path d="M294 371h98"/><circle cx="313" cy="324" r="6" fill="#F2E9D6"/><circle cx="340" cy="341" r="6" fill="#F2E9D6"/></g>
+<path id="profit-outlet" d="m446 372 31 22-9 30-24-8 3-13-21-14" fill="#F2E9D6"/>
+</g>
+<g id="face"><path d="M204 302 Q220 284 237 299"/><ellipse cx="224" cy="319" rx="10" ry="15" fill="#2E4649" stroke="none"/><circle cx="227" cy="314" r="3" fill="#F2E9D6" stroke="none"/><path d="M208 348q15 9 26-3"/><ellipse cx="246" cy="340" rx="10" ry="6" fill="#D7947B" stroke="none"/></g>
+<g id="steering-contact"><path d="M77 217 C67 264 59 322 69 365" stroke="#987B4F" stroke-dasharray="7 10"/><path d="m59 355 10 18 12-16" stroke="#987B4F"/></g>
+</svg>

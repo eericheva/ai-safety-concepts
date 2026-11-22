@@ -1,0 +1,50 @@
+<svg width="1118" height="1112" xmlns="http://www.w3.org/2000/svg" viewBox="27.5 40.5 559 556" data-beast-id="ct-oracle-genie">
+<g id="body" fill="#C8A268" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path id="four-mode-organism" d="M260 247 C242 212 219 196 225 150 C229 117 254 100 275 100 L275 76 L302 94 L326 65 L345 96 C386 98 412 126 411 162 C411 204 388 220 380 250 C412 230 440 221 475 229 C524 240 549 280 536 324 C524 365 490 377 447 368 L399 356 C418 393 432 417 421 456 C412 491 384 509 349 509 L339 544 L314 524 L286 544 L280 510 C235 507 214 480 216 444 C216 405 243 386 248 358 C215 374 190 385 158 377 C117 368 99 341 101 310 C103 271 131 244 166 241 C203 239 224 254 260 247Z"/>
+<path id="lower-shadow" d="M223 461 C242 493 277 492 307 494 C363 498 398 480 422 448 C422 486 387 510 349 509 L339 544 L314 524 L286 544 L280 510 C247 508 225 491 223 461Z" fill="#987B4F" stroke="none"/>
+<path id="shared-mode-junction" d="M273 254 Q318 231 365 256 Q395 286 379 329 Q357 366 309 365 Q261 357 252 318 Q248 278 273 254Z" fill="#F2E9D6"/>
+<path id="oracle-channel" d="M289 248 L279 220 M347 247 L361 219" fill="none"/>
+<path id="genie-channel" d="M385 279 L416 272 M383 327 L417 337" fill="none"/>
+<path id="sovereign-channel" d="M287 365 L278 390 M349 362 L364 391" fill="none"/>
+<path id="tool-channel" d="M248 281 L221 274 M248 335 L221 345" fill="none"/>
+</g>
+<g id="face" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<ellipse id="left-eye" cx="291" cy="298" rx="8" ry="13" fill="#2E4649"/>
+<ellipse id="right-eye" cx="342" cy="298" rx="8" ry="13" fill="#2E4649"/>
+<circle cx="293" cy="294" r="2.5" fill="#F2E9D6" stroke="none"/><circle cx="344" cy="294" r="2.5" fill="#F2E9D6" stroke="none"/>
+<path id="mouth" d="M300 326 Q316 339 333 325" fill="none"/>
+<path d="M278 278 L293 273 M335 273 L350 278" fill="none"/>
+</g>
+<g id="props" fill="#F2E9D6" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="oracle-answer-organ">
+<path id="oracle-receptive-ear" d="M247 150 Q259 136 270 150 Q280 166 268 179" fill="none"/>
+<path id="oracle-speaking-mouth" d="M291 157 Q320 137 354 157 Q324 188 291 157Z"/>
+<path id="answer-bubble" d="M384 102 L404 88 L404 58 Q404 43 420 43 L474 43 Q490 43 490 59 L490 93 Q490 109 474 109 L416 109Z"/>
+<path d="M424 65 L469 65 M424 85 L450 85" fill="none"/>
+<path id="incoming-question" d="M177 115 Q172 96 187 92 Q206 88 207 106 Q207 116 195 122 L195 132" fill="none"/>
+<circle cx="195" cy="147" r="3" fill="#2E4649" stroke="none"/>
+</g>
+<g id="genie-command-limb">
+<path id="jointed-arm" d="M439 253 L473 280 L461 311 L501 318 L499 338 L438 331 Q427 328 430 314 L444 287 L426 273Z"/>
+<path id="command-slot" d="M448 242 L469 257" fill="none"/>
+<path id="single-command-token" d="M481 191 L516 218 L494 247 L459 220Z" fill="#A8C5C3"/>
+<path d="M483 215 L494 223 L487 232" fill="none"/>
+<path id="working-fingers" d="M500 317 L518 310 Q528 310 526 320 L516 327 Q530 333 521 342 L500 338"/>
+<path id="command-result" d="M549 334 L584 334 L584 369 L549 369Z" fill="#A8C5C3"/>
+</g>
+<g id="sovereign-autonomous-lobe">
+<path id="sovereign-crown" d="M277 419 L272 391 L296 405 L317 380 L336 406 L363 393 L355 420Z"/>
+<path id="walking-feet" d="M278 494 L260 530 L236 554 L250 568 L284 546 L301 511 M348 506 L368 533 L395 545 L386 562 L352 547 L331 523" fill="#C8A268"/>
+<path id="chosen-route" d="M315 568 L315 594 M315 581 Q349 576 365 589 M315 581 Q288 575 274 591" fill="none" stroke="#987B4F"/>
+<path id="self-directed-gaze" d="M290 446 Q315 431 341 446" fill="none"/>
+<circle cx="323" cy="446" r="7" fill="#2E4649"/>
+</g>
+<g id="passive-tool-lobe">
+<path id="tool-socket" d="M135 273 L157 273 L157 297 L181 297 L181 273 L202 273 L202 322 L184 340 L153 340 L135 322Z"/>
+<path id="externally-driven-shaft" d="M102 306 L64 306 L64 261 L43 261" fill="none"/>
+<rect id="external-crank-grip" x="30" y="244" width="24" height="34" rx="9" fill="#A8C5C3"/>
+<circle id="shaft-joint" cx="110" cy="306" r="10" fill="#987B4F"/>
+<path id="tool-motion" d="M60 342 Q70 362 92 366" fill="none" stroke="#987B4F"/>
+</g>
+</g>
+</svg>

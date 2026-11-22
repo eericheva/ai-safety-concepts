@@ -1,0 +1,41 @@
+<svg width="928" height="982" xmlns="http://www.w3.org/2000/svg" viewBox="66.5 89.5 464 491" data-beast-id="ct-impact-measures" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+ <g id="auxiliary-goal-paths" stroke="#80A6A2">
+  <path d="M321 577V533L201 499L105 458M201 499L144 552M321 533L391 492L505 462M391 492L486 553M321 533L319 468"/>
+  <path d="M307 577V542L190 509L96 472M190 509L134 563M307 542L400 504L514 476M400 504L496 565M307 542L306 468" stroke="#B9C9BE" stroke-width="3" stroke-dasharray="5 9"/>
+ </g>
+ <g id="auxiliary-goal-nodes" fill="#F2E9D6">
+  <circle cx="91" cy="451" r="22"/>
+  <path d="M122 542H158V578H122Z"/>
+  <path d="M319 435L342 458L319 481L296 458Z"/>
+  <path d="M502 438L525 451V477H479V451Z"/>
+  <path d="M484 534L506 550L498 576H470L462 550Z"/>
+ </g>
+ <g id="goal-node-centres" stroke="#80A6A2"><path d="M82 451H100M140 551V569M311 458H327M494 459H510M477 557H491"/></g>
+</g>
+<g id="body">
+ <g id="careful-legs" fill="#C8A268">
+  <path d="M257 318L266 404L236 485L223 499L197 494L198 483L222 482L246 401L241 324Z"/>
+  <path d="M318 320L326 409L395 433L423 421L430 432L397 450L309 423L301 325Z"/>
+ </g>
+ <path id="long-neck-body" fill="#C8A268" d="M148 228L217 248C252 222 290 232 314 254C348 279 369 271 373 242C379 206 340 178 355 142C365 115 400 111 425 126C450 141 447 172 427 189C410 204 409 220 419 250C438 308 391 345 329 348C257 358 199 328 191 281Z"/>
+ <path id="body-shadow" fill="#987B4F" stroke="none" d="M195 280C229 314 296 330 351 320C392 313 413 292 420 272C427 316 380 344 329 348C257 358 199 328 191 281Z"/>
+ <path id="neck-highlight" stroke="#F2E9D6" stroke-width="13" d="M402 188C387 210 400 235 397 259C394 280 384 290 369 294"/>
+ <path id="comparison-wing" fill="#F2E9D6" d="M219 266C248 249 302 264 345 297C315 324 244 319 219 266Z"/>
+ <g id="paired-attainability-marks" stroke-width="6">
+  <path d="M244 274L250 295M270 279L276 301M298 289L301 301" stroke="#80A6A2"/>
+  <path d="M255 277L260 295M281 281L286 303M310 292L312 303" stroke="#C8A268"/>
+ </g>
+ <path id="bidirectional-limiter" d="M236 253L234 242L315 263L310 273M241 239L238 245M311 260L310 267"/>
+ <path id="crest" fill="#C8A268" d="M363 137L344 110L371 117L377 92L393 117"/>
+</g>
+<g id="face">
+ <path id="face-mask" fill="#F2E9D6" d="M377 140C387 127 414 128 425 143L431 166C414 183 387 180 374 164Z"/>
+ <path id="long-beak" fill="#C8A268" d="M430 148L528 169L430 169Z"/>
+ <ellipse cx="391" cy="150" rx="6" ry="9" fill="#2E4649" stroke="none"/>
+ <ellipse cx="416" cy="152" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+ <path d="M394 166Q403 172 411 166" stroke-width="4"/>
+ <path d="M386 136L396 138M411 139L419 138" stroke-width="3"/>
+ <path d="M382 161L387 162" stroke="#D99F83" stroke-width="6"/>
+</g>
+</svg>

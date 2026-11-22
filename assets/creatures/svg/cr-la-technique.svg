@@ -1,0 +1,39 @@
+<svg width="1132" height="938" xmlns="http://www.w3.org/2000/svg" viewBox="37.5 66.5 566 469" data-beast-id="cr-la-technique">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="social-rhythms" fill="#F2E9D6">
+<path d="M52 166 Q77 130 101 165 Q124 191 106 216 Q79 240 53 214 Q36 192 52 166Z" fill="#9DB8AD"/>
+<path d="M53 190 Q65 172 76 192 Q89 210 105 188" fill="none"/>
+<path d="M40 310 L75 279 L114 307 L107 355 L52 355Z"/>
+<path d="M58 334 L58 311 M75 334 L75 300 M93 334 L93 317"/>
+<path d="M47 451 Q45 417 74 412 Q100 408 113 441 Q131 470 99 488 Q66 510 46 481Z" fill="#B5C9CD"/>
+<path d="M58 457 Q74 432 93 455 Q81 478 58 457Z"/>
+</g>
+<g id="tension-belts" fill="none">
+<path d="M111 177 C170 186 182 254 256 270 M111 198 C162 208 177 277 252 291"/>
+<path d="M114 309 C164 309 185 323 246 323 M111 333 L245 345"/>
+<path d="M116 441 C172 426 179 394 253 377 M116 464 C179 450 193 415 260 399"/>
+<path d="M178 240 L189 226 M192 257 L203 242 M166 319 L165 339 M189 321 L188 340 M177 414 L189 431 M197 399 L208 417" stroke="#987B4F"/>
+</g>
+</g>
+<g id="body">
+<path id="forward-treads" d="M341 119 L354 73 L388 111 L428 69 L442 119 L497 96 L493 151 L550 146 L532 198 L588 218 L553 260 L601 298 L553 326 L584 378 L531 387 L546 444 L488 439 L483 496 L435 470 L410 524 L376 478 L334 518 L319 466 L264 485 L271 431 L218 426 L243 380 L203 345 L251 316 L223 269 L274 254 L262 198 L318 203 L311 147Z" fill="#C8A268"/>
+<circle cx="405" cy="298" r="162" fill="#987B4F"/>
+<circle cx="405" cy="298" r="130" fill="#F2E9D6"/>
+<path id="return-loop" d="M320 200 Q395 131 486 197 L470 174 M486 197 L457 199 M491 389 Q410 460 327 395 L340 419 M327 395 L357 392" fill="none" stroke="#C8A268" stroke-width="12"/>
+<path id="axle-spokes" d="M405 298 L405 170 M405 298 L294 362 M405 298 L516 362" fill="none" stroke="#987B4F" stroke-width="14"/>
+<path id="tempo-stem" d="M405 299 L450 380" fill="none" stroke="#2E4649" stroke-width="10"/>
+<circle id="tempo-weight" cx="450" cy="380" r="21" fill="#C8A268"/>
+</g>
+<g id="face">
+<path d="M348 270 Q356 235 405 237 Q453 238 467 274 L450 327 Q407 355 362 326Z" fill="#C8A268"/>
+<path d="M365 273 L388 267 M420 267 L443 273" fill="none"/>
+<ellipse cx="378" cy="287" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse cx="432" cy="287" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path d="M390 317 L420 317" fill="none"/>
+</g>
+<g id="constant-tempo-marks" fill="none" stroke="#987B4F">
+<path d="M297 533 L313 533 M338 533 L354 533 M379 533 L395 533 M420 533 L436 533 M461 533 L477 533 M502 533 L518 533"/>
+</g>
+</g>
+</svg>

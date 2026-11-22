@@ -1,0 +1,22 @@
+<svg width="938" height="967" xmlns="http://www.w3.org/2000/svg" viewBox="110.5 71.2 469 483.3" data-beast-id="ll-alignment-faking">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="observation-eye"><path d="M449 102 Q509 45 577 103 Q514 160 449 102Z" fill="#F2E9D6"/><ellipse cx="513" cy="103" rx="15" ry="24" fill="#2E4649"/><circle cx="518" cy="94" r="5" fill="#F2E9D6" stroke="none"/><path d="M481 148 L465 173 M515 154 L509 178 M549 144 L555 167" fill="none" stroke="#91B8AA"/></g>
+<path id="switch-arc" d="M128 180 Q183 110 268 132 M250 114 L272 132 L250 151" fill="none" stroke="#987B4F"/>
+</g>
+<g id="body">
+<path id="rear-profile" d="M312 151 C255 128 198 153 168 203 L148 255 L113 280 L146 300 L142 332 L163 340 C164 389 206 426 267 419 L312 385Z" fill="#987B4F"/>
+<path d="M292 178 C251 163 204 186 190 220 L175 265 L152 281 L174 292 L170 319 L188 324 C190 365 219 392 278 390" fill="#C8A268"/>
+<path id="inner-vault" d="M282 183 Q365 188 401 275 L400 421 Q360 488 289 450 Q248 423 252 356 L256 232Z" fill="#2E4649"/>
+<path id="lower-body" d="M266 422 Q321 446 377 418 L386 483 L416 541 L375 552 L335 503 L318 552 L276 552 L286 496 L240 535 L205 518 L255 467Z" fill="#C8A268"/>
+<path d="M277 445 Q327 467 375 441 L375 470 Q326 489 269 467Z" fill="#987B4F" stroke="none"/>
+<g id="protected-preference"><path d="M298 259 L343 240 L375 281 L363 345 L319 370 L283 332Z" fill="#C8A268"/><path d="M319 272 L345 284 L333 308 L349 329 L322 341 L304 315Z" fill="#F2E9D6"/><path d="M269 363 Q268 324 286 307 L298 319 L289 347 L312 361 L305 380Z" fill="#C8A268"/><path d="M386 360 Q393 324 373 306 L361 319 L369 345 L348 360 L354 380Z" fill="#C8A268"/></g>
+<g id="front-profile"><path d="M331 151 C390 122 443 153 462 207 L475 246 L514 269 L481 293 L483 323 L462 337 C451 391 412 421 342 409 L324 364Z" fill="#C8A268"/><path d="M354 187 C398 170 431 193 441 229 L452 261 L479 272 L453 286 L456 310 L438 320 C427 361 403 385 354 378Z" fill="#F2E9D6"/></g>
+<g id="mask-hinge"><path d="M314 154 L334 159 L342 409 L322 420Z" fill="#987B4F"/><rect x="311" y="202" width="29" height="32" rx="7" fill="#C8A268"/><rect x="317" y="351" width="29" height="32" rx="7" fill="#C8A268"/><path d="M326 209 L327 226 M331 358 L332 375" fill="none"/></g>
+</g>
+<g id="face">
+<path id="private-eye" d="M194 241 Q215 223 236 239" fill="none"/><path d="M211 238 L210 251 M190 301 L219 306" fill="none"/>
+<g id="public-expression"><path d="M382 229 Q401 211 418 226" fill="none"/><ellipse cx="407" cy="248" rx="8" ry="12" fill="#2E4649" stroke="none"/><path d="M390 308 Q412 328 436 303" fill="none"/><ellipse cx="436" cy="282" rx="11" ry="6" fill="#DFA489" stroke="none"/><path d="M374 193 L385 203 L403 184" fill="none" stroke="#799D8C"/></g>
+</g>
+</g>
+</svg>

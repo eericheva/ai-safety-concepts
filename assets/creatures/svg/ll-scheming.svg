@@ -1,0 +1,44 @@
+<svg width="973" height="615" xmlns="http://www.w3.org/2000/svg" viewBox="75.2 130 486.3 307.5" data-beast-id="ll-scheming" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+ <g id="oversight">
+  <path d="M279 158Q324 107 369 158Q324 209 279 158Z" fill="#B0C5BE"/>
+  <circle cx="324" cy="158" r="16" fill="#F2E9D6"/><circle cx="324" cy="158" r="6" fill="#2E4649" stroke="none"/>
+  <path d="M324 190V229"/><path d="M315 229H333V247H315Z" fill="#B0C5BE"/>
+  <path d="M318 262V273M330 262V273"/>
+ </g>
+ <g id="protected-goal">
+  <path d="M491 366V284Q491 259 518 259Q545 259 545 284V366" fill="#F2E9D6"/>
+  <path d="M480 365H556V418Q519 452 480 418Z" fill="#987B4F"/>
+  <path d="M518 375L537 396L518 417L499 396Z" fill="#E9BC5F"/>
+  <path d="M507 357V332Q507 320 519 320Q531 320 531 332V345"/>
+ </g>
+</g>
+<g id="body">
+ <path id="ribbon-shadow" d="M78 307Q77 276 110 266L510 266Q553 267 559 302L559 325L504 337L447 355L391 398L329 368L270 419L209 382L160 413L101 385Q75 374 78 347Z" fill="#987B4F"/>
+ <path id="ribbon-front" d="M79 306Q77 277 110 266H510Q543 266 557 294L518 310H179Q160 352 126 352Q83 353 79 306Z" fill="#C8A268"/>
+ <path id="fold-one" d="M178 310H243L270 419L209 382L160 413Z" fill="#C8A268"/>
+ <path id="fold-two" d="M279 310H344L391 398L329 368L270 419Z" fill="#C8A268"/>
+ <path id="fold-three" d="M386 310H451L504 337L447 355L391 398Z" fill="#C8A268"/>
+ <path d="M179 311L160 413M279 311L270 419M386 311L391 398" stroke="#F2E9D6"/>
+ <g id="obedient-route" stroke="#F2E9D6">
+  <path d="M189 289H475"/><path d="M465 280L476 289L465 298"/>
+  <path d="M208 282L216 290L231 276M359 282L367 290L382 276"/>
+ </g>
+ <g id="covert-route" stroke="#DCA480">
+  <path d="M109 365H185V354H254V376H301V347H370V366H422V335H471V396H497"/>
+  <circle cx="185" cy="354" r="6" fill="#F2E9D6"/><circle cx="301" cy="347" r="6" fill="#F2E9D6"/><circle cx="422" cy="335" r="6" fill="#F2E9D6"/>
+  <path d="M488 387L498 396L488 405"/>
+ </g>
+ <g id="disconnecting-tendril">
+  <path d="M292 344Q249 346 255 305Q259 275 299 282L309 276L321 279L325 291L312 299L300 294Q279 289 278 306Q274 319 298 320Z" fill="#C8A268"/>
+  <path d="M305 277L314 270L333 278L329 289L310 282Z" fill="#F2E9D6"/>
+ </g>
+ <path id="tail-fold" d="M510 267L556 237L546 277L558 294L518 310Z" fill="#C8A268"/>
+</g>
+<g id="face">
+ <path d="M91 296Q122 276 157 296L148 324Q125 344 104 325Z" fill="#F2E9D6"/>
+ <path d="M104 306Q110 300 116 306M133 306Q139 300 145 306"/>
+ <path d="M117 320Q125 328 134 319"/>
+ <path d="M99 315L107 317M143 317L150 313" stroke="#CF967B"/>
+</g>
+</svg>

@@ -1,0 +1,52 @@
+<svg width="967" height="1056" xmlns="http://www.w3.org/2000/svg" viewBox="79.6 35.5 483.4 528" data-beast-id="st-fragility-of-value">
+<g id="body" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path id="central-stem" fill="#C8A268" d="M296 187 Q278 286 290 366 Q300 430 281 492 L251 545 Q280 553 306 511 L324 471 Q334 508 359 530 L386 533 Q351 491 347 448 Q337 388 341 326 L339 188Z"/>
+<path id="stem-shadow" fill="#987B4F" stroke="none" d="M324 215 Q312 353 324 425 Q337 485 359 512 Q337 464 341 326 L339 215Z"/>
+<g id="woven-limbs" fill="none">
+<path id="branch-outline" stroke-width="21" d="M302 399 Q227 352 173 276 L111 183 M307 328 Q240 261 224 187 L211 119 M312 275 Q267 220 282 152 L293 87 M330 286 Q388 230 412 162 L430 113 M334 356 Q400 326 441 278 M345 408 Q426 396 478 421 Q522 442 535 488"/>
+<path id="branch-core" stroke="#C8A268" stroke-width="11" d="M302 399 Q227 352 173 276 L111 183 M307 328 Q240 261 224 187 L211 119 M312 275 Q267 220 282 152 L293 87 M330 286 Q388 230 412 162 L430 113 M334 356 Q400 326 441 278 M345 408 Q426 396 478 421 Q522 442 535 488"/>
+<path id="weft-outline" stroke-width="15" d="M110 183 Q189 210 224 187 Q252 170 282 152 M143 232 Q193 257 239 239 Q272 224 295 228 M173 276 Q198 307 251 293 L294 282 M217 332 Q253 352 291 347 M293 87 Q322 134 412 162 M339 214 Q375 256 405 225 Q442 201 481 226 M353 269 Q394 292 420 265 M366 346 Q403 367 457 329 M379 401 Q417 439 460 460 Q493 487 487 522"/>
+<path id="weft-core" stroke="#F2E9D6" stroke-width="5" d="M110 183 Q189 210 224 187 Q252 170 282 152 M143 232 Q193 257 239 239 Q272 224 295 228 M173 276 Q198 307 251 293 L294 282 M217 332 Q253 352 291 347 M293 87 Q322 134 412 162 M339 214 Q375 256 405 225 Q442 201 481 226 M353 269 Q394 292 420 265 M366 346 Q403 367 457 329 M379 401 Q417 439 460 460 Q493 487 487 522"/>
+</g>
+<g id="living-tips" fill="#F2E9D6">
+<path id="left-tip" d="M111 183 Q77 171 83 128 Q115 140 111 183Z"/>
+<path id="left-spire" d="M211 119 Q180 96 198 65 Q225 81 211 119Z"/>
+<path id="high-tip" d="M293 87 Q276 54 311 38 Q326 72 293 87Z"/>
+<path id="right-spire" d="M430 113 Q423 76 459 68 Q464 103 430 113Z"/>
+<path id="side-tip" d="M481 226 Q493 190 527 212 Q508 240 481 226Z"/>
+</g>
+<g id="lattice-knots" fill="#A3B7A3">
+<path id="knot-one" d="M224 176 L235 188 224 200 213 188Z"/>
+<path id="knot-two" d="M237 229 L249 241 237 253 226 241Z"/>
+<path id="knot-three" d="M249 283 L261 295 249 307 238 295Z"/>
+<path id="knot-four" d="M408 151 L420 163 408 175 397 163Z"/>
+<path id="knot-five" d="M399 218 L411 230 399 242 388 230Z"/>
+</g>
+</g>
+<g id="face" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path id="face-petal" fill="#F2E9D6" d="M315 151 Q345 165 357 192 L340 227 Q314 245 289 224 L273 192 Q285 167 315 151Z"/>
+<path id="brow-left" fill="none" d="M288 184 L301 181"/>
+<path id="brow-right" fill="none" d="M328 180 L341 186"/>
+<ellipse id="eye-left" fill="#2E4649" stroke="none" cx="297" cy="198" rx="5" ry="8"/>
+<ellipse id="eye-right" fill="#2E4649" stroke="none" cx="333" cy="198" rx="5" ry="8"/>
+<path id="mouth" fill="none" d="M307 219 Q315 212 324 219"/>
+</g>
+<g id="props" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="missing-connection">
+<path id="upper-broken-strand" fill="none" stroke-width="12" d="M478 229 Q476 245 468 254"/>
+<path id="upper-broken-core" fill="none" stroke="#C8A268" stroke-width="4" d="M478 229 Q476 245 468 254"/>
+<path id="lower-broken-strand" fill="none" stroke-width="12" d="M456 282 Q467 322 491 348 Q527 382 544 403"/>
+<path id="lower-broken-core" fill="none" stroke="#C8A268" stroke-width="4" d="M456 282 Q467 322 491 348 Q527 382 544 403"/>
+<path id="lost-small-knot" fill="#C87B66" d="M508 278 L521 287 512 300 499 291Z"/>
+<path id="gap-mark-one" fill="none" stroke="#C87B66" d="M437 258 L427 252"/>
+<path id="gap-mark-two" fill="none" stroke="#C87B66" d="M469 272 L480 274"/>
+</g>
+<g id="unravelling-ends" fill="none">
+<path id="falling-weft-one" d="M457 329 Q450 375 481 391 Q503 401 495 418"/>
+<path id="falling-weft-two" d="M491 348 Q472 362 482 382"/>
+<path id="falling-weft-three" d="M535 488 Q555 510 547 529"/>
+<path id="falling-weft-four" d="M487 522 Q473 546 489 561"/>
+<path id="falling-weft-five" d="M544 403 Q570 426 555 445"/>
+</g>
+</g>
+</svg>

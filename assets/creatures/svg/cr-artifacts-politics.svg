@@ -1,0 +1,41 @@
+<svg width="1061" height="630" xmlns="http://www.w3.org/2000/svg" viewBox="64.5 193.5 530.5 315" data-beast-id="cr-artifacts-politics">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="bridge-tail" d="M537 288 Q587 265 592 306 Q597 340 554 344 L533 334" fill="#987B4F"/>
+<path id="architectural-body" d="M79 266 Q86 212 147 208 L489 208 Q551 213 559 266 L566 454 Q542 470 514 454 L505 380 Q492 338 454 338 Q414 338 402 380 L396 454 Q369 469 341 454 L333 380 Q320 338 279 338 Q238 338 224 380 L216 454 Q189 469 162 454 L154 380 Q143 350 119 357 L119 449 Q94 466 67 447Z" fill="#C8A268"/>
+<path id="back-crest" d="M90 244 L102 198 L130 198 L139 225 L173 225 L180 197 L207 197 L215 225 L249 225 L256 196 L283 196 L291 225 L325 225 L332 196 L359 196 L367 225 L401 225 L408 197 L435 197 L443 225 L477 225 L485 198 L512 198 L541 244Z" fill="#F2E9D6"/>
+<path id="lower-masonry" d="M80 312 L186 312 M210 312 L343 312 M398 312 L544 312 M120 266 L120 306 M211 249 L211 283 M455 250 L455 308 M513 266 L513 308" fill="none" stroke="#987B4F"/>
+<path id="left-arch-rim" d="M162 407 Q161 320 244 314 Q323 305 346 390 M395 395 Q402 313 455 314 Q522 315 526 407" fill="none" stroke="#F2E9D6" stroke-width="12"/>
+<path id="left-foot" d="M159 445 L218 445 L230 463 Q198 479 155 463Z" fill="#987B4F"/>
+<path id="middle-foot" d="M339 445 L396 445 L409 463 Q375 479 334 463Z" fill="#987B4F"/>
+<path id="right-foot" d="M513 445 L566 445 L577 463 Q542 478 509 463Z" fill="#987B4F"/>
+</g>
+<g id="face">
+<path id="face-panel" d="M271 246 Q315 234 359 246 L351 294 Q316 310 279 294Z" fill="#F2E9D6"/>
+<ellipse id="eye-left" cx="295" cy="267" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse id="eye-right" cx="335" cy="267" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path id="mouth" d="M303 286 L326 286" fill="none"/>
+</g>
+<g id="props">
+<g id="excluded-bus">
+<path d="M83 327 Q83 309 102 309 L247 309 Q267 309 267 329 L267 435 L83 435Z" fill="#A5C3C1"/>
+<path d="M96 323 L144 323 L144 358 L96 358Z M155 323 L201 323 L201 358 L155 358Z M213 323 L253 323 L253 358 L213 358Z" fill="#F2E9D6"/>
+<path d="M218 375 L252 375 L252 431 L218 431Z" fill="#F2E9D6"/>
+<path d="M85 386 L207 386" fill="none"/>
+<circle cx="118" cy="438" r="17" fill="#2E4649"/>
+<circle cx="234" cy="438" r="17" fill="#2E4649"/>
+<circle cx="118" cy="438" r="6" fill="#F2E9D6" stroke="none"/>
+<circle cx="234" cy="438" r="6" fill="#F2E9D6" stroke="none"/>
+<path id="clearance-collision" d="M275 310 L290 298 M280 324 L300 324" fill="none" stroke="#B57961"/>
+</g>
+<g id="admitted-car">
+<path d="M415 410 L427 389 Q430 384 440 384 L466 384 Q476 385 483 408 L496 414 L496 437 L411 437 L411 417Z" fill="#F2E9D6"/>
+<path d="M431 390 L443 390 L443 408 L422 408Z M451 390 L465 390 L475 408 L451 408Z" fill="#A5C3C1"/>
+<circle cx="428" cy="437" r="11" fill="#2E4649"/>
+<circle cx="479" cy="437" r="11" fill="#2E4649"/>
+</g>
+<path id="allowed-route" d="M429 493 L482 493 L471 482 M482 493 L471 504" fill="none" stroke="#8EB49E"/>
+<path id="blocked-route" d="M135 493 L199 493 M199 480 L199 506" fill="none" stroke="#B57961"/>
+</g>
+</g>
+</svg>

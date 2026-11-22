@@ -1,0 +1,45 @@
+<svg width="1026" height="984" xmlns="http://www.w3.org/2000/svg" viewBox="53.5 65.5 513 492" data-beast-id="ct-quantilizers" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<g id="base-distribution-tail" fill="#C8A268">
+<path id="option-one" d="M316 430C230 464 104 456 59 405C73 360 217 353 316 430Z"/>
+<path id="option-two" d="M316 430C189 400 66 340 56 280C100 242 244 327 316 430Z"/>
+<path id="option-three" d="M316 430C193 335 84 225 107 169C165 148 278 312 316 430Z"/>
+<path id="option-four" d="M316 430C225 287 165 128 205 92C264 100 316 302 316 430Z"/>
+<path id="option-five" d="M316 430C274 268 282 79 329 68C384 108 364 310 316 430Z"/>
+</g>
+<g id="upper-quantile-tail" fill="#91B5A2">
+<path id="admissible-option-one" d="M316 430C332 258 380 91 435 108C473 161 402 345 316 430Z"/>
+<path id="sampled-option" d="M316 430C374 275 474 158 518 196C535 252 421 389 316 430Z"/>
+<path id="admissible-option-maximum" d="M316 430C412 309 536 269 564 318C556 376 414 433 316 430Z"/>
+</g>
+<g id="tail-veins" stroke="#987B4F">
+<path d="M89 404Q200 403 307 428M90 284Q211 347 307 428M130 193Q234 327 307 428M219 119Q278 312 307 428M329 104Q332 299 316 420"/>
+</g>
+<g id="quantile-boundary" stroke="#F2E9D6" stroke-width="12">
+<path d="M410 169Q449 179 478 216Q512 257 521 322"/>
+</g>
+<g id="admissible-veins" stroke="#527F72">
+<path d="M433 142Q386 316 320 423M535 326Q435 362 325 426"/>
+</g>
+<path id="sampled-route-tail" d="M496 218Q437 312 322 426" stroke="#F2E9D6" stroke-width="13"/>
+<path id="torso" fill="#C8A268" d="M253 426C259 396 290 379 319 398C337 414 354 425 375 414L398 387C423 378 448 396 445 421C440 453 406 464 393 480C376 512 315 524 270 495C248 481 242 452 253 426Z"/>
+<path id="belly-shadow" fill="#987B4F" stroke="none" d="M255 460C285 492 352 500 397 467C382 502 319 517 279 494C265 486 258 474 255 460Z"/>
+<path id="left-foot" fill="#C8A268" d="M291 496L279 537L245 546L233 535L257 520L265 487"/>
+<path id="selected-step" fill="#C8A268" d="M351 502L391 533L452 524L463 540L451 551L380 555L324 514"/>
+<path id="route-through-body" d="M317 427Q287 454 314 479L387 543L445 538" stroke="#F2E9D6" stroke-width="11"/>
+</g>
+<g id="face">
+<path id="face-mask" fill="#F2E9D6" d="M394 393C408 383 436 393 438 410C440 426 420 437 405 429C393 423 386 408 394 393Z"/>
+<ellipse id="eye-left" cx="403" cy="406" rx="4" ry="7" fill="#2E4649" stroke="none"/>
+<ellipse id="eye-right" cx="425" cy="407" rx="4" ry="7" fill="#2E4649" stroke="none"/>
+<path id="smile" d="M407 419Q414 425 421 419" stroke-width="3"/>
+</g>
+<g id="props">
+<g id="random-sample-pulse" fill="#F2E9D6">
+<circle cx="474" cy="252" r="9"/>
+<circle cx="437" cy="300" r="6"/>
+<circle cx="395" cy="347" r="4"/>
+</g>
+<path id="chosen-direction" d="M471 529L483 537L472 546" stroke="#91B5A2"/>
+</g>
+</svg>

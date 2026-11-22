@@ -1,0 +1,49 @@
+<svg width="1014" height="1062" xmlns="http://www.w3.org/2000/svg" viewBox="66.3 54.5 506.9 531" data-beast-id="ov-counterfactual-mugging">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="solid-branch" fill="#C8A268" d="M288 484 Q254 422 214 371 Q155 300 125 242 L108 203 L139 205 L142 169 L170 189 Q195 174 222 187 L249 166 L253 201 L277 216 L254 235 Q230 260 207 259 Q231 317 271 352 Q305 382 320 422 L339 487Z"/>
+<path id="solid-shadow" fill="#987B4F" stroke="none" d="M183 259 Q210 323 261 370 Q291 398 302 443 L317 479 L337 479 Q318 395 270 351 Q230 315 207 259Z"/>
+<path id="ghost-branch" fill="#D5E0D8" fill-opacity="0.45" stroke-dasharray="11 10" d="M321 484 Q347 418 384 372 Q444 302 459 256 Q420 254 396 219 L413 201 L418 166 L447 187 Q476 176 496 189 L524 169 L526 204 L553 203 L536 241 Q511 304 445 379 Q402 430 365 494Z"/>
+<path id="left-foot" fill="#C8A268" d="M288 477 L280 535 L240 557 Q226 567 241 579 L293 579 Q315 560 322 512Z"/>
+<path id="right-foot" fill="#C8A268" d="M336 492 L348 544 L391 559 L400 579 L351 583 Q325 570 312 522Z"/>
+<path id="request-arm" fill="#C8A268" d="M215 316 Q178 331 149 366 L119 362 L113 344 Q103 334 98 346 L99 366 L79 365 Q64 367 71 379 L102 394 Q132 403 157 392 L236 348"/>
+<path id="offer-arm" fill="#D5E0D8" fill-opacity="0.45" stroke-dasharray="10 9" d="M426 318 Q459 330 480 360 L506 369 L526 351 Q537 345 542 358 L531 375 L563 370 Q576 374 567 386 Q535 409 503 400 L406 351"/>
+</g>
+<g id="face">
+<path fill="#F2E9D6" d="M138 217 Q164 193 190 208 Q218 192 248 220 Q227 247 199 249 Q163 248 138 217Z"/>
+<ellipse cx="172" cy="220" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse cx="218" cy="220" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M186 236 Q195 230 204 235" fill="none"/>
+<path fill="#F2E9D6" fill-opacity="0.6" stroke-dasharray="8 8" d="M420 220 Q448 193 471 208 Q500 193 528 218 Q506 248 474 249 Q446 247 420 220Z"/>
+<path d="M443 222 Q451 213 459 222 M487 222 Q495 213 503 222 M462 235 Q475 244 487 234" fill="none" stroke-dasharray="5 6"/>
+</g>
+<g id="props">
+<g id="coin-flip">
+<circle cx="320" cy="100" r="43" fill="#C8A268"/>
+<path d="M320 57 A43 43 0 0 1 320 143Z" fill="#F2E9D6"/>
+<path d="M302 91 L311 100 L302 109 M338 90 L329 100 L338 110" fill="none"/>
+<path d="M296 149 Q259 153 235 172" fill="none"/>
+<path d="M344 149 Q380 153 405 172" fill="none" stroke-dasharray="8 9"/>
+</g>
+<g id="small-request">
+<ellipse cx="106" cy="319" rx="19" ry="24" fill="#C8A268"/>
+<path d="M106 309 L106 329 M106 347 L106 357 M99 351 L106 358 L113 351" fill="none"/>
+</g>
+<g id="large-counterfactual-reward" stroke-dasharray="7 6" fill="#F2E9D6" fill-opacity="0.75">
+<path d="M483 306 L483 341 Q510 362 545 341 L545 306Z"/>
+<ellipse cx="514" cy="306" rx="31" ry="12"/>
+<path d="M484 319 Q514 340 545 319 M484 331 Q514 350 545 331" fill="none"/>
+<path d="M498 271 L498 298 Q524 315 554 298 L554 271Z"/>
+<ellipse cx="526" cy="271" rx="28" ry="11"/>
+<path d="M499 285 Q525 300 553 285" fill="none"/>
+</g>
+<g id="shared-commitment-knot">
+<path d="M253 300 Q280 358 312 456 M395 302 Q374 365 335 456" fill="none" stroke="#987B4F" stroke-width="9"/>
+<path d="M395 302 Q374 365 335 456" fill="none" stroke="#F2E9D6" stroke-width="4" stroke-dasharray="7 9"/>
+<path d="M319 466 C257 410 251 498 313 496 C373 494 380 429 335 450 C304 467 302 510 331 528" fill="none" stroke="#2E4649" stroke-width="23"/>
+<path d="M319 466 C257 410 251 498 313 496 C373 494 380 429 335 450 C304 467 302 510 331 528" fill="none" stroke="#F2E9D6" stroke-width="13"/>
+<path d="M301 460 L321 479" stroke="#F2E9D6" stroke-width="13"/>
+</g>
+</g>
+</g>
+</svg>

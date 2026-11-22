@@ -1,0 +1,31 @@
+<svg width="1041" height="890" xmlns="http://www.w3.org/2000/svg" viewBox="68.2 88.5 520.3 445" data-beast-id="cr-riemann-catastrophe">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="planet-shell" d="M381 186C309 130 196 140 129 202C62 264 52 370 103 448C153 526 259 551 340 508L378 440L351 395L395 342L367 292L404 241Z" fill="#C8A268"/>
+<path id="planet-shadow" d="M85 370C119 473 214 520 340 480L340 508C259 551 153 526 103 448C88 424 79 397 76 370Z" fill="#987B4F" stroke="none"/>
+<path id="continent-north" d="M125 225L169 202L190 216L220 205L237 230L221 256L231 280L209 298L199 335L174 344L157 317L168 286L139 278Z" fill="#F2E9D6"/>
+<path id="continent-south" d="M226 367L260 356L286 382L307 389L295 421L271 437L263 475L243 489L222 455L232 427L207 403Z" fill="#F2E9D6"/>
+<path id="latitude" d="M88 347C131 371 177 379 209 380M256 184C287 213 311 242 319 273" fill="none" stroke="#987B4F"/>
+</g>
+<g id="props">
+<g id="growing-computational-lattice">
+<g id="compute-cell-1"><path d="M359 209l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M359 209l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M387 225l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M368 227l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-2"><path d="M416 242l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M416 242l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M444 258l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M425 260l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-3"><path d="M359 275l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M359 275l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M387 291l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M368 293l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-4"><path d="M473 275l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M473 275l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M501 291l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M482 293l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-5"><path d="M416 308l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M416 308l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M444 324l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M425 326l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-6"><path d="M359 341l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M359 341l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M387 357l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M368 359l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-7"><path d="M530 308l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M530 308l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M558 324l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M539 326l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-8"><path d="M473 341l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M473 341l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M501 357l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M482 359l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-9"><path d="M416 374l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M416 374l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M444 390l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M425 392l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-10"><path d="M359 407l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M359 407l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M387 423l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M368 425l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-11"><path d="M530 374l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M530 374l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M558 390l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M539 392l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-12"><path d="M473 407l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M473 407l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M501 423l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M482 425l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-13"><path d="M416 440l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M416 440l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M444 456l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M425 458l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g><g id="compute-cell-14"><path d="M473 473l28 -16 28 16 -28 16Z" fill="#F2E9D6"/><path d="M473 473l28 16v42l-28 -16Z" fill="#C8A268"/><path d="M501 489l28 -16v42l-28 16Z" fill="#987B4F"/><path d="M482 491l10 6m-10 8 10 6" fill="none" stroke-width="3"/></g></g>
+<g id="resource-conversion">
+<path d="M308 303L333 289L351 303L326 318Z" fill="#F2E9D6"/>
+<path d="M304 337L327 324L343 339L321 351Z" fill="#C8A268"/>
+<path d="M305 388L323 376L339 389L322 402Z" fill="#F2E9D6"/>
+<path d="M300 281l12 -8M288 329l13 -2M289 378l11 6" fill="none"/>
+</g>
+<g id="theorem-goal-organ">
+<path d="M312 186C304 166 310 142 325 128L350 140L370 184L360 221" fill="#987B4F"/>
+<path d="M277 91H362L385 114V178Q342 203 299 178V114H277Q267 102 277 91Z" fill="#F2E9D6"/>
+<path d="M362 91V114H385M277 114H299" fill="none"/>
+<path d="M319 122H347M319 135H356" fill="none" stroke="#987B4F" stroke-width="4"/>
+</g>
+</g>
+<g id="face">
+<path id="focused-eyes" d="M317 155h9m25 0h9" fill="none"/>
+<path id="neutral-mouth" d="M333 172h11" fill="none" stroke-width="4"/>
+</g>
+</g>
+</svg>

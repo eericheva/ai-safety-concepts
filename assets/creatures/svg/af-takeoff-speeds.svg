@@ -1,0 +1,29 @@
+<svg width="874" height="1121" xmlns="http://www.w3.org/2000/svg" viewBox="158.5 24.5 437 560.4" data-beast-id="af-takeoff-speeds">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="forked-anatomy" fill="#C8A268" d="M270 548 Q219 552 208 512 Q200 472 240 443 L197 406 L222 373 L253 407 L231 333 L265 321 L294 404 Q318 392 343 410 Q408 393 454 348 Q507 298 540 236 L577 253 Q550 334 489 388 Q430 445 365 462 Q385 507 352 537 Q319 564 270 548Z"/>
+<path id="underside" fill="#987B4F" stroke="none" d="M219 501 Q268 544 323 520 Q360 504 346 448 Q457 421 524 328 Q489 411 365 462 Q385 507 352 537 Q319 564 270 548 Q229 550 219 501Z"/>
+<path id="jump-limb" fill="#C8A268" d="M219 299 L177 272 L188 133 L161 130 L206 64 L238 135 L213 135 L233 268 L249 290 L238 316Z"/>
+<path fill="#F2E9D6" d="M197 157 L201 251 L214 260 L208 156Z"/>
+<path id="root-foot-left" fill="#C8A268" d="M244 540 L219 579 Q247 592 279 555"/>
+<path id="root-foot-right" fill="#C8A268" d="M325 552 L352 578 Q376 565 350 536"/>
+</g>
+<g id="face">
+<path fill="#F2E9D6" d="M243 456 Q275 432 311 448 Q337 460 334 488 Q329 515 298 521 Q261 524 242 500 Q228 479 243 456Z"/>
+<ellipse cx="262" cy="473" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse cx="306" cy="473" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path d="M275 496 Q284 490 294 496" fill="none"/>
+<path d="M249 452 L263 448 M302 447 L317 453" fill="none"/>
+</g>
+<g id="props">
+<g id="discontinuity-gap" fill="none"><path d="M215 332 L204 342 M235 345 L225 355"/><path d="M180 319 L161 320 M270 306 L285 298" stroke="#C8A268"/></g>
+<g id="distributed-growth" fill="#F2E9D6">
+<circle cx="365" cy="424" r="13"/><circle cx="410" cy="405" r="16"/><circle cx="453" cy="377" r="19"/><circle cx="493" cy="338" r="22"/><circle cx="527" cy="290" r="25"/>
+<path d="M353 433 L365 423 L377 431 M398 416 L410 404 L422 413 M438 389 L453 375 L468 385 M477 350 L493 335 L509 345 M509 302 L527 286 L545 296" fill="none" stroke="#987B4F" stroke-width="3"/>
+</g>
+<g id="open-futures" fill="none" stroke-dasharray="7 10"><path d="M205 53 L205 27"/><path d="M559 224 Q573 193 578 159"/></g>
+<path id="ramp-tip" fill="#C8A268" d="M540 239 L532 214 L574 178 L593 233 L575 249"/>
+<path id="single-system" fill="#F2E9D6" d="M191 102 L205 82 L219 103 L205 117Z"/>
+</g>
+</g>
+</svg>

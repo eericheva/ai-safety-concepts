@@ -1,0 +1,29 @@
+<svg width="905" height="872" xmlns="http://www.w3.org/2000/svg" viewBox="80.2 123.5 452.3 436.0" data-beast-id="in-linear-rep-hypothesis" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<path id="translated-directions" d="M186 146H510V432" stroke="#98B5AE" stroke-dasharray="10 13"/>
+<circle id="sum-target" cx="510" cy="146" r="20" fill="#F2E9D6"/>
+</g>
+<g id="body">
+<path id="nonlinear-tail" d="M164 452C114 455 79 474 83 514C87 554 157 564 155 523C153 492 111 514 126 540C145 575 202 551 208 514" fill="#C8A268"/>
+<path id="horizontal-concept-limb" d="M192 412H448V389L510 432L448 475V452H192Z" fill="#89B2A4"/>
+<path id="vertical-concept-limb" d="M166 432V225H143L186 146L229 225H206V432Z" fill="#A8C5D0"/>
+<path id="compositional-limb" d="M180 408L451 188L429 166L510 146L490 230L474 210L211 442Z" fill="#C8A268"/>
+<path id="sum-shadow" d="M211 442L474 210L490 230L510 146L489 188L474 190L196 430Z" fill="#987B4F" stroke="none"/>
+<path id="first-component-stripe" d="M222 394L440 209" stroke="#A8C5D0" stroke-width="9"/>
+<path id="second-component-stripe" d="M235 407L453 222" stroke="#89B2A4" stroke-width="9"/>
+<circle id="vertical-joint" cx="186" cy="274" r="17" fill="#F2E9D6"/>
+<circle id="horizontal-joint" cx="354" cy="432" r="17" fill="#F2E9D6"/>
+<path id="shared-origin-body" d="M127 389L185 356L247 394L247 460L186 494L127 461Z" fill="#C8A268"/>
+<path id="origin-shadow" d="M127 461L186 494L247 460V440L185 473Z" fill="#987B4F" stroke="none"/>
+<path id="left-feeler" d="M145 378L117 342L99 347"/>
+<circle id="feeler-tip" cx="94" cy="348" r="10" fill="#C8A268"/>
+</g>
+<g id="face">
+<path id="face-mask" d="M146 399Q185 378 226 402L226 443Q188 469 147 441Z" fill="#F2E9D6"/>
+<ellipse id="eye-left" cx="166" cy="416" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse id="eye-right" cx="208" cy="416" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+<path id="smile" d="M177 438Q188 449 200 436"/>
+<path id="brow-left" d="M157 399L169 396" stroke-width="4"/>
+<path id="brow-right" d="M201 395L214 399" stroke-width="4"/>
+</g>
+</svg>

@@ -1,0 +1,38 @@
+<svg width="1006" height="972" xmlns="http://www.w3.org/2000/svg" viewBox="68.5 68.5 503 486" data-beast-id="in-probing">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="diagnostic-neck" fill="#C8A268" d="M196 311 C235 278 217 213 241 153 C258 110 293 90 335 104 C364 114 380 143 368 170 C359 190 336 193 316 184 C289 186 282 222 280 258 C279 303 299 332 295 382 C291 434 248 472 195 466 C142 461 112 419 123 368 L71 337 L135 340 Z"/>
+<path id="lower-shadow" fill="#987B4F" stroke="none" d="M125 394 C143 442 215 456 269 417 C280 409 288 398 295 382 C291 434 248 472 195 466 C156 462 129 435 125 394 Z"/>
+<path id="left-leg" fill="none" d="M181 466 L161 529 L117 550 M161 529 L176 552"/>
+<path id="right-leg" fill="none" d="M235 465 L258 529 L304 546 M258 529 L245 552"/>
+<path id="activation-window" fill="#F2E9D6" d="M173 313 C210 294 254 314 268 349 C283 386 261 422 225 435 C187 445 151 422 147 386 C143 357 153 330 173 313 Z"/>
+<g id="frozen-activation-lattice" fill="none" stroke="#719995" stroke-width="4">
+<path d="M175 341 L214 330 L250 353 L253 391 L220 415 L176 399 Z M175 341 L176 399 M214 330 L220 415 M250 353 L176 399 M175 341 L253 391 M152 371 L267 371"/>
+</g>
+<g id="fixed-nodes" fill="#C8A268">
+<circle cx="175" cy="341" r="8"/><circle cx="214" cy="330" r="8"/><circle cx="250" cy="353" r="8"/><circle cx="253" cy="391" r="8"/><circle cx="220" cy="415" r="8"/><circle cx="176" cy="399" r="8"/><circle cx="213" cy="371" r="9" fill="#8DB4A1"/>
+</g>
+<path id="window-clamps" fill="none" d="M157 318 L168 328 M252 318 L245 332 M156 417 L167 409 M247 432 L241 418"/>
+</g>
+<g id="face">
+<path id="face-patch" fill="#F2E9D6" d="M290 134 C311 110 345 118 356 143 C364 164 343 180 320 170 C300 174 282 153 290 134 Z"/>
+<ellipse id="eye" fill="#2E4649" stroke="none" cx="325" cy="143" rx="7" ry="11"/>
+<circle fill="#F2E9D6" stroke="none" cx="327" cy="140" r="2.5"/>
+<path id="brow" fill="none" d="M313 124 Q325 120 336 127"/>
+<path id="delicate-diagnostic-beak" fill="#C8A268" d="M310 169 L224 361 L332 176 Z"/>
+<path id="beak-seam" fill="none" stroke-width="3" d="M321 176 L224 361"/>
+<path id="crest" fill="#C8A268" d="M278 113 L282 76 L300 101 L315 71 L324 102"/>
+</g>
+<g id="props">
+<path id="readout-only" fill="none" stroke="#719995" stroke-dasharray="6 10" d="M229 369 C313 369 331 386 399 386"/>
+<g id="external-linear-classifier">
+<path id="classifier-inlet" fill="#F2E9D6" d="M399 369 L426 369 L445 386 L426 403 L399 403 Z"/>
+<path id="classifier-fork" fill="none" d="M445 386 L476 386 L476 300 L518 300 M476 386 L476 471 L518 471"/>
+<circle id="class-one" fill="#8DB4A1" cx="544" cy="300" r="25"/>
+<path id="class-two" fill="#C8A268" d="M520 448 L568 448 L568 496 L520 496 Z"/>
+<circle id="readout-sample-one" fill="#8DB4A1" cx="365" cy="386" r="7"/>
+<circle id="readout-sample-two" fill="#C8A268" cx="330" cy="383" r="7"/>
+</g>
+</g>
+</g>
+</svg>

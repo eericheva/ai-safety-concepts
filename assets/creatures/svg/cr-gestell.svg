@@ -1,0 +1,36 @@
+<svg width="930" height="1052" xmlns="http://www.w3.org/2000/svg" viewBox="55.7 57.5 464.8 526" data-beast-id="cr-gestell" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="rear-frame" d="M266 119 454 81 518 147 518 455 454 508 266 475Z" fill="#987B4F"/>
+<path d="M289 149 448 118 486 156 486 441 447 472 289 447Z" fill="#F2E9D6"/>
+<path id="open-rib-body" d="M207 147 399 116 455 171 455 471 393 519 207 488ZM237 179 237 463 388 488 425 458 425 183 390 148Z" fill="#C8A268" fill-rule="evenodd"/>
+<path id="left-foot" d="M244 494 235 541 187 565 182 580 263 580 282 501" fill="#C8A268"/>
+<path id="right-foot" d="M385 516 411 555 459 563 474 581 399 581 353 511" fill="#C8A268"/>
+<path id="upper-antler" d="M263 134 250 91 277 62 287 105 315 125" fill="#C8A268"/>
+<path id="upper-antler-right" d="M359 121 371 71 395 60 394 115" fill="#C8A268"/>
+</g>
+<g id="props">
+<g id="varied-beings">
+<path id="tree-trunk" d="M110 213 110 144M110 179 89 162M110 168 133 151" stroke="#987B4F" stroke-width="12"/>
+<path id="tree-crown" d="M110 96C88 86 68 108 75 124 49 132 55 163 80 164 91 184 109 177 120 166 142 181 162 161 154 143 177 118 147 91 130 105 129 88 115 86 110 96Z" fill="#91B5A1"/>
+<path id="tree-veins" d="M110 153 110 116M110 144 88 129M110 135 137 121" stroke="#F2E9D6"/>
+<path id="river" d="M61 292C90 256 110 310 144 280S184 273 189 295C155 284 142 332 108 319S78 310 61 324Z" fill="#A9CBCD"/>
+<path id="river-current" d="M76 299C108 285 115 321 150 296" stroke="#F2E9D6"/>
+<g id="living-figure" fill="#F2E9D6"><circle cx="115" cy="397" r="18"/><path d="M104 418 93 454 67 448 62 461 101 475 110 451 110 500 126 500 130 448 149 468 167 450 157 441 150 449 133 423Z"/></g>
+</g>
+<g id="revealing-lines" stroke="#91B5A1" stroke-dasharray="7 10"><path d="M173 159 270 211"/><path d="M183 299 270 306"/><path d="M177 445 270 401"/></g>
+<g id="reserve-slots" fill="#F2E9D6">
+<path d="M277 186 400 186 400 250 277 250Z"/>
+<path d="M277 281 400 281 400 345 277 345Z"/>
+<path d="M277 376 400 376 400 440 277 440Z"/>
+</g>
+<g id="identical-resource-marks" fill="#C8A268"><path d="M296 203H321V232H296Z"/><path d="M296 298H321V327H296Z"/><path d="M296 393H321V422H296Z"/></g>
+<g id="slot-lines"><path d="M338 207H381M338 229H366M338 302H381M338 324H366M338 397H381M338 419H366"/></g>
+<path id="rib-one" d="M237 266H425M237 361H425" stroke="#987B4F" stroke-width="12"/>
+</g>
+<g id="face">
+<path id="brow" d="M303 151 362 140 392 154"/>
+<path id="lens-eye" d="M313 156Q335 135 355 151Q338 176 313 156Z" fill="#F2E9D6"/>
+<ellipse id="pupil" cx="337" cy="154" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+<path id="quiet-mouth" d="M365 165 380 163"/>
+</g>
+</svg>

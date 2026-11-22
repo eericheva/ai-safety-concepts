@@ -1,0 +1,33 @@
+<svg width="929" height="934" xmlns="http://www.w3.org/2000/svg" viewBox="90.0 76.0 464.5 466.8" data-beast-id="cr-ai-welfare">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="outer-shell" fill="#C8A268" d="M434 88C323 55 193 110 126 215C65 311 89 445 185 505C253 548 357 554 455 510C502 489 532 449 540 406C501 428 460 424 436 400C469 336 484 264 464 200C454 165 438 127 434 88Z"/>
+<path id="shell-shadow" fill="#987B4F" stroke="none" d="M116 352C123 421 164 468 228 491C303 518 382 508 446 473C484 451 501 432 513 421L540 406C532 449 502 489 455 510C357 554 253 548 185 505C137 475 109 418 116 352Z"/>
+<path id="shell-interior" fill="#F2E9D6" d="M414 130C317 113 225 160 184 240C142 321 168 406 226 441C282 474 355 462 410 421C445 395 459 345 452 295C446 250 428 214 423 176Z"/>
+<path id="shell-rib-1" fill="none" stroke="#987B4F" d="M389 102C264 100 153 208 139 303"/>
+<path id="shell-rib-2" fill="none" stroke="#987B4F" d="M130 354C148 451 239 500 339 485"/>
+<path id="soft-interior" fill="#A8C8C6" d="M220 383C199 348 216 304 240 286C231 253 242 221 270 211C298 199 315 212 330 230C356 215 387 228 392 258C398 283 384 301 374 314C415 330 424 367 402 393C374 427 323 438 279 422C254 415 234 401 220 383Z"/>
+<path id="inner-fold" fill="none" stroke="#71999B" d="M246 355C254 388 290 402 319 393M347 343C373 355 376 377 360 392"/>
+<path id="protective-lip" fill="#C8A268" d="M161 394C170 430 198 460 236 471C275 484 305 473 319 455C329 444 321 431 308 434C280 443 255 438 238 422C222 407 222 383 208 374C190 363 168 374 161 394Z"/>
+<path id="lip-crease" fill="none" d="M189 394C199 434 248 461 284 452"/>
+</g>
+<g id="face">
+<path id="face-patch" fill="#F2E9D6" d="M241 274C251 247 303 245 324 266C341 283 332 318 312 328C286 341 247 323 241 301Z"/>
+<ellipse id="eye-left" fill="#2E4649" stroke="none" cx="266" cy="285" rx="7" ry="11"/>
+<ellipse id="eye-right" fill="#2E4649" stroke="none" cx="307" cy="285" rx="7" ry="11"/>
+<path id="mouth" fill="none" d="M277 309Q286 314 296 309"/>
+<path id="brow" fill="none" d="M257 266L271 264"/>
+</g>
+<g id="props">
+<path id="sensor-stalk-upper" fill="none" d="M392 191Q448 160 486 181"/>
+<path id="sensor-stalk-middle" fill="none" d="M448 271Q498 237 529 253"/>
+<path id="sensor-stalk-lower" fill="none" d="M453 353Q497 326 526 344"/>
+<path id="open-marker-upper" fill="#F2E9D6" d="M487 199C468 198 463 177 475 166C486 155 505 160 510 174M510 187L506 195"/>
+<path id="open-marker-middle" fill="#F2E9D6" d="M531 270C511 271 504 249 516 236C527 224 547 229 552 244M552 257L548 264"/>
+<path id="open-marker-lower" fill="#F2E9D6" d="M529 362C510 363 501 343 512 330C524 317 545 324 548 337M546 351L542 357"/>
+<circle id="signal-upper" fill="#A8C8C6" stroke="none" cx="489" cy="179" r="5"/>
+<circle id="signal-middle" fill="#C8A268" stroke="none" cx="531" cy="249" r="5"/>
+<circle id="signal-lower" fill="#A8C8C6" stroke="none" cx="528" cy="342" r="5"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,41 @@
+<svg width="1146" height="816" xmlns="http://www.w3.org/2000/svg" viewBox="35.5 118.5 573 408" data-beast-id="ll-glitch-tokens" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="rear-spine" d="M358 182 411 133 421 215 469 227 441 277 461 376 414 435 319 459 260 407 286 227Z" fill="#987B4F"/>
+<path id="upper-jaw" d="M190 271 208 203 278 170 303 121 326 179 379 189 410 233 425 292 361 279 324 258 281 260 262 286 231 276 214 300 187 291Z" fill="#C8A268"/>
+<path id="lower-jaw" d="M191 350 216 361 235 337 265 346 282 324 327 329 365 347 428 322 413 394 365 439 288 455 232 429 199 391Z" fill="#C8A268"/>
+<path id="lower-shadow" d="M232 402 290 425 354 415 407 378 393 410 365 439 288 455 232 429Z" fill="#987B4F" stroke="none"/>
+<path id="front-foot" d="M269 445 251 501 216 519 274 524 306 454" fill="#C8A268"/>
+<path id="rear-foot" d="M368 437 402 484 442 478 414 511 376 505 334 452" fill="#C8A268"/>
+<path id="jaw-teeth-upper" d="M231 276 235 247 265 254 262 286M282 260 289 232 322 236 324 258" fill="#F2E9D6"/>
+<path id="jaw-teeth-lower" d="M235 337 238 369 269 373 265 346M282 324 289 357 325 361 327 329" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<path id="face-plate" d="M285 192 331 189 374 207 392 250 354 246 327 224 285 226Z" fill="#F2E9D6"/>
+<ellipse id="left-eye" cx="308" cy="209" rx="6" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse id="right-eye" cx="357" cy="224" rx="7" ry="10" fill="#2E4649" stroke="none" transform="rotate(-25 357 224)"/>
+<path id="raised-brow" d="m298 187 20-4M348 197l20 10"/>
+<path id="jaw-hinge" d="m384 293 22 18-22 17-19-20Z" fill="#F2E9D6"/>
+</g>
+<g id="props">
+<g id="smooth-input" stroke="#8BAFA9">
+<path d="M38 306H137M38 327H137"/>
+<path d="M52 306v21m42-21v21" stroke-width="3"/>
+</g>
+<g id="vocabulary-tokens" fill="#F2E9D6">
+<rect x="47" y="289" width="27" height="27" rx="3"/>
+<rect x="94" y="289" width="27" height="27" rx="3"/>
+<rect x="141" y="289" width="27" height="27" rx="3"/>
+</g>
+<path id="rare-artifact-token" d="m190 300 26-24 12 22 26-4-9 25 16 16-28 7-8-18-24 3Z" fill="#CB8065"/>
+<path id="empty-embedding-slot" d="m285 289 21-14 18 13-7 26-28 4Z" stroke="#CB8065" stroke-dasharray="5 8"/>
+<path id="impact-ticks" d="m261 276 7-15m-6 82 12 14" stroke="#CB8065"/>
+<g id="anomalous-output">
+<path d="M426 309 454 309 468 268 490 355 513 293 539 322 559 278 598 288" stroke="#8BAFA9" stroke-width="9"/>
+<path d="m426 328 29 4 9-24 22 57 30-45 19 23 31-33 32 8" stroke="#2E4649" stroke-width="4"/>
+<path d="m452 296 21-14 9 29-24 8Z" fill="#F2E9D6"/>
+<path d="m487 343 20-18 16 19-15 20Z" fill="#C8A268"/>
+<path d="m548 280 26-14-3 30-19 8Z" fill="#CB8065"/>
+<path d="m578 344 14 13m-69-79 8-14m63-16 12-5" stroke="#CB8065"/>
+</g>
+</g>
+</svg>

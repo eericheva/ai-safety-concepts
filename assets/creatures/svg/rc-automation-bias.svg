@@ -1,0 +1,34 @@
+<svg width="1080" height="817" xmlns="http://www.w3.org/2000/svg" viewBox="50.5 155.1 540 408.4" data-beast-id="rc-automation-bias">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="bent-back" fill="#C8A268" d="M174 537 Q144 466 171 387 Q197 318 200 244 Q202 176 261 162 Q324 145 372 194 L342 252 Q298 221 280 256 Q268 290 290 354 Q313 417 279 493 L306 545 L270 560 L235 514 L214 561 L167 561Z"/>
+<path fill="#987B4F" stroke="none" d="M193 370 Q214 426 194 501 L181 544 L207 544 L237 483 Q267 425 248 362 L237 288 Q214 336 193 370Z"/>
+<path id="belly-fold" fill="none" d="M247 311 Q279 396 244 459"/>
+<path id="dangling-arm" fill="#C8A268" d="M204 320 Q159 342 140 386 L120 410 Q109 426 126 434 Q139 440 151 427 L174 402 L222 375"/>
+<path id="raised-pass-arm" fill="#C8A268" d="M275 342 L351 330 L416 202 Q424 184 437 190 Q451 196 442 214 L384 366 Q380 379 364 380 L290 386"/>
+<path fill="none" d="M420 228 L437 236"/>
+<path id="downward-neck" fill="#C8A268" d="M291 169 Q365 143 399 211 L418 258 L361 288 Q346 240 309 244"/>
+</g>
+<g id="face">
+<path id="nodding-head" fill="#C8A268" d="M335 230 L354 203 L370 231 Q407 226 431 255 L461 301 L434 308 Q429 348 392 355 Q353 355 330 319 Q314 283 335 230Z"/>
+<path id="cream-face" fill="#F2E9D6" d="M342 261 Q371 250 395 267 L430 303 Q418 334 391 334 Q356 331 342 302 Q333 282 342 261Z"/>
+<path id="closed-verification-eye" fill="none" d="M354 282 Q371 299 389 287 M359 289 L354 296 M369 293 L367 301 M381 293 L383 300"/>
+<path id="agreeing-mouth" fill="none" d="M389 315 Q400 322 409 315"/>
+<path id="nod-marks" fill="none" stroke="#987B4F" d="M466 242 Q485 264 482 283 M488 228 Q513 256 509 283"/>
+</g>
+<g id="props">
+<g id="automatic-source">
+<path fill="#A8C3BF" d="M53 283 L100 283 L115 299 L115 367 L53 367Z"/>
+<path fill="#F2E9D6" d="M66 303 L97 303 L97 331 L66 331Z"/>
+<path fill="none" d="M72 342 L96 342 M73 355 L87 355"/>
+</g>
+<g id="unchecked-output">
+<path id="error-arrow" fill="#F2E9D6" d="M129 459 L340 459 L340 430 L379 479 L340 528 L340 499 L129 499Z"/>
+<path id="machine-error" fill="none" stroke="#B76F58" stroke-width="7" d="M227 461 L244 473 L230 485 L249 498"/>
+<path id="passed-error-arrow" fill="#F2E9D6" d="M422 459 L545 459 L545 430 L588 479 L545 528 L545 499 L422 499Z"/>
+<path id="propagated-error" fill="none" stroke="#B76F58" stroke-width="7" d="M477 461 L494 473 L480 485 L499 498"/>
+</g>
+<path id="source-flow" fill="none" stroke="#7A9C99" stroke-dasharray="6 10" d="M83 380 L83 478 L112 478"/>
+</g>
+</g>
+</svg>

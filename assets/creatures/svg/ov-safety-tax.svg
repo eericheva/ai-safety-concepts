@@ -1,0 +1,55 @@
+<svg width="1026" height="918" xmlns="http://www.w3.org/2000/svg" viewBox="66.5 63.5 513 459" data-beast-id="ov-safety-tax">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="shared-core" d="M222 161 Q213 110 257 90 L286 66 L312 86 Q349 79 380 107 Q410 143 386 188 L359 230 L403 280 L380 328 L323 286 L286 271 L253 321 L202 293 L254 218Z" fill="#C8A268"/>
+<path id="core-shadow" d="M268 214 Q311 239 352 210 L339 242 L386 290 L372 309 L316 267 L283 252 L244 306 L225 294Z" fill="#987B4F" stroke="none"/>
+<path id="protected-hip" d="M177 271 Q220 246 258 281 Q286 318 263 358 Q238 392 191 377 Q155 357 157 319Z" fill="#C8A268"/>
+<path id="bare-hip" d="M360 278 Q398 254 438 284 Q465 311 442 345 Q416 363 378 344 Q348 321 360 278Z" fill="#C8A268"/>
+<path id="protected-rear-leg" d="M196 364 L176 414 L108 451 L87 444 L69 460 L80 479 L115 480 L208 438 L230 383Z" fill="#987B4F"/>
+<path id="protected-front-leg" d="M234 365 L258 412 L232 484 L254 503 L251 520 L205 519 L194 498 L216 416 L204 378Z" fill="#C8A268"/>
+<path id="bare-rear-leg" d="M380 338 L354 380 L297 402 L280 429 L299 441 L327 421 L381 407 L409 354Z" fill="#987B4F"/>
+<path id="bare-front-leg" d="M425 337 L467 391 L538 405 L557 394 L577 408 L573 426 L536 433 L448 420 L395 354Z" fill="#C8A268"/>
+<path id="bare-arm" d="M369 225 Q398 210 433 234 L459 213 L475 223 L444 259 Q424 266 395 249" fill="#C8A268"/>
+</g>
+<g id="props">
+<path id="protective-shell" d="M160 290 Q203 262 257 286 L265 336 Q254 378 212 397 Q167 370 157 331Z" fill="#93B7A5"/>
+<path id="shield-inset" d="M180 303 Q211 286 240 302 L241 335 Q235 357 212 371 Q187 355 180 332Z" fill="#F2E9D6"/>
+<path id="safety-check" d="M193 328 L207 341 L231 313" fill="none" stroke="#658D79" stroke-width="7"/>
+<path id="redistribution-bridge" d="M241 269 Q308 235 380 270" fill="none" stroke="#2E4649" stroke-width="13"/>
+<path d="M241 269 Q308 235 380 270" fill="none" stroke="#F2E9D6" stroke-width="6"/>
+<path id="load-hook" d="M183 246 L183 269 L150 269 L150 246" fill="none"/>
+<path id="cost-pack" d="M95 201 L182 201 L186 248 L101 258 L86 227Z" fill="#987B4F"/>
+<g id="money-load" fill="#DDB55D">
+<ellipse cx="119" cy="199" rx="29" ry="10"/>
+<path d="M90 183 L90 199 Q119 217 148 199 L148 183Z"/>
+<ellipse cx="119" cy="183" rx="29" ry="10"/>
+<path d="M95 167 L95 183 Q121 199 146 183 L146 167Z"/>
+<ellipse cx="120.5" cy="167" rx="25.5" ry="9"/>
+</g>
+<g id="time-load">
+<circle cx="181" cy="197" r="35" fill="#F2E9D6"/>
+<path d="M181 177 L181 198 L196 206" fill="none"/>
+<path d="M173 153 L189 153 M181 153 L181 161" fill="none"/>
+</g>
+<g id="performance-load">
+<path d="M109 226 L142 220 L159 250 L125 259Z" fill="#C8A268"/>
+<path d="M133 229 L125 242 L139 240 L134 252" fill="none" stroke="#F2E9D6"/>
+</g>
+<g id="bare-speed" fill="none" stroke="#93B7A5">
+<path d="M475 291 L524 291 M478 311 L548 311 M476 331 L512 331"/>
+</g>
+<g id="safe-effort" fill="none" stroke="#987B4F">
+<path d="M134 347 L116 338 M132 362 L111 366"/>
+</g>
+</g>
+<g id="face">
+<path id="face-mask" d="M248 135 Q261 112 285 126 Q310 106 332 125 Q360 116 374 141 L360 180 Q337 202 307 196 Q273 193 253 169Z" fill="#F2E9D6"/>
+<ellipse id="eye-left" cx="281" cy="151" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse id="eye-right" cx="342" cy="148" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path id="mouth" d="M302 174 Q316 181 329 170" fill="none"/>
+<path id="brow-left" d="M269 134 L285 131 M334 129 L349 133" fill="none"/>
+<ellipse cx="268" cy="167" rx="9" ry="5" fill="#D79B80" stroke="none"/>
+<ellipse cx="352" cy="165" rx="9" ry="5" fill="#D79B80" stroke="none"/>
+</g>
+</g>
+</svg>

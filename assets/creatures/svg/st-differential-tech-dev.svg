@@ -1,0 +1,27 @@
+<svg width="1018" height="702" xmlns="http://www.w3.org/2000/svg" viewBox="62.4 162.5 509.1 351" data-beast-id="st-differential-tech-dev" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="development-tracks" stroke="#987B4F"><path d="M87 306H569M87 496H569"/><path d="m548 291 21 15-21 15m0 160 21 15-21 15"/><path d="M171 298v16m90-16v16m90-16v16m90-16v16M171 488v16m90-16v16m90-16v16m90-16v16"/></g>
+<g id="assembled-defense"><path d="M433 192 497 165 563 192v58c0 56-35 94-66 112-32-18-64-56-64-112Z" fill="#91B8A5"/><path d="m497 165 0 197M433 228l64 22 66-22"/><path d="m471 203 26-11 39 16v28l-39 14-26-9Z" fill="#F2E9D6"/><path d="m471 277 26 12 38-15c-9 25-23 42-38 54-11-9-20-22-26-36Z" fill="#F2E9D6"/></g>
+</g>
+<g id="body">
+<path id="trailing-tail" d="M154 373c-68 18-95-29-88-76 4-25 21-47 38-58-7 27-6 49 7 58 12 8 29-1 48-7Z" fill="#C8A268"/>
+<path id="split-trunk" d="M118 312c-6-57 28-104 82-106 39-2 73 21 88 54 17 37 23 67 5 104 24 21 48 35 70 49l-28 53c-39-15-75-41-92-62-32 15-68 9-91-16-17-18-28-43-34-76Z" fill="#C8A268"/>
+<path d="M135 344c24 38 75 46 105 15 9 36 61 73 95 85v22c-39-15-75-41-92-62-32 15-68 9-91-16Z" fill="#987B4F" stroke="none"/>
+<path id="leading-protective-limb" d="M257 269c22-34 46-56 84-61l87-7 24-23 26 5 10 25-18 21-31-5-92 11c-23 3-42 24-56 47Z" fill="#C8A268"/>
+<path d="m438 203 25 5 6-17M442 223l12-14M318 218l12 22"/>
+<path id="crawler-foot-rear" d="m151 379-29 58-39 10 2 23h57l46-70Z" fill="#C8A268"/>
+<path id="crawler-foot-front" d="m213 402-7 58 38 26h32l4-20-36-20 10-35" fill="#C8A268"/>
+<path id="restrained-capability-branch" d="M329 409c25-10 47-9 61 5l-3-60 24-22 23 36-9 63-21 32-66 3Z" fill="#C8A268"/>
+<path id="capability-point" d="m387 354-6-38 22 11 6-49 23 39 18-10-16 61-23-36Z" fill="#BD8770"/>
+<path d="m349 423 40 10m-51 16 42 4"/>
+</g>
+<g id="face">
+<path d="M143 275c4-28 25-42 54-39 33 3 51 22 48 50-3 32-24 51-50 49-31-1-51-25-52-60Z" fill="#F2E9D6"/>
+<ellipse cx="174" cy="276" rx="7" ry="11" fill="#2E4649" stroke="none"/><ellipse cx="220" cy="271" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path d="m165 255 15-4m31-3 16 3M184 304q15 13 30-3"/>
+</g>
+<g id="adjustable-delay" fill="#F2E9D6">
+<path d="M284 358c26 2 57 5 81 18l49 25-10 22-49-26c-24-12-46-13-69-14Z"/>
+<path d="m367 377 21 10-12 26-21-11Z" fill="#987B4F"/><path d="m375 390 16 7"/>
+</g>
+</svg>

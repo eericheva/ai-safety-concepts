@@ -1,0 +1,49 @@
+<svg width="1060" height="1026" xmlns="http://www.w3.org/2000/svg" viewBox="64.5 64.5 530 513" data-beast-id="ph-lovelace-test">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="incomplete-construction-plan">
+<path d="M67 414 218 396 260 543 100 566Z" fill="#F2E9D6"/>
+<path d="M84 439 194 426 215 501 105 518Z" fill="#ADC8CA"/>
+<path d="M84 439 154 470 194 426M154 470 105 518M154 470 215 501" fill="none" stroke="#718F92"/>
+<path d="M116 540 141 536M157 533 178 530" fill="none"/>
+<path id="explanation-stops" d="M213 449 244 431 264 404" fill="none" stroke="#718F92" stroke-dasharray="6 10"/>
+</g>
+</g>
+<g id="body">
+<g id="folded-foot">
+<path d="M256 436 373 414 445 534 314 575 228 515Z" fill="#C8A268"/>
+<path d="M256 436 314 575 337 476Z" fill="#F2E9D6"/>
+<path d="M337 476 373 414 445 534Z" fill="#987B4F"/>
+<path d="M228 515 256 436 314 575" fill="none"/>
+</g>
+<g id="unfolding-neck">
+<path d="M256 436 225 345 271 264 367 298 399 380 373 414 337 476Z" fill="#C8A268"/>
+<path d="M225 345 311 365 256 436Z" fill="#987B4F"/>
+<path d="M271 264 311 365 367 298Z" fill="#F2E9D6"/>
+<path d="M311 365 399 380 337 476Z" fill="#F2E9D6"/>
+</g>
+<g id="novel-folded-crown">
+<path d="M271 264 163 248 103 162 236 184 221 72 337 166 421 67 421 207 554 152 505 293 399 380 367 298Z" fill="#C8A268"/>
+<path d="M103 162 271 264 236 184Z" fill="#F2E9D6"/>
+<path d="M221 72 271 264 337 166Z" fill="#F2E9D6"/>
+<path d="M271 264 347 239 337 166Z" fill="#987B4F"/>
+<path d="M337 166 421 67 347 239Z" fill="#ADC8CA"/>
+<path d="M421 67 421 207 347 239Z" fill="#F2E9D6"/>
+<path d="M347 239 421 207 367 298Z" fill="#987B4F"/>
+<path d="M421 207 554 152 451 266 367 298Z" fill="#F2E9D6"/>
+<path d="M554 152 505 293 451 266Z" fill="#ADC8CA"/>
+<path d="M451 266 505 293 399 380 367 298Z" fill="#C8A268"/>
+<path d="M451 266 399 380 367 298Z" fill="#987B4F"/>
+</g>
+</g>
+<g id="face">
+<ellipse cx="289" cy="405" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse cx="332" cy="420" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M293 433Q307 449 321 440" fill="none"/>
+<path d="M277 422 285 425M338 436 346 437" stroke="#D9997E"/>
+</g>
+<g id="unresolved-novelty" fill="none" stroke="#C8A268">
+<path d="M474 90 482 70M522 113 542 104M573 223 592 228"/>
+</g>
+</g>
+</svg>

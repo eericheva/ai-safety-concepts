@@ -1,0 +1,36 @@
+<svg width="1061" height="1046" xmlns="http://www.w3.org/2000/svg" viewBox="73.2 68.5 530.3 523" data-beast-id="cr-human-use" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path fill="#C8A268" d="M257 555 276 361C219 332 170 292 150 232L140 163 178 137 204 215Q223 270 288 285L310 222 338 222 355 285Q422 264 446 208L462 148 503 166 492 240Q470 317 366 361L390 555 353 576 321 551 291 576Z"/>
+<path fill="#987B4F" stroke="none" d="m343 348 23 13 24 194-37 21-23-21Z"/>
+<path id="feedback-left" stroke="#F2E9D6" stroke-width="12" d="M298 505 310 339Q197 318 174 224"/>
+<path id="feedback-right" stroke="#F2E9D6" stroke-width="12" d="m340 505-13-166q117-34 146-115"/>
+<path d="m194 273-22-4 1-23m262 43 24-8-4-22"/>
+<path fill="#C8A268" d="M266 552q-29-6-46 19l-12 18h89l9-27m44-9q32-8 50 19l11 17h-88l-9-26"/>
+</g>
+<g id="props">
+<g id="open-interface">
+<path fill="#A8C5BB" d="M184 286q-83 4-103-67T117 96q38-29 83-12l-12 29q-31-10-52 8-35 27-24 70t61 58Z"/>
+<path fill="#F2E9D6" d="M202 128q29 16 35 49l-30 8q-5-19-21-29Z"/>
+<circle cx="165" cy="174" r="18" fill="#F2E9D6"/>
+<path fill="#F2E9D6" d="M142 211q23-18 46 0l9 29h-64Z"/>
+</g>
+<g id="constricting-socket">
+<path fill="#987B4F" d="m438 88 27-14 16 20 25-1 13-22 27 11-3 26 18 18 26-4 12 28-21 15 1 26 22 14-11 28-27-3-18 18 3 27-28 11-15-21-26-1-15 21-27-12 3-26-19-18-25 3-11-28 21-15v-26l-21-14 12-28 26 4 18-18Z"/>
+<circle cx="504" cy="174" r="57" fill="#F2E9D6"/>
+<path fill="#C8A268" d="m462 139 26 18-5 20-32 3m95-41-26 18 5 20 32 3m-78 43 15-31h20l15 31"/>
+<circle cx="504" cy="174" r="10" fill="#2E4649"/>
+</g>
+<g id="goal-setting">
+<path fill="#F2E9D6" d="M276 453h84l7 65h-98Z"/>
+<path d="M289 473h53m-53 26h53"/>
+<circle cx="306" cy="473" r="9" fill="#A8C5BB"/>
+<circle cx="329" cy="499" r="9" fill="#C8A268"/>
+</g>
+</g>
+<g id="face">
+<path fill="#F2E9D6" d="M277 362q43-26 87 0l-3 57q-41 28-80-1Z"/>
+<ellipse cx="300" cy="382" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse cx="342" cy="382" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path d="m290 365 17-5m27 0 17 6m-41 41q11-8 21 0"/>
+</g>
+</svg>

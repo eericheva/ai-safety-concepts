@@ -1,0 +1,52 @@
+<svg width="1062" height="954" xmlns="http://www.w3.org/2000/svg" viewBox="58.5 57.5 531 477" data-beast-id="af-utility-maximization">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<g id="resting-legs" fill="#987B4F">
+<path d="M204 360 123 405 78 471 119 479 155 432 244 408Z"/>
+<path d="M274 394 247 473 212 501 262 511 298 465 311 404Z"/>
+<path d="M366 394 368 461 332 491 378 505 412 465 406 392Z"/>
+<path d="M435 347 506 381 549 427 516 444 477 411 413 391Z"/>
+</g>
+<path id="left-action-arm" d="M247 348 205 299 145 283 103 262 112 244 159 264 223 276 280 324Z" fill="#C8A268"/>
+<path id="right-action-arm" d="M354 333 402 278 470 277 532 249 545 272 481 309 420 311 392 369Z" fill="#C8A268"/>
+<path id="weighing-body" d="M190 325 Q319 289 450 325 L430 383 Q402 425 322 431 Q240 432 208 383Z" fill="#C8A268"/>
+<path d="M209 371 Q321 407 437 363 L430 383 Q395 426 321 431 Q249 429 222 399Z" fill="#987B4F" stroke="none"/>
+<path id="selected-limb" d="M393 381 Q437 381 456 423 L483 477 550 472 587 506 564 532 461 531 Q440 519 430 493 L398 448 365 425Z" fill="#C8A268"/>
+<path d="m483 477 67-5 37 34-23 26-74-1-23-28Z" fill="#92B9A1"/>
+<path d="m502 501 21 12 32-18" fill="none" stroke="#F2E9D6" stroke-width="8"/>
+<path id="front-left-leg" d="M255 396 207 452 152 460 125 488 150 507 220 493 279 439Z" fill="#C8A268"/>
+</g>
+<g id="props">
+<g id="left-outcome-branches">
+<path d="M164 273 127 194 113 149" fill="none" stroke="#C8A268" stroke-width="9"/>
+<path d="M172 276 214 225 247 189" fill="none" stroke="#2E4649" stroke-width="30"/>
+<path d="M172 276 214 225 247 189" fill="none" stroke="#C8A268" stroke-width="20"/>
+<path id="rare-high-utility" d="m111 60 52 44-51 57-51-57Z" fill="#F2E9D6"/>
+<path d="m61 104 51 15 51-15M112 119l-1-59" fill="none"/>
+<circle id="common-zero-utility" cx="258" cy="173" r="26" fill="#F2E9D6"/>
+<circle cx="258" cy="173" r="7" fill="#987B4F" stroke="none"/>
+<path d="M80 276 Q164 315 247 276" fill="none"/>
+</g>
+<g id="right-outcome-branches">
+<path d="m462 289-49-66-16-76" fill="none" stroke="#2E4649" stroke-width="30"/>
+<path d="m462 289-49-66-16-76" fill="none" stroke="#C8A268" stroke-width="20"/>
+<path d="m463 290 55-54 29-49" fill="none" stroke="#C8A268" stroke-width="10"/>
+<path id="common-medium-utility" d="m394 92 37 32-35 39-37-36Z" fill="#F2E9D6"/>
+<path d="m359 127 37 9 35-12M396 136l-2-44" fill="none"/>
+<path id="rare-small-utility" d="m551 149 23 22-25 28-23-24Z" fill="#F2E9D6"/>
+<path d="M383 312 Q463 351 558 305" fill="none"/>
+</g>
+<g id="expected-value-comparator" fill="#F2E9D6">
+<path d="M270 273 320 235 373 273 320 292Z"/>
+<path d="M320 235v57M270 273l50-9 53 9" fill="none"/>
+</g>
+</g>
+<g id="face">
+<path d="M273 325 Q320 305 369 327 L358 372 Q319 397 283 372Z" fill="#F2E9D6"/>
+<ellipse cx="298" cy="344" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse cx="343" cy="344" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path d="M307 365q14 12 28-2" fill="none"/>
+<path d="m288 328 14-5m33 0 15 4" fill="none"/>
+</g>
+</g>
+</svg>

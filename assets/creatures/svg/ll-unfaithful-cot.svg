@@ -1,0 +1,49 @@
+<svg width="1077" height="700" xmlns="http://www.w3.org/2000/svg" viewBox="35.5 138.5 538.5 350.1" data-beast-id="ll-unfaithful-cot">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="lower-causal-ribbon" fill="#987B4F" d="M76 253 Q39 301 83 355 Q114 387 172 363 L239 335 Q265 326 269 348 Q270 365 235 393 Q197 426 229 465 Q259 500 305 477 L402 425 Q424 414 445 434 Q479 464 516 437 Q548 414 532 369 L506 290 L452 312 L477 381 Q481 395 470 394 Q437 367 396 379 L286 432 Q270 442 266 431 Q263 422 285 407 Q336 369 315 321 Q292 277 242 288 L154 319 Q113 334 109 311 L131 276 Z"/>
+<path id="lower-ribbon-light-edge" fill="none" stroke="#C8A268" stroke-width="12" d="M83 300 Q73 353 137 345 L245 311 Q289 302 291 343 Q302 373 259 408 Q222 437 255 455 Q272 466 298 452 L405 401 Q438 388 468 417 Q511 437 512 390 L483 315"/>
+<path id="upper-explanation-ribbon" fill="#C8A268" d="M61 207 Q239 159 430 197 Q459 145 507 166 L543 189 Q578 213 570 263 Q566 293 535 309 Q492 330 451 291 Q254 258 72 302 L54 263 Z"/>
+<path id="explanation-surface" fill="#F2E9D6" d="M70 220 Q242 176 438 211 L446 276 Q264 244 80 286 L66 257 Z"/>
+<path id="segment-one" fill="none" stroke="#C8A268" d="M160 202 L167 269"/>
+<path id="segment-two" fill="none" stroke="#C8A268" d="M248 194 L250 260"/>
+<path id="segment-three" fill="none" stroke="#C8A268" d="M337 198 L335 263"/>
+<path id="lifted-corner" fill="#F2E9D6" d="M54 263 L38 219 L70 220 L80 286 Z"/>
+<path id="head-fold" fill="#C8A268" d="M449 199 L438 157 L473 175"/>
+<path id="head-fold-two" fill="#C8A268" d="M507 168 L534 141 L538 185"/>
+</g>
+<g id="props">
+<g id="visible-explanation-chain" fill="#F2E9D6">
+<path fill="none" d="M114 246 L197 232 L290 231 L380 239"/>
+<circle cx="114" cy="246" r="12"/>
+<circle cx="203" cy="232" r="12"/>
+<circle cx="292" cy="231" r="12"/>
+<circle cx="382" cy="239" r="12"/>
+<path fill="none" d="M143 235 L150 240 L145 248 M232 224 L239 231 L232 238 M321 225 L328 233 L320 239"/>
+<path fill="none" stroke="#987B4F" d="M405 240 L416 241"/>
+</g>
+<g id="concealed-computation-nodes" fill="#91B2AC">
+<path d="M116 335 L129 322 L142 335 L129 348 Z"/>
+<path d="M268 323 L281 310 L294 323 L281 336 Z"/>
+<path d="M248 438 L261 425 L274 438 L261 451 Z"/>
+<path d="M402 402 L415 389 L428 402 L415 415 Z"/>
+<path d="M496 384 L509 371 L522 384 L509 397 Z"/>
+<path fill="none" stroke="#F2E9D6" d="M169 332 L181 328 M191 324 L203 320 M293 354 L288 366 M307 449 L319 442 M329 437 L341 430 M468 417 L480 419"/>
+</g>
+<path id="answer-connection" fill="none" stroke="#91B2AC" stroke-width="11" d="M504 355 Q484 319 518 289"/>
+</g>
+<g id="face">
+<path id="face-cream" fill="#F2E9D6" d="M455 221 Q467 191 500 197 Q540 199 550 232 Q558 258 534 276 Q503 290 476 270 Q455 255 455 221 Z"/>
+<ellipse id="left-eye" fill="#2E4649" stroke="none" cx="479" cy="231" rx="7" ry="10"/>
+<ellipse id="right-eye" fill="#2E4649" stroke="none" cx="521" cy="225" rx="7" ry="10"/>
+<circle fill="#F2E9D6" stroke="none" cx="481" cy="228" r="2.5"/>
+<circle fill="#F2E9D6" stroke="none" cx="523" cy="222" r="2.5"/>
+<path id="brows" fill="none" d="M469 214 L482 211 M510 207 L522 208"/>
+<path id="mouth" fill="none" d="M491 254 Q502 260 511 250"/>
+<ellipse fill="#D5A08B" stroke="none" cx="468" cy="248" rx="8" ry="4"/>
+<ellipse fill="#D5A08B" stroke="none" cx="537" cy="243" rx="8" ry="4"/>
+<path id="answer-pearl" fill="#91B2AC" d="M525 272 L545 284 L545 307 L525 318 L505 306 L505 284 Z"/>
+<path fill="none" stroke="#F2E9D6" d="M518 294 L524 300 L534 287"/>
+</g>
+</g>
+</svg>

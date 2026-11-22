@@ -1,0 +1,36 @@
+<svg width="818" height="989" xmlns="http://www.w3.org/2000/svg" viewBox="105.5 71.0 409 494.5" data-beast-id="ll-sleeper-agents">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="seed-shell" d="M308 80C366 111 453 173 466 273C489 427 407 530 313 563C213 530 142 436 156 299C166 201 241 143 308 80Z" fill="#C8A268"/>
+<path d="M313 563C399 523 473 423 466 306C442 407 409 481 313 510C251 489 205 451 173 411C196 486 250 543 313 563Z" fill="#987B4F" stroke="none"/>
+<path id="cutaway" d="M310 146C365 182 408 230 413 309C419 410 370 471 314 498C248 465 204 410 210 316C215 241 257 185 310 146Z" fill="#F2E9D6"/>
+<path id="seed-tip" d="M308 80Q277 62 267 94Q274 119 296 133" fill="#C8A268"/>
+</g>
+<g id="props">
+<g id="smoothing-bands" fill="#A8C8BE">
+<path d="M155 236Q134 231 126 251L121 268Q155 292 205 299L215 266Q177 259 155 236Z"/>
+<path d="M414 264Q464 251 486 230L497 258Q467 288 420 301Z"/>
+<path d="M153 354Q125 345 113 369L108 389Q149 421 215 428L207 393Q178 383 153 354Z"/>
+<path d="M407 392Q451 381 479 355L489 387Q453 418 400 431Z"/>
+</g>
+<path id="conditional-stem" d="M313 460V355" fill="none" stroke-width="17"/>
+<path id="ordinary-path" d="M313 355Q277 307 285 253V222" fill="none" stroke="#83AB9A" stroke-width="17"/>
+<path d="M276 235L285 219L295 234" fill="none"/>
+<path id="persistent-branch" d="M313 355Q354 315 382 327L452 339" fill="none" stroke="#BA735E" stroke-width="17"/>
+<path id="branch-end" d="M449 320L473 339L450 355" fill="#BA735E"/>
+<path id="gate-open" d="M398 310L414 281" fill="none" stroke-width="12"/>
+<circle cx="398" cy="310" r="7" fill="#C8A268"/>
+<path id="trigger-socket" d="M357 281L372 265L388 281L372 297Z" fill="#BA735E"/>
+<g id="abstract-trigger" fill="#C8A268">
+<path d="M488 142L512 166L488 190L464 166Z"/>
+<path d="M473 181L433 221L422 210L409 223L423 237L413 247L425 259L487 196"/>
+</g>
+<path id="trigger-signal" d="M405 264L396 273" fill="none" stroke="#BA735E" stroke-dasharray="3 9"/>
+<circle id="branch-junction" cx="313" cy="355" r="18" fill="#C8A268"/>
+</g>
+<g id="face" fill="none">
+<path id="sleeping-eyes" d="M250 192Q260 203 270 192M307 193Q317 204 327 193"/>
+<path id="quiet-mouth" d="M279 213Q288 218 297 213"/>
+</g>
+</g>
+</svg>

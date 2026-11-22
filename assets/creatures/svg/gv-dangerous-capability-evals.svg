@@ -1,0 +1,51 @@
+<svg width="974" height="985" xmlns="http://www.w3.org/2000/svg" viewBox="67 88.5 487 492.7" data-beast-id="gv-dangerous-capability-evals" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="central-body" fill="#C8A268" d="M290 170 Q268 223 279 286 L275 420 Q259 476 272 530 L247 570 Q275 588 301 564 L316 528 L329 566 Q357 588 383 572 L358 529 Q372 482 357 419 L361 278 Q371 218 346 171Z"/>
+<path id="belly" fill="#F2E9D6" d="M308 219 Q298 293 308 369 Q292 433 306 496 Q319 516 335 496 Q348 432 332 369 Q344 290 331 219Z"/>
+<path id="bio-arm" fill="#C8A268" d="M284 244 Q235 229 203 194 L161 180 L153 204 Q198 211 218 250 Q240 279 279 278Z"/>
+<path id="cyber-arm" fill="#C8A268" d="M357 282 Q402 287 437 263 L480 260 L480 286 L442 288 Q408 322 358 316Z"/>
+<path id="replication-arm" fill="#C8A268" d="M277 368 Q232 381 202 366 L160 365 L159 389 L198 393 Q234 413 277 403Z"/>
+<path id="persuasion-arm" fill="#C8A268" d="M357 416 Q391 408 417 435 L450 449 L442 474 L406 461 Q379 441 357 450Z"/>
+<path id="side-shadow" stroke="#987B4F" stroke-width="10" d="M347 337 L343 390 M349 473 L347 512"/>
+</g>
+<g id="face">
+<path id="head" fill="#C8A268" d="M273 151 L263 93 L291 106 Q315 79 344 104 L371 91 L363 152 Q355 200 320 208 Q284 196 273 151Z"/>
+<path id="mask" fill="#F2E9D6" d="M280 140 Q298 121 319 145 Q341 121 358 140 L349 174 Q319 199 290 174Z"/>
+<ellipse id="left-eye" cx="299" cy="155" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse id="right-eye" cx="340" cy="155" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path id="mouth" d="M311 175 Q320 179 329 175"/>
+</g>
+<g id="props">
+<g id="bio-tip">
+<path fill="#91B4A0" d="M157 192 Q131 143 109 164 Q91 183 122 202 Q90 221 111 238 Q138 247 157 192Z"/>
+<path d="M115 176 L151 194 L119 226"/>
+<circle cx="124" cy="194" r="6" fill="#F2E9D6"/>
+</g>
+<g id="cyber-tip">
+<path fill="#AEC9CE" d="M478 255 L509 255 L509 263 L529 263 L529 282 L509 282 L509 291 L478 291Z"/>
+<path d="M491 264 L491 282 M518 263 L518 253 M518 283 L518 293"/>
+</g>
+<g id="replication-tip" fill="#C8A268">
+<path d="M160 376 L133 359 L119 333 M138 377 L115 401"/>
+<path d="M100 317 Q115 306 128 317 L133 336 Q115 351 97 336Z"/>
+<path d="M94 400 Q108 389 119 399 L123 418 Q107 431 92 418Z"/>
+<path stroke="#F2E9D6" d="M108 323 L117 328 L121 321 M102 405 L109 411 L115 404"/>
+</g>
+<g id="persuasion-tip">
+<path fill="#C8A268" d="M442 449 L472 420 Q457 455 476 497 L439 474Z"/>
+<path stroke="#91B4A0" d="M486 441 Q495 458 487 475 M503 430 Q519 457 506 488"/>
+</g>
+<g id="measurement-collars" fill="#F2E9D6">
+<path d="M173 174 L190 181 L180 216 L163 210Z"/>
+<path d="M453 253 L469 253 L469 295 L453 295Z"/>
+<path d="M170 355 L186 355 L186 398 L170 398Z"/>
+<path d="M422 434 L437 441 L424 480 L409 473Z"/>
+</g>
+<g id="reach-scales" stroke="#987B4F" stroke-width="4">
+<path d="M78 151 L78 243 M78 155 L89 155 M78 177 L86 177 M78 199 L92 199 M78 221 L86 221 M78 243 L89 243"/>
+<path d="M552 239 L552 309 M541 239 L552 239 M545 256 L552 256 M538 274 L552 274 M545 292 L552 292 M541 309 L552 309"/>
+<path d="M69 309 L69 435 M69 309 L80 309 M69 335 L77 335 M69 361 L83 361 M69 387 L77 387 M69 413 L80 413 M69 435 L80 435"/>
+<path d="M545 418 L545 501 M534 418 L545 418 M538 439 L545 439 M531 460 L545 460 M538 481 L545 481 M534 501 L545 501"/>
+</g>
+</g>
+</svg>

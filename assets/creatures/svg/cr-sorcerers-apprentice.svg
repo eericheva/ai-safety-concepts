@@ -1,0 +1,59 @@
+<svg width="1074" height="1022" xmlns="http://www.w3.org/2000/svg" viewBox="51.5 65.5 537 511.2" data-beast-id="cr-sorcerers-apprentice">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="stop-connection">
+<path d="M171 103 C196 98 202 124 216 135" fill="none"/>
+<path d="M248 155 C264 170 286 151 302 145" fill="none"/>
+<path d="M209 128 L222 135 L214 146 L203 139 Z" fill="#F2E9D6"/>
+<path d="M250 149 L260 156 L252 167 L241 160 Z" fill="#F2E9D6"/>
+<path d="M227 116 L231 126 M234 148 L225 160 M252 125 L244 132" stroke="#C8A268"/>
+<circle cx="143" cy="103" r="29" fill="#F2E9D6"/>
+<rect x="132" y="92" width="22" height="22" rx="3" fill="#BA7D66"/>
+</g>
+<g id="rising-flood">
+<path d="M54 492 Q84 471 113 491 Q141 511 170 490 Q199 470 229 491 Q260 513 291 490 Q322 469 351 491 Q383 511 414 490 Q445 469 475 491 Q506 511 540 489 L586 513 L575 560 Q455 585 318 566 Q180 584 65 558 Z" fill="#A9C9CB"/>
+<path d="M85 533 Q114 548 145 533 M202 548 Q232 533 265 548 M371 541 Q403 556 435 541 M484 530 Q514 546 545 530" fill="none" stroke="#638F95"/>
+</g>
+</g>
+<g id="body">
+<path id="narrow-handle" d="M290 78 Q304 58 318 78 L347 382 L301 390 Z" fill="#C8A268"/>
+<path d="M309 91 L331 370" fill="none" stroke="#987B4F"/>
+<g id="carrying-arms">
+<path d="M307 242 L250 284 L195 267 L187 282 L252 309 Q263 312 271 304 L318 274" fill="#C8A268"/>
+<path d="M329 285 L392 247 L435 265 L444 250 L393 224 Q384 221 375 227 L326 254" fill="#C8A268"/>
+</g>
+<path id="broom-skirt" d="M297 366 L345 364 Q350 397 369 422 L391 454 L363 451 L376 478 L344 465 L336 488 L316 466 L297 486 L293 461 L269 477 L274 450 L252 457 Q286 410 297 366 Z" fill="#C8A268"/>
+<path d="M301 387 L288 442 M317 390 L315 450 M334 388 L350 440" fill="none" stroke="#987B4F"/>
+<path id="broom-binding" d="M290 360 L351 356 L353 377 L290 382 Z" fill="#987B4F"/>
+<g id="stepping-legs" fill="#C8A268">
+<path d="M279 432 L243 460 L217 454 L209 465 L245 477 L289 453 Z"/>
+<path d="M299 457 L280 493 L252 503 L258 516 L295 504 L318 470 Z"/>
+<path d="M335 461 L368 488 L407 487 L413 500 L362 505 L319 477 Z"/>
+<path d="M354 431 L386 448 L418 437 L424 448 L385 467 L347 450 Z"/>
+</g>
+</g>
+<g id="face">
+<path d="M287 169 Q307 153 327 169 L332 211 Q311 228 291 212 Z" fill="#F2E9D6"/>
+<ellipse cx="301" cy="188" rx="4" ry="7" fill="#2E4649" stroke="none"/>
+<ellipse cx="319" cy="187" rx="4" ry="7" fill="#2E4649" stroke="none"/>
+<path d="M306 206 L318 205" fill="none"/>
+</g>
+<g id="water-carrying">
+<g id="full-bucket">
+<path d="M143 332 Q142 269 177 270 Q212 270 209 332" fill="none"/>
+<path d="M132 321 L218 321 L209 390 Q177 405 144 390 Z" fill="#F2E9D6"/>
+<ellipse cx="175" cy="322" rx="43" ry="11" fill="#A9C9CB"/>
+<path d="M153 345 L156 378 M196 345 L193 378" fill="none" stroke="#C8A268"/>
+</g>
+<g id="pouring-bucket">
+<path d="M421 295 Q399 244 431 234 Q458 227 479 266" fill="none"/>
+<path d="M408 284 L473 256 L510 314 L449 343 Z" fill="#F2E9D6"/>
+<path d="M428 293 L452 324 M451 281 L475 311" fill="none" stroke="#C8A268"/>
+<ellipse cx="479" cy="329" rx="34" ry="11" transform="rotate(-25 479 329)" fill="#A9C9CB"/>
+<path id="water-stream" d="M477 327 Q496 358 482 391 Q471 421 494 477 L526 478 Q497 420 510 391 Q522 358 495 320" fill="#A9C9CB"/>
+<path d="M494 350 Q504 371 495 390 M495 428 L507 459" fill="none" stroke="#F2E9D6"/>
+<path d="M469 457 Q455 472 467 478 Q480 480 469 457 Z M542 454 Q529 472 541 476 Q554 476 542 454 Z" fill="#A9C9CB"/>
+</g>
+</g>
+</g>
+</svg>

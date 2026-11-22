@@ -1,0 +1,45 @@
+<svg width="959" height="894" xmlns="http://www.w3.org/2000/svg" viewBox="90.9 101.7 479.6 446.8" data-beast-id="rc-tech-solutionism">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="triangular-back" d="M167 131 Q145 111 132 144 L94 476 Q91 501 115 491 L462 361 Q482 350 459 329Z" fill="#987B4F"/>
+<path id="upper-jaw" d="M151 110 Q143 97 133 113 L112 174 L405 326 L462 326 L473 294Z" fill="#C8A268"/>
+<path d="M144 153 L406 300 L432 300" fill="none" stroke="#F2E9D6" stroke-width="9"/>
+<path id="lower-jaw" d="M111 459 L416 345 L470 347 L456 394 L111 512 Q90 516 94 494Z" fill="#C8A268"/>
+<path d="M123 478 L408 373" fill="none" stroke="#F2E9D6" stroke-width="9"/>
+<path id="hinge" d="M113 180 L98 445 L135 430 L153 202Z" fill="#C8A268"/>
+<circle cx="125" cy="323" r="21" fill="#F2E9D6"/>
+<circle cx="125" cy="323" r="7" fill="#987B4F"/>
+<path id="back-foot" d="M116 507 L94 546 L147 546 L173 493" fill="#987B4F"/>
+<path id="front-foot" d="M365 424 L402 474 L445 475 L416 406" fill="#987B4F"/>
+</g>
+<g id="props">
+<g id="complex-relations" fill="none">
+<path d="M194 260 C272 195 326 384 234 391 C152 398 207 278 322 288 C414 296 308 379 285 315 C268 265 354 306 408 328" stroke="#82ABA4" stroke-width="10"/>
+<path d="M190 378 C299 426 330 235 247 271 C169 304 265 359 322 324 Q363 302 407 338" stroke="#BA826A" stroke-width="10"/>
+<path d="M179 308 C242 374 285 227 322 279 S337 365 409 344" stroke="#F2E9D6" stroke-width="9"/>
+</g>
+<g id="relation-nodes">
+<circle cx="192" cy="260" r="15" fill="#82ABA4"/>
+<circle cx="188" cy="378" r="16" fill="#BA826A"/>
+<circle cx="179" cy="308" r="13" fill="#F2E9D6"/>
+<circle cx="264" cy="250" r="11" fill="#F2E9D6"/>
+<circle cx="238" cy="389" r="11" fill="#82ABA4"/>
+</g>
+<path id="square-socket-rim" d="M405 303 L472 303 L472 370 L405 370Z" fill="#C8A268"/>
+<path id="square-socket" d="M419 317 L458 317 L458 356 L419 356Z" fill="#2E4649"/>
+<path id="patch-arm" d="M333 210 Q374 149 434 188 Q477 213 501 263" fill="none" stroke="#2E4649" stroke-width="23"/>
+<path d="M333 210 Q374 149 434 188 Q477 213 501 263" fill="none" stroke="#C8A268" stroke-width="13"/>
+<path id="ready-patch" d="M505 280 L568 280 L568 343 L505 343Z" fill="#82ABA4"/>
+<path id="patch-pin" d="M505 302 L481 302 L481 325 L505 325Z" fill="#F2E9D6"/>
+<path d="M520 311 L533 323 L554 299" fill="none" stroke="#F2E9D6" stroke-width="7"/>
+<path id="hand" d="M493 271 Q500 251 514 257 L540 270 Q549 280 537 286 L516 278 L513 291 Q502 302 495 289Z" fill="#C8A268"/>
+</g>
+<g id="face">
+<path d="M181 146 Q218 152 256 180 L236 219 L163 179Z" fill="#F2E9D6"/>
+<path id="left-eyelid" d="M180 166 Q191 178 203 174" fill="none"/>
+<path id="right-eyelid" d="M217 183 Q228 195 241 190" fill="none"/>
+<path id="assured-smile" d="M194 189 Q205 207 220 204" fill="none"/>
+<path d="M178 153 L198 157 M219 170 L239 177" fill="none"/>
+</g>
+</g>
+</svg>

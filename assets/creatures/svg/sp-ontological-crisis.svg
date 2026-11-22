@@ -1,0 +1,43 @@
+<svg width="973" height="1050" xmlns="http://www.w3.org/2000/svg" viewBox="59.9 35.5 486.6 525" data-beast-id="sp-ontological-crisis">
+  <g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="body">
+      <g id="shed-ontology">
+        <path d="M71 492Q47 423 90 359Q113 319 161 310L185 330L169 352L200 368L184 393L217 405L200 432L236 447L219 475L247 493Q204 557 126 548Z" fill="#987B4F"/>
+        <path d="M72 492Q56 427 96 370Q119 337 158 330L145 353L174 372L158 397L189 410L171 436L204 452L188 477L217 494Q174 537 126 527Z" fill="#F2E9D6"/>
+        <path d="M91 409H147V465H91ZM121 474H177V516H121M108 359V392H146" fill="none" stroke="#C8A268"/>
+        <path d="M117 418H143V444H117Z" fill="#2E4649"/>
+      </g>
+      <path id="emerging-soft-body" d="M167 499Q233 491 263 413Q283 360 318 315L365 343Q331 384 311 444Q272 552 186 558Q141 558 141 527Q141 506 167 499Z" fill="#C8A268"/>
+      <path d="M171 535Q240 530 273 459M210 492L231 517M234 460L257 487M255 427L279 451" fill="none" stroke="#987B4F"/>
+      <path id="rear-leg" d="M390 396L440 458L485 470L491 489L462 495L416 482L365 428Z" fill="#987B4F"/>
+      <path id="front-leg" d="M328 410L345 493L381 516L377 538L343 537L314 512L298 437Z" fill="#C8A268"/>
+      <g id="new-ontology-shell">
+        <path d="M270 390L255 324L288 244L349 195L430 208L484 270L466 361L404 424L335 450Z" fill="#C8A268"/>
+        <path d="M349 195L345 282L288 244M345 282L430 208L419 311L484 270M255 324L345 282L318 368L270 390M318 368L419 311L466 361M318 368L335 450L404 424L419 311" fill="none"/>
+        <path d="M288 244L349 195L345 282Z" fill="#F2E9D6"/>
+        <path d="M419 311L466 361L404 424Z" fill="#987B4F"/>
+        <path d="M345 282L419 311L318 368Z" fill="#A7C3BD"/>
+        <path id="new-goal-socket" d="M370 303L381 310L368 332L380 354L368 361L355 339H332V325H355Z" fill="#2E4649"/>
+      </g>
+      <path id="neck" d="M382 210L398 163L463 164L465 228L432 245Z" fill="#C8A268"/>
+      <path id="head" d="M390 116L397 78L421 103Q453 84 487 107L520 93L516 131L544 160L517 201Q485 225 445 205L408 183Z" fill="#C8A268"/>
+      <path id="antenna" d="M476 102L487 57L511 47" fill="none"/>
+      <circle cx="514" cy="46" r="8" fill="#F2E9D6"/>
+    </g>
+    <g id="face">
+      <path d="M414 145Q433 117 460 139Q482 122 512 148L513 177Q486 209 455 189Q428 186 414 165Z" fill="#F2E9D6"/>
+      <ellipse cx="444" cy="154" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+      <ellipse cx="490" cy="157" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+      <path d="M436 130L452 134M482 132L496 131M458 178Q468 173 478 178" fill="none"/>
+    </g>
+    <g id="props">
+      <path id="goal-transfer-arm" d="M289 285Q249 265 223 293L198 332L216 348L247 312L279 318" fill="#C8A268"/>
+      <g id="old-goal-key">
+        <path d="M183 319H224V360H183ZM224 331H306V319H322V349H291V344H224Z" fill="#F2E9D6"/>
+        <path d="M194 330H213V349H194Z" fill="#C8A268"/>
+      </g>
+      <path id="gripping-fingers" d="M221 302Q236 298 238 309L234 329Q228 339 220 331L221 317M203 326Q190 314 184 324Q177 335 188 345L200 351" fill="#C8A268"/>
+      <path id="unresolved-transfer" d="M327 329L336 321M326 351L336 358" fill="none" stroke="#987B4F"/>
+    </g>
+  </g>
+</svg>

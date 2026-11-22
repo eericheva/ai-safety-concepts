@@ -1,0 +1,60 @@
+<svg width="1060" height="962" xmlns="http://www.w3.org/2000/svg" viewBox="49.5 108.5 530 481" data-beast-id="in-features-circuits">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<g id="lattice-limbs" fill="#C8A268">
+<path d="M196 308 L113 391 L76 506 L107 514 L141 411 L219 336 Z"/>
+<path d="M252 419 L268 501 L216 563 L244 575 L304 508 L286 409 Z"/>
+<path d="M396 353 L465 407 L520 518 L551 512 L490 383 L420 323 Z"/>
+<path d="M339 420 L384 496 L382 557 L416 557 L419 485 L369 405 Z"/>
+</g>
+<g id="open-lattice" fill="#C8A268" fill-rule="evenodd">
+<path d="M202 227 L334 179 L458 271 L365 446 L201 345 Z M224 246 L224 329 L354 412 L427 280 L330 207 Z"/>
+<path d="M214 267 L352 398 L366 382 L229 252 Z"/>
+<path d="M227 338 L412 277 L406 258 L218 317 Z"/>
+<path d="M321 199 L343 408 L363 405 L342 197 Z"/>
+</g>
+<path id="head-neck" d="M402 275 L431 204 L451 212 L425 286 Z" fill="#987B4F"/>
+<path id="angular-head" d="M414 181 L420 126 L450 140 L489 111 L503 161 L540 189 L507 228 L454 243 Z" fill="#C8A268"/>
+<path d="M424 135 L439 158 L426 174 Z M488 123 L476 158 L499 161 Z" fill="#F2E9D6"/>
+</g>
+<g id="props">
+<g id="weighted-pathways" fill="none" stroke="#F2E9D6" stroke-width="7">
+<path d="M218 278 L283 312 L340 198"/>
+<path d="M284 312 L356 423 L443 278"/>
+<path d="M283 312 L429 280"/>
+</g>
+<g id="direction-nodes" fill="#F2E9D6">
+<circle cx="214" cy="277" r="29"/>
+<circle cx="332" cy="195" r="29"/>
+<circle cx="284" cy="313" r="32" fill="#91B5A4"/>
+<circle cx="442" cy="279" r="29"/>
+<circle cx="357" cy="422" r="29"/>
+</g>
+<g id="feature-directions" fill="none">
+<path d="M197 290 L231 263 M213 262 L231 263 L228 280"/>
+<path d="M332 213 L332 178 M319 190 L332 178 L344 191"/>
+<path d="M266 327 L303 298 M283 297 L303 298 L299 317"/>
+<path d="M422 279 L459 279 M446 266 L459 279 L446 291"/>
+<path d="M343 409 L369 437 M369 419 L369 437 L351 435"/>
+</g>
+<g id="signal-beads" fill="#987B4F">
+<path d="M250 287 L261 296 L253 307 L242 298 Z"/>
+<path d="M366 278 L379 286 L370 298 L358 290 Z"/>
+<path d="M388 352 L400 358 L394 370 L382 364 Z"/>
+</g>
+<g id="feet" fill="#F2E9D6">
+<path d="M79 498 L106 509 L108 532 L57 536 L52 522 Z"/>
+<path d="M220 555 L246 570 L241 586 L194 587 L190 574 Z"/>
+<path d="M383 548 L413 548 L432 567 L427 579 L379 579 Z"/>
+<path d="M520 508 L549 504 L577 524 L570 538 L532 535 Z"/>
+</g>
+</g>
+<g id="face">
+<path d="M435 180 Q459 164 473 184 Q489 169 510 184 L518 199 Q489 232 458 223 Z" fill="#F2E9D6"/>
+<ellipse cx="455" cy="191" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse cx="494" cy="191" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M469 207 Q480 215 489 205" fill="none"/>
+<path d="M448 169 L457 166 M490 166 L500 169" fill="none"/>
+</g>
+</g>
+</svg>

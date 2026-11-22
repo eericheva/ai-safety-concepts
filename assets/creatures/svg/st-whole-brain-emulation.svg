@@ -1,0 +1,41 @@
+<svg width="1091" height="653" xmlns="http://www.w3.org/2000/svg" viewBox="47.1 163.0 545.4 326.5" data-beast-id="st-whole-brain-emulation" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="transfer-spine" d="M193 296 C255 271 338 276 421 284 L436 343 C350 358 270 349 204 363 Z" fill="#C8A268"/>
+<path id="spine-shadow" d="M205 343 C292 329 344 334 428 321 L436 343 C350 358 270 349 204 363Z" fill="#987B4F" stroke="none"/>
+<path id="organic-lobe" d="M71 367 C40 345 48 305 62 286 C47 252 69 219 94 213 C98 177 128 163 156 176 C188 151 222 175 229 201 C258 208 269 244 254 267 C279 297 258 332 243 341 C246 378 216 400 187 391 C153 421 116 397 111 383 C92 391 78 381 71 367Z" fill="#C8A268"/>
+<path id="organic-underside" d="M71 367 C101 372 112 358 121 345 C141 379 182 386 207 365 L243 341 C246 378 216 400 187 391 C153 421 116 397 111 383 C92 391 78 381 71 367Z" fill="#987B4F" stroke="none"/>
+<path id="digital-lobe" d="M406 211 L440 181 L536 181 L568 211 L568 243 L590 265 L590 346 L568 346 L568 378 L536 400 L440 400 L406 371 L406 343 L389 326 L389 254 L406 238Z" fill="#A9C9C6"/>
+<path id="digital-side" d="M568 243 L590 265 L590 346 L568 346 L568 378 L536 400 L440 400 L420 381 L529 381 L549 361 L549 255Z" fill="#7DA8A3" stroke="none"/>
+<path id="organic-resting-foot" d="M135 399 L124 432 L93 439 Q81 445 96 453 L154 453 L172 399" fill="#C8A268"/>
+<path id="running-leg-rear" d="M439 399 L415 435 L379 424 L368 441 L419 461 L463 417" fill="#C8A268"/>
+<path id="running-leg-front" d="M513 400 L531 434 L568 435 L580 453 L524 456 L489 415" fill="#C8A268"/>
+</g>
+<g id="props">
+<g id="scan-ribs" fill="#F2E9D6">
+<path d="M278 248 Q291 305 279 379 L290 379 Q305 305 290 248Z"/>
+<path d="M308 234 Q326 307 308 391 L319 391 Q337 307 319 234Z"/>
+<path d="M340 242 Q357 306 340 383 L351 383 Q369 306 351 242Z"/>
+</g>
+<path id="scan-sampling-line" d="M324 209 L324 223 M324 401 L324 416" stroke="#C8A268"/>
+<g id="organic-connectome" transform="translate(85 215)">
+<path d="M20 35 L66 8 L110 40 L91 86 L34 101 L20 35 L91 86 L66 8 L34 101 M110 40 L66 8"/>
+<g fill="#F2E9D6"><circle cx="20" cy="35" r="8"/><circle cx="66" cy="8" r="11"/><circle cx="110" cy="40" r="7"/><circle cx="91" cy="86" r="10"/><circle cx="34" cy="101" r="7"/></g>
+</g>
+<g id="emulated-connectome" transform="translate(418 215)">
+<path d="M20 35 L66 8 L110 40 L91 86 L34 101 L20 35 L91 86 L66 8 L34 101 M110 40 L66 8"/>
+<g fill="#F2E9D6"><circle cx="20" cy="35" r="8"/><circle cx="66" cy="8" r="11"/><circle cx="110" cy="40" r="7"/><circle cx="91" cy="86" r="10"/><circle cx="34" cy="101" r="7"/></g>
+</g>
+<g id="computation-pulses" stroke="#F2E9D6"><path d="M554 275 L569 275 M554 291 L569 291 M554 307 L569 307"/></g>
+<path id="motion-strokes" d="M372 472 L397 472 M390 487 L417 487" stroke="#7DA8A3"/>
+</g>
+<g id="face">
+<path id="organic-brow" d="M137 338 Q150 331 163 338"/>
+<ellipse cx="143" cy="354" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<ellipse cx="182" cy="354" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path d="M152 371 Q162 377 173 371"/>
+<path id="digital-brow" d="M470 338 Q483 331 496 338"/>
+<ellipse cx="476" cy="354" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<ellipse cx="515" cy="354" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path d="M485 371 Q495 377 506 371"/>
+</g>
+</svg>

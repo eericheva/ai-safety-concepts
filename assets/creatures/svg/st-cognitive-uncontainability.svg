@@ -1,0 +1,47 @@
+<svg width="1056" height="1076" xmlns="http://www.w3.org/2000/svg" viewBox="85.5 37.5 528 538" data-beast-id="st-cognitive-uncontainability">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="branching-spine" fill="#C8A268" d="M278 553 Q313 494 297 417 L281 350 L245 292 L186 265 L126 205 L136 188 L201 235 L251 251 L228 186 L239 126 L259 124 L257 188 L288 224 L311 175 L312 87 L333 64 L351 81 L341 174 L327 239 L371 205 L400 144 L444 115 L458 129 L420 165 L399 228 L348 276 L362 318 L397 288 L444 275 L480 221 L503 227 L472 298 L414 319 L372 362 L379 418 L405 465 L447 488 L435 506 L382 488 L356 453 L349 516 L374 556 L352 573 L320 548 L298 573 Z"/>
+<path id="spine-shadow" fill="#987B4F" stroke="none" d="M331 284 Q318 379 340 428 L329 518 L320 548 L298 573 L278 553 Q313 494 297 417 L281 350 L296 297 Z"/>
+<path id="upper-unseen-route" fill="none" d="M345 93 L391 68 L431 84"/>
+<path id="side-route" fill="none" d="M456 126 L495 91 L533 105 L554 151"/>
+<path id="lower-route" fill="none" d="M501 228 L538 249 L536 294 L578 318 L578 364"/>
+<path id="concealed-route" fill="none" stroke-dasharray="4 12" d="M431 84 Q471 80 495 91 M554 151 Q570 214 538 249"/>
+<path id="closed-tip" fill="#F2E9D6" d="M119 207 L116 183 L138 174 L150 192 L136 208 Z"/>
+<path id="small-bud" fill="#F2E9D6" d="M227 126 Q222 105 244 95 Q265 101 262 123 Z"/>
+<path id="high-bud" fill="#F2E9D6" d="M315 88 L307 59 L329 40 L352 59 L348 82 Z"/>
+<path id="branch-fold-one" fill="#F2E9D6" d="M401 145 L415 130 L432 148 L419 167 Z"/>
+<path id="branch-fold-two" fill="#F2E9D6" d="M472 234 L482 217 L505 225 L497 244 Z"/>
+<path id="branch-fold-three" fill="none" stroke="#F2E9D6" d="M350 366 L359 413 M318 190 L310 228"/>
+</g>
+<g id="face">
+<path fill="#F2E9D6" d="M272 253 Q291 235 324 248 L341 279 Q332 312 303 317 Q277 304 272 281 Z"/>
+<path fill="none" d="M282 265 L293 261 M312 262 L323 267"/>
+<ellipse fill="#2E4649" stroke="none" cx="290" cy="279" rx="5" ry="9"/>
+<ellipse fill="#2E4649" stroke="none" cx="319" cy="281" rx="5" ry="9"/>
+<path fill="none" d="M299 299 Q308 304 316 297"/>
+</g>
+<g id="props">
+<g id="anticipated-three-moves">
+<path fill="none" stroke="#91ABA5" stroke-dasharray="7 9" d="M131 445 L146 393 L121 357 M146 393 L178 350 M146 393 L228 360"/>
+<rect x="99" y="326" width="40" height="40" rx="5" fill="#F2E9D6"/>
+<rect x="161" y="313" width="40" height="40" rx="5" fill="#F2E9D6"/>
+<rect x="214" y="338" width="40" height="40" rx="5" fill="#F2E9D6"/>
+</g>
+<g id="limited-observer">
+<path fill="#91ABA5" d="M109 487 L88 550 L101 565 L117 536 L125 572 L144 572 L151 530 L168 546 L181 533 L150 487 Z"/>
+<path fill="#F2E9D6" d="M98 457 Q97 430 125 424 Q151 429 160 456 L152 485 Q130 503 108 483 Z"/>
+<path fill="#91ABA5" d="M98 456 L88 437 L112 430 L128 412 L137 432 L157 439 L160 456 L130 443 Z"/>
+<ellipse fill="#2E4649" stroke="none" cx="121" cy="463" rx="4" ry="6"/>
+<ellipse fill="#2E4649" stroke="none" cx="145" cy="459" rx="4" ry="6"/>
+<path fill="none" d="M130 480 L139 477"/>
+</g>
+<g id="recognized-result">
+<path fill="none" stroke="#91ABA5" stroke-dasharray="5 10" d="M171 468 Q356 523 535 433"/>
+<path fill="#F2E9D6" d="M535 389 L578 366 L611 387 L611 432 L570 455 L535 434 Z"/>
+<path fill="#91ABA5" d="M550 412 L565 426 L594 395 L602 406 L566 443 L544 423 Z"/>
+<path fill="none" d="M535 389 L570 410 L611 387 M570 410 L570 455" opacity="0.25"/>
+</g>
+</g>
+</g>
+</svg>

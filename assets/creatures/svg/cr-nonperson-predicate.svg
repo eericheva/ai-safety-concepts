@@ -1,0 +1,29 @@
+<svg width="1162" height="650" xmlns="http://www.w3.org/2000/svg" viewBox="27.5 171.5 581 325" data-beast-id="cr-nonperson-predicate" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="incoming-computation" stroke="#789E9C"><path d="M30 285H156M30 340H156M30 395H156"/><path d="m129 276 16 9-16 9M129 331l16 9-16 9M129 386l16 9-16 9"/></g>
+<g id="input-cells" fill="#F2E9D6"><rect x="49" y="269" width="32" height="32" rx="5"/><rect x="91" y="324" width="32" height="32" rx="5"/><path d="m55 376 20 19-20 19-20-19Z"/></g>
+<g id="outgoing-computation" stroke="#789E9C"><path d="M484 285H606M484 395H606"/></g>
+<g id="unresolved-output" stroke-dasharray="8 12"><path d="M490 340H599"/></g>
+<g id="output-cells" fill="#F2E9D6"><rect x="538" y="269" width="32" height="32" rx="5"/><path d="m566 376 20 19-20 19-20-19Z"/></g>
+</g>
+<g id="body">
+<path id="low-gate-shell" d="M119 440Q137 412 137 361V283Q139 216 217 190Q320 158 423 190Q501 215 503 283V361Q503 412 521 440L495 465H145Z" fill="#C8A268"/>
+<path id="shell-underfold" d="M145 420Q176 442 216 437H424Q467 441 497 420L521 440 495 465H145L119 440Z" fill="#987B4F"/>
+<path id="inspection-aperture" d="M181 281Q183 247 218 245H422Q457 247 459 281V390Q459 423 423 425H217Q181 423 181 390Z" fill="#F2E9D6"/>
+<g id="sieve-ribs" stroke="#987B4F"><path d="M207 247V422M239 245V425M401 245V425M433 247V422"/></g>
+<path id="left-anchor" d="m151 464-18 30h73l15-29" fill="#C8A268"/><path id="right-anchor" d="m419 465 15 29h73l-18-30" fill="#C8A268"/>
+<path id="left-feeler" d="M159 230 127 198 111 220M481 230l32-32 16 22"/>
+</g>
+<g id="face">
+<path id="brow" d="M270 209q17-11 31 0M339 209q17-11 31 0"/>
+<ellipse cx="286" cy="225" rx="7" ry="10" fill="#2E4649" stroke="none"/><ellipse cx="354" cy="225" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+<path id="considering-mouth" d="M309 238q11-6 22 0"/>
+</g>
+<g id="inspection-details">
+<path id="unfinished-boundary" d="M278 272Q252 298 254 337Q254 390 291 402M351 402Q387 389 387 337Q389 299 364 272" stroke="#789E9C" stroke-dasharray="9 10"/>
+<path id="uncertain-process-cell" d="M299 297q17-15 36 0l21 24q16 19 0 39l-21 23q-17 15-36 0l-21-23q-16-19 0-39Z" fill="#B4C9C5"/>
+<g id="unresolved-network"><circle cx="302" cy="329" r="8" fill="#F2E9D6"/><circle cx="336" cy="351" r="8" fill="#F2E9D6"/><path d="m309 334 20 12M302 321v-9M344 351h9M298 336l-10 17"/></g>
+<g id="investigating-pincers" fill="#C8A268"><path d="M175 356q23-10 35-34l20 2-6 14-12 2q-15 31-37 39Z"/><path d="M465 356q-23-10-35-34l-20 2 6 14 12 2q15 31 37 39Z"/></g>
+<path id="open-criterion" d="M308 274q-1-13 12-13 14 0 14 11 0 8-11 13v5"/><circle cx="323" cy="301" r="2.8" fill="#2E4649" stroke="none"/>
+</g>
+</svg>

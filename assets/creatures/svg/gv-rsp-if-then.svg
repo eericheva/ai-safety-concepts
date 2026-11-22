@@ -1,0 +1,49 @@
+<svg width="1001" height="955" xmlns="http://www.w3.org/2000/svg" viewBox="60.9 81.2 500.6 477.3" data-beast-id="gv-rsp-if-then" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="stepped-spine" d="M72 440Q53 421 76 397L149 397L149 332Q149 312 172 312L253 312L253 240Q253 221 277 221L357 221L357 153Q357 123 391 123L457 123Q498 124 502 164L502 282L421 282L421 368L315 368L315 455L204 455L204 509L118 509Q78 508 72 475Z" fill="#C8A268"/>
+<path id="stepped-shadow" d="M74 462L166 462L166 414L276 414L276 326L381 326L381 243L500 243L502 282L421 282L421 368L315 368L315 455L204 455L204 509L118 509Q78 508 74 477Z" fill="#987B4F" stroke="none"/>
+<path id="measurement-channel" d="M93 434H181V350H286V260H392V187" stroke="#F2E9D6" stroke-width="24"/>
+<path id="low-feet" d="M119 506L100 546Q98 557 115 556L158 556L172 510M242 455L225 487Q224 495 238 495L271 495L287 456" fill="#C8A268"/>
+</g>
+<g id="props">
+<g id="first-threshold-rib">
+<path d="M181 350L181 296Q181 266 154 268Q119 270 111 310L92 389L118 396L139 318Q144 300 153 305L153 350" fill="#A9C4BF"/>
+<path d="M181 350V393"/>
+<path d="M181 381L194 394L181 407L168 394Z" fill="#F2E9D6"/>
+<circle cx="181" cy="350" r="12" fill="#F2E9D6"/>
+<path d="M177 345L185 355"/>
+</g>
+<g id="second-threshold-rib">
+<path d="M286 260V205Q285 174 258 177Q222 181 215 218L196 303L223 309L241 226Q246 209 258 214V260" fill="#A9C4BF"/>
+<path d="M286 260V305"/>
+<path d="M286 293L299 306L286 319L273 306Z" fill="#F2E9D6"/>
+<circle cx="286" cy="260" r="12" fill="#F2E9D6"/>
+<path d="M282 255L290 265"/>
+</g>
+<g id="third-threshold-rib">
+<path d="M392 187V113Q391 81 363 84Q327 89 321 126L303 212L330 218L347 135Q352 117 364 121V187" fill="#A9C4BF"/>
+<circle cx="392" cy="187" r="12" fill="#F2E9D6"/>
+<path d="M388 182L396 192"/>
+</g>
+<g id="final-pause-foot">
+<path d="M392 213L411 232H448L477 298V448" stroke-width="15" stroke="#2E4649"/>
+<path d="M392 213L411 232H448L477 298V448" stroke-width="6" stroke="#F2E9D6"/>
+<path d="M392 201L405 214L392 227L379 214Z" fill="#D1A17F"/>
+<circle cx="477" cy="298" r="15" fill="#C8A268"/>
+<path d="M455 433H499L515 485L552 499L552 526H428L428 499L444 486Z" fill="#D1A17F"/>
+<path d="M458 463V484M477 463V484" stroke-width="9"/>
+<path d="M420 539H559M436 551H543"/>
+</g>
+<g id="measurement-ticks" stroke-width="4">
+<path d="M115 421V432M139 421V432M168 367H179M168 382H179M210 337V348M234 337V348M273 277H284M273 292H284M316 247V258M340 247V258"/>
+</g>
+</g>
+<g id="face">
+<path id="face-patch" d="M412 138Q455 126 478 151Q495 173 484 207Q452 223 419 206Q407 183 412 138Z" fill="#F2E9D6"/>
+<ellipse cx="430" cy="166" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse cx="467" cy="162" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M441 190Q452 198 463 185M422 145L434 144M460 140L474 144"/>
+<path id="watchful-antenna" d="M454 125L468 97L484 94"/>
+<circle cx="489" cy="93" r="9" fill="#C8A268"/>
+</g>
+</svg>

@@ -1,0 +1,42 @@
+<svg width="984" height="1009" xmlns="http://www.w3.org/2000/svg" viewBox="77.5 66.0 492 504.5" data-beast-id="cr-expanding-circle">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="unfolding-ribbon-outline" d="M323 315 C350 286 390 319 369 350 C336 402 251 376 246 317 C235 217 371 181 431 260 C510 366 413 481 295 468 C133 450 92 253 201 147 C308 40 495 99 533 228" fill="none" stroke="#2E4649" stroke-width="51"/>
+<path id="unfolding-ribbon" d="M323 315 C350 286 390 319 369 350 C336 402 251 376 246 317 C235 217 371 181 431 260 C510 366 413 481 295 468 C133 450 92 253 201 147 C308 40 495 99 533 228" fill="none" stroke="#C8A268" stroke-width="41"/>
+<path id="inner-fold" d="M323 315 C350 286 390 319 369 350 C336 402 251 376 246 317" fill="none" stroke="#F2E9D6" stroke-width="15"/>
+<path id="ribbon-shadow" d="M165 343 C198 438 299 481 393 427" fill="none" stroke="#987B4F" stroke-width="12"/>
+<path id="outer-rim" d="M204 149 C302 59 460 102 509 194" fill="none" stroke="#F2E9D6" stroke-width="9"/>
+<path id="opening-upper-hand" d="M515 208 Q526 196 542 203 L561 218 L549 228 L565 241 Q563 252 549 250 L532 242" fill="#C8A268"/>
+<path id="opening-lower-hand" d="M424 271 Q445 249 465 260 L482 272 L471 283 L486 294 Q482 307 468 301 L450 290" fill="#C8A268"/>
+</g>
+<g id="face">
+<path id="face-plate" d="M153 206 Q169 173 193 171 Q224 184 222 207 Q213 240 186 240 Q163 231 153 206Z" fill="#F2E9D6"/>
+<ellipse id="left-eye" cx="176" cy="202" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse id="right-eye" cx="204" cy="207" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path id="smile" d="M178 220 Q187 231 198 223" fill="none"/>
+</g>
+<g id="props">
+<g id="close-circle-members" fill="#F2E9D6">
+<path d="M290 302 Q280 286 290 275 Q304 267 310 282 Q313 294 302 301 L313 320 L282 320Z"/>
+<path d="M324 278 Q316 265 326 255 Q339 250 345 263 Q348 275 338 280 L348 298 L319 298Z"/>
+</g>
+<g id="wider-human-circle" fill="#F2E9D6">
+<circle cx="312" cy="171" r="15"/><path d="M287 211 Q289 186 312 186 Q336 186 337 211Z"/>
+<circle cx="368" cy="175" r="15"/><path d="M344 214 Q347 190 368 190 Q390 190 392 214Z"/>
+</g>
+<g id="animal-included" fill="#F2E9D6">
+<path d="M302 409 L293 376 L314 386 Q329 378 344 386 L363 376 L356 410 Q331 433 302 409Z"/>
+<circle cx="317" cy="400" r="3" fill="#2E4649"/><circle cx="343" cy="400" r="3" fill="#2E4649"/>
+<path d="M326 408 L334 408 L330 413Z" fill="#2E4649"/>
+</g>
+<g id="possible-artificial-mind" fill="#B6CDCA">
+<path d="M530 323 L556 336 L556 366 L530 381 L504 366 L504 337Z"/>
+<path d="M517 345 H523 M537 345 H543 M520 362 Q530 369 540 362" fill="none"/>
+<path d="M530 323 V311 M504 351 H493 M556 351 H567 M530 381 V393" fill="none"/>
+</g>
+<path id="open-question-route" d="M481 319 Q485 293 511 283 Q535 273 540 295 Q542 309 532 313" fill="none" stroke-dasharray="5 10"/>
+<path id="expansion-motion" d="M98 236 Q79 304 101 368 M224 529 Q318 562 401 518" fill="none" stroke="#987B4F"/>
+<path id="expansion-ticks" d="M90 391 L80 406 M285 551 L283 568 M426 512 L440 521" fill="none" stroke="#987B4F"/>
+</g>
+</g>
+</svg>

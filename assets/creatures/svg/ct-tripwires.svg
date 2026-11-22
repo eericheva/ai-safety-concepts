@@ -1,0 +1,42 @@
+<svg width="770" height="954" xmlns="http://www.w3.org/2000/svg" viewBox="112.5 70.5 385 477" fill="none" data-beast-id="ct-tripwires">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="rear-leg" fill="#987B4F" d="M299 311 Q309 405 300 522 L284 539 Q310 551 351 539 L332 519 L339 317Z" />
+<path id="left-sensor-leg" fill="#C8A268" d="M289 308 Q272 365 235 402 L179 466 L163 495 Q148 510 115 498 L134 468 L195 388 Q236 335 254 290Z" />
+<path id="right-sensor-leg" fill="#C8A268" d="M335 300 Q365 340 407 389 L475 473 L495 490 Q480 513 450 498 L429 466 L376 411 Q336 374 313 334Z" />
+<path fill="#987B4F" stroke="none" d="M273 337 Q251 381 218 415 L166 476 L153 494 L135 494 L149 473 L210 398 L263 329Z" />
+<path id="signal-stem" fill="#C8A268" d="M273 328 Q254 301 249 265 L377 247 Q380 300 342 333 Q310 352 273 328Z" />
+<path id="alarm-open-petals" fill="#C8A268" d="M257 284 Q214 257 208 212 L192 166 Q229 171 247 193 L253 137 Q284 155 305 186 Q334 138 382 122 L372 184 Q409 151 448 156 L424 209 Q414 261 370 289 Q314 324 257 284Z" />
+<path id="alarm-inner" fill="#D58F76" d="M232 196 Q262 212 280 216 Q290 177 305 166 Q315 201 327 214 Q353 176 381 164 L370 217 Q400 193 422 190 Q405 246 364 266 Q299 285 255 249Z" />
+<path fill="#F2E9D6" d="M253 238 Q279 216 303 237 Q316 250 333 236 Q358 214 382 236 Q382 285 345 305 Q307 324 273 299 Q254 283 253 238Z" />
+<path id="nerve" stroke="#F3C66B" stroke-width="8" d="M446 440 L390 378 Q354 339 340 312" />
+<circle cx="168" cy="443" r="11" fill="#F2E9D6" />
+<circle cx="446" cy="440" r="11" fill="#F3C66B" />
+</g>
+<g id="face">
+<ellipse cx="283" cy="261" rx="9" ry="13" fill="#2E4649" stroke="none" />
+<ellipse cx="350" cy="258" rx="9" ry="13" fill="#2E4649" stroke="none" />
+<circle cx="281" cy="257" r="3" fill="#F2E9D6" stroke="none" />
+<circle cx="348" cy="254" r="3" fill="#F2E9D6" stroke="none" />
+<path d="M273 240 L289 237 M342 235 L358 238" />
+<ellipse cx="315" cy="283" rx="7" ry="9" fill="#2E4649" stroke="none" />
+<ellipse cx="268" cy="280" rx="10" ry="5" fill="#DDA18C" stroke="none" />
+<ellipse cx="365" cy="277" rx="10" ry="5" fill="#DDA18C" stroke="none" />
+</g>
+<g id="props">
+<path id="sensitive-thread" d="M168 443 L330 475 L446 440" stroke="#F3C66B" stroke-width="6" />
+<g id="crossing-cube">
+<path d="M303 403 L342 384 L377 407 L338 429Z" fill="#C4DAD6" />
+<path d="M303 403 L338 429 L338 473 L303 447Z" fill="#8EB6AF" />
+<path d="M338 429 L377 407 L377 449 L338 473Z" fill="#ADD0C9" />
+</g>
+<path id="thread-front" d="M309 471 L330 475 L350 468" stroke="#F3C66B" stroke-width="6" />
+<path id="cube-motion" d="M289 380 L275 357 M315 369 L308 350" stroke="#8EB6AF" />
+<path id="contact-flash" d="M289 461 L277 470 M349 493 L357 507 M370 473 L384 483" stroke="#F3C66B" />
+<g id="alarm-rays" stroke="#D58F76" stroke-width="7">
+<path d="M421 126 L438 106 M454 142 L483 132 M456 171 L489 175 M383 98 L393 74" />
+</g>
+<path id="alarm-pulse" d="M311 150 L322 121 L340 137 L351 104" stroke="#F3C66B" stroke-width="7" />
+</g>
+</g>
+</svg>

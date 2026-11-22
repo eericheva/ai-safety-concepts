@@ -1,0 +1,68 @@
+<svg width="1093" height="898" xmlns="http://www.w3.org/2000/svg" viewBox="42.5 114.5 546.4 449" data-beast-id="in-sae-dictlearn">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="mixed-activation"><path d="M46 260Q43 230 70 218L110 229 137 265 123 306 77 318 45 291Z" fill="#F2E9D6"/><path d="M60 274L109 244 94 295 65 247 117 280" fill="none" stroke="#B97C68"/><path d="M56 289Q89 228 119 290" fill="none" stroke="#82AAA5"/></g>
+<path id="input-feeler" d="M130 264Q161 254 180 278" fill="none" stroke="#2E4649" stroke-width="17"/><path d="M130 264Q161 254 180 278" fill="none" stroke="#C8A268" stroke-width="10"/>
+</g>
+<g id="body">
+<path id="accordion-spine" d="M190 321L534 271 560 344 229 402Z" fill="#987B4F"/>
+
+<g id="dictionary-feature-1"><path d="M195 242L219 224L232 382L207 402Z" fill="#F2E9D6"/>
+<path d="M219 224L232 382L241 391L230 240Z" fill="#987B4F"/>
+<path d="M206 273L218 266L221 299L209 306Z" fill="#C7CEBF"/>
+</g>
+<g id="dictionary-feature-2"><path d="M229 231L253 213L266 380L241 400Z" fill="#C8A268"/>
+<path d="M253 213L266 380L275 389L264 229Z" fill="#987B4F"/>
+<path d="M240 262L252 255L255 288L243 295Z" fill="#E9C65D"/>
+<path d="M251 313L257 371" stroke="#E9C65D"/>
+</g>
+<g id="dictionary-feature-3"><path d="M263 220L287 202L300 378L275 398Z" fill="#F2E9D6"/>
+<path d="M287 202L300 378L309 387L298 218Z" fill="#987B4F"/>
+<path d="M274 251L286 244L289 277L277 284Z" fill="#C7CEBF"/>
+</g>
+<g id="dictionary-feature-4"><path d="M297 209L321 191L334 376L309 396Z" fill="#F2E9D6"/>
+<path d="M321 191L334 376L343 385L332 207Z" fill="#987B4F"/>
+<path d="M308 240L320 233L323 266L311 273Z" fill="#C7CEBF"/>
+</g>
+<g id="dictionary-feature-5"><path d="M331 198L355 180L368 374L343 394Z" fill="#F2E9D6"/>
+<path d="M355 180L368 374L377 383L366 196Z" fill="#987B4F"/>
+<path d="M342 229L354 222L357 255L345 262Z" fill="#C7CEBF"/>
+</g>
+<g id="dictionary-feature-6"><path d="M365 187L389 169L402 372L377 392Z" fill="#C8A268"/>
+<path d="M389 169L402 372L411 381L400 185Z" fill="#987B4F"/>
+<path d="M376 218L388 211L391 244L379 251Z" fill="#E9C65D"/>
+<path d="M387 269L393 363" stroke="#E9C65D"/>
+</g>
+<g id="dictionary-feature-7"><path d="M399 176L423 158L436 370L411 390Z" fill="#F2E9D6"/>
+<path d="M423 158L436 370L445 379L434 174Z" fill="#987B4F"/>
+<path d="M410 207L422 200L425 233L413 240Z" fill="#C7CEBF"/>
+</g>
+<g id="dictionary-feature-8"><path d="M433 165L457 147L470 368L445 388Z" fill="#F2E9D6"/>
+<path d="M457 147L470 368L479 377L468 163Z" fill="#987B4F"/>
+<path d="M444 196L456 189L459 222L447 229Z" fill="#C7CEBF"/>
+</g>
+<g id="dictionary-feature-9"><path d="M467 154L491 136L504 366L479 386Z" fill="#C8A268"/>
+<path d="M491 136L504 366L513 375L502 152Z" fill="#987B4F"/>
+<path d="M478 185L490 178L493 211L481 218Z" fill="#E9C65D"/>
+<path d="M489 236L495 357" stroke="#E9C65D"/>
+</g>
+<g id="dictionary-feature-10"><path d="M501 143L525 125L538 364L513 384Z" fill="#F2E9D6"/>
+<path d="M525 125L538 364L547 373L536 141Z" fill="#987B4F"/>
+<path d="M512 174L524 167L527 200L515 207Z" fill="#C7CEBF"/>
+</g>
+<path id="front-cover" d="M156 250Q180 224 205 240L230 404Q188 421 161 394Z" fill="#C8A268"/>
+<path id="back-cover" d="M535 117L563 128 584 362 553 378Z" fill="#C8A268"/>
+<path d="M549 143L567 342" fill="none" stroke="#F2E9D6"/>
+<path id="left-foot" d="M180 407L173 444Q147 452 150 467Q181 481 209 459L210 411" fill="#987B4F"/>
+<path id="right-foot" d="M531 384L541 425Q561 424 567 439Q546 455 521 444L507 389" fill="#987B4F"/>
+<path id="reconstruction-limb" d="M565 372Q601 439 550 482Q504 517 292 508L150 504" fill="none" stroke="#2E4649" stroke-width="18"/>
+<path d="M565 372Q601 439 550 482Q504 517 292 508L150 504" fill="none" stroke="#C8A268" stroke-width="10"/>
+<path d="M168 489L146 504 167 518" fill="none"/>
+</g>
+<g id="face"><path d="M162 272Q178 249 201 268L215 353Q194 380 166 357Z" fill="#F2E9D6"/>
+<ellipse cx="178" cy="300" rx="6" ry="10" fill="#2E4649" stroke="none"/><ellipse cx="199" cy="296" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M177 330Q190 342 203 326" fill="none"/>
+<path d="M171 283L182 279M192 275L202 278" fill="none"/>
+</g>
+<g id="reconstruction"><path d="M48 481Q47 457 75 451L112 462 134 492 121 531 78 542 49 519Z" fill="#F2E9D6"/><path d="M63 501L108 477 93 522 67 480 115 508" fill="none" stroke="#B97C68"/><path d="M60 518Q91 463 117 516" fill="none" stroke="#82AAA5"/><path d="M126 553L132 561M144 541L155 543" fill="none" stroke="#987B4F"/></g>
+</g></svg>

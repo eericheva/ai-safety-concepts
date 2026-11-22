@@ -1,0 +1,28 @@
+<svg width="1136" height="1081" xmlns="http://www.w3.org/2000/svg" viewBox="44.5 57.9 568 540.6" data-beast-id="ph-black-swan">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="swan-body" d="M159 316 C129 285 125 237 145 191 C160 157 180 131 162 108 C147 89 119 99 119 121 C120 136 131 145 143 144 C139 167 105 176 87 155 C57 119 83 65 126 61 C170 56 202 83 204 120 C207 165 164 197 168 239 C171 271 201 280 231 277 C281 255 354 258 403 290 C428 306 452 320 488 317 C473 359 449 391 402 409 C340 435 253 423 204 390 C184 377 170 346 159 316Z" fill="#C8A268"/>
+<path id="belly-shadow" d="M184 352 C250 398 372 411 455 359 C431 401 391 421 330 422 C258 423 210 399 184 352Z" fill="#987B4F" stroke="none"/>
+<path id="neck-cream" d="M111 151 C94 202 110 270 148 306 C166 324 181 331 205 336 C171 306 147 270 148 235 C146 201 168 174 170 155" fill="#F2E9D6"/>
+<path id="distribution-wing" d="M202 337 C232 336 233 287 277 284 C322 280 333 331 369 341 C398 349 421 345 448 343 C410 374 356 387 297 379 C257 373 225 360 202 337Z" fill="#F2E9D6"/>
+<path d="M250 316 L250 359 M279 299 L279 371 M309 310 L309 376 M338 335 L338 373 M367 347 L367 368 M394 349 L394 359" fill="none" stroke="#C8A268"/>
+<path id="balancing-foot" d="M292 421 L282 451 L261 465 L317 465 L308 444 L314 424" fill="#C8A268"/>
+</g>
+<g id="props">
+<path id="rare-tail-feather" d="M447 342 C469 314 499 303 517 313 C509 337 483 349 455 350Z" fill="#2E4649"/>
+<path d="M459 343 L503 319" stroke="#F2E9D6" fill="none"/>
+<path id="tension-line" d="M509 327 C533 350 537 385 533 413" fill="none"/>
+<path id="heavy-tail-consequence" d="M477 414 L552 403 L601 456 L580 552 L477 578 L425 518 L443 448Z" fill="#2E4649"/>
+<path d="M477 414 L503 462 L443 448 M503 462 L601 456 M503 462 L477 578 M503 462 L580 552" fill="none" stroke="#79918C"/>
+<path d="M565 584 L582 596 M598 564 L610 568 M433 558 L419 572" fill="none" stroke="#987B4F"/>
+<path id="balance-perch" d="M228 479 L348 479 M285 479 L275 503 L310 503 L298 479" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<path id="beak" d="M86 115 L47 134 L90 139" fill="#987B4F"/>
+<path id="face-patch" d="M89 108 C101 92 125 96 132 112 C129 132 106 141 90 131Z" fill="#F2E9D6"/>
+<ellipse cx="108" cy="116" rx="6" ry="9" fill="#2E4649" stroke="none"/>
+<circle cx="110" cy="113" r="2" fill="#F2E9D6" stroke="none"/>
+<path d="M96 99 L108 96" fill="none"/>
+</g>
+</g>
+</svg>

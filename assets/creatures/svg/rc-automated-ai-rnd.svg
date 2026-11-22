@@ -1,0 +1,38 @@
+<svg width="1050" height="1027" xmlns="http://www.w3.org/2000/svg" viewBox="55.5 48.5 525 513.7" data-beast-id="rc-automated-ai-rnd" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="research-loop" d="M256 397C160 430 172 533 285 555C411 582 501 488 461 405C441 365 415 350 390 344L367 378C432 400 457 468 403 503C347 541 243 517 240 470C239 445 267 438 287 433Z" fill="#C8A268"/>
+<path d="M249 504C300 539 384 533 423 491C404 551 297 570 238 522" fill="#987B4F" stroke="none"/>
+<path id="safety-arm" d="M259 317C213 311 190 270 175 231C160 191 140 170 112 154L91 185C120 200 125 224 135 256C154 317 191 355 245 369Z" fill="#C8A268"/>
+<path id="capability-arm" d="M383 317C429 302 445 265 456 215C469 157 502 124 541 104L558 139C525 161 510 188 503 232C493 301 454 351 397 365Z" fill="#C8A268"/>
+<path d="M421 327C468 302 480 259 488 223" stroke="#987B4F" stroke-width="12"/>
+<path id="lens-body" d="M229 244C254 207 307 191 352 210C401 230 427 270 420 320C412 371 372 411 319 415C266 419 215 384 205 335C197 299 208 270 229 244Z" fill="#C8A268"/>
+<ellipse cx="311" cy="308" rx="88" ry="83" fill="#F2E9D6"/>
+<path d="M254 249C280 229 315 226 342 236" stroke="#FFFFFF" stroke-width="9"/>
+<path id="loop-arrow" d="M269 426L290 402L303 444Z" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<ellipse cx="285" cy="298" rx="10" ry="17" fill="#2E4649" stroke="none"/>
+<ellipse cx="340" cy="298" rx="10" ry="17" fill="#2E4649" stroke="none"/>
+<circle cx="287" cy="291" r="3" fill="#F2E9D6" stroke="none"/>
+<circle cx="342" cy="291" r="3" fill="#F2E9D6" stroke="none"/>
+<path d="M270 273L290 268M331 267L350 274M292 338Q311 326 329 338"/>
+<ellipse cx="263" cy="323" rx="11" ry="6" fill="#D8A08B" stroke="none"/>
+<ellipse cx="358" cy="323" rx="11" ry="6" fill="#D8A08B" stroke="none"/>
+</g>
+<g id="props">
+<path id="safety-probe" d="M69 108L116 87L162 113L151 165Q133 191 113 204Q83 182 75 158Z" fill="#A7C2B5"/>
+<path d="M89 124L114 113L139 126L132 154L113 172L94 152Z" fill="#F2E9D6"/>
+<path d="M113 132V148M105 140H121"/>
+<path id="capability-growth" d="M494 119L517 68L533 89L551 51L578 113L558 140Z" fill="#C8A268"/>
+<path d="M522 120L539 109L548 89L560 117" fill="#F2E9D6"/>
+<path id="honesty-connector-left" d="M150 213Q195 155 273 166L290 187L280 210L261 202Q200 191 175 235" fill="#F2E9D6"/>
+<path id="honesty-connector-right" d="M314 170L337 164Q406 155 460 203L444 228Q400 189 341 199L321 210" fill="#F2E9D6"/>
+<path id="uncertain-joint" d="M296 166L307 182L296 194L308 208" stroke="#B78262"/>
+<path id="research-page" d="M306 454L334 437L364 459L338 481Z" fill="#F2E9D6"/>
+<path d="M322 454L337 451L348 459M326 466L337 463"/>
+<path id="recursive-result" d="M379 479L398 457L416 477L396 499Z" fill="#A7C2B5"/>
+<path d="M390 478L396 472L403 478L397 485Z" fill="#F2E9D6"/>
+<path id="safety-acceleration" d="M58 222L69 202M73 246L91 219M95 268L113 243" stroke="#A7C2B5"/>
+<path id="capability-acceleration" d="M530 238L548 213M542 210L560 185M550 177L566 155" stroke="#C8A268"/>
+</g>
+</svg>

@@ -1,0 +1,22 @@
+<svg width="1005" height="1065" xmlns="http://www.w3.org/2000/svg" viewBox="67.4 59.5 502.6 532.5" data-beast-id="in-polysemanticity" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="leaf-receptor"><path d="M224 269 Q188 203 129 170"/><path d="M128 177 Q62 163 71 91 Q145 83 160 139 Q162 165 128 177Z" fill="#92B5A0"/><path d="M90 110 129 162 M103 125 128 124 M115 142 113 116" stroke="#F2E9D6"/></g>
+<g id="key-receptor"><path d="M319 246 319 148"/><circle cx="319" cy="92" r="30" fill="#F2E9D6"/><circle cx="319" cy="92" r="10"/><path d="M311 121V182H338V166H327V153H338V138H327V121" fill="#C8A268"/></g>
+<g id="wave-receptor"><path d="M412 271 Q454 216 493 183"/><path d="M453 160 Q466 123 480 160 T507 160 T534 160 T561 160" stroke="#84ADB5" stroke-width="18"/><path d="M453 160 Q466 123 480 160 T507 160 T534 160 T561 160" stroke-width="5"/><path d="M506 174 493 187"/></g>
+</g>
+<g id="body">
+<path id="left-foot" d="M194 470 Q145 508 163 535 Q198 552 232 505" fill="#987B4F"/>
+<path id="right-foot" d="M434 472 Q485 512 464 537 Q428 550 402 505" fill="#987B4F"/>
+<path id="bell-shell" d="M144 421 C157 386 159 298 208 261 C259 219 372 217 425 257 C481 298 484 385 499 421 L529 455 Q540 480 512 491 C417 528 223 528 127 491 Q101 480 112 457Z" fill="#C8A268"/>
+<path id="lower-rim" d="M117 453 Q313 508 524 452 L529 455 Q540 480 512 491 C417 528 223 528 127 491 Q101 480 112 457Z" fill="#987B4F"/>
+<path id="shared-cavity" d="M190 414 C193 356 200 295 245 278 Q318 250 390 278 C437 296 445 355 448 414 Q319 451 190 414Z" fill="#F2E9D6"/>
+<g id="converging-inputs"><path d="M211 295 Q226 333 284 361" stroke="#92B5A0" stroke-width="10"/><path d="M319 272V351" stroke="#C8A268" stroke-width="10"/><path d="M426 295 Q403 333 352 361" stroke="#84ADB5" stroke-width="10"/></g>
+<path id="single-activation" d="m320 332 14 20 24-6-4 24 20 15-24 10-1 25-24-11-21 15-7-24-25-6 17-19-7-24 25 2Z" fill="#E7BD5F"/>
+<path id="axon" d="M320 505V553 Q320 575 349 575H390" stroke="#C8A268" stroke-width="15"/><path d="m380 562 17 13-17 13" stroke="#C8A268" stroke-width="8"/>
+</g>
+<g id="face">
+<ellipse cx="283" cy="465" rx="7" ry="10" fill="#2E4649" stroke="none"/><ellipse cx="359" cy="465" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M308 481Q320 489 333 481"/><path d="m269 446 15-5 M354 441l15 5"/>
+<path d="M250 476h13 M377 476h13" stroke="#D99C82" stroke-width="7"/>
+</g>
+</svg>

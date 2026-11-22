@@ -1,0 +1,44 @@
+<svg width="852" height="1110" xmlns="http://www.w3.org/2000/svg" viewBox="104.4 47.5 426.1 555.0" data-beast-id="cr-mind-crime" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="branching-computation-body" fill="#C8A268" d="M272 547 Q251 485 270 414 L245 346 180 310 Q122 287 117 242 L107 156 Q105 126 131 108 Q157 93 180 115 L211 155 224 249 270 278 283 182 263 124 Q250 82 279 60 Q309 39 338 62 L368 94 Q390 119 376 148 L354 196 364 268 411 234 420 147 Q422 115 449 103 Q480 94 502 119 L528 163 517 252 Q514 289 483 312 L397 362 370 425 379 551 416 582 Q423 598 398 600 L344 591 320 560 297 592 241 599 Q220 599 226 583Z"/>
+<path id="trunk-shadow" fill="#987B4F" stroke="none" d="M348 376 370 425 379 551 407 582 356 568 340 521 342 438 321 411Z"/>
+<path id="left-branch-ridge" stroke="#987B4F" d="M132 169 149 251 180 276 243 307 282 347"/>
+<path id="right-branch-ridge" stroke="#987B4F" d="M495 162 488 253 464 280 379 331"/>
+<path id="upper-channel" stroke="#987B4F" d="M302 203 310 278 297 326"/>
+</g>
+<g id="props">
+<g id="left-simulation-pocket">
+<path fill="#F2E9D6" d="M129 155 Q128 132 149 129 Q174 132 185 164 L197 229 Q200 261 177 264 Q151 261 144 233Z"/>
+<path fill="#A9C5BF" d="M153 244 150 218 Q138 210 144 196 Q149 183 162 187 Q180 193 173 210 L183 242Z"/>
+<path d="m149 201 5-3m8 2 5 3m-13 10q5-5 10 0" stroke-width="3"/>
+<path stroke="#B77C64" stroke-width="4" d="m137 169 13 3-7 11m38 34-9 8 10 4"/>
+</g>
+<g id="upper-simulation-pocket">
+<path fill="#F2E9D6" d="M289 83 Q310 69 331 88 L349 110 Q359 125 347 143 L325 176 Q312 187 301 173 L287 132 Q276 101 289 83Z"/>
+<path fill="#A9C5BF" d="M301 154 302 138 Q291 130 297 118 Q306 104 319 114 Q331 123 323 135 L327 155 Q312 167 301 154Z"/>
+<path stroke-width="3" d="m302 124 5-3m8 0 5 4m-14 12q5-6 10-1"/>
+<path stroke="#B77C64" stroke-width="4" d="m288 103 12-5m40 40-8 4 5 10"/>
+</g>
+<g id="right-simulation-pocket">
+<path fill="#F2E9D6" d="M442 151 Q448 126 469 129 Q489 133 500 167 L491 232 Q485 260 462 261 Q438 256 437 231Z"/>
+<path fill="#A9C5BF" d="m448 241 4-26q-11-11-3-23 9-12 22-4 11 8 4 22l4 28q-15 11-31 3Z"/>
+<path stroke-width="3" d="m453 199 5-4m8 1 6 3m-15 14q6-7 11-2"/>
+<path stroke="#B77C64" stroke-width="4" d="m449 161 13 5-6 11m33 40-8 7 8 6"/>
+</g>
+<g id="internal-prediction-circuit" stroke="#2E4649">
+<path d="M176 279 176 290 290 356M317 193 317 343M466 278 466 295 340 365"/>
+<path fill="#F2E9D6" d="m317 332 20 22-20 22-20-22Z"/>
+<circle cx="220" cy="315" r="7" fill="#F2E9D6"/>
+<circle cx="408" cy="326" r="7" fill="#F2E9D6"/>
+<path d="M317 376V401"/>
+</g>
+</g>
+<g id="face">
+<path id="trunk-face" fill="#F2E9D6" d="M284 421 Q315 403 349 421 L351 469 Q318 492 283 471Z"/>
+<path id="concentrating-brows" d="m291 430 13-3m26 0 13 4"/>
+<ellipse id="left-eye" cx="299" cy="443" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<ellipse id="right-eye" cx="336" cy="443" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path id="neutral-mouth" d="M308 465h20"/>
+<path id="lower-circuit" d="M317 492v33m-13-15h26"/>
+</g>
+</svg>

@@ -1,0 +1,43 @@
+<svg width="1076" height="850" xmlns="http://www.w3.org/2000/svg" viewBox="48.5 96.5 538 425" data-beast-id="ov-malign-prior">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="funnel-shell" fill="#C8A268" d="M159 99C263 100 332 198 403 248C453 282 475 291 509 290L531 351C474 384 425 385 380 409C301 451 240 518 160 518Z"/>
+<path id="underside" fill="#987B4F" d="M168 477C265 452 326 389 382 366C429 347 480 348 520 326L531 351C474 384 425 385 380 409C301 451 240 518 160 518Z"/>
+<ellipse id="mouth-rim" cx="159" cy="308" rx="108" ry="209" fill="#C8A268"/>
+<ellipse id="inner-cavity" cx="160" cy="308" rx="81" ry="177" fill="#987B4F"/>
+<path id="shell-middle" fill="#F2E9D6" d="M159 160C211 173 262 211 310 242C337 260 358 279 370 301C356 330 331 355 308 373C262 410 212 449 160 461C207 415 226 363 226 308C226 252 207 198 159 160Z"/>
+<path id="shell-inner" fill="#C8A268" d="M209 221C262 234 301 265 331 284L413 309L342 352C291 362 250 389 208 399C241 352 245 271 209 221Z"/>
+<path id="shell-core" fill="#F2E9D6" d="M251 267C285 277 320 293 345 301L423 313L343 332C308 338 278 351 251 357C265 326 265 298 251 267Z"/>
+<path id="prediction-snout" fill="#C8A268" d="M386 274C425 283 458 293 490 278C521 264 533 283 532 309C531 331 526 344 545 367L576 400L536 429C510 410 492 391 483 366C463 351 431 352 393 358"/>
+<path fill="#987B4F" d="M493 337C490 365 512 397 536 429L576 400L561 385L539 400C515 375 513 355 518 331Z"/>
+<ellipse id="snout-aperture" cx="554" cy="414" rx="25" ry="14" transform="rotate(-35 554 414)" fill="#2E4649"/>
+</g>
+<g id="props">
+<g id="hidden-optimizer-upper">
+<path fill="#A9C3BD" d="M166 220C147 203 153 179 174 177C201 173 213 198 204 220L186 236Z"/>
+<path fill="#F2E9D6" d="M162 201Q181 183 199 202Q182 220 162 201Z"/>
+<ellipse cx="183" cy="201" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path id="upper-tendril" fill="none" stroke="#6D9990" stroke-width="9" d="M193 221C213 259 284 242 327 260S404 288 447 302C471 310 483 320 488 342"/>
+</g>
+<g id="hidden-optimizer-lower">
+<path fill="#A9C3BD" d="M160 407C144 386 157 363 177 366C198 367 212 386 202 406L183 422Z"/>
+<path fill="#F2E9D6" d="M159 387Q179 371 197 390Q177 406 159 387Z"/>
+<ellipse cx="181" cy="389" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path id="lower-tendril" fill="none" stroke="#6D9990" stroke-width="9" d="M195 403C241 420 269 382 299 370C347 351 393 355 435 348C464 344 482 357 488 371"/>
+</g>
+<path id="steering-grip" fill="none" stroke="#6D9990" stroke-width="7" d="M484 337Q503 332 511 345M484 348Q504 343 515 355M487 366Q507 357 521 369"/>
+<g id="redirected-prediction" fill="#F2E9D6">
+<path d="M566 454L584 468L568 487L550 473Z"/>
+<path d="M529 489L545 502L531 519L515 506Z"/>
+</g>
+<path id="simple-hypothesis-mark" fill="none" stroke="#F2E9D6" d="M116 248L134 248L134 265M103 303L123 303M115 342L134 342L134 325"/>
+</g>
+<g id="face">
+<path id="face-patch" fill="#F2E9D6" d="M371 273Q413 252 447 281L450 318Q410 337 378 316Z"/>
+<ellipse cx="394" cy="292" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse cx="429" cy="289" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path id="unaware-mouth" fill="none" d="M402 310Q413 315 422 307"/>
+<path fill="none" d="M387 275L400 272M421 271L435 274"/>
+</g>
+</g>
+</svg>
