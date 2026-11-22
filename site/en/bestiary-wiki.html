@@ -667,14 +667,18 @@ function drawBeast(cv, node, opts={}){
   if(A){ const k=cv.width*.9/Math.max(A.w,A.h), w=A.w*k, h=A.h*k; g.drawImage(A.im,(cv.width-w)/2,(cv.height-h)/2,w,h); return; }
   g.drawImage(monBeast(node.id,F.era.cats[node.era].color),0,0,cv.width,cv.height);
 }
-Promise.all([
-  fetch(ASSETS+"assets/monster/spritesheet_default.xml").then(r=>r.text()),
-  new Promise((res,rej)=>{MON.img.onload=res; MON.img.onerror=rej; MON.img.src=ASSETS+"assets/monster/spritesheet_default.png";}),
-  Promise.all([fetch(ASSETS+"assets/creatures/creatures.json").then(r=>r.json()), fetch(ASSETS+"data/bestiary-interactives.json").then(r=>r.json())])
-    .then(([art,d])=>Promise.all(Object.entries(art).filter(([id])=>BY[id]).map(([id,A])=>artImage(id,A,d.roleColors)))),
-]).then(([xml])=>{
-  const re=/name="([^"]+)"\s+x="(\d+)"\s+y="(\d+)"\s+width="(\d+)"\s+height="(\d+)"/g; let m;
-  while((m=re.exec(xml))) MON.frames[m[1]]={x:+m[2],y:+m[3],w:+m[4],h:+m[5]};
+// CHANGED 2026-11-22: the creatures first; the monster sprite sheet (143 KB and its XML) only when a beast has no creature
+// (site optimisation: every beast has one now). MON.ready means a beast can be drawn.
+Promise.all([fetch(ASSETS+"assets/creatures/creatures.json").then(r=>r.json()), fetch(ASSETS+"data/bestiary-interactives.json").then(r=>r.json())])
+  .then(([art,d])=>Promise.all(Object.entries(art).filter(([id])=>BY[id]).map(([id,A])=>artImage(id,A,d.roleColors))).then(()=>art))
+  .then(art=>NODES.some(n=>!art[n.id]) && Promise.all([
+    fetch(ASSETS+"assets/monster/spritesheet_default.xml").then(r=>r.text()),
+    new Promise((res,rej)=>{MON.img.onload=res; MON.img.onerror=rej; MON.img.src=ASSETS+"assets/monster/spritesheet_default.png";}),
+  ]).then(([xml])=>{
+    const re=/name="([^"]+)"\s+x="(\d+)"\s+y="(\d+)"\s+width="(\d+)"\s+height="(\d+)"/g; let m;
+    while((m=re.exec(xml))) MON.frames[m[1]]={x:+m[2],y:+m[3],w:+m[4],h:+m[5]};
+  }))
+  .then(()=>{
   MON.ready=true;
   for(const d of WAITING) if(d[0].isConnected) drawBeast(...d);
   WAITING.clear();
