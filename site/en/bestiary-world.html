@@ -125,19 +125,7 @@
       </div>
     </sc-if>
     </div>
-    <div style="flex:none;display:flex;flex-direction:column;gap:8px;border-top:1px solid #2e2b28;padding-top:12px">
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center">
-        <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Beast colour by</span>
-        <sc-for list="{{ cbs }}" as="cb" hint-placeholder-count="4">
-          <button onClick="{{ cb.go }}" style="min-height:30px;border:1px solid #4a4540;background:{{ cb.bg }};color:{{ cb.fg }};font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase;cursor:pointer">{{ cb.label }}</button>
-        </sc-for>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font:400 11.5px 'Onest',sans-serif;color:#9a948b">
-        <sc-for list="{{ colLegend }}" as="cl" hint-placeholder-count="6">
-          <span style="display:flex;align-items:center;gap:5px"><i style="width:9px;height:9px;background:{{ cl.c }}"></i>{{ cl.l }}</span>
-        </sc-for>
-      </div>
-    </div>
+    <!-- CHANGED 2026-11-22: the beasts' colouring moved to the right panel (owner: it took the room the expedition needs) -->
   </div>
   </sc-if>
 
@@ -196,6 +184,29 @@
           </div>
         </sc-for>
       </div>
+      <!-- ADDED 2026-11-22: both colourings at the foot of the beast card in Wander and Chronicle; none in the expedition,
+           which keeps the colours chosen before it (owner) -->
+      <sc-if value="{{ colInCard }}" hint-placeholder-val="{{ false }}">
+      <div style="position:sticky;bottom:0;margin-top:auto;flex:none;display:flex;flex-direction:column;gap:8px;padding:12px 18px;background:#11100e;border-top:1px solid #2e2b28">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center;">
+          <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Islands by</span>
+          <sc-for list="{{ grps }}" as="gp" hint-placeholder-count="4">
+            <button onClick="{{ gp.go }}" style="min-height:30px;border:1px solid #4a4540;background:{{ gp.bg }};color:{{ gp.fg }};font:700 10px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">{{ gp.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center">
+          <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Beasts by</span>
+          <sc-for list="{{ cbs }}" as="cb" hint-placeholder-count="4">
+            <button onClick="{{ cb.go }}" style="min-height:30px;border:1px solid #4a4540;background:{{ cb.bg }};color:{{ cb.fg }};font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase;cursor:pointer">{{ cb.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font:400 11.5px 'Onest',sans-serif;color:#9a948b">
+          <sc-for list="{{ colLegend }}" as="cl" hint-placeholder-count="6">
+            <span style="display:flex;align-items:center;gap:5px"><i style="width:9px;height:9px;background:{{ cl.c }}"></i>{{ cl.l }}</span>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
     </div>
   </sc-if>
 
@@ -215,11 +226,13 @@
   </div>
 
     <sc-if value="{{ legendOn }}" hint-placeholder-val="{{ false }}">
-    <div style="position:absolute;left:{{ legL }}px;bottom:16px;display:flex;flex-direction:column;gap:6px;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:10px 10px 8px;width:{{ legW }}px;max-width:860px;box-sizing:border-box">
+    <div style="position:absolute;left:{{ legL }}px;bottom:16px;display:flex;flex-direction:column;gap:6px;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:10px 10px 8px;width:{{ legW }}px;box-sizing:border-box">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:0 4px"><span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#cfc8bd">How to read the lines · hover to light up, click to hide</span><sc-if value="{{ anyOff }}" hint-placeholder-val="{{ false }}"><button onClick="{{ showAll }}" style="min-height:28px;padding:0 10px;background:#d8a24a;border:0;color:#0c0b0a;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Show all links</button></sc-if></div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:4px">
+      <!-- CHANGED 2026-11-22: one row of link kinds across the whole width between the side panels, never two rows; when it
+           does not fit, the row scrolls sideways (owner) -->
+      <div style="display:flex;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e">
       <sc-for list="{{ legend }}" as="g" hint-placeholder-count="4">
-        <button onClick="{{ g.toggle }}" onMouseEnter="{{ g.enter }}" onMouseLeave="{{ g.leave }}" title="{{ g.tip }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:8px 10px;background:transparent;border:1px solid #26231f;cursor:pointer;text-align:left;opacity:{{ g.op }}" style-hover="border-color:#4a4540;background:#171513">
+        <button onClick="{{ g.toggle }}" onMouseEnter="{{ g.enter }}" onMouseLeave="{{ g.leave }}" title="{{ g.tip }}" style="flex:1 0 {{ legCardW }}px;display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:8px 10px;background:transparent;border:1px solid #26231f;cursor:pointer;text-align:left;opacity:{{ g.op }}" style-hover="border-color:#4a4540;background:#171513">
           <span style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:0;border-top:{{ g.line }}"></span><span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ g.col }}">{{ g.name }}</span></span>
           <sc-if value="{{ legFull }}" hint-placeholder-val="{{ true }}"><span style="font:400 12px/1.35 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ g.verb }}</span></sc-if>
         </button>
@@ -256,6 +269,20 @@
         <sc-for list="{{ grps }}" as="gp" hint-placeholder-count="4">
           <button onClick="{{ gp.go }}" style="min-height:30px;border:1px solid #4a4540;background:{{ gp.bg }};color:{{ gp.fg }};font:700 10px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">{{ gp.label }}</button>
         </sc-for>
+      </div>
+      <!-- ADDED 2026-11-22: the beasts' colouring, next to the islands' (owner) -->
+      <div style="flex:none;display:flex;flex-direction:column;gap:8px;padding:0 14px 12px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center">
+        <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Beasts by</span>
+        <sc-for list="{{ cbs }}" as="cb" hint-placeholder-count="4">
+          <button onClick="{{ cb.go }}" style="min-height:30px;border:1px solid #4a4540;background:{{ cb.bg }};color:{{ cb.fg }};font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase;cursor:pointer">{{ cb.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font:400 11.5px 'Onest',sans-serif;color:#9a948b">
+        <sc-for list="{{ colLegend }}" as="cl" hint-placeholder-count="6">
+          <span style="display:flex;align-items:center;gap:5px"><i style="width:9px;height:9px;background:{{ cl.c }}"></i>{{ cl.l }}</span>
+        </sc-for>
+      </div>
       </div>
     </div>
   </sc-if>
@@ -783,7 +810,7 @@ class Component extends DCLogic {
       modes, help, q:s.q, onQ:e=>this.setState({q:e.target.value}), results, hasResults:results.length>0,
       
       hasFocus:!!fn&&!this.journalHidden(), fFam:vn?FAM[vn.fam][0]:'', fFamCol:vn?FCOL[vn.fam]:'#d8a24a', fName:vn?vn.name:'', fRole:vn?vn.roleL:'', fRoleCol:vn?vn.roleCol:'#e8e6e6', fWeight:vn?vn.w:'', fEra:vn?(ERA[vn.era]||vn.era):'', fBlurb:vn?vn.blurb:'', fWho:vn?vn.who:'', fWiki:vn?`/bestiarium/wiki/${vn.id}`:'#', peeking:!!pv, notPeeking:!pv, hostName:fn?fn.name:'', backHost:()=>this.setState({peek:null}), stepLabel:pk?`Step to ${pk.name.length>26?pk.name.slice(0,24)+'…':pk.name} →`:'', sections, close:()=>this.clearFocus(),
-      legend, legendOn:!!fn&&legend.length>0, anyOff:Object.values(s.groups).some(v=>!v), showAll:()=>this.setState({groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>this.buildCouncil()), legL:this.leftInset()+16, legFull:this.W-this.leftInset()-this.rightInset()>760, legW:Math.max(300,this.W-this.leftInset()-this.rightInset()-32),
+      legend, legendOn:!!fn&&legend.length>0, anyOff:Object.values(s.groups).some(v=>!v), showAll:()=>this.setState({groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>this.buildCouncil()), legL:this.leftInset()+16, legFull:this.W-this.leftInset()-this.rightInset()-52>=legend.length*174, legCardW:this.W-this.leftInset()-this.rightInset()-52>=legend.length*174?170:120, legW:Math.max(300,this.W-this.leftInset()-this.rightInset()-32), // CHANGED 2026-11-22: the texts show when every card fits in one row with them (170 px), else the cards are 120 px
       wOn:ready&&s.mode==='explore', wEmpty:this.wpath.length===0, wCount:`${this.wpath.length} stop${this.wpath.length===1?'':'s'}`, wBackOp:this.wpath.length>1?1:.4,
       wBack:()=>this.wanderBack(), wClear:()=>{ this.saveTrail(s.focus?[s.focus]:[]); this.setState({tick:s.tick+1}); },
       wSteps:ready?this.wpath.map((id,i)=>{ const p=this.wpath[i-1], e=p&&this.edgeBetween(p,id), n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):'';
@@ -792,7 +819,7 @@ class Component extends DCLogic {
       hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), rStart:r&&ready?this.byId.get(r.sp[0]).name:'', rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
       chronOn:s.mode==='chronicle', playLabel:s.playing?'❚❚':'▶', eraLabel:ERA[ERAK[s.era]], era:s.era, onEra:e=>{clearInterval(this.playT);this.setState({playing:false});this.setEra(+e.target.value);}, togglePlay:()=>this.togglePlay(), alive:ready?`${this.nodes.filter(n=>n.ei<=s.era).length} beasts alive`:'',
       hasHover:!!h, hx:h?h.x:0, hy:h?h.y:0, hTag:h?h.tag:'', hTitle:h?h.title:'', hSub:h?h.sub:'', hCol:h?h.col:'#d8a24a',
-      hasToast:!!s.toast, toast:s.toast||'', toastTop:16, showDetails:true, showCard:!this.cardHidden(),
+      hasToast:!!s.toast, toast:s.toast||'', toastTop:16, showDetails:true, showCard:!this.cardHidden(), colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
     };
   }
 }
