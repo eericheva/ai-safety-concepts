@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1055" height="911" viewBox="48.1 91.0 527.4 455.5" fill="none">
+  <g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="c14-body">
+      <path id="c14-magnet-body" fill="#C8A268" d="M54 459C65 369 82 283 119 215C157 143 212 98 279 94C354 89 418 121 448 181C486 258 479 375 430 511C422 535 417 543 396 544C375 544 353 541 344 535C335 530 337 521 343 505C366 445 386 376 389 327C392 276 380 241 355 224C332 208 304 207 275 212C238 219 205 245 180 283C147 334 135 400 124 465L119 495C117 513 108 518 91 514C74 511 58 505 53 497C48 490 52 475 54 459Z" style="fill:#C8A268;" />
+      <path id="c14-magnet-shadow" fill="#987B4F" stroke="none" d="M423 171C454 225 466 290 454 365C446 417 434 461 416 509L400 522L354 518C380 447 403 379 407 329C412 272 396 237 368 216C350 203 331 199 307 200C355 185 396 204 414 235C435 271 431 336 419 388C449 292 448 222 423 171Z" style="fill:#987B4F;" />
+      <path id="c14-left-pole" fill="#F2E9D6" d="M58 435C78 444 99 450 128 455L119 495C117 513 108 518 91 514C74 511 58 505 53 497C48 490 52 475 58 435Z" />
+      <path id="c14-right-pole" fill="#F2E9D6" d="M355 475C379 482 405 488 439 492L430 511C422 535 417 543 396 544C375 544 353 541 344 535C335 530 337 521 343 505L355 475Z" />
+    </g>
+    <g id="c14-face">
+      <path id="c14-face-patch" fill="#F2E9D6" stroke="none" d="M190 151C196 127 218 117 239 121C258 124 276 144 302 146C333 150 349 132 372 136C397 139 416 160 413 183C411 208 387 217 365 213C341 208 323 202 300 201C278 200 256 202 233 200C209 198 186 184 190 151Z" />
+      <g id="c14-star-eyes" fill="#2E4649">
+        <path id="c14-left-eye" d="M235 128L245 145L264 148L251 162L253 183L234 173L216 181L219 161L206 146L226 145Z" />
+        <path id="c14-right-eye" d="M374 145L376 165L395 174L376 184L374 205L358 192L337 196L344 176L332 161L354 162Z" />
+      </g>
+      <circle cx="234" cy="152" r="6" fill="#F2E9D6" stroke="none" />
+      <circle cx="370" cy="173" r="6" fill="#F2E9D6" stroke="none" />
+      <path id="c14-smile" d="M278 175C289 192 309 194 323 180" />
+    </g>
+    <g id="c14-props">
+      <g id="c14-attracted-flower">
+        <path id="c14-pointed-flower-stem" d="M304 291L285 349" stroke="#89A76E" stroke-width="7" />
+        <path fill="#89A76E" d="M289 331C270 332 255 323 253 311C271 309 285 317 289 331Z" />
+        <path fill="#89A76E" d="M289 335C296 323 312 317 329 321C325 334 307 341 289 335Z" />
+        <path id="c14-pointed-petals" fill="#DDA0AE" d="M298 258C299 248 305 237 314 228C320 239 323 249 322 259C334 257 346 260 356 267C347 277 338 282 326 284C331 295 331 306 329 316C315 310 307 304 301 294C290 302 278 306 266 305C270 291 275 282 282 277C272 273 264 263 260 252C274 250 287 252 298 258Z" />
+        <circle id="c14-pointed-flower-center" cx="306" cy="275" r="13" fill="#F2E9D6" />
+      </g>
+      <g id="c14-attracted-metal-star">
+        <path id="c14-scrap-outline" fill="#9DB8BF" d="M215 333L220 344L226 344L235 360L267 361L246 384L251 404L247 406L248 414L242 419L235 411L223 418L204 410L183 423L187 393L167 378L175 376L180 381L185 372L191 375L196 366L204 365Z" />
+        <circle id="c14-scrap-hole" cx="217" cy="383" r="8" fill="#192A32" />
+      </g>
+      <g id="c14-attracted-paper-star">
+        <path id="c14-paper-outline" fill="#F2E9D6" d="M293 411L304 442L332 454L307 474L304 504L278 485L245 492L256 462L239 436L273 435Z" />
+        <path id="c14-paper-fold" d="M304 442L245 492" stroke-width="3.5" />
+      </g>
+      <g id="c14-attraction-marks" stroke="#F2E9D6" stroke-width="5">
+        <path d="M192 300C198 287 208 276 223 269" />
+        <path d="M206 309C211 298 218 290 225 286" />
+        <path d="M329 372C341 383 347 396 350 411" />
+        <path d="M327 394C333 401 337 412 338 423" />
+      </g>
+      <g id="c14-ignored-round-flower">
+        <path id="c14-daisy-stem" d="M520 527L530 451" stroke="#89A76E" stroke-width="8" />
+        <path id="c14-daisy-left-leaf" fill="#89A76E" d="M520 517C497 516 479 508 475 485C494 482 515 490 520 517Z" />
+        <path id="c14-daisy-right-leaf" fill="#89A76E" d="M526 519C531 497 549 488 569 490C565 510 546 521 526 519Z" />
+        <g id="c14-daisy-round-petals" fill="#F2E9D6">
+          <ellipse cx="530" cy="420" rx="17" ry="19" />
+          <ellipse cx="555" cy="439" rx="18" ry="17" />
+          <ellipse cx="546" cy="468" rx="17" ry="18" transform="rotate(-33 546 468)" />
+          <ellipse cx="516" cy="468" rx="17" ry="18" transform="rotate(33 516 468)" />
+          <ellipse cx="504" cy="439" rx="18" ry="17" />
+        </g>
+        <circle id="c14-daisy-center" cx="530" cy="447" r="16" fill="#D8A24A" />
+        <path id="c14-daisy-earth" fill="#987B4F" d="M483 540C492 526 505 520 521 521C536 521 548 527 557 540Z" />
+      </g>
+    </g>
+  </g>
+</svg>

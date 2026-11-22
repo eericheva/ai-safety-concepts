@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1093" height="748" viewBox="51.0 154.5 546.5 374.0" fill="none">
+  <g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="c21-props">
+      <g id="c21-old-water-environment">
+        <path d="M250 158C158 148 68 215 55 321C42 416 113 486 243 486C206 441 199 398 211 350C227 293 268 229 250 158Z" fill="#A9C8CE" />
+        <path d="M79 310C104 298 118 298 141 310C165 323 183 322 207 310M69 359C93 348 109 348 132 359C156 372 174 373 202 360M94 407C118 396 135 399 154 410C172 421 186 421 204 417" stroke="#6A9EA9" />
+        <circle cx="155" cy="225" r="15" fill="#DDEBE5" />
+        <circle cx="110" cy="260" r="8" fill="#DDEBE5" />
+      </g>
+      <g id="c21-new-dry-environment">
+        <path d="M230 492L266 431L302 454L338 413L372 456L405 425L444 457L486 419L520 451L554 432L595 492Z" fill="#987B66" />
+        <path d="M230 492H595L567 526H260Z" fill="#775F50" />
+        <path d="M302 454L289 480L311 493M372 456L359 481L380 495M444 457L433 480L449 496M520 451L506 480L526 495" stroke="#C2A17A" />
+      </g>
+    </g>
+    <g id="c21-body">
+      <g id="c21-tail" fill="#C8A268" style="fill:#C8A268;">
+        <path d="M290 319C232 316 202 281 160 263C140 253 117 254 99 269C124 292 134 309 126 332C114 359 99 376 97 405C145 401 179 378 202 359C226 344 256 348 285 365Z" />
+        <path d="M125 276C145 301 148 329 131 365M150 281C170 307 168 334 151 360" />
+      </g>
+      <g id="c21-dorsal-fin">
+        <path d="M302 262C303 220 323 190 348 179L356 222L385 201L390 245L416 227L426 277Z" fill="#987B4F" style="fill:#987B4F;" />
+      </g>
+      <g id="c21-far-fin">
+        <path d="M421 388C427 420 450 433 468 428L487 408C493 441 477 466 449 467C416 464 394 432 394 402Z" fill="#987B4F" style="fill:#987B4F;" />
+      </g>
+      <path id="c21-fish-body" d="M248 305C286 245 372 232 447 259C500 278 537 320 541 352L566 363L541 378C527 418 489 434 445 431C362 432 306 392 252 368C274 348 273 328 248 305Z" fill="#C8A268" style="fill:#C8A268;" />
+      <path d="M279 365C337 383 382 417 448 418C481 420 513 411 533 391C513 424 481 435 446 431C369 429 307 395 252 368L270 350Z" fill="#987B4F" stroke="none" style="fill:#987B4F;" />
+      <g id="c21-near-fin">
+        <path d="M339 359C358 372 369 389 372 416C376 445 392 460 419 469C389 488 350 475 327 449C309 428 302 401 309 376Z" fill="#C8A268" style="fill:#C8A268;" />
+        <path d="M329 390C331 421 350 451 380 462M344 387C348 411 359 428 373 437" />
+      </g>
+      <path d="M278 310L297 318L285 335M307 287L324 297L311 312" stroke="#987B4F" />
+    </g>
+    <g id="c21-face">
+      <path d="M398 289C419 270 456 282 479 300C506 320 519 343 521 367C506 391 475 404 445 394C414 384 393 357 386 333C382 314 386 301 398 289Z" fill="#F2E9D6" />
+      <ellipse cx="424" cy="325" rx="12" ry="18" fill="#2E4649" stroke="none" />
+      <ellipse cx="480" cy="338" rx="12" ry="18" fill="#2E4649" stroke="none" />
+      <circle cx="427" cy="319" r="4" fill="#F2E9D6" stroke="none" />
+      <circle cx="483" cy="332" r="4" fill="#F2E9D6" stroke="none" />
+      <path d="M411 299Q424 304 438 293M472 306Q484 302 492 311" />
+      <path d="M443 372Q453 361 465 369" />
+      <ellipse cx="406" cy="354" rx="12" ry="6" fill="#E4AA96" stroke="none" />
+      <ellipse cx="493" cy="368" rx="11" ry="6" fill="#E4AA96" stroke="none" />
+    </g>
+    <g id="c21-failed-swimming-motion" stroke="#A9C8CE">
+      <path d="M292 403Q283 420 290 435M279 400Q266 423 276 443" />
+      <path d="M464 476L471 485M480 471L489 479" stroke="#F2E9D6" />
+    </g>
+    <g id="c21-last-water-drops" fill="#A9C8CE">
+      <path d="M226 399C224 413 214 417 214 426C214 441 236 441 236 426C236 417 227 411 226 399Z" />
+      <path d="M192 451C190 460 185 462 185 468C185 478 200 478 200 468C200 462 194 458 192 451Z" />
+    </g>
+  </g>
+</svg>
