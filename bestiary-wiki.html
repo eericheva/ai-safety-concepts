@@ -195,6 +195,7 @@ a.result,a.rel,a.mini{color:inherit;text-decoration:none}
 .vitals{border-top:1px solid var(--rule)}
 .vrow{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:9px 16px;border-bottom:1px solid var(--rule-soft);font-size:13.5px}
 .vrow:last-child{border-bottom:none}
+.vrels{grid-template-columns:1fr}.vrels .v{display:flex;flex-direction:column;gap:3px}.vrels .vrel{display:flex;align-items:center;gap:0;line-height:1.35}.vrels .vrel.weak{opacity:.62}.vrels .vrel .ar{flex:none;width:16px;font-family:var(--ui);font-size:12px}.vrels .wk{margin-left:6px;font-family:var(--ui);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);border:1px dashed var(--rule);border-radius:4px;padding:0 4px}
 .vrow .k{font-family:var(--ui);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);padding-top:2px}
 .vrow .v{color:var(--ink)}
 .vrow .v .sw{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle;transform:translateY(-1px)}
@@ -1073,9 +1074,14 @@ function buildPlate(n){
       ${row(T("vCen"),null,cenLabel(n.cen),null)}
       ${n.mat?row(T("vMat"),null,n.mat,null):""}
       ${nAuthor(n)?row(T("vAuthor"),null,nAuthor(n),null):""}
-      ${row(T("vDeg"),null,String(n.deg||ADJ[n.id].length),null)}
+      <div class="vrow vrels"><span class="k">${esc(T("vDeg"))} ${ADJ[n.id].length}</span><span class="v"></span></div>
     </div>
     ${nHasFull(n)?"":`<div class="card-note">${esc(T("cardNote"))}</div>`}`;
+  // ADDED 2026-11-22: the card lists every beast it is linked with, not only their number (owner); weak links marked
+  const rv=plate.querySelector(".vrels .v");
+  [...ADJ[n.id]].sort((a,b)=>(a.w?1:0)-(b.w?1:0)).forEach(r=>{
+    const a=toBeast(el("a",r.w?"vrel weak":"vrel",`<span class="ar" style="color:${GRP[r.g].color}">${r.out?"→":"←"}</span>${esc(nName(BY[r.o]))}${r.w?` <span class="wk" title="${esc(T("weakHint"))}">${esc(T("weak"))}</span>`:""}`),r.o);
+    a.title=`${verbLabel(r.t)} ${r.out?"→":"←"} ${nName(BY[r.o])}`; rv.appendChild(a); });
   wrap.appendChild(plate);
   return wrap;
 }

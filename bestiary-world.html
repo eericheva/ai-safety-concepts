@@ -15,18 +15,20 @@
 <div ref="{{ wrapRef }}" style="position:relative;width:100%;height:100vh;min-height:560px;overflow:hidden;background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif">
   <canvas ref="{{ cvRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:{{ cursor }}"></canvas>
 
-  <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
-  <div style="position:absolute;left:16px;top:16px;bottom:16px;width:310px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:16px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
-    <div ref="{{ leftRef }}" style="flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;gap:12px">
-    <div style="display:flex;flex-direction:column;gap:4px">
-      <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d8a24a">Bestiarium · map</span>
-      <span style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font:700 20px/1.15 'Unbounded',sans-serif">The Wandering Map</span><button onClick="{{ openIntro }}" title="How this world works" style="width:30px;height:30px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">?</button></span>
-    </div>
-    <div style="display:flex;gap:4px">
+  <!-- ADDED 2026-11-22: one top row holds the title, the modes, ? and what the mode does; the left panel is left to the wandering and the expedition (owner) -->
+  <div style="position:absolute;left:16px;right:16px;top:12px;height:40px;display:flex;align-items:center;gap:12px;background:#11100e;border:1px solid #2e2b28;border-top:3px solid #d8a24a;padding:0 6px 0 14px;box-sizing:border-box;overflow:hidden">
+    <h1 style="margin:0;flex:none;font:700 16px/1 'Unbounded',sans-serif;color:#efeae2;white-space:nowrap">Bestiarium Map</h1>
+    <div style="display:flex;gap:4px;flex:none">
       <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3">
-        <button onClick="{{ m.go }}" style="flex:1;min-height:36px;padding:6px 4px;border:1px solid {{ m.bd }};background:{{ m.bg }};color:{{ m.fg }};font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
+        <button onClick="{{ m.go }}" style="min-height:28px;padding:4px 10px;border:1px solid {{ m.bd }};background:{{ m.bg }};color:{{ m.fg }};font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
       </sc-for>
     </div>
+    <span title="{{ help }}" style="flex:1 1 auto;min-width:0;font:400 13px/1.3 'Onest',sans-serif;color:#cfc8bd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:{{ helpDisp }}">{{ help }}</span>
+    <button onClick="{{ openIntro }}" title="How this world works" style="margin-left:auto;width:28px;height:28px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">?</button>
+  </div>
+  <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
+  <div style="position:absolute;left:16px;top:{{ barH }}px;bottom:16px;width:310px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:16px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
+    <div ref="{{ leftRef }}" style="flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;gap:12px">
     <sc-if value="{{ questOn }}" hint-placeholder-val="{{ false }}">
       <div style="display:flex;flex-direction:column;gap:10px;background:#171513;border:1px solid #2e2b28;padding:12px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
@@ -73,18 +75,8 @@
           </div>
         </sc-if>
       </div>
-      <sc-if value="{{ qPlaying }}" hint-placeholder-val="{{ true }}">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px">
-        <button onClick="{{ qHint }}" title="Light up the next hop on a shortest path" style="min-height:36px;border:1px solid #d8a24a;background:transparent;color:#d8a24a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Hint</button>
-        <button onClick="{{ qUndo }}" title="Step back to where you were" style="min-height:36px;border:1px solid #4a4540;background:transparent;color:#efeae2;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:{{ qUndoOp }}">Undo</button>
-        <button onClick="{{ giveUp }}" title="Show a shortest route" style="min-height:36px;border:1px solid #4a4540;background:transparent;color:#efeae2;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Give up</button>
-      </div>
-      </sc-if>
     </sc-if>
     <sc-if value="{{ showDetails }}" hint-placeholder-val="{{ true }}">
-    <sc-if value="{{ searchOn }}" hint-placeholder-val="{{ true }}">
-    <p style="margin:0;font:400 13.5px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ help }}</p>
-    </sc-if>
     <sc-if value="{{ searchOn }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;flex-direction:column;gap:4px;position:relative">
       <input value="{{ q }}" onChange="{{ onQ }}" placeholder="Find a beast…" style="height:38px;padding:0 12px;background:#0c0b0a;border:1px solid #4a4540;color:#efeae2;font:400 14px 'Onest',sans-serif;outline:none;border-radius:0">
@@ -126,6 +118,14 @@
       </div>
     </sc-if>
     </div>
+    <!-- CHANGED 2026-11-22: Hint, Undo and Give up stand under the panel's scroll, always in view (owner) -->
+      <sc-if value="{{ qFoot }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:none;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px">
+        <button onClick="{{ qHint }}" title="Light up the next hop on a shortest path" style="min-height:36px;border:1px solid #d8a24a;background:transparent;color:#d8a24a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Hint</button>
+        <button onClick="{{ qUndo }}" title="Step back to where you were" style="min-height:36px;border:1px solid #4a4540;background:transparent;color:#efeae2;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:{{ qUndoOp }}">Undo</button>
+        <button onClick="{{ giveUp }}" title="Show a shortest route" style="min-height:36px;border:1px solid #4a4540;background:transparent;color:#efeae2;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Give up</button>
+      </div>
+      </sc-if>
     <!-- CHANGED 2026-11-22: the beasts' colouring moved to the right panel (owner: it took the room the expedition needs) -->
   </div>
   </sc-if>
@@ -133,7 +133,7 @@
 
 
   <sc-if value="{{ hasFocus }}" hint-placeholder-val="{{ false }}">
-    <div style="position:absolute;right:16px;top:16px;bottom:16px;width:350px;max-width:calc(100% - 32px);background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;box-sizing:border-box">
+    <div style="position:absolute;right:16px;top:{{ barH }}px;bottom:16px;width:350px;max-width:calc(100% - 32px);background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;box-sizing:border-box">
       <sc-if value="{{ peeking }}" hint-placeholder-val="{{ false }}">
         <button onClick="{{ backHost }}" style="display:flex;align-items:center;gap:8px;padding:9px 18px;background:#171513;border:0;border-bottom:1px solid #26231f;color:#cfc8bd;text-align:left;cursor:pointer;font:400 12.5px/1.3 'Onest',sans-serif" style-hover="color:#efeae2">
           <span style="font:700 12px 'JetBrains Mono',monospace;color:#d8a24a">←</span><span>Visiting <b style="color:#efeae2">{{ hostName }}</b> · you are looking at a neighbour</span>
@@ -243,7 +243,7 @@
     </sc-if>
 
   <sc-if value="{{ islandsOn }}" hint-placeholder-val="{{ false }}">
-    <div style="position:absolute;right:16px;top:16px;bottom:{{ isB }};width:330px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;box-sizing:border-box">
+    <div style="position:absolute;right:16px;top:{{ barH }}px;bottom:{{ isB }};width:330px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;box-sizing:border-box">
       <button onClick="{{ toggleIs }}" style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:12px 14px;background:transparent;border:0;color:#efeae2;text-align:left;cursor:pointer">
         <span style="display:flex;flex-direction:column;gap:4px">
           <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a">Islands = {{ grpTitle }}</span>
@@ -410,7 +410,7 @@ const SIDE_L={left:'COMES FROM',right:'LEADS TO',top:'ARGUES WITH',bottom:'KIN &
 const ARR={rel:{name:'Relation',L:SIDE_L,T:null,note:'Sides by kind of link: left feeds it, right follows from it, top argues with it, bottom is kin.'},time:{name:'Time',L:{left:'OLDER IDEAS',right:'NEWER IDEAS',top:'',bottom:'SAME ERA'},T:{left:['Older ideas','came before it in time'],right:['Newer ideas','came after it in time'],top:['',''],bottom:['Same era','from the same period']},note:'Sides by era: older neighbours on the left, newer on the right, same era below.'},role:{name:'Role',L:{left:'PROBLEMS',right:'SOLUTIONS',top:'CLAIMS & CRITIQUES',bottom:'LENSES & EVIDENCE'},T:{left:['Problems','failure modes'],right:['Solutions','fixes and methods'],top:['Claims & critiques','theses and objections'],bottom:['Lenses & evidence','lenses, mechanisms, findings, metaphors']},note:'Sides by the neighbour’s role in the argument: problems left, solutions right.'}};
 const SPR={blue:{A:[366,472,165,165],B:[0,192,192,192],C:[677,0,141,194],D:[192,546,174,182],E:[683,1190,132,250],F:[366,0,170,236]},dark:{A:[531,472,165,165],B:[0,0,192,192],C:[677,194,141,194],D:[192,182,174,182],E:[697,388,132,250],F:[348,1200,170,236]},green:{A:[518,1129,165,165],B:[0,768,192,192],C:[536,194,141,194],D:[192,0,174,182],E:[824,888,132,250],F:[366,236,170,236]},red:{A:[518,964,165,165],B:[0,960,192,192],C:[536,0,141,194],D:[0,1152,174,182],E:[818,0,132,250],F:[192,728,170,236]},white:{A:[518,1294,165,165],B:[0,384,192,192],C:[683,996,141,194],D:[192,364,174,182],E:[815,1190,132,250],F:[362,728,170,236]},yellow:{A:[532,637,165,165],B:[0,576,192,192],C:[683,802,141,194],D:[174,1152,174,182],E:[824,638,132,250],F:[348,964,170,236]}};
 const EYE={cute:[1026,1410,64,69],core:[1090,1410,64,69],angry:[757,747,60,55]};
-const LSW='bestiary-wandering-trail'; const ART_PX=200; // ADDED 2026-11-22: raster size of a creature, see artImg
+const LSW='bestiary-wandering-trail'; const BAR=64; /* ADDED 2026-11-22: the top row's foot, panels start there */ const ART_PX=200; // ADDED 2026-11-22: raster size of a creature, see artImg
 const bez=(p0,c,p1,u)=>[(1-u)*(1-u)*p0[0]+2*(1-u)*u*c[0]+u*u*p1[0],(1-u)*(1-u)*p0[1]+2*(1-u)*u*c[1]+u*u*p1[1]];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};
@@ -487,7 +487,7 @@ class Component extends DCLogic {
   journalHidden(){ return this.state.mode==='quest'&&this.W<1250; }
   rightInset(){ return this.state.focus&&!this.journalHidden()&&this.W>900?370:0; }
   leftInset(){ return this.W>700&&!this.cardHidden()?342:0; }
-  fitWorld(instant){ const b=this.wb; if(!b) return; const L=this.leftInset(); const z=clamp(Math.min((this.W-L-20)/(b.x1-b.x0+260),(this.H-60)/(b.y1-b.y0+220)),.2,1); const T={x:(b.x0+b.x1)/2-(L/2)/z,y:(b.y0+b.y1)/2+10/z,z}; if(instant) this.cam={...T}; else this.camT=T; }
+  fitWorld(instant){ const b=this.wb; if(!b) return; const L=this.leftInset(); const z=clamp(Math.min((this.W-L-20)/(b.x1-b.x0+260),(this.H-60-BAR)/(b.y1-b.y0+220)),.2,1); const T={x:(b.x0+b.x1)/2-(L/2)/z,y:(b.y0+b.y1)/2+(10-BAR/2)/z,z}; /* CHANGED 2026-11-22: below the top row */ if(instant) this.cam={...T}; else this.camT=T; }
 
   bindInput(cv){
     let down=null; const pos=e=>{const r=cv.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top];};
@@ -593,8 +593,8 @@ class Component extends DCLogic {
     let cx=fn.px,cy=fn.py,R;
     if(this.props.gather!==false) R=this.council.Rmax+90;
     else { let m=120; this.council.map.forEach(v=>{const o=this.byId.get(v.o);m=Math.max(m,Math.hypot(o.hx-fn.px,o.hy-fn.py)+60);}); R=m; }
-    const L=this.leftInset(), B=this.H>620?190:120; const z=clamp(Math.min(this.W-panel-L-40,this.H-B-30)/(2*R),.2,1.9);
-    this.camT={x:cx-((L+(this.W-panel))/2-this.W/2)/z,y:cy+(B/2-10)/z,z}; }
+    const L=this.leftInset(), B=this.H>620?190:120; const z=clamp(Math.min(this.W-panel-L-40,this.H-B-30-BAR)/(2*R),.2,1.9);
+    this.camT={x:cx-((L+(this.W-panel))/2-this.W/2)/z,y:cy+(B/2-10-BAR/2)/z,z}; } // CHANGED 2026-11-22: below the top row
 
   bfs(s,rule){ const dist=new Map([[s,0]]),prev=new Map(),q=[s]; while(q.length){const u=q.shift();for(const e of this.adj.get(u)){if(!this.ok(e,rule))continue;const v=e.a===u?e.b:e.a;if(!dist.has(v)){dist.set(v,dist.get(u)+1);prev.set(v,u);q.push(v);}}} return {dist,prev}; }
   newQuest(rule){
@@ -786,7 +786,7 @@ class Component extends DCLogic {
     else if(z>.95){ for(const n of list){ if(z<1.6&&n.w!=='Core') continue; const [sx,sy]=scr(n.x,n.y+n.S*.62); this.text(ctx,nameOf(n),sx,sy+7,'500 11px Onest, sans-serif','#cfc8bd'); } }
     if(q&&q.path.length>1){ q.path.forEach((id,i)=>{ if(i===q.path.length-1) return; const n=this.byId.get(id); const [sx,sy]=scr(n.x,n.y-n.S*.7); ctx.fillStyle='#d8a24a'; ctx.fillRect(sx-9,sy-9,18,18); ctx.fillStyle='#0c0b0a'; ctx.font='700 11px "JetBrains Mono", monospace'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(i===0?'S':String(i),sx,sy+.5); }); }
     if(q&&C&&s.mode==='quest'){ const tf=this.byId.get(q.t).fam; for(const v of C.map.values()){ const n=this.byId.get(v.o); if(n.fam!==tf||n.id===q.t||n.mv) continue; const [sx,sy]=scr(n.x+n.S*.45,n.y-n.S*.55); ctx.strokeStyle='#efeae2'; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(sx,sy-16); ctx.stroke(); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(sx,sy-16); ctx.lineTo(sx+11,sy-12.5); ctx.lineTo(sx,sy-9); ctx.closePath(); ctx.fill(); } }
-    if(q&&q.t){ const tn=this.byId.get(q.t); let [sx,sy]=scr(tn.x,tn.y-tn.S*(tn.id===f?.9:.6)); const m=46, fl=this.leftInset()+m, fr=W-this.rightInset()-m, off=sx<fl||sx>fr||sy<m||sy>H-m;
+    if(q&&q.t){ const tn=this.byId.get(q.t); let [sx,sy]=scr(tn.x,tn.y-tn.S*(tn.id===f?.9:.6)); const m=46, fl=this.leftInset()+m, fr=W-this.rightInset()-m, off=sx<fl||sx>fr||sy<m+BAR||sy>H-m;
       if(!off){ const b=Math.sin(t*3)*2; ctx.strokeStyle='#efeae2'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(sx,sy-2); ctx.lineTo(sx,sy-34+b); ctx.stroke(); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(sx,sy-34+b); ctx.lineTo(sx+20,sy-28+b); ctx.lineTo(sx,sy-22+b); ctx.closePath(); ctx.fill(); }
       else { const cx=clamp(sx,fl,Math.max(fl,fr)), cy=clamp(sy,m,H-m), a=Math.atan2(sy-cy,sx-cx); ctx.save(); ctx.translate(cx,cy); ctx.rotate(a); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(16,0); ctx.lineTo(-8,-11); ctx.lineTo(-8,11); ctx.closePath(); ctx.fill(); ctx.restore(); this.text(ctx,'FLAG',cx-Math.cos(a)*24,cy-Math.sin(a)*24,'700 10px "JetBrains Mono", monospace','#d8a24a'); } }
   }
@@ -817,16 +817,16 @@ class Component extends DCLogic {
       modes, help, q:s.q, onQ:e=>this.setState({q:e.target.value}), results, hasResults:results.length>0,
       
       hasFocus:!!fn&&!this.journalHidden(), fFam:vn?FAM[vn.fam][0]:'', fFamCol:vn?FCOL[vn.fam]:'#d8a24a', fName:vn?vn.name:'', fRole:vn?vn.roleL:'', fRoleCol:vn?vn.roleCol:'#e8e6e6', fWeight:vn?vn.w:'', fEra:vn?(ERA[vn.era]||vn.era):'', fBlurb:vn?vn.blurb:'', fWho:vn?vn.who:'', fWiki:vn?`/bestiarium/wiki/${vn.id}`:'#', peeking:!!pv, notPeeking:!pv, hostName:fn?fn.name:'', backHost:()=>this.setState({peek:null}), stepLabel:pk?`Step to ${pk.name.length>26?pk.name.slice(0,24)+'…':pk.name} →`:'', sections, close:()=>this.clearFocus(),
-      legend, legendOn:!!fn&&legend.length>0, anyOff:Object.values(s.groups).some(v=>!v), showAll:()=>this.setState({groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>this.buildCouncil()), legL:this.leftInset()+16, legFull:this.W-this.leftInset()-this.rightInset()-52>=legend.length*174, legCardW:this.W-this.leftInset()-this.rightInset()-52>=legend.length*174?170:120, legW:Math.max(300,this.W-this.leftInset()-this.rightInset()-32), // CHANGED 2026-11-22: the texts show when every card fits in one row with them (170 px), else the cards are 120 px
+      legend, legendOn:!!fn&&legend.length>0&&!(s.mode==='quest'&&this.leftInset()===0), /* CHANGED 2026-11-22: on a narrow screen the expedition panel needs its foot */ anyOff:Object.values(s.groups).some(v=>!v), showAll:()=>this.setState({groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>this.buildCouncil()), legL:this.leftInset()+16, legFull:this.W-this.leftInset()-this.rightInset()-52>=legend.length*174, legCardW:this.W-this.leftInset()-this.rightInset()-52>=legend.length*174?170:120, legW:Math.max(300,this.W-this.leftInset()-this.rightInset()-32), // CHANGED 2026-11-22: the texts show when every card fits in one row with them (170 px), else the cards are 120 px
       wOn:ready&&s.mode==='explore', wEmpty:this.wpath.length===0, wCount:`${this.wpath.length} stop${this.wpath.length===1?'':'s'}`, wBackOp:this.wpath.length>1?1:.4,
       wBack:()=>this.wanderBack(), wClear:()=>{ this.saveTrail(s.focus?[s.focus]:[]); this.setState({tick:s.tick+1}); },
       wSteps:ready?this.wpath.map((id,i)=>{ const p=this.wpath[i-1], e=p&&this.edgeBetween(p,id), n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):'';
         return {n:String(i+1),rel:i===0?'start':!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name,bg:id===s.focus&&i===this.wpath.length-1?'#26231f':'transparent',go:()=>id===s.focus?this.frameFocus():this.travel(id)}; }).reverse():[],
       questOn:s.mode==='quest'&&!!q&&ready, qTarget:q&&ready?this.byId.get(q.t).name:'', qStart:q&&ready?this.byId.get(q.s).name:'', qHops:q?q.hops:0, qBest:q?q.best:0, qAway:q&&ready&&s.focus?(()=>{const d=q.distT.get(s.focus);return d===0?'At the flag':d===1?'1 hop away':`${d} hops away`;})():'', qTrend:q?({warmer:'warmer — closer to the flag',colder:'colder — further away',same:'same distance',back:'stepped back','':'distance from here'}[q.trend]):'', qTrendCol:q?({warmer:'#7ad13a',colder:'#ff6b5e'}[q.trend]||'#efeae2'):'#efeae2', qHasSteps:!!(q&&q.steps.length), qSteps:q&&ready?q.steps.map((st,i)=>{const e=st.e; const sh=id=>{const nm=this.byId.get(id).name;return nm.length>24?nm.slice(0,22)+'…':nm;}; const rel=e?`${sh(e.a)} ${KL[e.k]||e.k} ${sh(e.b)}`:''; return {n:String(i+1),rel,col:e?G[e.g].col:'#9a948b',name:this.byId.get(st.to).name};}):[], qHint:()=>this.hint(), qUndo:()=>this.undo(), qUndoOp:q&&q.path.length>1?1:.4, giveUp:()=>this.giveUp(),
-      hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), rStart:r&&ready?this.byId.get(r.sp[0]).name:'', rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
+      hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), rStart:r&&ready?this.byId.get(r.sp[0]).name:'', rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, qFoot:s.mode==='quest'&&!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
       chronOn:s.mode==='chronicle', playLabel:s.playing?'❚❚':'▶', eraLabel:ERA[ERAK[s.era]], era:s.era, onEra:e=>{clearInterval(this.playT);this.setState({playing:false});this.setEra(+e.target.value);}, togglePlay:()=>this.togglePlay(), alive:ready?`${this.nodes.filter(n=>n.ei<=s.era).length} beasts alive`:'',
       hasHover:!!h, hx:h?h.x:0, hy:h?h.y:0, hTag:h?h.tag:'', hTitle:h?h.title:'', hSub:h?h.sub:'', hCol:h?h.col:'#d8a24a',
-      hasToast:!!s.toast, toast:s.toast||'', toastTop:16, showDetails:true, showCard:!this.cardHidden(), colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
+      hasToast:!!s.toast, toast:s.toast||'', toastTop:64, barH:BAR, helpDisp:this.W>760?'block':'none', showDetails:true, showCard:!this.cardHidden(), colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
     };
   }
 }
