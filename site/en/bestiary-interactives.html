@@ -41,12 +41,15 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
       </div>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;">Selected</span>
-        <span style="display:flex;gap:6px;align-items:center;height:32px;padding:0 11px;background:#d8a24a;color:#0c0b0a;font:700 13px 'Onest',sans-serif;">{{ wHead.name }}<span style="opacity:.6;font-weight:500;">{{ wHead.n }}</span></span>
+        <!-- CHANGED 2026-11-22: the picked beast stands at switch height, 40px; the demo finds it by this height (brand book sizes) -->
+        <span style="display:flex;gap:6px;align-items:center;height:40px;box-sizing:border-box;padding:0 11px;background:#d8a24a;color:#0c0b0a;font:700 13px 'Onest',sans-serif;">{{ wHead.name }}<span style="opacity:.6;font-weight:500;">{{ wHead.n }}</span></span>
+        <!-- CHANGED 2026-11-22: Read in wiki is an action, 44px, here and in Follow, Alongside and Root (brand book sizes) -->
         <!-- CHANGED 2026-11-09: Read in wiki sits right after the picked beast in every block, in the digest's reading blue -->
-        <a href="{{ wiki }}" target="_blank" style="display:flex;align-items:center;height:32px;padding:0 12px;background:#5fa8ff;color:#0c0b0a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#efeae2;color:#0c0b0a;">Read in wiki →</a>
-        <div style="display:flex;align-items:center;gap:8px;border:1px solid #3a3531;background:#0f0e0c;padding:0 10px;height:32px;width:260px;box-sizing:border-box;">
+        <a href="{{ wiki }}" target="_blank" style="display:flex;align-items:center;height:44px;box-sizing:border-box;padding:0 12px;background:#5fa8ff;color:#0c0b0a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#efeae2;color:#0c0b0a;">Read in wiki →</a>
+        <!-- CHANGED 2026-11-22: search field, 40px (brand book sizes) -->
+        <div style="display:flex;align-items:center;gap:8px;border:1px solid #3a3531;background:#0f0e0c;padding:0 10px;height:40px;width:260px;box-sizing:border-box;">
           <span style="color:#7d776f;font-size:13px;">⌕</span>
-          <input value="{{ wQ }}" onInput="{{ wOnQ }}" onKeyDown="{{ wKey }}" placeholder="Highlight in the bestiary…" style="flex:1;min-width:0;background:transparent;border:0;outline:none;color:#efeae2;font:500 13px 'Onest',sans-serif;">
+          <input value="{{ wQ }}" onInput="{{ wOnQ }}" onKeyDown="{{ wKey }}" placeholder="Highlight in the bestiary…" style="flex:1;min-width:0;align-self:stretch;background:transparent;border:0;outline:none;color:#efeae2;font:500 13px 'Onest',sans-serif;">
         </div>
         <span style="font:400 12.5px 'Onest',sans-serif;color:#9a948b;">{{ wInfo }}</span>
       </div>
@@ -66,7 +69,8 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
       <sc-if value="{{ wUnOn }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #26231f;padding-top:14px;">
           <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#7d776f;">{{ wUnTitle }}</span>
-          <div style="display:flex;flex-wrap:wrap;gap:4px;"><sc-for list="{{ wUn }}" as="it"><span onClick="{{ it.go }}" title="{{ it.title }}" style="cursor:pointer;padding:2px 7px;font:{{ it.weight }} 11px 'Onest',sans-serif;color:{{ it.fg }};background:{{ it.bg }};border:1px solid #26231f;" style-hover="color:#efeae2;background:#24211e;">{{ it.name }}</span></sc-for></div>
+          <!-- CHANGED 2026-11-22: beasts off the grid are chips, 28px (brand book sizes) -->
+          <div style="display:flex;flex-wrap:wrap;gap:4px;"><sc-for list="{{ wUn }}" as="it"><span onClick="{{ it.go }}" title="{{ it.title }}" style="cursor:pointer;display:inline-flex;align-items:center;height:28px;box-sizing:border-box;padding:0 7px;font:{{ it.weight }} 11px 'Onest',sans-serif;color:{{ it.fg }};background:{{ it.bg }};border:1px solid #26231f;" style-hover="color:#efeae2;background:#24211e;">{{ it.name }}</span></sc-for></div>
         </div>
       </sc-if>
     </div>
@@ -94,11 +98,12 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
           </button>
         </sc-for>
       </div>
+      <!-- CHANGED 2026-11-22: Follow and Alongside pick the beast the view follows: switches, 40px (brand book sizes) -->
       <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;padding-right:6px;">Follow</span>
-        <sc-for list="{{ zPicks }}" as="p" hint-placeholder-count="6"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button><sc-if value="{{ p.on }}" hint-placeholder-val="{{ false }}"><a href="{{ p.wiki }}" target="_blank" style="display:flex;align-items:center;height:32px;padding:0 12px;background:#5fa8ff;color:#0c0b0a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#efeae2;color:#0c0b0a;">Read in wiki →</a></sc-if></sc-for>
+        <sc-for list="{{ zPicks }}" as="p" hint-placeholder-count="6"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};height:40px;padding:0 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button><sc-if value="{{ p.on }}" hint-placeholder-val="{{ false }}"><a href="{{ p.wiki }}" target="_blank" style="display:flex;align-items:center;height:44px;box-sizing:border-box;padding:0 12px;background:#5fa8ff;color:#0c0b0a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#efeae2;color:#0c0b0a;">Read in wiki →</a></sc-if></sc-for>
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;padding:0 6px 0 10px;">Alongside · {{ zAlN }}</span>
-        <sc-for list="{{ zAl }}" as="p" hint-placeholder-count="8"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};padding:6px 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button><sc-if value="{{ p.on }}" hint-placeholder-val="{{ false }}"><a href="{{ p.wiki }}" target="_blank" style="display:flex;align-items:center;height:32px;padding:0 12px;background:#5fa8ff;color:#0c0b0a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#efeae2;color:#0c0b0a;">Read in wiki →</a></sc-if></sc-for>
+        <sc-for list="{{ zAl }}" as="p" hint-placeholder-count="8"><button onClick="{{ p.go }}" style="cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};border:1px solid {{ p.bd }};height:40px;padding:0 10px;font:500 12px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ p.name }}</button><sc-if value="{{ p.on }}" hint-placeholder-val="{{ false }}"><a href="{{ p.wiki }}" target="_blank" style="display:flex;align-items:center;height:44px;box-sizing:border-box;padding:0 12px;background:#5fa8ff;color:#0c0b0a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#efeae2;color:#0c0b0a;">Read in wiki →</a></sc-if></sc-for>
       </div>
       <!-- CHANGED 2026-11-02: the canvas is laid out in fixed coordinates, so it stays 1136 wide and sits in the middle of the stretched block -->
       <div style="position:relative;width:1136px;height:600px;overflow:hidden;background:#0f0e0c;align-self:center;">
@@ -109,8 +114,9 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
           <sc-for list="{{ z0Labels }}" as="l"><span style="position:absolute;left:{{ l.x }};top:{{ l.y }};font:700 10px 'Onest',sans-serif;color:{{ l.c }};background:#0f0e0ce6;border:1px solid #3a3531;padding:1px 5px;white-space:nowrap;pointer-events:none;">{{ l.label }}</span></sc-for>
         </div>
         <div style="position:absolute;inset:0;opacity:{{ zL1.o }};transform:scale({{ zL1.s }});pointer-events:{{ zL1.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
+          <!-- CHANGED 2026-11-22: Canon, Era, Family and Links switch the map: switches, 40px (brand book sizes) -->
           <div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:3;display:flex;border:1px solid #3a3531;background:#0f0e0c;">
-            <sc-for list="{{ zMaps }}" as="m"><button onClick="{{ m.go }}" style="cursor:pointer;border:0;padding:9px 11px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;background:{{ m.bg }};color:{{ m.fg }};">{{ m.label }} · {{ m.n }}</button></sc-for>
+            <sc-for list="{{ zMaps }}" as="m"><button onClick="{{ m.go }}" style="cursor:pointer;border:0;height:40px;padding:0 11px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;background:{{ m.bg }};color:{{ m.fg }};">{{ m.label }} · {{ m.n }}</button></sc-for>
           </div>
           <sc-for list="{{ z1Isl }}" as="is"><div onMouseEnter="{{ is.enter }}" style="position:absolute;left:{{ is.x }};top:{{ is.y }};width:{{ is.w }};height:{{ is.h }};border-radius:42%;background:#141210;opacity:{{ is.o }};box-shadow:0 0 0 10px #12100e, 0 0 0 11px {{ is.ring }}, 0 0 0 22px #100f0d, 0 0 0 23px #1c1a17;transition:opacity .3s,left .9s cubic-bezier(.22,1,.36,1),top .9s cubic-bezier(.22,1,.36,1),width .9s cubic-bezier(.22,1,.36,1),height .9s cubic-bezier(.22,1,.36,1);"></div></sc-for>
           <svg viewBox="0 0 1136 600" style="position:absolute;inset:0;width:1136px;height:600px;pointer-events:none;overflow:visible;"><sc-for list="{{ z1Roads }}" as="r"><path d="{{ r.d }}" fill="none" stroke="#d8a24a" stroke-width="{{ r.w }}" stroke-linecap="round" opacity=".55"></path></sc-for></svg>
@@ -119,8 +125,9 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
         </div>
         <div style="position:absolute;inset:0;opacity:{{ zL2.o }};transform:scale({{ zL2.s }});pointer-events:{{ zL2.p }};transition:opacity .7s,transform .9s cubic-bezier(.22,1,.36,1);">
           <!-- CHANGED 2026-10-27: the District step has the same layer row as Layer, so a district can be cut by any grouping -->
+          <!-- CHANGED 2026-11-22: Canon, Era, Family and Links switch the map: switches, 40px (brand book sizes) -->
           <div style="position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:3;display:flex;border:1px solid #3a3531;background:#0f0e0c;">
-            <sc-for list="{{ zMaps }}" as="m"><button onClick="{{ m.go }}" style="cursor:pointer;border:0;padding:9px 11px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;background:{{ m.bg }};color:{{ m.fg }};">{{ m.label }} · {{ m.n }}</button></sc-for>
+            <sc-for list="{{ zMaps }}" as="m"><button onClick="{{ m.go }}" style="cursor:pointer;border:0;height:40px;padding:0 11px;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;background:{{ m.bg }};color:{{ m.fg }};">{{ m.label }} · {{ m.n }}</button></sc-for>
           </div>
           <sc-for list="{{ z2Cards }}" as="c"><div onClick="{{ c.pick }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="cursor:pointer;position:absolute;left:{{ c.x }};top:{{ c.y }};width:{{ c.w }};height:112px;box-sizing:border-box;background:#151311;border:1px solid {{ c.bd }};border-top:3px solid {{ c.c }};opacity:{{ c.o }};display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px;transition:opacity .25s;cursor:default;"><div style="width:60px;height:60px;flex:none;background-image:url({{ c.img }});background-size:contain;background-repeat:no-repeat;background-position:center;"></div><span style="font:500 10px/1.2 'Onest',sans-serif;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{{ c.name }}</span></div></sc-for>
           <svg viewBox="0 0 1136 600" style="position:absolute;inset:0;width:1136px;height:600px;pointer-events:none;overflow:visible;"><sc-for list="{{ z2Links }}" as="l"><path d="{{ l.d }}" fill="none" stroke="{{ l.c }}" stroke-width="1.6" opacity=".6"></path></sc-for></svg>
@@ -246,17 +253,20 @@ a{color:#efeae2;text-decoration:none;} a:hover{color:#d8a24a;}
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative;">
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#7d776f;margin-right:6px;">Root</span>
-        <div style="display:flex;align-items:center;gap:8px;border:1px solid {{ fPBorder }};background:#0f0e0c;padding:0 10px;height:32px;width:240px;box-sizing:border-box;">
+        <!-- CHANGED 2026-11-22: search field, 40px (brand book sizes) -->
+        <div style="display:flex;align-items:center;gap:8px;border:1px solid {{ fPBorder }};background:#0f0e0c;padding:0 10px;height:40px;width:240px;box-sizing:border-box;">
           <span style="color:#7d776f;font-size:13px;">⌕</span>
-          <input value="{{ fQ }}" onInput="{{ fOnQ }}" onFocus="{{ fPOpen }}" onKeyDown="{{ fKey }}" placeholder="{{ fPHolder }}" style="flex:1;min-width:0;background:transparent;border:0;outline:none;color:#efeae2;font:500 13px 'Onest',sans-serif;">
+          <input value="{{ fQ }}" onInput="{{ fOnQ }}" onFocus="{{ fPOpen }}" onKeyDown="{{ fKey }}" placeholder="{{ fPHolder }}" style="flex:1;min-width:0;align-self:stretch;background:transparent;border:0;outline:none;color:#efeae2;font:500 13px 'Onest',sans-serif;">
         </div>
-        <sc-for list="{{ fChips }}" as="c" hint-placeholder-count="5"><button onClick="{{ c.go }}" style="cursor:pointer;display:flex;gap:5px;align-items:center;height:32px;padding:0 11px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font:500 13px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ c.name }}<span style="color:{{ c.nc }};">{{ c.n }}</span></button><sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><a href="{{ c.wiki }}" target="_blank" style="display:flex;align-items:center;height:32px;padding:0 12px;background:#5fa8ff;color:#0c0b0a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#efeae2;color:#0c0b0a;">Read in wiki →</a></sc-if></sc-for>
-        <button onClick="{{ fPToggle }}" style="cursor:pointer;display:flex;gap:6px;align-items:center;height:32px;padding:0 12px;background:transparent;border:1px dashed #d8a24a;color:#d8a24a;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;" style-hover="border-style:solid;">All {{ total }} {{ fPCaret }}</button>
+        <!-- CHANGED 2026-11-22: the root picks and All N choose the tree root: switches, 40px (brand book sizes) -->
+        <sc-for list="{{ fChips }}" as="c" hint-placeholder-count="5"><button onClick="{{ c.go }}" style="cursor:pointer;display:flex;gap:5px;align-items:center;height:40px;padding:0 11px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font:500 13px 'Onest',sans-serif;" style-hover="border-color:#efeae2;">{{ c.name }}<span style="color:{{ c.nc }};">{{ c.n }}</span></button><sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><a href="{{ c.wiki }}" target="_blank" style="display:flex;align-items:center;height:44px;box-sizing:border-box;padding:0 12px;background:#5fa8ff;color:#0c0b0a;text-decoration:none;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#efeae2;color:#0c0b0a;">Read in wiki →</a></sc-if></sc-for>
+        <button onClick="{{ fPToggle }}" style="cursor:pointer;display:flex;gap:6px;align-items:center;height:40px;padding:0 12px;background:transparent;border:1px dashed #d8a24a;color:#d8a24a;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;" style-hover="border-style:solid;">All {{ total }} {{ fPCaret }}</button>
         <sc-if value="{{ fPIsOpen }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:10;background:#151311;border:1px solid #3a3531;box-shadow:0 18px 40px rgba(0,0,0,.6);display:flex;flex-direction:column;">
             <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #26231f;font:400 12px 'Onest',sans-serif;color:#9a948b;">
               <span>{{ pTitle }}</span>
-              <button onClick="{{ pClose }}" style="cursor:pointer;background:transparent;border:0;color:#efeae2;font:400 12px 'Onest',sans-serif;white-space:nowrap;" style-hover="color:#d8a24a;">close ✕</button>
+              <!-- CHANGED 2026-11-22: close is an action, 44px (brand book sizes) -->
+              <button onClick="{{ pClose }}" style="cursor:pointer;background:transparent;border:0;min-height:44px;color:#efeae2;font:400 12px 'Onest',sans-serif;white-space:nowrap;" style-hover="color:#d8a24a;">close ✕</button>
             </div>
             <div style="display:grid;grid-template-columns:{{ pGrid }};max-height:340px;overflow:auto;" class="zcol">
               <sc-for list="{{ pCols }}" as="col">
