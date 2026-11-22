@@ -23,7 +23,15 @@
         <button onClick="{{ m.go }}" style="min-height:28px;padding:4px 10px;border:1px solid {{ m.bd }};background:{{ m.bg }};color:{{ m.fg }};font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
       </sc-for>
     </div>
-    <span title="{{ help }}" style="flex:1 1 auto;min-width:0;font:400 13px/1.3 'Onest',sans-serif;color:#cfc8bd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:{{ helpDisp }}">{{ help }}</span>
+    <!-- CHANGED 2026-11-22: the expedition's rules stand in the top row next to the modes while Expedition is on; the mode line went back to the left panel (owner) -->
+    <sc-if value="{{ questOn }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;align-items:center;gap:4px;flex:1 1 auto;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e">
+      <span title="Click a rule to start a new expedition along it" style="flex:none;padding:0 6px 0 4px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b;white-space:nowrap;display:{{ ruleLbl }}">New expedition along</span>
+      <sc-for list="{{ rules }}" as="ru" hint-placeholder-count="4">
+        <button onClick="{{ ru.go }}" title="{{ ru.tip }}" style="flex:none;min-height:28px;padding:4px 10px;border:1px solid #4a4540;background:{{ ru.bg }};color:{{ ru.fg }};font:700 10px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap">{{ ru.label }}</button>
+      </sc-for>
+    </div>
+    </sc-if>
     <button onClick="{{ openIntro }}" title="How this world works" style="margin-left:auto;width:28px;height:28px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">?</button>
   </div>
   <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
@@ -31,12 +39,6 @@
     <div ref="{{ leftRef }}" style="flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;gap:12px">
     <sc-if value="{{ questOn }}" hint-placeholder-val="{{ false }}">
       <div style="display:flex;flex-direction:column;gap:10px;background:#171513;border:1px solid #2e2b28;padding:12px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
-          <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">New expedition along · click to restart</span>
-          <sc-for list="{{ rules }}" as="ru" hint-placeholder-count="4">
-            <button onClick="{{ ru.go }}" title="{{ ru.tip }}" style="min-height:30px;border:1px solid #4a4540;background:{{ ru.bg }};color:{{ ru.fg }};font:700 10px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">{{ ru.label }}</button>
-          </sc-for>
-        </div>
         <span style="font:400 12.5px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">Find a path from the start to the flag. {{ qRuleText }} Click a neighbour once to read about it, click it a second time (or press Step) to move there. Fewest hops wins.</span>
         <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline">
           <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Start</span>
@@ -77,6 +79,9 @@
       </div>
     </sc-if>
     <sc-if value="{{ showDetails }}" hint-placeholder-val="{{ true }}">
+    <sc-if value="{{ searchOn }}" hint-placeholder-val="{{ true }}">
+    <p style="margin:0;font:400 13.5px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ help }}</p>
+    </sc-if>
     <sc-if value="{{ searchOn }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;flex-direction:column;gap:4px;position:relative">
       <input value="{{ q }}" onChange="{{ onQ }}" placeholder="Find a beast…" style="height:38px;padding:0 12px;background:#0c0b0a;border:1px solid #4a4540;color:#efeae2;font:400 14px 'Onest',sans-serif;outline:none;border-radius:0">
@@ -794,7 +799,7 @@ class Component extends DCLogic {
   renderVals(){
     const s=this.state, ready=s.ready&&!!this.byId, fn=ready&&s.focus?this.byId.get(s.focus):null;
     const modes=[['explore','Wander'],['quest','Expedition'],['chronicle','Chronicle']].map(([k,l])=>({label:l,bg:s.mode===k?'#d8a24a':'transparent',fg:s.mode===k?'#0c0b0a':'#cfc8bd',bd:s.mode===k?'#d8a24a':'#4a4540',go:()=>this.setMode(k)}));
-    const help={explore:'Click a beast to visit it. Click a neighbour once to read about it, a second time to step there. The coloured base and dotted thread show which island each guest came from.',quest:'Reach the flagged beast by hopping only along links — every hop must land on a neighbour of where you stand.',chronicle:'The bestiary grows era by era. Each new idea walks out of the older idea it descends from.'}[s.mode];
+    const help={explore:'Click a beast to visit it. Click a neighbour once to read about it, a second time to step there. The coloured base and dotted thread show which island each guest came from.',chronicle:'The bestiary grows era by era. Each new idea walks out of the older idea it descends from.'}[s.mode]||'';
         const qn=s.q.trim().toLowerCase(); const results=ready&&qn.length>1?this.nodes.filter(n=>n.name.toLowerCase().includes(qn)).slice(0,6).map(n=>({name:n.name,sub:FAM[n.fam][0].split(' ')[0],go:()=>this.travel(n.id)})):[];
     let sections=[];
     if(fn&&this.council){ const sd=this.council.sides; sections=['left','right','top','bottom'].filter(k=>sd[k].length).map(k=>({title:(ARR[s.arr||'rel'].T||SIDE_T)[k][0],sub:(ARR[s.arr||'rel'].T||SIDE_T)[k][1],n:sd[k].length,items:sd[k].map(v=>{const o=this.byId.get(v.o),e=v.e,kl=KL[e.k]||e.k;const onFlag=s.mode==='quest'&&s.quest&&this.byId.get(s.quest.t).fam===o.fam, isFlag=s.mode==='quest'&&s.quest&&s.quest.t===o.id; return {num:String(v.num||''), flagTag:isFlag?'the flag':onFlag?'flag island':'', flagDisp:(isFlag||onFlag)?'inline':'none', fo:isFlag?0:onFlag?1:2, fam:FSHORT[o.fam],famCol:FCOL[o.fam],name:o.name,rel:e.a===fn.id?`this one ${kl} it`:`${kl} this one`,col:G[e.g].col,sel:s.peek===o.id?'#26231f':'transparent', stepDisp:s.peek===o.id?'flex':'none', step:()=>this.travel(o.id), go:()=>this.setState({peek:o.id}),enter:()=>{this.listHover=o.id;},leave:()=>{this.listHover=null;}};}).sort((p,q)=>p.fo-q.fo)})); }
@@ -826,7 +831,7 @@ class Component extends DCLogic {
       hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), rStart:r&&ready?this.byId.get(r.sp[0]).name:'', rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, qFoot:s.mode==='quest'&&!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
       chronOn:s.mode==='chronicle', playLabel:s.playing?'❚❚':'▶', eraLabel:ERA[ERAK[s.era]], era:s.era, onEra:e=>{clearInterval(this.playT);this.setState({playing:false});this.setEra(+e.target.value);}, togglePlay:()=>this.togglePlay(), alive:ready?`${this.nodes.filter(n=>n.ei<=s.era).length} beasts alive`:'',
       hasHover:!!h, hx:h?h.x:0, hy:h?h.y:0, hTag:h?h.tag:'', hTitle:h?h.title:'', hSub:h?h.sub:'', hCol:h?h.col:'#d8a24a',
-      hasToast:!!s.toast, toast:s.toast||'', toastTop:64, barH:BAR, helpDisp:this.W>760?'block':'none', showDetails:true, showCard:!this.cardHidden(), colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
+      hasToast:!!s.toast, toast:s.toast||'', toastTop:64, barH:BAR, ruleLbl:this.W>1100?'inline':'none', showDetails:true, showCard:!this.cardHidden(), colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
     };
   }
 }

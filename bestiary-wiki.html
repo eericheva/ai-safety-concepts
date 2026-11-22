@@ -789,6 +789,19 @@ function nTitle(n){ return curLang()==="en" ? (n.title_en||n.en||n.label) : (n.t
 function nTldr(n){ return curLang()==="en" ? (n.tldr_en||n.tldr||"") : (n.tldr||""); }
 function nAuthor(n){ return curLang()==="en" ? (n.author_en||n.author||"") : (n.author||""); }
 function nBody(n){ return curLang()==="en" ? (n.html_en||"") : (n.html||""); }
+// ADDED 2026-11-22: on the site the English essays are files of their own (n.ess, see data/build_site_en.py): one is
+// fetched when its beast is drawn, and the essays' text for the search on the first search
+const ESSAYS={};
+function needsEssay(n){ return curLang()==="en" && n.ess && n.html_en===undefined; }
+function loadEssay(n){ return ESSAYS[n.id]||(ESSAYS[n.id]=fetch("/api/bestiarium/data/wiki-essays/"+n.id+".json").then(r=>r.json()).then(j=>{ n.html_en=j.html; })); }
+let searchText=null, searchShown=false;
+function loadSearchText(){
+  if(searchText||!NODES.some(n=>n.ess)) return;
+  searchText=fetch("/api/bestiarium/data/wiki-search.json").then(r=>r.json()).then(t=>{
+    NODES.forEach(n=>{ if(t[n.id]) n.text=t[n.id]; }); SEARCH=null;
+    if(searchShown&&qInput.value.trim().length>=2) renderSearch(qInput.value);
+  });
+}
 function nHasFull(n){ return curLang()==="en" ? (!!n.title_en||n.full_en) : n.full; }
 function nCard(n){ return curLang()==="en" ? (n.summary_en||n.tldr_en||"") : (n.summary||n.tldr||""); }
 
@@ -925,11 +938,13 @@ function catText(n){ return [catLabel("fam",n.fam),F.fam.cats[n.fam].label_en,
   catLabel("role",n.role),F.role.cats[n.role].label_en,catLabel("era",n.era),F.era.cats[n.era].label_en,
   catLabel("track",n.track),F.track.cats[n.track].label_en].join(" "); }
 function ensureSearch(){
+  loadSearchText(); // ADDED 2026-11-22
   if(SEARCH) return SEARCH;
   SEARCH=BestiarySearch.fromNodes(NODES,{ catText, label:n=>n.label });
   return SEARCH;
 }
 function renderSearch(term){
+  searchShown=true; // ADDED 2026-11-22: see loadSearchText
   const v=document.getElementById("view"); v.innerHTML="";
   const hits=BestiarySearch.query(ensureSearch(), term, {limit:60});
   const head=el("div","title-page");
@@ -1033,8 +1048,11 @@ function renderEntry(id){
   fig.appendChild(img); col.appendChild(fig);
 
   const art=el("div","article");
-  art.innerHTML = nBody(n) || `<p>${esc(nCard(n)||T("fallback"))}</p>`;
-  const firstP=art.querySelector("p"); if(firstP) firstP.classList.add("lead");
+  // CHANGED 2026-11-22: an essay kept in its own file is drawn when it arrives (see loadEssay)
+  const fill=()=>{ art.innerHTML = nBody(n) || `<p>${esc(nCard(n)||T("fallback"))}</p>`;
+    const firstP=art.querySelector("p"); if(firstP) firstP.classList.add("lead"); autolink(art, n.id); };
+  if(needsEssay(n)){ art.innerHTML=`<p class="lead">${esc(nCard(n)||"")}</p>`; loadEssay(n).then(()=>{ if(art.isConnected) fill(); }); }
+  else fill();
   col.appendChild(art);
 
   // no FULL English essay (only a card) but a Russian longread exists: invite the reader to the Russian one
@@ -1053,7 +1071,6 @@ function renderEntry(id){
 
   const cv=root.querySelector(".plate canvas");
   requestAnimationFrame(()=>{drawBeast(cv,n,{ring:true});});
-  autolink(art, n.id);
   scrollTop();
   document.title=`${nName(n)} · ${T("home")}`;
 }
@@ -1119,6 +1136,7 @@ function buildRelations(n){
 
 /* ---------- ROUTER ---------- */
 function router(){
+  searchShown=false; // ADDED 2026-11-22
   entryLang=null;   // navigation resets the per-page language to the global one
   // CHANGED 2026-11-16: on the site /bestiarium/wiki/<id> opens that beast (see ON_SITE)
   const pathId=ON_SITE?(location.pathname.match(/^\/bestiarium\/wiki\/([^/]+)/)||[])[1]:null;
