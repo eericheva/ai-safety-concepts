@@ -17,7 +17,7 @@
 
   <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
   <div style="position:absolute;left:16px;top:16px;bottom:16px;width:310px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:16px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
-    <div style="flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;gap:12px">
+    <div ref="{{ leftRef }}" style="flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;gap:12px">
     <div style="display:flex;flex-direction:column;gap:4px">
       <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d8a24a">Bestiarium · map</span>
       <span style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font:700 20px/1.15 'Unbounded',sans-serif">The Wandering Map</span><button onClick="{{ openIntro }}" title="How this world works" style="width:30px;height:30px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">?</button></span>
@@ -58,7 +58,8 @@
           <button onClick="{{ openReport }}" style="min-height:36px;background:#d8a24a;border:0;color:#0c0b0a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Show expedition report</button>
         </sc-if>
         <sc-if value="{{ qHasSteps }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex;flex-direction:column;gap:0;max-height:190px;overflow:auto;border-top:1px solid #2e2b28;padding-top:6px">
+          <!-- CHANGED 2026-11-22: no scroll of its own: the journey is in the panel's one scroll, which shows its foot after every step -->
+          <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid #2e2b28;padding-top:6px">
             <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">Your journey</span>
             <sc-for list="{{ qSteps }}" as="st" hint-placeholder-count="0">
               <div style="display:grid;grid-template-columns:18px 1fr;gap:8px;padding:5px 0;border-bottom:1px solid #1f1d1a">
@@ -416,7 +417,7 @@ const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(
 
 class Component extends DCLogic {
   state={ready:false,mode:'explore',focus:null,hover:null,groups:{A:true,B:true,C:true,D:true,E:true,F:true},q:'',era:6,playing:false,quest:null,result:null,toast:null,tick:0,peek:null,intro:false};
-  wrapRef=React.createRef(); cvRef=React.createRef();
+  wrapRef=React.createRef(); cvRef=React.createRef(); tStep=0; leftRef=React.createRef(); // ADDED 2026-11-22: the left panel's scroll, see travel()
   cam={x:0,y:0,z:.5}; camT=null; camV={x:0,y:0,z:0}; camTs=0; ring={k:0,f:null,x:0,y:0,R:0}; ringE=0; leaving=new Map(); council=null; hoverId=null; hoverFam=null; listHover=null; wpath=[]; W=800; H=600; dpr=1;
 
   componentDidMount(){ this.boot(); }
@@ -428,7 +429,9 @@ class Component extends DCLogic {
     this.ro=new ResizeObserver(()=>this.resize()); this.ro.observe(wrap); this.resize();
     this.bindInput(cv);
     const load=src=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src;});
-    const [d,art,sheet,...tex]=await Promise.all([fetch('data/bestiary-interactives.json').then(r=>r.json()),fetch('assets/creatures/creatures.json').then(r=>r.json()),load('assets/monster/spritesheet_default.png'),...TEX.map(n=>load('assets/ground/'+n+'.jpg'))]);
+    const [d,art,...tex]=await Promise.all([fetch('data/bestiary-interactives.json').then(r=>r.json()),fetch('assets/creatures/creatures.json').then(r=>r.json()),...TEX.map(n=>load('assets/ground/'+n+'.webp'))]); // CHANGED 2026-11-22: the island textures are WebP (531 KB instead of 1113 KB of JPEG)
+    // CHANGED 2026-11-22: the monster sprite sheet (143 KB) only when a beast has no hand-drawn creature (site optimisation)
+    const sheet=d.nodes.some(n=>!art[n[0]])?await load('assets/monster/spritesheet_default.png'):null;
     if(this.dead) return;
     this.art=art; this.artImgs={}; this.sheet=sheet; this.tex={}; TEX.forEach((n,i)=>this.tex[n]=tex[i]); this.pats={};
     if(sheet){ const W=SPR.white; let x=0; this.wOff={}; 'ABCDEF'.split('').forEach(k=>{ const r=W[k]; this.wOff[k]={x,w:r[2],h:r[3]}; x+=r[2]+2; }); this.wAtlasW=x; this.tints={}; }
@@ -516,7 +519,9 @@ class Component extends DCLogic {
     if(this.state.mode==='quest'){ if(id) this.travel(id); else if(this.state.peek) this.setState({peek:null}); return; }
     if(this.state.peek&&!id){ this.setState({peek:null}); return; }
     if(id){ this.travel(id); return; }
-    if(this.state.focus){ this.clearFocus(); return; }
+    // CHANGED 2026-11-22: a click on empty ground does not close the beast while it is walking to its place after a step,
+    // or within a second of the step: a click where the beast stood a moment ago used to close it and scatter its council (owner)
+    if(this.state.focus){ if(this.follow||performance.now()-this.tStep<1000) return; this.clearFocus(); return; }
     const f=this.famAt(x,y); if(f){ const i=this.islBy[f]; this.camT={x:i.x,y:i.y,z:clamp(Math.min(this.W,this.H)/(i.R*2+140),.6,2.2)}; } }
 
   ok(e,rule){ if(!rule) return true; if(rule==='any') return e.k!=='thematically-related'; return e.g===rule; }
@@ -524,7 +529,7 @@ class Component extends DCLogic {
   isNbr(a,b,rule){ return (this.adj.get(a)||[]).some(e=>(e.a===b||e.b===b)&&this.ok(e,rule)); }
   toast(msg){ clearTimeout(this.toastT); this.setState({toast:msg}); this.toastT=setTimeout(()=>!this.dead&&this.setState({toast:null}),2800); }
   travel(id,force){
-    const s=this.state,n=this.byId.get(id); if(!n) return;
+    const s=this.state,n=this.byId.get(id); if(!n) return; this.tStep=performance.now(); // ADDED 2026-11-22: see pointClick
     let quest=s.quest,result=null;
     if(s.mode==='quest'&&quest&&!force&&id!==s.focus){
       if(s.focus&&!this.isNbr(s.focus,id,quest.rule)){ this.toast(quest.rule&&quest.rule!=='any'?`No ${G[quest.rule].name.toLowerCase()} link from here — this expedition follows ${G[quest.rule].name} only`:'No road from here — hop through one of its neighbours'); return; }
@@ -534,7 +539,9 @@ class Component extends DCLogic {
     if(s.mode==='explore'&&this.wpath[this.wpath.length-1]!==id) this.saveTrail([...this.wpath,id].slice(-80));
     this.state.quest=quest;
     this.hoverId=null;
-    this.setState({focus:id,quest,result,hover:null,q:'',peek:null},()=>{ this.buildCouncil(); const w=this.byId.get(id); if(w.path&&(w.route||Math.hypot(w.x-w.px,w.y-w.py)>400)) this.follow=id; else { this.follow=null; this.frameFocus(); } });
+    // CHANGED 2026-11-22: after a step of the expedition the left panel shows its foot, where the journey grows, instead of
+    // jumping back to its top (owner)
+    this.setState({focus:id,quest,result,hover:null,q:'',peek:null},()=>{ this.buildCouncil(); if(s.mode==='quest'&&this.leftRef.current) requestAnimationFrame(()=>{ const el=this.leftRef.current; if(el) el.scrollTop=el.scrollHeight; }); const w=this.byId.get(id); if(w.path&&(w.route||Math.hypot(w.x-w.px,w.y-w.py)>400)) this.follow=id; else { this.follow=null; this.frameFocus(); } });
   }
   clearFocus(){ this.setState({focus:null,hover:null},()=>{ this.buildCouncil(); this.camT={x:this.cam.x,y:this.cam.y,z:Math.min(this.cam.z,.7)}; }); }
 
@@ -806,7 +813,7 @@ class Component extends DCLogic {
       rules, qRuleName:q?RULES[q.rule||'any'][0]:'', qRuleText:q?RULES[q.rule||'any'][1]:'', qFlagFam:tn?FAM[tn.fam][0]:'', qFlagCol:tn?FCOL[tn.fam]:'#d8a24a', qFlagBlurb:tn?tn.blurb:'', qFlagNb:tn?(()=>{ const WO={Core:0,Major:1,Supporting:2}; const L=[...new Set((this.adj.get(tn.id)||[]).filter(e=>this.ok(e,q.rule)).map(e=>e.a===tn.id?e.b:e.a))].map(id=>this.byId.get(id)).sort((a,b)=>(WO[a.w]??2)-(WO[b.w]??2)); return L.slice(0,4).map(n=>n.name).join(' · ')+(L.length>4?` · +${L.length-4} more`:''); })():'',
       hasPeek:false, pkName:pk?pk.name:'', pkFam:pk?FAM[pk.fam][0]:'', pkFamCol:pk?FCOL[pk.fam]:'#d8a24a', pkRole:pk?pk.roleL:'', pkBlurb:pk?pk.blurb:'', pkRel:pv?`${this.byId.get(pv.e.a).name} ${KL[pv.e.k]||pv.e.k} ${this.byId.get(pv.e.b).name}`:'', pkRelCol:pv?G[pv.e.g].col:'#cfc8bd', pkRelTag:pv?G[pv.e.g].name:'', pkSame:!!(pk&&tn&&pk.fam===tn.fam), pkIsFlag:!!(pk&&tn&&pk.id===tn.id), pkL:this.leftInset()+16, pkW:Math.max(280,Math.min(640,this.W-this.leftInset()-this.rightInset()-32)), step:()=>s.peek&&this.travel(s.peek), unpeek:()=>this.setState({peek:null}),
       introOn:!!s.intro&&ready, closeIntro:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); }, openIntro:()=>this.setState({intro:true}),
-      wrapRef:this.wrapRef, cvRef:this.cvRef, cursor:h?'pointer':'grab', loading:!ready,
+      wrapRef:this.wrapRef, cvRef:this.cvRef, leftRef:this.leftRef, cursor:h?'pointer':'grab', loading:!ready,
       modes, help, q:s.q, onQ:e=>this.setState({q:e.target.value}), results, hasResults:results.length>0,
       
       hasFocus:!!fn&&!this.journalHidden(), fFam:vn?FAM[vn.fam][0]:'', fFamCol:vn?FCOL[vn.fam]:'#d8a24a', fName:vn?vn.name:'', fRole:vn?vn.roleL:'', fRoleCol:vn?vn.roleCol:'#e8e6e6', fWeight:vn?vn.w:'', fEra:vn?(ERA[vn.era]||vn.era):'', fBlurb:vn?vn.blurb:'', fWho:vn?vn.who:'', fWiki:vn?`/bestiarium/wiki/${vn.id}`:'#', peeking:!!pv, notPeeking:!pv, hostName:fn?fn.name:'', backHost:()=>this.setState({peek:null}), stepLabel:pk?`Step to ${pk.name.length>26?pk.name.slice(0,24)+'…':pk.name} →`:'', sections, close:()=>this.clearFocus(),

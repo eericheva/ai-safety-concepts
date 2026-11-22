@@ -313,7 +313,8 @@ class Component extends DCLogic {
     // ADDED 2026-11-02: the blocks stretch with the window; 64 is the block's side padding
     this.ro = new ResizeObserver(([e]) => { const W = Math.max(1136, Math.floor(e.target.clientWidth - 64)); if (W !== this.state.W) this.setState({ W }); });
     this.ro.observe(document.getElementById('2w'));
-    fetch('data/bestiary-interactives.json').then(r => r.json()).then(d => {
+    const data = fetch('data/bestiary-interactives.json').then(r => r.json())
+    data.then(d => {
       const nodes = d.nodes.map(([id, name, fam, role, era, track, cen, tldr, author]) => ({ id, name, fam, role, era, track, cen, tldr, author, adj: [] }));
       const by = {}; nodes.forEach(n => by[n.id] = n);
       this.roleColors = d.roleColors; // ADDED 2026-11-22: the map's role palette, for the creatures
@@ -327,12 +328,17 @@ class Component extends DCLogic {
     });
     // ADDED 2026-11-22: the hand-drawn creatures, the same assets/creatures/creatures.json the map reads (built from
     // assets/creatures/svg/<id>.svg); a beast without one keeps its Kenney monster
-    fetch('assets/creatures/creatures.json').then(r => r.json()).then(art => { this.art = art; this.forceUpdate(); });
-    const img = new Image();
-    Promise.all([fetch('assets/monster/spritesheet_default.xml').then(r => r.text()), new Promise(res => { img.onload = res; img.src = 'assets/monster/spritesheet_default.png'; })]).then(([xml]) => {
-      const frames = {}; const re = /name="([^"]+)"\s+x="(\d+)"\s+y="(\d+)"\s+width="(\d+)"\s+height="(\d+)"/g; let m;
-      while ((m = re.exec(xml))) frames[m[1]] = { x: +m[2], y: +m[3], w: +m[4], h: +m[5] };
-      this.sheet = { img, frames }; this.forceUpdate();
+    // CHANGED 2026-11-22: the monster sprite sheet (143 KB and its XML) is loaded only when a beast has no creature (site
+    // optimisation: every beast has one now)
+    Promise.all([fetch('assets/creatures/creatures.json').then(r => r.json()), data]).then(([art, d]) => {
+      this.art = art; this.needSheet = d.nodes.some(n => !art[n[0]]); this.forceUpdate()
+      if (!this.needSheet) return
+      const img = new Image();
+      Promise.all([fetch('assets/monster/spritesheet_default.xml').then(r => r.text()), new Promise(res => { img.onload = res; img.src = 'assets/monster/spritesheet_default.png'; })]).then(([xml]) => {
+        const frames = {}; const re = /name="([^"]+)"\s+x="(\d+)"\s+y="(\d+)"\s+width="(\d+)"\s+height="(\d+)"/g; let m;
+        while ((m = re.exec(xml))) frames[m[1]] = { x: +m[2], y: +m[3], w: +m[4], h: +m[5] };
+        this.sheet = { img, frames }; this.forceUpdate();
+      });
     });
     this.auto = {};
     this.autoT = setInterval(() => {
@@ -346,7 +352,7 @@ class Component extends DCLogic {
     this.fVis = false; new IntersectionObserver(([e]) => { this.fVis = e.isIntersecting; }).observe(document.getElementById('2f'));
     this.fT = setInterval(() => { const s = this.state; if (s.data && s.fPlay && this.fVis && s.fStep < this.fTotal) this.setState({ fStep: s.fStep + 1 }); }, 450);
     this.flush = setInterval(() => {
-      if (!this.sheet || !this.art || !this.queue.length) return;
+      if (!this.art || (this.needSheet && !this.sheet) || !this.queue.length) return;
       // CHANGED 2026-11-22: a beast with a creature drawing gets it (drawn once its image loads), the others the monster
       const batch = this.queue.splice(0, 14); batch.forEach(id => { if (this.sprites[id]) return; if (this.art[id]) this.drawArt(this.by[id]); else this.sprites[id] = this.draw(this.by[id]); });
       this.setState(s => ({ tick: s.tick + 1 }));
