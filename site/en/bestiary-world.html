@@ -40,13 +40,20 @@
     <sc-if value="{{ questOn }}" hint-placeholder-val="{{ false }}">
       <div style="display:flex;flex-direction:column;gap:10px;background:#171513;border:1px solid #2e2b28;padding:12px">
         <span style="font:400 12.5px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">Find a path from the start to the flag. {{ qRuleText }} Click a neighbour once to read about it, click it a second time (or press Step) to move there. Fewest hops wins.</span>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline">
+        <!-- CHANGED 2026-11-22: the start and the flag are written as every beast on this page is, as in the beast's card: family in its island's colour, name, role, weight and era (owner) -->
+        <div style="display:flex;flex-direction:column;gap:5px">
           <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Start</span>
-          <span style="font:500 13px/1.3 'Onest',sans-serif">{{ qStart }}</span>
+          <span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ qsFamCol }}">{{ qsFam }}</span>
+          <span style="font:700 15px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ qsName }}</span>
+          <span style="display:flex;gap:5px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:5px;font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px"><i style="width:7px;height:7px;background:{{ qsRoleCol }}"></i>{{ qsRole }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ qsW }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ qsEra }}</span></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;border-top:1px solid #2e2b28;padding-top:10px">
           <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a">Flag</span>
-          <span style="font:700 14px/1.25 'Unbounded',sans-serif;color:#efeae2">{{ qTarget }}</span>
-          <span></span>
-          <span style="display:flex;flex-direction:column;gap:3px"><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ qFlagCol }}">lives on: {{ qFlagFam }}</span><span style="font:400 12px/1.4 'Onest',sans-serif;color:#9a948b;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ qFlagBlurb }}</span><span style="font:400 11.5px/1.4 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty"><b style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#d8a24a">Flag's neighbours: </b>{{ qFlagNb }}</span></span>
+          <span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ qtFamCol }}">{{ qtFam }}</span>
+          <span style="font:700 17px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ qtName }}</span>
+          <span style="display:flex;gap:5px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:5px;font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px"><i style="width:7px;height:7px;background:{{ qtRoleCol }}"></i>{{ qtRole }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ qtW }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ qtEra }}</span></span>
+          <span style="font:400 13px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ qFlagBlurb }}</span>
+          <span style="font:400 12px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty"><b style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Flag's neighbours: </b>{{ qFlagNb }}</span>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #2e2b28;padding-top:10px">
           <div style="display:flex;flex-direction:column;gap:2px">
@@ -66,11 +73,11 @@
           <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid #2e2b28;padding-top:6px">
             <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">Your journey</span>
             <sc-for list="{{ qSteps }}" as="st" hint-placeholder-count="0">
-              <div style="display:grid;grid-template-columns:18px 1fr;gap:8px;padding:5px 0;border-bottom:1px solid #1f1d1a">
-                <span style="font:700 11px 'JetBrains Mono',monospace;color:#d8a24a">{{ st.n }}</span>
-                <span style="display:flex;flex-direction:column;gap:1px">
-                  <span style="font:400 11px/1.3 'JetBrains Mono',monospace;color:{{ st.col }}">{{ st.rel }}</span>
-                  <span style="font:500 13px/1.3 'Onest',sans-serif;color:#efeae2">{{ st.name }}</span>
+              <div style="display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:7px 0">
+                <span style="min-width:20px;height:17px;margin-top:1px;box-sizing:border-box;border:1px solid {{ st.col }};display:flex;align-items:center;justify-content:center;font:700 10px 'JetBrains Mono',monospace;color:#efeae2">{{ st.n }}</span>
+                <span style="display:flex;flex-direction:column;gap:2px">
+                  <span style="font:500 14px/1.3 'Onest',sans-serif;color:#efeae2">{{ st.name }}</span>
+                  <span style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><span style="font:400 12px/1.35 'Onest',sans-serif;color:#9a948b">{{ st.rel }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ st.famCol }}">{{ st.fam }}</span></span>
                 </span>
               </div>
             </sc-for>
@@ -296,11 +303,10 @@
   <sc-if value="{{ hasPeek }}" hint-placeholder-val="{{ false }}">
     <div style="position:absolute;bottom:16px;left:{{ pkL }}px;width:{{ pkW }}px;max-height:200px;overflow:auto;background:#11100e;border:1px solid #2e2b28;border-top:4px solid {{ pkFamCol }};padding:12px 14px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box;z-index:3">
       <span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Look before you step</span>
-      <span style="font:700 18px/1.2 'Unbounded',sans-serif;text-wrap:pretty">{{ pkName }}</span>
-      <div style="display:flex;gap:6px;flex-wrap:wrap">
-        <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ pkFamCol }};border:1px solid {{ pkFamCol }};padding:3px 7px">{{ pkFam }}</span>
-        <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 7px">{{ pkRole }}</span>
-      </div>
+      <!-- CHANGED 2026-11-22: written as the beast's card is (owner) -->
+      <span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ pkFamCol }}">{{ pkFam }}</span>
+      <span style="font:700 18px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ pkName }}</span>
+      <span style="display:flex;gap:5px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:5px;font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px"><i style="width:7px;height:7px;background:{{ pkRoleCol }}"></i>{{ pkRole }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ pkW }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ pkEra }}</span></span>
       <p style="margin:0;font:400 13px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ pkBlurb }}</p>
       <div style="display:flex;flex-direction:column;gap:3px;background:#171513;border:1px solid #26231f;padding:8px 10px">
         <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:{{ pkRelCol }}">The road · {{ pkRelTag }}</span>
@@ -491,6 +497,8 @@ class Component extends DCLogic {
   cardHidden(){ return !!this.state.focus&&this.W<1250&&this.state.mode!=='quest'; }
   journalHidden(){ return this.state.mode==='quest'&&this.W<1250; }
   rightInset(){ return this.state.focus&&!this.journalHidden()&&this.W>900?370:0; }
+  // ADDED 2026-11-22: one way to write a beast on this page, as its card does: family, name, role, weight, era (owner)
+  beastHead(pre,n){ return {[pre+'Fam']:n?FAM[n.fam][0]:'', [pre+'FamCol']:n?FCOL[n.fam]:'#d8a24a', [pre+'Name']:n?n.name:'', [pre+'Role']:n?n.roleL:'', [pre+'RoleCol']:n?n.roleCol:'#e8e6e6', [pre+'W']:n?n.w:'', [pre+'Era']:n?(ERA[n.era]||n.era):''}; }
   leftInset(){ return this.W>700&&!this.cardHidden()?342:0; }
   fitWorld(instant){ const b=this.wb; if(!b) return; const L=this.leftInset(); const z=clamp(Math.min((this.W-L-20)/(b.x1-b.x0+260),(this.H-60-BAR)/(b.y1-b.y0+220)),.2,1); const T={x:(b.x0+b.x1)/2-(L/2)/z,y:(b.y0+b.y1)/2+(10-BAR/2)/z,z}; /* CHANGED 2026-11-22: below the top row */ if(instant) this.cam={...T}; else this.camT=T; }
 
@@ -827,7 +835,7 @@ class Component extends DCLogic {
       wBack:()=>this.wanderBack(), wClear:()=>{ this.saveTrail(s.focus?[s.focus]:[]); this.setState({tick:s.tick+1}); },
       wSteps:ready?this.wpath.map((id,i)=>{ const p=this.wpath[i-1], e=p&&this.edgeBetween(p,id), n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):'';
         return {n:String(i+1),rel:i===0?'start':!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name,bg:id===s.focus&&i===this.wpath.length-1?'#26231f':'transparent',go:()=>id===s.focus?this.frameFocus():this.travel(id)}; }).reverse():[],
-      questOn:s.mode==='quest'&&!!q&&ready, qTarget:q&&ready?this.byId.get(q.t).name:'', qStart:q&&ready?this.byId.get(q.s).name:'', qHops:q?q.hops:0, qBest:q?q.best:0, qAway:q&&ready&&s.focus?(()=>{const d=q.distT.get(s.focus);return d===0?'At the flag':d===1?'1 hop away':`${d} hops away`;})():'', qTrend:q?({warmer:'warmer — closer to the flag',colder:'colder — further away',same:'same distance',back:'stepped back','':'distance from here'}[q.trend]):'', qTrendCol:q?({warmer:'#7ad13a',colder:'#ff6b5e'}[q.trend]||'#efeae2'):'#efeae2', qHasSteps:!!(q&&q.steps.length), qSteps:q&&ready?q.steps.map((st,i)=>{const e=st.e; const sh=id=>{const nm=this.byId.get(id).name;return nm.length>24?nm.slice(0,22)+'…':nm;}; const rel=e?`${sh(e.a)} ${KL[e.k]||e.k} ${sh(e.b)}`:''; return {n:String(i+1),rel,col:e?G[e.g].col:'#9a948b',name:this.byId.get(st.to).name};}):[], qHint:()=>this.hint(), qUndo:()=>this.undo(), qUndoOp:q&&q.path.length>1?1:.4, giveUp:()=>this.giveUp(),
+      questOn:s.mode==='quest'&&!!q&&ready, qTarget:q&&ready?this.byId.get(q.t).name:'', qStart:q&&ready?this.byId.get(q.s).name:'', ...this.beastHead('qs',q&&ready?this.byId.get(q.s):null), ...this.beastHead('qt',tn), ...this.beastHead('pk',pk), qHops:q?q.hops:0, qBest:q?q.best:0, qAway:q&&ready&&s.focus?(()=>{const d=q.distT.get(s.focus);return d===0?'At the flag':d===1?'1 hop away':`${d} hops away`;})():'', qTrend:q?({warmer:'warmer — closer to the flag',colder:'colder — further away',same:'same distance',back:'stepped back','':'distance from here'}[q.trend]):'', qTrendCol:q?({warmer:'#7ad13a',colder:'#ff6b5e'}[q.trend]||'#efeae2'):'#efeae2', qHasSteps:!!(q&&q.steps.length), qSteps:q&&ready?q.steps.map((st,i)=>{ /* CHANGED 2026-11-22: a step is written as a link in the beast's card: name, how it is linked to the beast before it, its island in the island's colour (owner) */ const e=st.e, id=st.to, p=st.from, n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):''; return {n:String(i+1),rel:!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name};}):[], qHint:()=>this.hint(), qUndo:()=>this.undo(), qUndoOp:q&&q.path.length>1?1:.4, giveUp:()=>this.giveUp(),
       hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), rStart:r&&ready?this.byId.get(r.sp[0]).name:'', rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, qFoot:s.mode==='quest'&&!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
       chronOn:s.mode==='chronicle', playLabel:s.playing?'❚❚':'▶', eraLabel:ERA[ERAK[s.era]], era:s.era, onEra:e=>{clearInterval(this.playT);this.setState({playing:false});this.setEra(+e.target.value);}, togglePlay:()=>this.togglePlay(), alive:ready?`${this.nodes.filter(n=>n.ei<=s.era).length} beasts alive`:'',
       hasHover:!!h, hx:h?h.x:0, hy:h?h.y:0, hTag:h?h.tag:'', hTitle:h?h.title:'', hSub:h?h.sub:'', hCol:h?h.col:'#d8a24a',
