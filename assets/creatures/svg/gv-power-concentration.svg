@@ -1,0 +1,56 @@
+<svg width="922" height="1124" xmlns="http://www.w3.org/2000/svg" viewBox="89.5 32.5 461 562" data-beast-id="gv-power-concentration">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="tower-spine" d="M291 140 L349 140 L371 474 L351 520 L289 520 L269 474Z" fill="#C8A268"/>
+<path d="M333 158 L349 158 L371 474 L351 520 L324 520 L340 471Z" fill="#987B4F" stroke="none"/>
+<path id="left-upper-branch" d="M287 222 H203 V278 H157 V301 H228 V247 H289Z" fill="#C8A268"/>
+<path id="right-upper-branch" d="M353 222 H437 V278 H483 V301 H412 V247 H351Z" fill="#C8A268"/>
+<path id="left-lower-branch" d="M279 337 H241 V397 H194 V420 H264 V362 H281Z" fill="#C8A268"/>
+<path id="right-lower-branch" d="M361 337 H399 V397 H446 V420 H376 V362 H359Z" fill="#C8A268"/>
+<path id="root-feet" d="M290 491 L263 536 H307 L320 516 L333 536 H377 L350 491" fill="#987B4F"/>
+<path id="command-cabin" d="M267 78 L320 35 L373 78 L362 158 H278Z" fill="#C8A268"/>
+<path d="M278 82 H362 L353 136 H287Z" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<path d="M294 173 Q320 162 346 173 L344 204 Q320 221 296 204Z" fill="#F2E9D6"/>
+<ellipse cx="308" cy="187" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<ellipse cx="332" cy="187" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path d="M311 204 H329" fill="none"/>
+</g>
+<g id="props">
+<g id="human-command-group" fill="#987B4F">
+<circle cx="297" cy="95" r="7"/><path d="M288 120 V112 Q297 102 306 112 V120Z"/>
+<circle cx="320" cy="87" r="8"/><path d="M310 119 V105 Q320 95 330 105 V119Z"/>
+<circle cx="343" cy="95" r="7"/><path d="M334 120 V112 Q343 102 352 112 V120Z"/>
+<path d="M288 125 H352" fill="none"/><path d="M303 124 L307 115 M337 124 L333 115" fill="none"/>
+</g>
+<g id="durable-control-lock" fill="#F2E9D6">
+<path d="M309 270 V258 Q320 242 331 258 V270" fill="none"/>
+<rect x="303" y="269" width="34" height="35" rx="5"/>
+<path d="M320 282 V291"/>
+</g>
+<g id="administrative-branches" fill="#F2E9D6">
+<path d="M118 266 H174 L184 279 V326 H118Z"/><path d="M174 266 V280 H184 M131 289 H161 M131 301 H168 M131 313 H156" fill="none"/>
+<path d="M456 266 H512 L522 279 V326 H456Z"/><path d="M512 266 V280 H522 M469 289 H499 M469 301 H506 M469 313 H494" fill="none"/>
+</g>
+<g id="obedient-action-branches" fill="#F2E9D6">
+<path d="M151 382 H194 V412 L180 437 H153 L140 413Z"/><path d="M151 393 H183 M153 404 H180 M156 415 H175" fill="none"/>
+<path d="M446 382 H489 L500 413 L487 437 H460 L446 412Z"/><path d="M457 393 H489 M460 404 H487 M465 415 H484" fill="none"/>
+</g>
+<g id="direct-command-lines" fill="none" stroke="#987B4F" stroke-width="5">
+<path d="M282 151 L253 167 H184 V251 M358 151 L387 167 H456 V251"/>
+<path d="M282 159 L253 183 V323 H166 V365 M358 159 L387 183 V323 H474 V365"/>
+</g>
+<g id="bypassed-consent" fill="none" stroke="#8EAAA5" stroke-dasharray="7 10">
+<path d="M113 540 V471 H222 V451 M220 544 V478 M420 544 V478 M527 540 V471 H418 V451"/>
+</g>
+<g id="broken-inputs" stroke="#B77A60"><path d="M214 439 L230 455 M230 439 L214 455 M410 439 L426 455 M426 439 L410 455"/></g>
+<g id="wide-public-base" fill="#F2E9D6">
+<circle cx="113" cy="550" r="12"/><path d="M92 592 V578 Q113 558 134 578 V592Z"/>
+<circle cx="220" cy="550" r="12"/><path d="M199 592 V578 Q220 558 241 578 V592Z"/>
+<circle cx="420" cy="550" r="12"/><path d="M399 592 V578 Q420 558 441 578 V592Z"/>
+<circle cx="527" cy="550" r="12"/><path d="M506 592 V578 Q527 558 548 578 V592Z"/>
+</g>
+</g>
+</g>
+</svg>

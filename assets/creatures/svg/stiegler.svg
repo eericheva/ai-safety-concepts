@@ -1,0 +1,43 @@
+<svg width="958" height="994" xmlns="http://www.w3.org/2000/svg" viewBox="39.5 58.5 479 497" data-beast-id="stiegler">
+  <g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="body">
+      <g id="extended-wing">
+        <path d="M349 304 C276 288 224 234 193 163 C173 123 129 85 62 61 C78 124 107 169 146 208 C108 191 77 187 42 191 C70 237 112 267 164 283 C128 280 89 288 61 307 C111 339 159 350 209 343 C179 360 161 384 150 415 C217 414 278 384 349 342Z" fill="#C8A268"/>
+        <path d="M62 61 C136 165 207 236 349 321 M146 208 L217 243 M164 283 L263 282 M209 343 L300 316" fill="none"/>
+        <path d="M121 144 L151 131 L213 208 L197 230Z M205 231 L224 215 L296 271 L283 295Z" fill="#F2E9D6"/>
+        <path d="M284 288 L300 266 L353 296 L349 333Z" fill="#A7C5C5"/>
+        <circle cx="211" cy="223" r="13" fill="#987B4F"/>
+        <circle cx="292" cy="279" r="13" fill="#987B4F"/>
+      </g>
+      <g id="atrophied-wing">
+        <path d="M415 303 C449 292 471 305 476 338 C480 366 493 389 516 397 C506 411 486 412 472 403 C478 421 474 439 464 449 C447 440 441 423 441 408 C431 421 420 422 410 418 C426 388 426 367 410 349Z" fill="#C8A268"/>
+        <path d="M432 324 C453 341 444 370 469 394 M445 365 L431 389 M453 384 L456 416" fill="none" stroke="#987B4F"/>
+      </g>
+      <path d="M351 249 L405 249 L435 296 L429 416 L397 475 L355 475 L324 416 L323 297Z" fill="#C8A268"/>
+      <path d="M397 264 L419 300 L413 410 L389 454 L366 454 L353 433 L386 412Z" fill="#987B4F" stroke="none"/>
+      <path d="M343 321 L412 321 L408 395 L389 420 L364 420 L346 395Z" fill="#F2E9D6"/>
+      <path d="M362 340 L393 340 L393 378 L378 392 L363 378Z" fill="#A7C5C5"/>
+      <path d="M350 353 L362 353 M393 353 L408 353 M350 369 L362 369 M393 369 L408 369 M377 322 L377 339 M377 393 L377 414" fill="none"/>
+      <path d="M358 470 L346 514 L322 541 L339 553 L374 525 L381 478 M391 477 L407 516 L433 538 L418 552 L384 526" fill="#C8A268"/>
+    </g>
+    <g id="face">
+      <path d="M338 234 Q326 208 343 183 Q361 167 384 178 Q410 170 425 192 Q437 213 419 240 L405 270 Q382 288 355 269Z" fill="#F2E9D6"/>
+      <path id="left-antenna" d="M352 182 Q329 151 340 127" fill="none"/>
+      <path id="right-antenna" d="M408 181 Q432 152 425 128" fill="none"/>
+      <circle cx="340" cy="123" r="9" fill="#C8A268"/>
+      <circle cx="425" cy="124" r="9" fill="#C8A268"/>
+      <ellipse cx="356" cy="219" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+      <ellipse cx="405" cy="219" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+      <path d="M370 249 Q380 243 390 248 M347 201 L360 198 M398 198 L411 203" fill="none"/>
+      <path d="M371 180 L382 194 L393 179" fill="#C8A268"/>
+    </g>
+    <g id="props">
+      <g id="capability-reach" fill="none" stroke="#987B4F">
+        <path d="M67 356 L91 362 M110 388 L127 384 M49 136 L64 151"/>
+      </g>
+      <g id="unused-joint" fill="#987B4F">
+        <circle cx="433" cy="318" r="10"/>
+      </g>
+    </g>
+  </g>
+</svg>

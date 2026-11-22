@@ -1,0 +1,52 @@
+<svg width="992" height="1010" xmlns="http://www.w3.org/2000/svg" viewBox="80.5 72.5 496 505" data-beast-id="st-vulnerable-world">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="urn-handle" d="M165 216C67 177 58 319 137 333L151 299C103 288 114 235 165 251Z" fill="#987B4F"/>
+<path id="urn-body" d="M148 208L173 275C89 359 109 475 214 494L310 494C401 468 403 361 330 275L349 208Z" fill="#C8A268"/>
+<path id="urn-shadow" d="M331 290C353 390 335 459 239 469L158 457C175 481 204 491 230 494L310 494C395 468 403 370 331 290Z" fill="#987B4F" stroke="none"/>
+<path id="urn-foot" d="M220 488L204 518L325 518L306 488" fill="#C8A268"/>
+<ellipse id="urn-opening" cx="248" cy="210" rx="102" ry="34" fill="#987B4F"/>
+<path id="urn-lip" d="M147 210Q248 265 349 210L344 236Q248 280 153 236Z" fill="#F2E9D6"/>
+<path id="drawing-arm" d="M335 324C397 308 400 242 414 205L433 212C430 287 412 347 352 366" fill="#C8A268"/>
+<path id="drawing-fingers" d="M414 205L403 185Q397 173 405 169Q414 166 423 188L426 158Q428 145 437 149L440 180L450 162Q458 151 464 160L450 195Q446 209 433 212" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<path id="face-panel" d="M181 332Q251 304 317 336L313 401Q248 436 187 399Z" fill="#F2E9D6"/>
+<ellipse id="left-eye" cx="220" cy="360" rx="8" ry="13" fill="#2E4649" stroke="none"/>
+<ellipse id="right-eye" cx="279" cy="356" rx="8" ry="13" fill="#2E4649" stroke="none"/>
+<path id="brows" d="M204 337L229 331M270 327L291 335" fill="none"/>
+<path id="uncertain-mouth" d="M237 395Q248 382 260 392" fill="none"/>
+<ellipse cx="202" cy="383" rx="11" ry="6" fill="#D79E87" stroke="none"/>
+<ellipse cx="295" cy="380" rx="11" ry="6" fill="#D79E87" stroke="none"/>
+</g>
+<g id="props">
+<g id="technological-seeds">
+<circle cx="184" cy="203" r="19" fill="#F2E9D6"/>
+<circle cx="225" cy="190" r="21" fill="#B6C4BF"/>
+<circle cx="272" cy="201" r="22" fill="#F2E9D6"/>
+<circle cx="313" cy="198" r="18" fill="#B6C4BF"/>
+<path d="M178 202L184 194L191 202M219 187L230 194M264 201L280 201" fill="none" stroke-width="3"/>
+<circle cx="208" cy="135" r="18" fill="#F2E9D6"/>
+<circle cx="281" cy="111" r="16" fill="#B6C4BF"/>
+</g>
+<g id="hypothetical-black-seed">
+<circle cx="435" cy="113" r="38" fill="none" stroke-dasharray="7 10"/>
+<circle cx="435" cy="113" r="25" fill="#2E4649"/>
+<path d="M423 101Q429 95 435 97" stroke="#7E9292" fill="none"/>
+</g>
+<g id="shared-civilization">
+<path id="shared-support" d="M90 520L553 520L574 550L83 550Z" fill="#91ADA8"/>
+<path id="common-base" d="M108 550L108 575L534 575L546 550" fill="#F2E9D6"/>
+<path id="small-city" d="M386 517L386 456L410 433L434 456L434 517M446 517L446 417L483 417L483 517M498 517L498 463L526 443L553 463L553 517" fill="#F2E9D6"/>
+<path d="M399 472L418 472L418 489L399 489ZM458 435L471 435L471 449L458 449ZM458 465L471 465L471 479L458 479ZM515 479L536 479L536 497L515 497Z" fill="#91ADA8" stroke-width="3"/>
+</g>
+<path id="possible-threat" d="M474 142Q563 218 544 339L532 375" fill="none" stroke="#987B4F" stroke-dasharray="6 12"/>
+<path id="possible-fracture" d="M490 523L479 535L493 545L481 562" fill="none" stroke="#987B4F" stroke-dasharray="5 7"/>
+<g id="incomplete-prevention">
+<path d="M389 407Q444 361 493 389L505 371Q458 341 410 368L385 386Q373 398 389 407Z" fill="#91ADA8"/>
+<path d="M493 389L509 395Q522 400 524 391Q525 385 512 381L505 378M505 371L517 367Q530 364 526 356Q521 349 503 356L488 359" fill="#91ADA8"/>
+<path d="M533 384L546 396M539 365L556 364" fill="none" stroke="#987B4F"/>
+</g>
+</g>
+</g>
+</svg>

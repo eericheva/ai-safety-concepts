@@ -1,0 +1,50 @@
+<svg width="1008" height="1064" xmlns="http://www.w3.org/2000/svg" viewBox="76.5 45.5 503.8 532" fill="none" data-beast-id="cr-king-midas">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path d="M178 260 C139 317 124 377 150 429 C168 465 169 498 128 534 L86 550 Q71 561 88 573 L163 575 Q204 547 216 511 Q237 554 277 573 L342 571 Q355 564 340 552 L285 530 Q260 494 257 453 C281 400 264 344 242 306 L236 262Z" fill="#C8A268"/>
+<path d="M163 336 C140 396 185 424 186 465 Q189 519 157 551 L126 570 L163 575 Q204 547 216 511 Q237 554 277 573 L310 572 L264 536 Q236 491 237 458 Q259 394 232 344Z" fill="#987B4F" stroke="none"/>
+<path d="M183 295 Q168 335 190 367 L218 399 L238 358 Q219 328 225 294Z" fill="#F2E9D6"/>
+<path d="M174 279 C127 294 87 339 92 386 Q97 414 126 406 L237 347 L295 325 L308 311 Q305 301 291 305 L231 325 L128 367 Q133 339 185 320" fill="#C8A268"/>
+<path d="M231 302 Q267 310 281 347 L304 408 L379 351 Q390 340 398 350 Q404 359 394 369 L316 442 Q296 456 279 439 L251 387" fill="#C8A268"/>
+</g>
+<g id="props">
+<g id="living-branch">
+<path d="M372 314 Q444 298 532 244" stroke="#6D9274" stroke-width="12"/>
+<path d="M485 275 Q474 239 497 215 Q525 247 485 275Z" fill="#8EB69B"/>
+<path d="M505 261 Q544 266 562 233 Q531 218 505 261Z" fill="#8EB69B"/>
+<path d="M530 245 L550 207" stroke="#6D9274"/>
+<path d="M549 209 Q525 199 532 181 Q545 171 552 182 Q568 177 576 190 Q583 209 563 220 Q553 225 549 209Z" fill="#CA8270"/>
+</g>
+<g id="gold-transformation">
+<path d="M282 342 L325 321 L372 314 L420 295" stroke="#D8AE50" stroke-width="13"/>
+<path d="M356 317 L337 280 L353 249 L374 283Z" fill="#D8AE50"/>
+<path d="M382 311 L413 317 L447 297 L419 284Z" fill="#E8C46A"/>
+<path d="M334 324 L345 351" stroke="#D8AE50"/>
+<path d="M341 349 L363 349 L374 375 L395 397 L387 432 L357 445 L326 431 L316 402 L335 376Z" fill="#D8AE50"/>
+<path d="M363 351 L350 399 L357 443 M350 399 L319 403 M350 399 L392 397" stroke="#B08D45"/>
+<path d="M373 303 L380 320" stroke="#F2E9D6" stroke-width="8"/>
+</g>
+<g id="long-touching-fingers" fill="#C8A268">
+<path d="M279 326 L307 290 Q314 280 322 285 Q329 291 322 301 L309 318 L336 307 Q348 305 349 314 Q349 321 340 325 L302 342 Q289 347 279 339"/>
+<path d="M377 362 L399 336 Q407 327 414 334 Q419 341 412 350 L397 370 Q393 379 383 379"/>
+</g>
+<g id="crown" fill="#D8AE50">
+<path d="M157 150 L133 79 L171 100 L197 48 L223 101 L260 74 L250 150Z"/>
+<path d="M155 131 L251 131 L250 158 L158 158Z" fill="#E8C46A"/>
+<path d="M196 117 L205 106 L214 117 L205 128Z" fill="#F2E9D6"/>
+</g>
+</g>
+<g id="face">
+<path d="M156 155 Q127 170 139 216 L165 237 L174 280 L207 309 L240 280 L248 235 Q278 219 266 185 L250 155Z" fill="#C8A268"/>
+<path d="M157 178 Q173 174 190 190 Q203 200 218 189 Q237 171 251 182 L244 230 L230 266 L207 285 L186 266 L173 229Z" fill="#F2E9D6"/>
+<path d="M164 184 L181 176 M224 176 L244 182"/>
+<ellipse cx="179" cy="207" rx="8" ry="13" fill="#2E4649" stroke="none"/>
+<ellipse cx="231" cy="207" rx="8" ry="13" fill="#2E4649" stroke="none"/>
+<circle cx="182" cy="203" r="3" fill="#F2E9D6" stroke="none"/>
+<circle cx="234" cy="203" r="3" fill="#F2E9D6" stroke="none"/>
+<path d="M194 253 Q207 238 220 254"/>
+<path d="M206 217 L201 232 L211 232"/>
+<path id="tear" d="M251 234 Q262 251 251 257 Q240 251 251 234Z" fill="#A8C8CD"/>
+</g>
+</g>
+</svg>

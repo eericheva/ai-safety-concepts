@@ -1,0 +1,53 @@
+<svg width="1039" height="1136" xmlns="http://www.w3.org/2000/svg" viewBox="80.5 29.5 519.5 568" data-beast-id="cr-stochastic-parrots" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<g id="tail-strips">
+<path d="M284 383 295 449 182 585 215 445Z" fill="#987B4F"/>
+<path d="m306 388 26 52-44 155-24-100Z" fill="#C8A268"/>
+<path d="m329 391 30 41-2 133-36-79Z" fill="#F2E9D6"/>
+<path d="m235 460 29 22m-44-2 27 24m48-44 24 12m-31 15 24 11"/>
+</g>
+<g id="patchwork-wing">
+<path d="m300 246-91-38-92 55 83 14-117 78 105-18-72 96 117-47 79-84Z" fill="#C8A268"/>
+<path d="m209 208 18 77-110-22m110 22-39 52-105 18m105-18 45 49-117 47m111-148 58-24"/>
+<path d="m143 257 25-14 17 8m-56 90 31-21 24 1m-31 77 29-16" stroke="#F2E9D6"/>
+<path d="m215 248 19-5m-18 23 19-5m-30 37 15 12m-30 8 14 12m-6 24 16-14m-2 28 15-14" stroke-width="4"/>
+</g>
+<g id="hollow-chest">
+<path fill="#C8A268" fill-rule="evenodd" d="m309 190 88 18 32 74-13 107-69 63-78-17-45-80 22-92Zm19 76-38 30-11 53 27 42 35 6 38-36 5-61-27-30Z"/>
+<path d="m309 190 19 76m69-58-40 62m72 12-45 18m32 89-37-28m-32 91-6-55m-72 38 37-44m-82-36 55-6m-33-86 44 33"/>
+<path d="m296 234 19-9m71 16 14 13m-10 78 25 2m-29 52 13 17m-93 5-3 24m-50-55 20-11" stroke="#F2E9D6" stroke-width="4"/>
+</g>
+<g id="angular-neck-head">
+<path d="m309 190 7-68 42-47 67 8 42 57-13 62-57 38-40-40Z" fill="#C8A268"/>
+<path d="m316 122 56 13-14-60m14 60 53-52m-53 52 25 105m-88-50 63-55"/>
+<path d="m348 87-9-44 34 31 20-42 11 48" fill="#987B4F"/>
+</g>
+<g id="feet">
+<path d="m306 438-4 30 25 14m-25-14-23 10m67-35 11 21 25 4m-25-4-13 20"/>
+</g>
+</g>
+<g id="face">
+<path d="m374 122 41-15 28 34-15 44-37-7Z" fill="#F2E9D6"/>
+<path d="m438 133 53 9 33 37-5 43-32-36-45 4Z" fill="#987B4F"/>
+<path d="m442 190 45-4-15 37-34-21Z" fill="#C8A268"/>
+<circle cx="410" cy="145" r="9" fill="#2E4649" stroke="none"/>
+<circle cx="413" cy="141" r="2.5" fill="#F2E9D6" stroke="none"/>
+<path d="m393 127 20-5"/>
+</g>
+<g id="props">
+<g id="probability-branches" stroke-width="4">
+<path d="m472 173 58-32 32-42m-32 42 43 5m-43-5 33 44"/>
+<path d="m548 74 37 9-7 30-37-9Z" fill="#F2E9D6"/>
+<path d="m557 134 39-2 2 30-39 2Z" fill="#C8A268"/>
+<path d="m554 175 37 12-10 31-37-12Z" fill="#F2E9D6"/>
+<path d="m552 92 15 4m1 48 17-1m-27 51 16 5"/>
+<circle cx="517" cy="148" r="5" fill="#C8A268"/>
+<circle cx="544" cy="123" r="4" fill="#F2E9D6"/>
+<circle cx="547" cy="143" r="3" fill="#C8A268"/>
+</g>
+<g id="unjoined-meaning" stroke="#987B4F" stroke-width="4">
+<path d="m303 318 10-10 9 11m30 34-10 11-10-10"/>
+<path d="m313 319 0 9m29 14 0 9" stroke-dasharray="2 8"/>
+</g>
+</g>
+</svg>

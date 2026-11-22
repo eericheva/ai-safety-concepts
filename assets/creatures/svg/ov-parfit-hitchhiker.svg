@@ -1,0 +1,23 @@
+<svg width="1140" height="820" xmlns="http://www.w3.org/2000/svg" viewBox="28.5 138.5 570 410" data-beast-id="ov-parfit-hitchhiker">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="desert-footing"><path d="M40 509 Q110 477 221 512 L234 544 L40 544Z" fill="#C8A268"/><path d="M76 515 L94 528 L89 542 M127 501 L143 513 L163 508 M188 520 L179 536" fill="none"/><circle cx="83" cy="192" r="26" fill="#E3BA66"/><path d="M83 151V141 M42 192H31 M124 192H135 M55 163L47 155" fill="none" stroke="#C8A268"/></g>
+<g id="city-footing"><path d="M415 510H596V546H405Z" fill="#A4B9B2"/><path d="M435 511V435H473V399H513V458H555V420H590V511" fill="#F2E9D6"/><path d="M448 456H459 M484 425H498 M567 442H578 M435 527H575 M469 511V527 M537 527V545" fill="none"/></g>
+</g>
+<g id="body">
+<path id="rear-limb" d="M207 386 Q184 437 160 484 L192 500 L209 520 L149 520 L127 492 L151 376Z" fill="#987B4F"/>
+<path id="front-limb" d="M431 382 L459 469 L503 491 L501 513 L453 505 L400 399Z" fill="#987B4F"/>
+<path id="carrying-body" d="M79 368 Q105 303 166 315 Q208 336 262 337 L387 337 Q429 336 446 289 L452 230 Q445 208 461 186 L479 150 L493 179 Q520 164 542 189 L567 192 L554 216 Q572 252 548 281 Q528 309 511 326 Q495 404 407 422 L210 415 Q130 419 96 393 Q61 406 46 385 Q35 366 51 348 Q56 376 79 368Z" fill="#C8A268"/>
+<path id="belly" d="M124 375 Q184 393 258 390 H389 Q460 390 493 333 Q472 412 403 422 L211 415 Q151 416 124 398Z" fill="#F2E9D6"/>
+<path id="near-rear-limb" d="M242 407 L215 474 L234 501 L226 520 L188 503 L181 475 L203 402" fill="#C8A268"/>
+<path id="near-front-limb" d="M379 414 L387 483 L424 501 L421 520 L369 511 L350 417" fill="#C8A268"/>
+<path id="open-payment-palm" d="M483 308 Q525 327 558 296 L565 282 Q571 279 575 286 L573 303 Q560 336 527 344 L494 344" fill="#C8A268"/>
+</g>
+<g id="face"><path d="M466 219 Q499 183 543 211 Q557 245 529 266 Q493 277 467 249Z" fill="#F2E9D6"/><path id="predictive-eye" d="M478 226 Q503 201 532 225 Q507 250 478 226Z" fill="#A4B9B2"/><ellipse cx="508" cy="225" rx="8" ry="13" fill="#2E4649" stroke="none"/><circle cx="511" cy="221" r="3" fill="#F2E9D6" stroke="none"/><path d="M495 254Q510 262 522 251" fill="none"/></g>
+<g id="props-rider">
+<g id="rescued-traveler"><path d="M268 278 Q263 252 285 238 Q308 229 329 250 L338 276 L323 312 L341 337 L325 351 L291 322 L285 346 L265 342 L268 307Z" fill="#A4B9B2"/><circle cx="293" cy="218" r="29" fill="#F2E9D6"/><path d="M265 212 Q270 173 298 183 L317 199" fill="#987B4F"/><path d="M284 218V222 M302 218V222 M287 235Q296 239 303 232" fill="none"/><path id="paying-arm" d="M320 263 Q380 244 439 270 L523 282 L537 271 L547 280 L537 299 L435 291 Q379 267 329 286" fill="#A4B9B2"/><circle id="payment-coin" cx="550" cy="273" r="13" fill="#E3BA66"/><path d="M550 267V279" fill="none"/></g>
+<path id="promise-strand" d="M274 275 Q205 233 175 273 Q152 313 198 334 Q222 344 245 321 Q306 373 389 318 Q448 279 533 286" fill="none" stroke="#B87358" stroke-width="8"/>
+<path id="foreseen-connection" d="M503 228L442 268 M489 231L454 258" fill="none" stroke="#A4B9B2" stroke-width="3" stroke-dasharray="5 8"/>
+<circle id="promise-knot" cx="274" cy="275" r="8" fill="#B87358"/>
+</g>
+</g></svg>

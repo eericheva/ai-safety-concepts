@@ -1,0 +1,52 @@
+<svg width="1110" height="774" xmlns="http://www.w3.org/2000/svg" viewBox="39.5 178.5 555 387" data-beast-id="rc-risk-taxonomy" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <g id="body">
+    <path id="three-rooted-foundation" d="M111 409 L160 409 L164 463 L189 492 L167 513 L134 481 L111 516 L83 503 L112 464 Z M290 409 L337 409 L340 469 L363 508 L335 522 L314 491 L297 522 L267 510 L292 468 Z M468 409 L515 409 L518 460 L552 491 L533 512 L493 480 L471 517 L443 502 L469 462 Z" fill="#987B4F"/>
+    <path id="arcade-shell" d="M82 417 L82 288 Q83 260 110 245 L146 225 L183 242 L250 226 Q271 185 319 181 Q370 182 393 224 L461 242 L498 225 L535 246 Q561 259 562 287 L562 417 L516 417 L516 324 Q516 286 481 286 Q444 286 444 324 L444 417 L349 417 L349 324 Q349 285 315 285 Q280 285 280 324 L280 417 L187 417 L187 324 Q187 286 152 286 Q117 286 117 324 L117 417 Z" fill="#C8A268"/>
+    <path id="roof-ridge" d="M78 284 L145 250 L219 263 L267 240 Q317 215 368 240 L418 263 L496 250 L566 284"/>
+    <path id="left-pier-shadow" d="M187 340 L211 351 L211 416 L187 416 Z" fill="#987B4F" stroke="none"/>
+    <path id="middle-pier-shadow" d="M349 340 L373 351 L373 416 L349 416 Z" fill="#987B4F" stroke="none"/>
+    <path id="right-pier-shadow" d="M516 340 L540 351 L540 416 L516 416 Z" fill="#987B4F" stroke="none"/>
+    <path id="left-base" d="M70 410 L217 410 L217 434 L70 434 Z" fill="#F2E9D6"/>
+    <path id="middle-base" d="M259 410 L375 410 L375 434 L259 434 Z" fill="#F2E9D6"/>
+    <path id="right-base" d="M430 410 L568 410 L568 434 L430 434 Z" fill="#F2E9D6"/>
+  </g>
+  <g id="face">
+    <path id="brow-panel" d="M278 218 Q317 186 356 218 L346 257 Q316 272 287 257 Z" fill="#F2E9D6"/>
+    <ellipse id="left-eye" cx="300" cy="231" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+    <ellipse id="right-eye" cx="335" cy="231" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+    <path id="uneasy-mouth" d="M307 249 Q318 242 329 249"/>
+    <path id="left-brow" d="M290 216 L302 219 M332 219 L344 215"/>
+  </g>
+  <g id="props">
+    <g id="external-hostile-steering">
+      <path id="outside-claw" d="M42 190 L70 181 L100 192 L113 219 L97 230 L83 209 L73 213 L90 235 L79 247 L57 229 Z" fill="#B87560"/>
+      <path id="control-cable" d="M94 225 Q120 235 129 262 L150 321" stroke="#B87560"/>
+      <circle id="driven-hub" cx="151" cy="348" r="23" fill="#F2E9D6"/>
+      <path id="steering-lever" d="M151 348 L137 305"/>
+      <circle id="lever-grip" cx="137" cy="305" r="8" fill="#B87560"/>
+      <path id="harmful-output" d="M146 370 L135 385 L153 385 L139 402 L167 387 L155 380 L166 369" fill="#B87560"/>
+    </g>
+    <g id="internal-goal-divergence">
+      <path id="intended-route" d="M315 388 L315 318" stroke="#91B2A7" stroke-dasharray="6 9"/>
+      <path id="intended-goal" d="M315 295 L325 307 L315 319 L305 307 Z" fill="#91B2A7"/>
+      <path id="divergent-drive" d="M307 386 Q290 355 326 345 L337 345" stroke="#B87560"/>
+      <path id="divergent-arrow" d="M328 333 L340 345 L328 357" stroke="#B87560"/>
+      <circle id="private-goal" cx="363" cy="345" r="11" fill="#B87560"/>
+      <circle id="goal-engine" cx="314" cy="387" r="10" fill="#F2E9D6"/>
+    </g>
+    <g id="structural-network-strain">
+      <path id="network-connections" d="M452 344 L481 320 L510 344 L482 380 Z M452 344 L482 380 M481 320 L482 380 M482 380 L469 447 M482 380 L529 453" stroke="#91B2A7"/>
+      <circle id="network-top" cx="481" cy="320" r="9" fill="#F2E9D6"/>
+      <circle id="network-left" cx="452" cy="344" r="9" fill="#F2E9D6"/>
+      <circle id="network-right" cx="510" cy="344" r="9" fill="#F2E9D6"/>
+      <circle id="network-bottom" cx="482" cy="380" r="9" fill="#F2E9D6"/>
+      <path id="foundation-crack" d="M495 410 L484 421 L497 430 L488 445 L501 460"/>
+      <path id="network-ground" d="M469 447 L409 479 L435 533 L488 553 L555 543 L582 487 L529 453 M409 479 L488 553 L529 453 M435 533 L582 487" stroke="#91B2A7"/>
+      <circle id="ground-node-one" cx="409" cy="479" r="10" fill="#F2E9D6"/>
+      <circle id="ground-node-two" cx="435" cy="533" r="10" fill="#F2E9D6"/>
+      <circle id="ground-node-three" cx="488" cy="553" r="10" fill="#F2E9D6"/>
+      <circle id="ground-node-four" cx="555" cy="543" r="10" fill="#F2E9D6"/>
+      <circle id="ground-node-five" cx="582" cy="487" r="10" fill="#F2E9D6"/>
+    </g>
+  </g>
+</svg>

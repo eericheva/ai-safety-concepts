@@ -1,0 +1,20 @@
+<svg width="1000" height="978" xmlns="http://www.w3.org/2000/svg" viewBox="73.5 65.5 500.1 489" data-beast-id="ov-prosaic" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<g id="foundation-feet" fill="#987B4F"><path d="M105 481L94 543H154L170 481Z"/><path d="M272 486L264 552H326L339 486Z"/><path d="M444 480L469 542H526L508 480Z"/></g>
+<path d="M76 388L110 344H475L543 392V486L508 510H110L76 480Z" fill="#C8A268"/>
+<path d="M76 461L110 485H508L543 461V486L508 510H110L76 480Z" fill="#987B4F"/>
+<path d="M108 375H475L513 403H108Z" fill="#F2E9D6"/>
+<g id="neural-foundation" fill="#F2E9D6"><path d="M130 428L173 407L216 436L259 410L301 442L349 412"/><path d="M173 407L177 457L216 436L259 463L301 442L349 463"/><circle cx="130" cy="428" r="9"/><circle cx="173" cy="407" r="9"/><circle cx="177" cy="457" r="9"/><circle cx="216" cy="436" r="9"/><circle cx="259" cy="410" r="9"/><circle cx="259" cy="463" r="9"/><circle cx="301" cy="442" r="9"/><circle cx="349" cy="412" r="9"/><circle cx="349" cy="463" r="9"/></g>
+<g id="modular-back"><path d="M130 344V272H234V344" fill="#A6C4C6"/><path d="M234 344V244H345V344" fill="#C8A268"/><path d="M345 344V284H453V344" fill="#91B5A1"/><path d="M144 272V253H168V272M198 272V253H220V272" fill="#A6C4C6"/><path d="M251 244V225H276V244M306 244V225H330V244" fill="#C8A268"/></g>
+<path id="assembly-arm" d="M454 424Q575 418 571 326L545 312L522 335L539 348Q528 385 468 379Z" fill="#C8A268"/>
+</g>
+<g id="face"><path d="M379 397Q426 369 476 398L485 461Q434 489 382 458Z" fill="#F2E9D6"/><ellipse cx="408" cy="425" rx="7" ry="12" fill="#2E4649" stroke="none"/><ellipse cx="451" cy="425" rx="7" ry="12" fill="#2E4649" stroke="none"/><path d="M419 450Q431 456 443 449"/><path d="M400 407L414 403M444 402L459 409"/><path d="M390 443H399M462 443H471" stroke="#D59D84"/></g>
+<g id="props">
+<g id="feedback-module"><path d="M154 306Q177 282 205 303"/><path d="M194 292L208 303L196 314"/><path d="M207 321Q181 340 155 319"/><path d="M165 310L153 319L165 329"/></g>
+<g id="oversight-module" fill="#F2E9D6"><path d="M253 295Q289 256 326 295Q289 328 253 295Z"/><ellipse cx="290" cy="294" rx="11" ry="15" fill="#2E4649"/></g>
+<g id="debate-module" fill="#F2E9D6"><path d="M359 299H393V319L383 330V319H359Z"/><path d="M404 305H439V326H418L408 336V326H404Z"/></g>
+<g id="unfinished-extension"><path d="M247 223V157H339V223M247 157V96H339V157M247 157L339 223M339 157L247 223" stroke="#987B4F"/><path d="M247 96V68M339 96V68M247 96L271 96M316 96H339" stroke="#987B4F"/><circle cx="247" cy="157" r="6" fill="#F2E9D6"/><circle cx="339" cy="157" r="6" fill="#F2E9D6"/><path d="M278 114Q280 99 294 104Q309 112 295 122L289 128"/><circle cx="288" cy="141" r="2.5" fill="#2E4649" stroke="none"/></g>
+<g id="held-existing-block" transform="rotate(15 531 283)"><path d="M500 249H558V311H500Z" fill="#91B5A1"/><path d="M516 249V236H539V249" fill="#91B5A1"/><path d="M513 279L526 291L545 267" stroke="#F2E9D6"/></g>
+<path id="working-fingers" d="M545 323L528 312Q520 305 526 298Q531 293 540 298L558 309" fill="#C8A268"/>
+</g>
+</svg>

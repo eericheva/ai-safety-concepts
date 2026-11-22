@@ -1,0 +1,37 @@
+<svg width="822" height="1000" xmlns="http://www.w3.org/2000/svg" viewBox="114.5 67.5 411 500" data-beast-id="cr-butlerian-jihad">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="shield-shell" fill="#C8A268" d="M117 153 Q206 143 320 70 Q434 143 523 153 L502 372 Q477 486 320 565 Q163 486 138 372Z"/>
+<path id="shield-shadow" fill="#987B4F" stroke="none" d="M478 159 L502 164 L481 374 Q452 472 320 544 L320 520 Q427 442 447 362Z"/>
+<path id="gate-opening" fill="#F2E9D6" d="M207 420 L207 287 Q207 206 320 203 Q433 206 433 287 L433 420 Q385 475 320 507 Q255 475 207 420Z"/>
+<path id="left-grounding-foot" fill="#987B4F" d="M193 470 L175 520 Q197 538 246 527 L263 512Z"/>
+<path id="right-grounding-foot" fill="#987B4F" d="M447 470 L465 520 Q443 538 394 527 L377 512Z"/>
+<path id="crest" fill="#F2E9D6" d="M292 110 L320 90 L348 110 L320 126Z"/>
+</g>
+<g id="props">
+<g id="mechanical-mind-bud">
+<path id="stem" d="M320 444 L320 382" fill="none" stroke-width="13"/>
+<path id="left-circuit-leaf" fill="#A9C4C5" d="M318 428 L276 425 L261 401 L291 399Z"/>
+<path id="right-circuit-leaf" fill="#A9C4C5" d="M322 413 L359 408 L378 385 L346 384Z"/>
+<path id="mind-casing" fill="#A9C4C5" d="M285 367 L269 350 L269 319 L281 319 L281 301 L299 301 L299 288 L327 288 L327 299 L350 299 L350 314 L367 314 L367 346 L350 363 L350 380 L289 380Z"/>
+<path id="mind-circuit" fill="none" d="M311 302 L311 324 L292 324 L292 346 L315 346 L315 366 M337 315 L337 336 L351 336"/>
+<circle id="circuit-terminal" cx="337" cy="315" r="5" fill="#F2E9D6"/>
+<path id="growth-base" fill="#987B4F" d="M286 452 L300 439 L340 439 L354 452Z"/>
+</g>
+</g>
+<g id="face">
+<path id="left-brow" d="M252 154 L289 165" fill="none"/>
+<path id="right-brow" d="M351 165 L388 154" fill="none"/>
+<ellipse id="left-eye" cx="276" cy="180" rx="8" ry="12" fill="#2E4649" stroke="none"/>
+<ellipse id="right-eye" cx="364" cy="180" rx="8" ry="12" fill="#2E4649" stroke="none"/>
+<path id="firm-mouth" d="M307 198 L333 198" fill="none"/>
+</g>
+<g id="crossing-limbs">
+<path id="rising-bar-arm" fill="#C8A268" d="M157 352 Q143 333 166 315 L401 238 Q421 224 439 241 L460 262 Q468 274 457 283 L432 294 L410 283 L185 367 Q169 373 157 352Z"/>
+<path id="falling-bar-arm" fill="#C8A268" d="M163 239 Q180 225 199 240 L433 338 L455 327 L478 342 Q491 356 475 369 L457 380 Q444 389 429 380 L175 285 Q148 273 163 239Z"/>
+<path id="left-arm-fold" d="M179 245 L191 276" fill="none"/>
+<path id="right-arm-fold" d="M431 345 L419 369" fill="none"/>
+<path id="upper-fingers" d="M435 254 L447 267 M424 264 L435 277" fill="none"/>
+<path id="lower-fingers" d="M452 348 L463 357 M444 358 L455 367" fill="none"/>
+</g>
+</g></svg>

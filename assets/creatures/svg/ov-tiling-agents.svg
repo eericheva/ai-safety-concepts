@@ -1,0 +1,40 @@
+<svg width="1030" height="764" xmlns="http://www.w3.org/2000/svg" viewBox="63.5 138.5 515 382" data-beast-id="ov-tiling-agents">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="stepped-tile-body" d="M66 478V355H139V270H226V202H333V462H278V518H140V478Z" fill="#C8A268"/>
+<path d="M66 449H140V489H278V518H140V478H66Z" fill="#987B4F" stroke="none"/>
+<path id="nested-young-tile" d="M88 422V375H162V292H249V226H310V440H254V488H163V449H88Z" fill="#F2E9D6"/>
+<path d="M115 399H187V317H273V251H287V416H229V462H189V422H115Z" fill="#C8A268"/>
+<path id="successor-facet" d="M390 165H508V236H576V445H507V514H379V439H355V267H390Z" fill="#C8A268"/>
+<path d="M379 487H481V419H550V236H576V445H507V514H379Z" fill="#987B4F" stroke="none"/>
+<path d="M410 191H484V261H550V419H481V487H405V414H380V292H410Z" fill="#F2E9D6"/>
+<path d="M432 215H461V284H525V394H457V461H430V390H405V317H432Z" fill="#C8A268"/>
+</g>
+<g id="face">
+<path d="M193 332Q232 301 276 328V378Q238 407 194 378Z" fill="#F2E9D6"/>
+<ellipse cx="215" cy="349" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse cx="255" cy="349" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M225 373Q237 365 249 373" fill="none"/>
+<path d="M204 329L221 332M248 328L264 322" fill="none"/>
+<path d="M446 337L456 337M492 337L502 337" stroke="#987B4F"/>
+<path d="M460 362H489" stroke="#987B4F"/>
+</g>
+<g id="props">
+<g id="preserved-goal-kernels" fill="#91B5A3">
+<path d="M232 247L248 263L232 279L216 263Z"/>
+<path d="M461 258L477 274L461 290L445 274Z"/>
+</g>
+<g id="incomplete-proof-bridge" fill="#F2E9D6">
+<path d="M281 393L312 377L335 392L305 410Z"/>
+<path d="M305 410V425L335 408V392"/>
+<path d="M370 375L393 363L415 378L392 391Z"/>
+<path d="M392 391V406L415 393V378"/>
+</g>
+<path id="generation-seam" d="M345 211V245M345 267V301M345 323V347M345 447V474" stroke="#B9785D" stroke-dasharray="5 10" fill="none"/>
+<path id="building-arm" d="M292 306Q315 280 332 251L361 222" fill="none" stroke-width="15"/>
+<path d="M348 228L345 207L359 190L377 198L383 215L367 233Z" fill="#C8A268"/>
+<path id="loose-proof-tile" d="M339 153L363 141L387 158L364 172Z" fill="#F2E9D6"/>
+<path d="M364 172V188L387 175V158M339 153V170L364 188" fill="#C8A268"/>
+<path d="M345 367L351 358M353 421L360 429" stroke="#B9785D"/>
+</g>
+</g></svg>

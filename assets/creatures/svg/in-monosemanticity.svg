@@ -1,0 +1,20 @@
+<svg width="994" height="962" xmlns="http://www.w3.org/2000/svg" viewBox="72.5 89.5 497 481.0" data-beast-id="in-monosemanticity">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="fork-silhouette" d="M269 102 Q246 92 240 121 L240 300 Q240 371 291 393 L291 510 L262 550 Q255 568 278 568 L320 545 L362 568 Q385 568 378 550 L349 510 L349 393 Q400 371 400 300 L400 121 Q394 92 371 102 L367 291 Q366 331 344 340 L344 305 L296 305 L296 340 Q274 331 273 291 Z" fill="#C8A268"/>
+<path id="fork-shadow" d="M349 393 Q400 371 400 300 L400 121 Q394 104 384 103 L384 303 Q380 360 335 380 L335 514 L362 568 Q385 568 378 550 L349 510 Z" fill="#987B4F" stroke="none"/>
+<path id="stem-panel" d="M308 417 L308 499 Q320 511 332 499 L332 417 Z" fill="#F2E9D6"/>
+<path d="M281 553 L303 528 M359 553 L337 528" fill="none"/>
+</g>
+<g id="props">
+<path id="single-receptor-shell" d="M320 164 L382 232 L320 300 L258 232 Z" fill="#F2E9D6"/>
+<path id="matching-activated-feature" d="M320 190 L358 232 L320 274 L282 232 Z" fill="#EACB6A"/>
+<path id="activation-conduit" d="M320 300 L320 329" fill="none" stroke="#EACB6A" stroke-width="9"/>
+<g id="matching-input"><path d="M122 188 L161 232 L122 276 L83 232 Z" fill="#EACB6A"/><path d="M177 232 L229 232 M217 221 L229 232 L217 243" fill="none"/></g>
+<g id="unrelated-circle"><circle cx="115" cy="115" r="23" fill="#B7CDD0"/><path d="M151 115 L196 115 M187 107 L196 115 L187 123" fill="none" stroke="#8FAAAF"/><path d="M442 115 L499 115 M490 107 L499 115 L490 123" fill="none" stroke="#8FAAAF"/><circle cx="542" cy="115" r="23" fill="#B7CDD0"/></g>
+<g id="unrelated-triangle"><path d="M100 351 L125 395 L75 395 Z" fill="#B7CDD0"/><path d="M148 377 L204 377 M195 369 L204 377 L195 385" fill="none" stroke="#8FAAAF"/><path d="M436 377 L492 377 M483 369 L492 377 L483 385" fill="none" stroke="#8FAAAF"/><path d="M542 351 L567 395 L517 395 Z" fill="#B7CDD0"/></g>
+<g id="resonance"><path d="M427 204 Q444 232 427 260 M446 191 Q471 232 446 273" fill="none" stroke="#C8A268"/><path d="M309 151 L309 133 M331 151 L336 131" fill="none" stroke="#C8A268"/></g>
+</g>
+<g id="face"><path id="face-plate" d="M289 350 Q320 335 351 350 L347 381 Q320 402 293 381 Z" fill="#F2E9D6"/><path id="eyes" d="M301 360 Q306 353 311 360 M329 360 Q334 353 339 360" fill="none"/><path id="smile" d="M309 376 Q320 385 331 376" fill="none"/></g>
+</g>
+</svg>

@@ -1,0 +1,40 @@
+<svg width="1114" height="1024" xmlns="http://www.w3.org/2000/svg" viewBox="37.5 57.5 557 512" data-beast-id="ov-rlhf">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="articulated-spine" d="M154 214 Q198 192 231 243 L296 299 L339 362 L405 415 L444 480 L415 509 L361 455 L296 415 L252 347 L198 291 L137 267Z" fill="#C8A268"/>
+<path d="M154 254 L213 279 L271 340 L315 400 L387 453 L427 490 L415 509 L361 455 L296 415 L252 347 L198 291 L137 267Z" fill="#987B4F" stroke="none"/>
+<circle id="comparison-joint" cx="193" cy="259" r="23" fill="#F2E9D6"/>
+<circle id="policy-joint" cx="389" cy="442" r="23" fill="#F2E9D6"/>
+<path id="reward-organ" d="M269 247 Q325 232 352 277 L369 341 Q354 394 300 396 Q247 386 234 345 L236 288Z" fill="#C8A268"/>
+<path d="M278 265 Q321 253 337 287 L349 335 Q341 373 306 376 Q267 370 254 341 L256 296Z" fill="#F2E9D6"/>
+<path id="reward-network" d="M274 310 L304 294 L330 318 L308 345 L274 310 L308 345 L304 294" fill="none" stroke="#987B4F"/>
+<circle cx="274" cy="310" r="8" fill="#91B5A4"/><circle cx="304" cy="294" r="8" fill="#91B5A4"/><circle cx="330" cy="318" r="8" fill="#91B5A4"/><circle cx="308" cy="345" r="8" fill="#91B5A4"/>
+<path id="policy-growing-limb" d="M414 469 L458 438 L469 361 L491 356 L490 426 L540 387 L557 402 L501 460 L550 489 L538 511 L481 485 L450 512 L476 551 L460 567 L419 532 Q399 502 414 469Z" fill="#91B5A4"/>
+<path d="M470 361 Q445 343 462 310 Q489 318 491 356Z" fill="#F2E9D6"/>
+<path d="M540 387 Q538 359 571 349 Q586 377 557 402Z" fill="#F2E9D6"/>
+<path d="M550 489 Q579 476 592 504 Q570 529 538 511Z" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<path id="comparison-head" d="M102 192 L83 167 L117 168 Q148 146 180 165 L208 155 L199 186 Q214 219 185 243 Q147 263 112 234Z" fill="#C8A268"/>
+<path d="M111 199 Q133 180 153 199 Q173 179 192 197 Q197 226 171 237 Q132 244 114 223Z" fill="#F2E9D6"/>
+<ellipse cx="133" cy="208" rx="6" ry="10" fill="#2E4649" stroke="none"/><ellipse cx="174" cy="207" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M144 226 Q153 232 164 224" fill="none"/>
+</g>
+<g id="props">
+<g id="paired-answer-hands">
+<path d="M118 248 Q79 260 64 223 L65 158 L83 153 L91 210 L136 224Z" fill="#C8A268"/>
+<path d="M188 244 Q241 234 245 198 L245 145 L226 142 L220 193 L180 218Z" fill="#C8A268"/>
+<path id="answer-left" d="M40 76 L118 76 L118 142 L98 142 L84 157 L83 142 L40 142Z" fill="#F2E9D6"/>
+<path id="answer-right" d="M180 60 L264 60 L264 126 L244 126 L228 143 L225 126 L180 126Z" fill="#F2E9D6"/>
+<path d="M56 96 H98 M56 113 H86 M197 80 H247 M197 97 H235" fill="none"/>
+<path d="M60 159 L60 145 Q64 137 70 143 L75 157 M235 145 L234 131 Q240 124 246 132 L248 148" fill="#C8A268"/>
+<path id="preference-rank" d="M133 108 L154 91 L154 123Z" fill="#91B5A4"/>
+</g>
+<path id="preferences-to-reward" d="M269 158 Q318 172 317 221 M305 209 L317 223 L330 211" fill="none" stroke="#91B5A4"/>
+<path id="reinforcement-loop" d="M360 272 Q421 268 430 321 Q438 360 401 381 M401 359 L398 383 L422 383" fill="none"/>
+<path d="M375 410 Q418 419 437 392" fill="none"/>
+<path id="support-foot" d="M278 395 L255 456 L211 476 L220 491 L276 480 L308 414" fill="#C8A268"/>
+<path d="M218 479 L246 476" fill="none"/>
+</g>
+</g>
+</svg>

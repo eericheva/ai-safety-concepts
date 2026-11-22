@@ -1,0 +1,46 @@
+<svg width="1076" height="988" xmlns="http://www.w3.org/2000/svg" viewBox="47.5 66.5 538 494" data-beast-id="gv-control-evaluations" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="angular-loop" d="M446 123 278 69 126 153 79 330 168 503 347 558 466 485 428 429 331 477 219 440 151 320 183 205 282 148 420 190Z" fill="#C8A268"/>
+<path id="loop-shadow" d="M91 373 168 503 347 558 466 485 448 458 337 517 194 468Z" fill="#987B4F" stroke="none"/>
+<path id="inner-lining" d="m161 321 58 119 112 37 97-48M184 205l98-57 138 42" stroke="#F2E9D6" stroke-width="13"/>
+<path id="upper-jaw" d="m399 109 61 8 29 52-40 48-53-28 27-34Z" fill="#C8A268"/>
+<path id="lower-jaw" d="m426 420 51 9 25 54-39 27-43-39 25-15Z" fill="#C8A268"/>
+<path id="back-fin-upper" d="m129 151-12-54 62 27" fill="#F2E9D6"/>
+<path id="back-fin-lower" d="m102 398-52 30 79 22" fill="#F2E9D6"/>
+</g>
+<g id="props">
+<g id="protocol-ribs" fill="#A9C9CF">
+<path id="rib-top" d="m414 190 37 1 2 68-34 11Z"/>
+<path id="rib-middle" d="m419 285 34-10 7 69-35 3Z"/>
+<path id="rib-bottom" d="m425 362 36-4 9 70-38 7Z"/>
+<path d="m434 218 3 27m-1 56 4 29m2 48 5 30"/>
+</g>
+<g id="adversarial-inner-tendril" fill="#C97562">
+<path d="M162 293q41-47 81-22l46 24 62-53 59-5-17 22-39 8-54 64 67-4 44 12-24 16-42-1-34 15 54 21 52 44 81 5 30 28-47 8-88-16-59-45-73-18q-42-6-54-48Z"/>
+<path id="attack-spine" d="m246 276 8-29 15 39m35 17 24-2-15 18m14 78-10 23-15-33"/>
+<path id="attack-end" d="m491 432 17 11-9 18"/>
+</g>
+<g id="blocked-attempts" stroke="#C97562">
+<path d="m399 218 8 9m-18-2 3 9m11 79 8 12m-23-6 9 10"/>
+</g>
+<g id="trial-outcomes">
+<path d="m466 238 41-12m-38 113 38-8m15 117 17-8" stroke-dasharray="5 9"/>
+<rect x="515" y="204" width="42" height="42" rx="10" fill="#A0BFA9"/>
+<path d="m525 225 8 8 15-18"/>
+<rect x="515" y="309" width="42" height="42" rx="10" fill="#A0BFA9"/>
+<path d="m525 330 8 8 15-18"/>
+<rect x="541" y="412" width="42" height="42" rx="10" fill="#C97562"/>
+<path d="m553 424 18 18m0-18-18 18"/>
+</g>
+</g>
+<g id="face">
+<path id="outer-face" d="M220 116q31-14 62-11l28 27-32 37-55-3-24-24Z" fill="#F2E9D6"/>
+<ellipse cx="232" cy="137" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse cx="277" cy="130" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path d="m248 151 13-2"/>
+<path d="m218 120 17-4m34-4 15 5"/>
+<path id="attacker-eye" d="m192 294 20-10 19 14-22 10Z" fill="#F2E9D6"/>
+<path d="m212 289-3 13"/>
+<path d="m206 323 18 5"/>
+</g>
+</svg>

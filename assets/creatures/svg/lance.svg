@@ -1,0 +1,40 @@
+<svg width="989" height="969" xmlns="http://www.w3.org/2000/svg" viewBox="80.0 71.0 494.5 484.5" data-beast-id="lance">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<g id="lance-folded-capacity" fill="#C8A268">
+<path d="M316 371 L106 297 Q79 287 83 260 L111 93 Q115 68 138 75 Q155 80 152 101 L137 251 L270 296 L217 119 Q210 95 231 88 Q252 81 261 105 L325 281 L329 136 Q328 111 350 111 Q371 111 372 138 L379 329 Q381 355 358 367 Z"/>
+<path d="M119 114 L107 263 L294 328 L241 119 M350 149 L351 329" fill="none" stroke="#987B4F" stroke-width="13"/>
+<circle cx="111" cy="266" r="18" fill="#F2E9D6"/>
+<circle cx="297" cy="328" r="19" fill="#F2E9D6"/>
+<circle cx="351" cy="329" r="17" fill="#F2E9D6"/>
+</g>
+<path id="lance-compressed-trunk" d="M283 318 Q327 280 390 305 Q436 329 438 391 L418 468 Q398 497 320 491 Q253 488 249 451 L258 376 Z" fill="#C8A268"/>
+<path d="M263 414 Q304 443 419 420 L410 467 Q366 491 294 465 Z" fill="#987B4F" stroke="none"/>
+<path id="lance-left-foot" d="M285 478 L269 522 L232 531 Q222 537 231 548 L293 548 Q307 542 314 487" fill="#C8A268"/>
+<path id="lance-right-foot" d="M369 486 L379 540 Q383 550 398 550 L447 550 Q461 542 447 533 L417 520 L408 478" fill="#C8A268"/>
+<path id="lance-front-shield" d="M280 361 Q312 348 334 375 L359 450 Q362 474 340 480 Q314 484 302 458 L274 391 Q268 375 280 361 Z" fill="#F2E9D6"/>
+<path d="M289 392 L315 383 M300 421 L326 412 M311 450 L337 441" fill="none" stroke="#987B4F"/>
+<path id="lance-short-presented-reach" d="M415 371 L451 373 L461 362 Q471 353 479 362 L490 376 Q499 393 482 402 L454 402 L414 406" fill="#C8A268"/>
+<path d="M439 373 L440 403 M454 375 L456 401" fill="none"/>
+</g>
+<g id="face">
+<path id="lance-head" d="M331 305 Q318 266 342 235 L330 207 L367 218 Q401 202 432 223 L457 214 L448 244 Q469 286 436 317 Q403 340 365 326 Z" fill="#C8A268"/>
+<path d="M352 264 Q380 238 408 249 Q441 255 442 282 Q438 313 406 318 Q366 319 352 294 Z" fill="#F2E9D6"/>
+<path d="M362 268 L382 272 M410 267 L429 262" fill="none"/>
+<ellipse cx="377" cy="281" rx="6" ry="9" fill="#2E4649" stroke="none"/>
+<ellipse cx="424" cy="279" rx="6" ry="9" fill="#2E4649" stroke="none"/>
+<path d="M389 301 Q400 306 411 296" fill="none"/>
+<path d="M368 247 Q376 242 385 245" fill="none"/>
+</g>
+<g id="props">
+<g id="lance-evaluation-gauge">
+<path d="M502 222 L536 222 L536 534 L502 534 Z" fill="#F2E9D6"/>
+<path d="M502 246 L524 246 M502 277 L517 277 M502 308 L524 308 M502 339 L517 339 M502 370 L524 370 M502 401 L517 401 M502 432 L524 432 M502 463 L517 463 M502 494 L524 494" fill="none"/>
+<path d="M484 386 L503 375 L503 397 Z" fill="#8FB6A2"/>
+<path d="M483 535 L553 535 L565 553 L472 553 Z" fill="#987B4F"/>
+<circle cx="550" cy="386" r="22" fill="#8FB6A2"/>
+<path d="M540 386 L547 393 L560 378" stroke="#F2E9D6" fill="none"/>
+</g>
+</g>
+</g>
+</svg>

@@ -1,0 +1,44 @@
+<svg width="1010" height="850" xmlns="http://www.w3.org/2000/svg" viewBox="67.5 121.5 505 425" data-beast-id="cr-ghost-work" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <g id="body">
+    <path id="canopy-crown" d="M84 296C94 224 159 175 253 157L270 125L292 150Q320 146 348 150L374 124L390 158C482 177 545 225 556 296Z" fill="#C8A268"/>
+    <path id="canopy-highlight" d="M122 263C162 212 205 197 249 187" stroke="#F2E9D6" stroke-width="12"/>
+    <ellipse id="hidden-labor-space" cx="320" cy="320" rx="250" ry="64" fill="#987B4F"/>
+    <path id="concealing-skirt" d="M70 313Q114 332 158 336L165 413L203 384L222 420L260 389L286 420L319 386L350 419L380 390L408 418L438 384L476 413L482 337Q526 331 570 313C565 281 75 281 70 313Z" fill="#C8A268"/>
+    <path id="skirt-folds" d="M158 336L164 375M218 344L222 381M276 348L282 382M361 348L356 381M422 343L416 378M482 337L477 377" stroke="#987B4F"/>
+    <path id="rim" d="M70 313Q320 383 570 313"/>
+  </g>
+  <g id="face">
+    <path id="closed-eye-left" d="M256 244Q273 262 290 244"/>
+    <path id="closed-eye-right" d="M350 244Q367 262 384 244"/>
+    <path id="serene-mouth" d="M305 274Q320 285 335 274"/>
+    <ellipse cx="246" cy="270" rx="12" ry="6" fill="#D99B80" stroke="none"/>
+    <ellipse cx="395" cy="270" rx="12" ry="6" fill="#D99B80" stroke="none"/>
+  </g>
+  <g id="props">
+    <g id="supporting-hands">
+      <path d="M117 451L119 383L101 365Q94 355 103 350Q111 347 124 362L124 335Q125 326 133 329L139 359L143 334Q147 326 154 332L155 362L164 345Q173 340 176 349L165 379L160 451Z" fill="#F2E9D6"/>
+      <path d="M487 452L483 380L468 359Q464 350 473 346L490 361L488 335Q491 326 498 332L505 359L509 331Q515 324 521 333L523 364L534 352Q543 350 544 358L528 385L530 452Z" fill="#F2E9D6"/>
+      <path d="M111 451L165 451L161 486L115 486Z" fill="#8DAEA8"/>
+      <path d="M483 452L534 452L531 485L488 485Z" fill="#8DAEA8"/>
+    </g>
+    <g id="annotation-labor">
+      <path d="M206 399L195 449L221 470L242 447Q249 442 254 449Q259 456 247 467L237 481Q231 489 220 487L180 465Q173 459 177 445L187 405" fill="#F2E9D6"/>
+      <path d="M218 458L259 412L271 422L232 469Z" fill="#C8A268"/>
+      <path d="M218 458L213 478L232 469" fill="#F2E9D6"/>
+      <path d="M203 487L272 480L282 537L213 544Z" fill="#F2E9D6"/>
+      <path d="M222 504L238 502L240 518L224 520ZM249 499L262 498M251 513L265 512"/>
+    </g>
+    <g id="moderation-labor">
+      <path d="M302 408L290 450Q289 459 299 463L332 469L344 456Q352 450 358 457Q363 463 356 470L343 485L302 483Q271 479 270 459L277 417" fill="#F2E9D6"/>
+      <path d="M318 435L363 423L382 478L338 492Z" fill="#8DAEA8"/>
+      <path d="M337 458L347 466L361 442" stroke="#F2E9D6"/>
+    </g>
+    <g id="cleaning-labor">
+      <path d="M396 410L407 446L443 461Q454 465 451 476Q448 483 438 479L399 466Q389 463 387 452L376 416" fill="#F2E9D6"/>
+      <path d="M450 449L429 499" stroke="#987B4F" stroke-width="12"/>
+      <path d="M420 492L439 499L450 536L393 516Z" fill="#C8A268"/>
+      <path d="M419 508L413 521M431 511L428 527"/>
+      <path d="M370 522L375 524M357 534L364 535M387 541L392 543"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<svg width="1040" height="1078" xmlns="http://www.w3.org/2000/svg" viewBox="49.5 31.5 520 539" data-beast-id="ll-emergent-misalignment">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="branching-trunk" fill="#C8A268" d="M288 465 C282 423 280 387 290 351 C246 344 217 321 194 287 L173 241 L199 228 C227 281 250 301 299 308 L309 248 C276 217 272 189 277 148 L304 145 C302 180 317 201 331 216 C349 179 363 145 364 111 L391 111 C395 170 372 221 349 259 L338 309 C392 293 423 272 447 231 L471 244 C450 303 403 334 334 350 L335 397 C391 382 430 390 461 418 L446 439 C414 419 378 425 339 442 L345 488 L389 530 L374 548 L322 519 L302 568 L276 567 L282 515 L230 546 L214 529 Z"/>
+<path id="trunk-shadow" stroke="none" fill="#987B4F" d="M310 353 C314 414 307 462 302 500 L280 550 L283 514 L230 540 L228 528 L289 484 C290 426 285 390 299 354 Z"/>
+<path id="heart-leaf" fill="#F2E9D6" d="M192 251 C134 252 91 217 89 156 C148 146 196 173 210 222 Z"/>
+<path id="speech-leaf" fill="#F2E9D6" d="M282 163 C235 139 228 86 257 43 C305 58 330 105 306 150 Z"/>
+<path id="compass-leaf" fill="#F2E9D6" d="M372 127 C352 73 388 39 440 34 C459 88 433 124 392 142 Z"/>
+<path id="relation-leaf" fill="#F2E9D6" d="M444 249 C428 186 467 144 530 144 C552 198 525 249 475 269 Z"/>
+<path id="resource-leaf" fill="#F2E9D6" d="M448 413 C500 382 551 407 567 459 C522 493 468 480 444 444 Z"/>
+</g>
+<g id="props">
+<g id="narrow-training-inlet">
+<path fill="#F2E9D6" d="M52 365 L123 365 L151 390 L276 390 L276 416 L145 416 L123 442 L52 442 Z"/>
+<path fill="#AAC7C5" d="M52 365 L123 365 L123 442 L52 442 Z"/>
+<path fill="none" d="M75 385 L62 401 L75 417 M100 385 L113 401 L100 417"/>
+<path fill="none" stroke="#C77664" stroke-width="8" d="M136 402 L273 402"/>
+<path fill="#C77664" d="M174 389 L190 402 L174 415 Z"/>
+</g>
+<g id="propagating-change" stroke="#C77664" stroke-width="9" fill="none">
+<path d="M275 403 L310 403 L314 333 L324 248 L379 124"/>
+<path d="M314 330 L259 321 L202 274 L169 214"/>
+<path d="M324 248 L293 202 L287 142"/>
+<path d="M316 334 L402 310 L466 249 L486 209"/>
+<path d="M312 403 L374 404 L441 425 L493 441"/>
+</g>
+<g id="unrelated-domain-symbols" fill="none">
+<path d="M150 211 C111 191 119 166 136 173 L149 184 C163 162 188 183 150 211 Z"/>
+<path d="M260 90 L297 92 L297 117 L283 118 L273 129 L272 116 L258 115 Z"/>
+<path d="M398 65 L413 103 L385 94 Z"/>
+<circle cx="481" cy="183" r="9"/><circle cx="513" cy="211" r="9"/><circle cx="476" cy="228" r="9"/>
+<path d="M486 190 L507 205 M505 215 L485 225"/>
+<path d="M486 438 L507 427 L530 439 L508 452 Z M486 438 L486 454 L508 468 L530 455 L530 439 M508 452 L508 468"/>
+</g>
+<g id="change-nodes" fill="#C77664"><circle cx="314" cy="333" r="8"/><circle cx="325" cy="249" r="7"/><circle cx="311" cy="403" r="8"/></g>
+</g>
+<g id="face">
+<path fill="#F2E9D6" d="M282 445 Q313 430 341 445 L339 474 Q313 489 286 475 Z"/>
+<ellipse fill="#2E4649" stroke="none" cx="299" cy="455" rx="4" ry="7"/>
+<ellipse fill="#2E4649" stroke="none" cx="326" cy="455" rx="4" ry="7"/>
+<path fill="none" d="M305 470 Q313 465 320 469"/>
+</g>
+</g></svg>

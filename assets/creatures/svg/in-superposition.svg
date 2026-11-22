@@ -1,0 +1,37 @@
+<svg width="1066" height="745" xmlns="http://www.w3.org/2000/svg" viewBox="42.5 115.5 533 372.4" data-beast-id="in-superposition">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path d="M133 433L111 474Q130 491 162 473L187 435M447 434L479 481Q507 493 521 472L497 424" fill="#987B4F"/>
+<path d="M93 330L243 258L535 323L385 405Z" fill="#F2E9D6"/>
+<path d="M93 330L385 405L385 480L93 405Z" fill="#C8A268"/>
+<path d="M385 405L535 323L535 397L385 480Z" fill="#987B4F"/>
+<path id="shared-axes" d="M173 350L454 349M311 302L311 384M205 390L419 288" fill="none" stroke-width="12" stroke="#987B4F"/>
+</g>
+<g id="props">
+<g id="dormant-feature-spines" fill="#F2E9D6">
+<path d="M289 345L134 238L112 211L144 220L315 340Z"/>
+<path d="M294 340L210 182L211 147L230 176L315 331Z"/>
+<path d="M311 334L297 151L309 118L322 150L329 337Z"/>
+<path d="M318 337L396 183L423 164L416 194L337 347Z"/>
+<path d="M323 344L483 251L518 247L496 273L341 357Z"/>
+<path d="M322 351L542 348L573 361L540 373L321 367Z"/>
+<path d="M303 354L148 387L113 381L139 363L301 339Z"/>
+<path d="M307 351L231 431L203 444L211 416L295 336Z"/>
+</g>
+<g id="active-feature-spines" fill="#8BB6AA">
+<path d="M299 347L134 296L89 266L143 276L318 332Z"/>
+<path d="M308 345L354 223L378 192L379 232L328 354Z"/>
+<path d="M320 345L433 413L455 440L419 430L304 359Z"/>
+<path d="M78 247L72 236M91 232L94 216M60 262L45 258M379 175L383 160M400 186L413 177M467 444L482 450" fill="none" stroke="#8BB6AA"/>
+</g>
+<path id="common-junction" d="M289 334L312 321L340 341L333 366L309 375L284 356Z" fill="#C8A268"/>
+<path d="M295 344L324 356M303 334L318 366" stroke="#F2E9D6" fill="none"/>
+</g>
+<g id="face">
+<path d="M162 362Q216 360 265 390L261 440Q211 456 168 418Z" fill="#F2E9D6"/>
+<ellipse cx="190" cy="391" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse cx="239" cy="404" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path d="M201 416Q215 431 231 423" fill="none"/>
+<path d="M180 376L195 377M232 387L247 392" fill="none"/>
+</g>
+</g></svg>

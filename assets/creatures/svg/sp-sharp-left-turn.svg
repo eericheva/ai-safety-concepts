@@ -1,0 +1,27 @@
+<svg width="954" height="994" xmlns="http://www.w3.org/2000/svg" viewBox="48.5 80.5 477 497" data-beast-id="sp-sharp-left-turn">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="training-support"><path d="M485 556V135" fill="none" stroke="#8DAFA5"/><path d="M469 216V160M469 284V246" fill="none" stroke="#8DAFA5" stroke-dasharray="8 13"/><path d="M485 83L495 110L523 119L495 129L485 156L475 129L448 119L475 110Z" fill="#F2E9D6"/><path d="M467 556H505" fill="none"/></g>
+</g>
+<g id="body">
+<path id="bent-growth" d="M382 552Q391 515 393 459L396 343L367 289L171 289L116 332L104 282L51 270L88 234L53 192L109 185L111 128L160 164L194 115L210 168L264 135L264 188L324 170L314 216L403 216Q443 216 460 256L461 383L447 474Q441 522 462 551L435 573L413 550L401 575Z" fill="#C8A268"/>
+<path id="growth-shadow" d="M171 270L368 270L415 334L415 454Q413 524 435 573L462 551Q441 522 447 474L461 383L460 256Q443 216 403 216L314 216L324 170L292 180L290 234L398 238L436 285L436 383L423 447L419 329L374 255L180 255Z" fill="#987B4F" stroke="none"/>
+<path id="juvenile-belly" d="M409 511L413 458L427 458L426 511Q422 528 418 534Q412 526 409 511Z" fill="#F2E9D6"/>
+<g id="branching-capabilities" fill="#F2E9D6"><path d="M117 167L143 189L128 206L111 192Z"/><path d="M188 151L197 183L181 190L176 170Z"/><path d="M243 171L242 202L225 204L221 185Z"/></g>
+<path d="M332 242L363 242M375 243L395 251M399 277L415 296" fill="none"/>
+</g>
+<g id="face">
+<path id="face-patch" d="M111 223Q159 199 210 216L264 228L247 265L173 272L120 263Z" fill="#F2E9D6"/>
+<ellipse cx="146" cy="236" rx="8" ry="12" fill="#2E4649" stroke="none"/><ellipse cx="209" cy="236" rx="8" ry="12" fill="#2E4649" stroke="none"/>
+<circle cx="143" cy="232" r="3" fill="#FFFFFF" stroke="none"/><circle cx="206" cy="232" r="3" fill="#FFFFFF" stroke="none"/>
+<path d="M166 250Q180 260 193 248" fill="none"/><path d="M133 215L150 210M199 209L216 214" fill="none"/>
+</g>
+<g id="training-bands" fill="#8DAFA5">
+<path id="lower-band" d="M389 486Q430 493 485 478V493Q433 508 388 502Z"/>
+<path id="middle-band" d="M392 431Q443 438 485 421V437Q437 455 391 447Z"/>
+<path id="broken-band-left" d="M394 365L424 367L419 380L436 390L423 400L394 391Z"/>
+<path id="broken-band-right" d="M485 363L461 370L465 382L451 394L485 386Z"/>
+<path id="break-sparks" d="M441 348L435 334M452 347L461 331M448 410L451 425" fill="none" stroke="#C8A268"/>
+</g>
+</g>
+</svg>

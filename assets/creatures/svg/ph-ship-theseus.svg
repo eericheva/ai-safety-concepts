@@ -1,0 +1,49 @@
+<svg width="1043" height="824" xmlns="http://www.w3.org/2000/svg" viewBox="61.5 152.5 521.5 412" fill="none" data-beast-id="ph-ship-theseus">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="continuous-keel" d="M81 279 Q98 367 175 411 Q281 471 425 427 Q518 401 556 306 L579 267 Q584 255 572 252 L540 259 Q505 346 420 377 Q280 428 174 371 Q114 338 101 276Z" fill="#987B4F"/>
+<path id="rear-rib" d="M83 269 Q93 257 108 269 L133 314 L164 346 L145 378 Q97 343 83 269Z" fill="#987B4F"/>
+<path id="old-rib-one" d="M136 295 L173 308 Q172 360 207 396 L180 414 Q140 380 136 295Z" fill="#C8A268"/>
+<path id="old-rib-two" d="M194 312 L232 319 Q222 376 259 414 L231 435 Q187 390 194 312Z" fill="#C8A268"/>
+<path id="new-rib-one" d="M331 316 L369 310 Q349 376 371 422 L337 433 Q312 385 331 316Z" fill="#F2E9D6"/>
+<path id="new-rib-two" d="M390 305 L426 293 Q405 350 422 403 L389 417 Q370 366 390 305Z" fill="#F2E9D6"/>
+<path id="neck-rib" d="M447 278 L480 263 Q464 320 477 367 L445 390 Q426 338 447 278Z" fill="#C8A268"/>
+<path id="living-prow" d="M478 301 Q470 263 484 227 L476 193 L502 207 Q525 195 550 213 L569 209 L561 232 Q578 265 552 297 L538 334 L509 353 L503 299Z" fill="#C8A268"/>
+<path d="M156 324 L159 349 M170 365 L181 383 M207 341 L206 357 L218 372 M213 392 L224 407"/>
+<path d="M346 337 Q334 373 349 405 M407 323 Q393 354 404 391" stroke="#C8A268"/>
+<path d="M111 292 L121 316 M453 304 L449 326" stroke="#F2E9D6"/>
+<path id="keel-highlight" d="M194 418 Q289 456 395 422" stroke="#F2E9D6"/>
+<circle cx="276" cy="439" r="6" fill="#F2E9D6"/>
+<circle cx="300" cy="438" r="6" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<path d="M493 239 Q515 217 547 235 Q561 261 540 281 Q513 290 495 270Z" fill="#F2E9D6"/>
+<ellipse cx="508" cy="251" rx="5" ry="9" fill="#2E4649" stroke="none"/>
+<ellipse cx="538" cy="248" rx="5" ry="9" fill="#2E4649" stroke="none"/>
+<path d="M520 269 Q526 265 532 268 M499 233 L509 230 M532 229 L543 231"/>
+</g>
+<g id="props">
+<g id="replacement-rib">
+<path d="M276 155 L314 158 Q288 205 307 254 L273 264 Q251 216 276 155Z" fill="#F2E9D6"/>
+<path d="M286 176 Q270 210 284 239" stroke="#C8A268"/>
+<circle cx="294" cy="165" r="4" fill="#2E4649" stroke="none"/>
+</g>
+<g id="rib-fitting-arm">
+<path d="M425 312 L435 207 L387 178 L316 199 L311 181 L389 155 L457 196 L451 301Z" fill="#C8A268"/>
+<circle cx="444" cy="202" r="11" fill="#F2E9D6"/>
+<path d="M320 179 L302 175 L294 188 L305 204 L320 199" fill="#C8A268"/>
+</g>
+<g id="open-rib-socket">
+<path d="M269 405 L277 392 L294 392 L304 405"/>
+<path d="M287 284 L287 297 M284 317 L283 330 M283 350 L285 363" stroke="#8AAFA7"/>
+</g>
+<g id="removed-planks">
+<path d="M111 458 L146 450 Q169 493 224 500 L218 532 Q145 521 111 458Z" fill="#987B4F"/>
+<path d="M64 478 L98 464 Q127 514 184 530 L174 562 Q102 538 64 478Z" fill="#C8A268"/>
+<path d="M129 470 L146 490 L159 484 M174 508 L196 515 M89 485 L102 504 L115 502 M131 526 L158 540"/>
+<circle cx="136" cy="460" r="4" fill="#2E4649" stroke="none"/>
+<circle cx="87" cy="479" r="4" fill="#2E4649" stroke="none"/>
+</g>
+</g>
+</g>
+</svg>

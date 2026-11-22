@@ -1,0 +1,46 @@
+<svg width="1084" height="942" xmlns="http://www.w3.org/2000/svg" viewBox="60.5 85.5 542 471.1" data-beast-id="cr-frankenstein-complex">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="projected-fear-shadow" fill="#987B4F">
+<path d="M386 504 C429 458 443 407 403 346 L324 284 272 303 217 270 172 285 188 245 155 221 209 223 239 245 289 234 339 222 339 190 307 161 342 157 329 111 373 137 395 88 414 143 457 112 451 160 490 151 469 194 469 231 503 273 535 264 552 219 580 191 578 239 600 257 572 271 561 311 512 344 477 324 C516 384 519 451 474 513 Z"/>
+<path d="M358 192 L380 201 370 215 Z M424 197 L445 182 441 211 Z" fill="#F2E9D6" stroke="none"/>
+<path d="M381 245 L399 233 414 248 432 232" fill="none"/>
+</g>
+<g id="projection-rays" fill="none" stroke="#C8A268" stroke-dasharray="8 11">
+<path d="M212 352 L342 157 M216 366 L487 290 M214 380 L478 477"/>
+</g>
+</g>
+<g id="body">
+<path id="connecting-cord" d="M172 475 C222 560 343 566 398 496" fill="none" stroke="#2E4649" stroke-width="25"/>
+<path d="M172 475 C222 560 343 566 398 496" fill="none" stroke="#C8A268" stroke-width="15"/>
+<path id="recoiling-creator-lobe" d="M168 507 C124 518 82 488 79 441 C77 412 99 396 94 364 C87 322 109 293 143 300 C163 304 170 324 169 348 L202 342 221 355 202 370 170 374 C178 409 156 433 177 458 L202 480 197 505 Z" fill="#C8A268"/>
+<path d="M98 427 C91 459 111 485 141 485 L159 466 C143 447 151 421 152 400" fill="#987B4F" stroke="none"/>
+<path id="shielding-hand" d="M152 414 L186 411 205 384 216 389 205 421 182 438" fill="#F2E9D6"/>
+<path id="creator-foot" d="M108 487 L87 512 63 517 69 533 125 527 143 505" fill="#C8A268"/>
+<g id="articulated-creation" fill="#C8A268">
+<path d="M361 413 L331 394 308 414 295 403 328 370 375 391"/>
+<path d="M424 391 L449 378 451 354 469 354 472 391 436 416"/>
+<path d="M374 471 L361 510 338 519 342 534 379 528 397 485"/>
+<path d="M409 477 L430 513 455 513 464 529 422 534 391 490"/>
+<path d="M359 394 Q397 375 433 395 L426 466 Q396 495 365 466 Z"/>
+<rect x="361" y="328" width="72" height="62" rx="22" fill="#F2E9D6"/>
+<path d="M385 327 L385 314 405 314 405 327"/>
+<circle cx="364" cy="406" r="9" fill="#F2E9D6"/>
+<circle cx="429" cy="406" r="9" fill="#F2E9D6"/>
+<circle cx="384" cy="473" r="9" fill="#F2E9D6"/>
+<circle cx="411" cy="473" r="9" fill="#F2E9D6"/>
+<path d="M378 427 L413 427 M378 441 L413 441" fill="none"/>
+<path id="open-palm" d="M451 357 L442 342 446 337 454 343 453 325 460 325 462 342 467 328 474 331 470 352" fill="#F2E9D6"/>
+</g>
+</g>
+<g id="face">
+<path d="M110 335 Q123 322 140 336 L153 355 Q128 374 111 352 Z" fill="#F2E9D6"/>
+<ellipse cx="139" cy="344" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path d="M119 386 Q132 375 143 383 M117 321 L135 315" fill="none"/>
+<path id="startled-marks" d="M80 301 L69 285 M99 286 L97 268" fill="none"/>
+<g id="peaceful-creation-face" fill="none">
+<path d="M375 351 Q380 345 385 351 M407 351 Q412 345 417 351 M383 367 Q397 379 412 365"/>
+</g>
+</g>
+</g>
+</svg>

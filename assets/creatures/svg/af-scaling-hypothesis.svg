@@ -1,0 +1,36 @@
+<svg width="1042" height="1098" xmlns="http://www.w3.org/2000/svg" viewBox="67.5 30.5 521 549" data-beast-id="af-scaling-hypothesis">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="capability-crest" d="M249 418 C251 364 242 318 264 277 Q282 290 292 312 C286 250 302 202 337 176 Q357 202 355 237 C364 172 403 128 451 112 Q474 142 452 184 C482 155 520 148 550 159 Q545 208 511 236 C543 226 569 233 586 250 Q563 285 514 293 L380 386 Z" fill="#C8A268"/>
+<path d="M285 365 Q284 316 300 296 M322 315 Q322 244 339 210 M370 274 Q394 178 440 143 M411 268 Q485 189 523 183 M441 284 Q519 259 552 255" fill="none" stroke="#987B4F"/>
+<path id="continuous-growth-body" d="M211 460 C202 396 227 323 289 281 C334 250 381 258 419 282 Q446 299 472 284 Q494 268 507 288 Q525 312 497 337 Q471 361 430 354 C389 345 354 328 322 353 C292 377 290 419 300 460 Q266 487 211 460Z" fill="#C8A268"/>
+<path id="body-shadow" d="M223 448 Q219 384 259 341 Q240 405 263 446 Q276 459 296 453 L300 460 Q266 487 211 460Z" fill="#987B4F" stroke="none"/>
+<path id="narrowing-loss-spine" d="M212 455 C194 387 222 315 280 276 C337 239 380 255 420 281 Q449 300 471 284 Q447 309 415 290 C373 267 333 263 294 295 C252 330 248 392 263 451Z" fill="#F2E9D6"/>
+</g>
+<g id="props">
+<g id="compute-root">
+<path d="M225 443 Q208 484 157 500 Q123 511 96 539 L70 516 Q104 475 150 467 Q178 461 190 433Z" fill="#C8A268"/>
+<path d="M86 510 L110 488 L131 509 L107 533Z" fill="#F2E9D6"/>
+<path d="M91 490 L99 498 M111 474 L119 482 M76 520 L84 528 M121 523 L129 531 M138 505 L146 513" fill="none"/>
+</g>
+<g id="data-root">
+<path d="M242 454 Q231 497 209 519 Q198 536 194 570 Q169 584 145 570 Q153 526 178 500 Q196 477 200 452Z" fill="#C8A268"/>
+<path d="M155 545 Q176 558 199 545 M151 560 Q174 573 196 560" fill="none"/>
+<ellipse cx="180" cy="531" rx="23" ry="10" fill="#F2E9D6" transform="rotate(-17 180 531)"/>
+</g>
+<g id="parameter-root">
+<path d="M264 449 Q281 482 317 495 Q349 507 374 542 L346 568 Q322 538 295 531 Q251 517 235 473Z" fill="#C8A268"/>
+<path d="M291 510 L322 518 L341 545 M322 518 L346 521" fill="none"/>
+<circle cx="291" cy="510" r="8" fill="#F2E9D6"/><circle cx="322" cy="518" r="8" fill="#F2E9D6"/><circle cx="341" cy="545" r="8" fill="#F2E9D6"/><circle cx="350" cy="521" r="8" fill="#F2E9D6"/>
+</g>
+<path id="conjectural-growth" d="M465 113 C484 75 523 57 563 62 Q582 102 553 134" fill="none" stroke-dasharray="8 11"/>
+<path id="open-future-bud" d="M501 83 Q526 49 543 33 M543 33 Q536 66 550 83" fill="none" stroke="#8AAFA4" stroke-dasharray="6 9"/>
+</g>
+<g id="face">
+<path id="face-mask" d="M383 286 Q419 299 441 308 Q448 331 424 337 Q393 336 377 318Z" fill="#F2E9D6"/>
+<ellipse cx="394" cy="307" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<ellipse cx="426" cy="316" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path d="M399 324 Q408 333 418 329" fill="none" stroke-width="4"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,35 @@
+<svg width="956" height="886" xmlns="http://www.w3.org/2000/svg" viewBox="89.5 97.5 478 443" data-beast-id="af-infra-bayesianism">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="rear-flexible-shell" d="M120 396 Q73 315 106 218 Q125 161 175 100 Q192 163 255 142 Q330 108 409 154 Q459 182 484 241 L501 391 Q455 467 321 488 Q185 474 120 396Z" fill="#C8A268"/>
+<path id="inner-shell" d="M146 375 Q111 306 140 239 Q170 179 236 179 Q330 138 408 195 Q447 226 457 287 L468 374 Q404 431 315 440 Q212 433 146 375Z" fill="#F2E9D6"/>
+<path id="left-shell-ridge" d="M112 233 Q129 269 128 319 Q128 365 155 400 M148 177 Q161 203 177 211" fill="none" stroke="#987B4F"/>
+<path id="right-foot" d="M365 472 Q425 468 454 505 Q470 532 445 538 L373 531 Q343 519 365 472Z" fill="#987B4F"/>
+<path id="left-foot" d="M208 470 Q166 480 150 516 Q144 536 170 538 L244 526 Q267 515 248 480Z" fill="#987B4F"/>
+</g>
+<g id="props">
+<path id="convex-credal-boundary" d="M192 253 Q216 209 279 208 L354 216 Q402 225 419 271 L428 327 Q422 365 384 380 L257 386 Q207 381 188 338 Q175 290 192 253Z" fill="#AFCAC5"/>
+<path id="distribution-left" d="M207 347 C227 347 230 259 254 258 C278 258 280 347 303 347" fill="none" stroke="#527E79"/>
+<path id="distribution-right" d="M292 347 C318 347 319 245 346 245 C370 245 376 347 404 347" fill="none" stroke="#527E79"/>
+<path id="convex-mixture-distribution" d="M222 347 C247 347 251 289 279 289 C299 289 304 275 323 281 C346 287 352 347 386 347" fill="none" stroke="#F2E9D6" stroke-width="8"/>
+<path id="family-baseline" d="M208 356 L406 356" fill="none"/>
+<path id="unmodeled-environment" d="M548 132 L565 175 L536 197 L564 225 L521 247 L537 280 L491 291 L474 264 L497 232 L474 203 L514 190 L506 155Z" fill="#AABFC8"/>
+<path id="open-seam-upper" d="M411 176 Q437 190 453 217 Q461 232 466 247" fill="none" stroke="#F2E9D6" stroke-width="12"/>
+<path id="open-seam-lower" d="M489 311 Q498 331 498 359" fill="none" stroke="#F2E9D6" stroke-width="12"/>
+<path id="seam-stitch-one" d="M446 211 L467 200 M456 233 L477 223 M484 326 L506 322 M487 350 L510 348" fill="none"/>
+</g>
+<g id="body-front">
+<path id="folded-envelope-front" d="M92 362 Q129 350 177 378 L310 429 Q399 389 481 357 Q524 341 550 362 Q542 411 509 444 Q442 500 318 510 Q187 504 132 453 Q105 421 92 362Z" fill="#C8A268"/>
+<path id="lower-shell-shadow" d="M133 445 Q223 483 318 480 Q433 477 508 433 Q472 489 318 510 Q189 505 133 445Z" fill="#987B4F" stroke="none"/>
+<path id="cream-face-fold" d="M177 378 Q250 397 310 429 Q374 403 440 374 Q424 432 384 460 Q317 487 256 461 Q204 434 177 378Z" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<ellipse id="left-eye" cx="276" cy="431" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse id="right-eye" cx="352" cy="431" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path id="steady-smile" d="M300 450 Q316 460 332 448" fill="none"/>
+<path id="left-brow" d="M263 411 L280 407 M344 407 L361 411" fill="none"/>
+<ellipse cx="253" cy="444" rx="11" ry="6" fill="#D7A58C" stroke="none"/>
+<ellipse cx="376" cy="444" rx="11" ry="6" fill="#D7A58C" stroke="none"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,32 @@
+<svg width="1076" height="878" xmlns="http://www.w3.org/2000/svg" viewBox="57.5 104.5 538 438.9" data-beast-id="roko" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="roko-conditional-shadow" fill="#987B4F" fill-opacity="0.32" stroke-dasharray="12 10">
+<path d="M344 510 Q439 455 435 362 L409 262 L385 235 L425 221 L418 175 L453 198 L480 107 L498 195 L544 154 L530 221 L584 235 L542 264 Q503 286 510 351 Q521 428 593 505 Q481 543 344 510Z"/>
+</g>
+<g id="roko-causal-gap" stroke="#987B4F" stroke-dasharray="8 12">
+<path d="M259 358 Q298 311 323 310 M369 310 Q396 314 421 338"/>
+</g>
+<path id="roko-causal-break" d="M333 287 L321 309 L340 311 L330 334 M355 287 L343 309 L362 311 L352 334" stroke="#C8A268"/>
+<g id="roko-dubious-wager">
+<ellipse cx="339" cy="520" rx="27" ry="12" fill="#C8A268"/>
+<path d="M312 511 L312 520 Q339 540 366 520 L366 511" fill="#987B4F"/>
+<ellipse cx="339" cy="510" rx="27" ry="12" fill="#F2E9D6"/>
+<path d="M334 478 Q330 464 343 463 Q358 464 348 476 L341 482"/>
+<circle cx="341" cy="491" r="2.8" fill="#2E4649" stroke="none"/>
+</g>
+</g>
+<g id="body">
+<path id="roko-tail" d="M170 444 Q108 433 106 489 Q104 537 60 512 Q77 554 124 535 Q158 522 168 488" fill="#C8A268"/>
+<path id="roko-neck-body" d="M189 503 Q141 486 148 451 Q153 420 195 408 Q227 394 216 348 Q194 269 190 222 L169 196 L200 180 L207 142 L230 165 L253 133 L260 172 L288 176 L283 201 Q276 228 246 233 Q244 278 267 343 Q293 413 263 450 L273 489 L295 501 L289 515 L248 513 L226 482 L207 504Z" fill="#C8A268"/>
+<path id="roko-throat" d="M220 232 Q222 293 243 353 Q264 412 234 433 Q213 444 190 435 Q221 424 232 396 Q236 377 226 343 Q206 280 209 233" fill="#F2E9D6"/>
+<path id="roko-folded-wing" d="M176 441 Q212 419 228 445 Q232 471 195 480 L206 458 L180 464Z" fill="#987B4F"/>
+<path id="roko-rear-foot" d="M170 487 L157 511 L187 518 L209 506" fill="#C8A268"/>
+</g>
+<g id="face">
+<path id="roko-face-patch" d="M200 191 Q221 181 232 193 Q251 180 271 190 L270 211 Q236 242 208 220Z" fill="#F2E9D6"/>
+<ellipse cx="219" cy="202" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<ellipse cx="252" cy="201" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path id="roko-skeptical-brow" d="M244 183 L257 180 M226 219 Q235 212 242 216"/>
+<path d="M204 212 L211 213" stroke="#D59B82"/>
+</g>
+</svg>

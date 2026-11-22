@@ -1,0 +1,24 @@
+<svg width="1106" height="1106" xmlns="http://www.w3.org/2000/svg" viewBox="53.5 36.5 553 553" data-beast-id="cr-tescreal">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="future-star"><path d="M530 65 L543 98 L578 109 L546 125 L537 161 L520 130 L484 123 L516 103 Z" fill="#F2E9D6"/><path d="M540 51 L547 39 M590 87 L604 83 M569 150 L580 162" fill="none" stroke="#C8A268"/></g>
+<path id="future-gaze" d="M462 189 Q476 159 500 141" stroke="#987B4F" stroke-dasharray="7 12" fill="none"/>
+<g id="neglected-present"><path d="M56 553 Q153 522 252 549 L268 583 L68 587 Z" fill="#987B4F"/><path d="M164 541 L148 560 L166 571 L154 585 M212 548 L201 563 L220 579 M89 549 L103 567" fill="none" stroke="#F2E9D6"/><path d="M112 548 Q111 515 86 503" fill="none"/><path d="M88 504 Q64 477 58 505 Q71 521 88 504 Z" fill="#A7BDB6"/><path d="M104 521 Q129 493 139 516 Q132 534 104 521 Z" fill="#A7BDB6"/></g>
+</g>
+<g id="body">
+<g id="strand-transhumanism"><path d="M112 489 C105 421 281 447 256 360 S305 259 383 215" fill="none" stroke="#2E4649" stroke-width="29"/><path d="M112 489 C105 421 281 447 256 360 S305 259 383 215" fill="none" stroke="#C8A268" stroke-width="19"/></g>
+<g id="strand-extropianism"><path d="M149 508 C193 457 214 415 291 374 S301 280 390 219" fill="none" stroke="#2E4649" stroke-width="29"/><path d="M149 508 C193 457 214 415 291 374 S301 280 390 219" fill="none" stroke="#F2E9D6" stroke-width="19"/></g>
+<g id="strand-singularitarianism"><path d="M190 508 C166 440 340 453 309 352 S343 262 397 223" fill="none" stroke="#2E4649" stroke-width="29"/><path d="M190 508 C166 440 340 453 309 352 S343 262 397 223" fill="none" stroke="#987B4F" stroke-width="19"/></g>
+<g id="strand-cosmism"><path d="M229 515 C285 457 220 427 280 354 S347 272 404 227" fill="none" stroke="#2E4649" stroke-width="29"/><path d="M229 515 C285 457 220 427 280 354 S347 272 404 227" fill="none" stroke="#C8A268" stroke-width="19"/></g>
+<g id="strand-rationalism"><path d="M266 501 C243 432 358 428 328 349 S355 268 411 231" fill="none" stroke="#2E4649" stroke-width="29"/><path d="M266 501 C243 432 358 428 328 349 S355 268 411 231" fill="none" stroke="#A7BDB6" stroke-width="19"/></g>
+<g id="strand-effective-altruism"><path d="M304 484 C362 448 276 401 323 331 S384 262 418 235" fill="none" stroke="#2E4649" stroke-width="29"/><path d="M304 484 C362 448 276 401 323 331 S384 262 418 235" fill="none" stroke="#F2E9D6" stroke-width="19"/></g>
+<g id="strand-longtermism"><path d="M344 475 C397 398 306 404 353 331 S401 268 425 239" fill="none" stroke="#2E4649" stroke-width="29"/><path d="M344 475 C397 398 306 404 353 331 S401 268 425 239" fill="none" stroke="#C8A268" stroke-width="19"/></g>
+<path id="gathered-neck" d="M358 239 Q365 212 389 185 L433 190 Q445 215 433 245 Q391 269 358 239 Z" fill="#C8A268"/>
+<path id="ascending-head" d="M368 194 Q365 149 405 136 L426 109 L436 143 Q459 148 469 175 L493 185 L472 203 Q454 232 413 228 Q380 225 368 194 Z" fill="#C8A268"/>
+</g>
+<g id="face"><path d="M380 181 Q409 151 442 164 Q464 174 466 197 Q439 220 413 215 Q388 211 380 181 Z" fill="#F2E9D6"/>
+<ellipse id="eye-left" cx="413" cy="179" rx="7" ry="11" fill="#2E4649" stroke="none" transform="rotate(23 413 179)"/>
+<ellipse id="eye-right" cx="447" cy="181" rx="7" ry="10" fill="#2E4649" stroke="none" transform="rotate(23 447 181)"/>
+<circle cx="416" cy="175" r="2.3" fill="#F2E9D6" stroke="none"/><circle cx="450" cy="177" r="2.3" fill="#F2E9D6" stroke="none"/>
+<path d="M424 202 Q435 207 444 198" fill="none"/><path d="M401 161 L414 158 M440 156 L451 161" fill="none"/>
+</g></g></svg>

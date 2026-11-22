@@ -1,0 +1,45 @@
+<svg width="887" height="960" xmlns="http://www.w3.org/2000/svg" viewBox="97.9 95.7 443.6 479.9" data-beast-id="st-non-adversarial-principle">
+  <g id="body" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path id="crescent-organism" fill="#C8A268" d="M451 135 C368 75 244 89 164 173 C75 266 83 401 166 487 C225 549 328 567 417 521 C442 508 442 479 417 464 C400 455 382 459 362 466 C294 485 235 448 214 396 C190 335 211 269 257 239 C293 217 332 225 365 233 C409 245 459 220 469 184 C475 164 469 146 451 135Z"/>
+    <path id="outer-shadow" fill="#987B4F" stroke="none" d="M127 330 C123 410 166 480 235 514 C284 538 354 539 416 505 C427 499 432 490 431 483 C442 500 429 515 417 521 C328 567 225 549 166 487 C126 445 106 387 110 335Z"/>
+    <path id="motive-channel" fill="none" stroke="#F2E9D6" stroke-width="27" d="M370 177 C272 135 172 219 164 319 C155 421 243 511 370 495"/>
+    <path id="aligned-flow" fill="none" stroke="#7FA895" stroke-width="7" d="M316 174 C238 179 186 245 186 324 C183 405 250 480 337 482"/>
+    <path id="upper-foot" fill="#C8A268" d="M172 470 L149 508 Q146 518 161 519 L198 500"/>
+    <path id="lower-foot" fill="#C8A268" d="M289 543 L285 565 Q285 574 301 573 L325 571 L328 544"/>
+  </g>
+  <g id="props" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="upper-correction-joint">
+      <path fill="#7FA895" d="M229 202 L263 224 L247 247 L214 225Z"/>
+      <circle cx="238" cy="223" r="18" fill="#F2E9D6"/>
+      <path fill="none" d="M231 228 L245 218"/>
+    </g>
+    <g id="open-central-joint">
+      <path fill="#7FA895" d="M185 309 L241 309 Q254 309 254 325 Q254 341 241 341 L185 341Z"/>
+      <circle cx="186" cy="325" r="24" fill="#F2E9D6"/>
+      <circle cx="186" cy="325" r="8" fill="#C8A268"/>
+      <path fill="#C8A268" d="M210 318 L246 315 L253 329 L210 334Z"/>
+    </g>
+    <g id="cooperative-adjustment-hand">
+      <path fill="#F2E9D6" d="M512 265 L475 265 C446 266 427 278 403 288 L331 300 L270 304 C257 304 251 312 257 321 C260 325 269 326 284 325 L307 324 L270 345 C254 354 260 369 274 364 L320 345 C344 341 365 330 383 324 L421 321 C445 323 469 309 482 300 L512 300Z"/>
+      <path fill="none" d="M307 324 L330 314 M271 345 L286 347"/>
+      <path id="hand-cuff" fill="#7FA895" d="M512 259 L539 259 L539 307 L512 307Z"/>
+    </g>
+    <g id="lower-correction-joint">
+      <path fill="#7FA895" d="M226 432 L253 406 L275 428 L247 455Z"/>
+      <circle cx="250" cy="431" r="18" fill="#F2E9D6"/>
+      <path fill="none" d="M243 424 L257 438"/>
+    </g>
+    <path id="flow-upper-chevron" fill="none" stroke="#7FA895" d="M189 264 L183 280 L198 276"/>
+    <path id="flow-lower-chevron" fill="none" stroke="#7FA895" d="M303 470 L317 481 L302 488"/>
+  </g>
+  <g id="face" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path id="face-mask" fill="#F2E9D6" d="M357 141 Q406 119 445 157 L442 191 Q406 225 364 199 Q347 177 357 141Z"/>
+    <ellipse id="left-eye" cx="377" cy="164" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+    <ellipse id="right-eye" cx="421" cy="164" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+    <path id="calm-mouth" fill="none" d="M385 189 Q399 199 414 187"/>
+    <path id="left-brow" fill="none" d="M369 147 L382 145"/>
+    <path id="right-brow" fill="none" d="M414 145 L427 149"/>
+    <ellipse cx="363" cy="182" rx="8" ry="5" fill="#D49A7D" stroke="none"/>
+    <ellipse cx="434" cy="182" rx="8" ry="5" fill="#D49A7D" stroke="none"/>
+  </g>
+</svg>

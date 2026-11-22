@@ -1,0 +1,61 @@
+<svg width="933" height="862" xmlns="http://www.w3.org/2000/svg" viewBox="88.9 91.5 466.6 431" data-beast-id="ll-model-organisms" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="upper-probe-left" d="M197 250H139L114 218V177H137V208L161 225H200" fill="#C8A268"/>
+<path id="upper-probe-right" d="M433 254H482L506 223V185H483V211L462 229H433" fill="#C8A268"/>
+<path id="lower-probe-left" d="M191 379L143 403V453L119 477L136 494L168 463V420L207 402" fill="#C8A268"/>
+<path id="lower-probe-right" d="M424 393L462 416V460L489 487L507 469L487 447V402L438 375" fill="#C8A268"/>
+<path id="specimen-shell" d="M235 166L217 184Q187 219 187 276V368Q187 416 215 448L241 479H383L412 447Q441 416 441 366V277Q441 219 412 185L394 166Z" fill="#C8A268"/>
+<path id="shell-shadow" d="M418 210Q441 250 441 285V366Q441 416 412 447L383 479H241L222 455H368Q416 415 417 365Z" fill="#987B4F" stroke="none"/>
+<path id="head-cap" d="M238 166V132Q238 112 258 112H371Q391 112 391 132V166" fill="#F2E9D6"/>
+<path d="M262 112V94H285V112M342 112V94H365V112" fill="#C8A268"/>
+<path d="M238 166H391"/>
+<path id="open-research-window" d="M235 274H393Q406 274 406 287V393L376 433H255L222 393V287Q222 274 235 274Z" fill="#F2E9D6"/>
+<circle cx="209" cy="279" r="4" fill="#2E4649" stroke="none"/><circle cx="419" cy="279" r="4" fill="#2E4649" stroke="none"/>
+<circle cx="240" cy="449" r="4" fill="#2E4649" stroke="none"/><circle cx="389" cy="449" r="4" fill="#2E4649" stroke="none"/>
+</g>
+<g id="face">
+<path d="M244 220Q257 204 271 220M355 220Q368 204 382 220"/>
+<ellipse cx="259" cy="234" rx="7" ry="10" fill="#2E4649" stroke="none"/><ellipse cx="368" cy="234" rx="7" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M300 247Q314 254 327 247"/>
+<path d="M241 246H250M378 246H387" stroke="#C98B76"/>
+</g>
+<g id="props">
+<g id="engineered-circuit">
+<path id="intended-path" d="M314 299V320H262V378H314V407" stroke="#87AFA0" stroke-width="9"/>
+<path id="deliberate-bypass" d="M314 320H365V378H314" stroke="#BF7B62" stroke-width="9"/>
+<circle cx="314" cy="299" r="9" fill="#87AFA0"/>
+<circle cx="314" cy="407" r="9" fill="#C8A268"/>
+<path d="M258 343L268 351L258 359" stroke="#2E4649" stroke-width="4"/>
+<path d="M353 343L365 335L377 343L365 351Z" fill="#BF7B62"/>
+<path d="M365 351V365M357 365H373"/>
+<circle cx="314" cy="320" r="6" fill="#2E4649" stroke="none"/>
+</g>
+<g id="trigger-socket">
+<path d="M407 310H443V355H407Z" fill="#987B4F"/>
+<path d="M421 319V346" stroke="#F2E9D6"/>
+<path d="M447 332H467" stroke-dasharray="4 8"/>
+</g>
+<g id="removable-trigger-module">
+<path d="M478 303H526L541 318V349L526 364H478Z" fill="#F2E9D6"/>
+<path d="M478 318H465V328H478M478 339H465V349H478" fill="#C8A268"/>
+<path d="M510 316L498 335H514L506 351" stroke="#BF7B62"/>
+<path d="M541 325H553V342H541" fill="#C8A268"/>
+</g>
+<g id="bounded-probe-collars" fill="#87AFA0">
+<path d="M109 177V162H141V177Z"/>
+<path d="M479 185V170H510V185Z"/>
+<path d="M104 478L115 467L145 497L134 508Z"/>
+<path d="M484 490L513 462L524 473L495 501Z"/>
+</g>
+<g id="probe-tips" fill="#F2E9D6">
+<path d="M117 162V140Q125 130 133 140V162Z"/>
+<path d="M487 170V149Q495 139 503 149V170Z"/>
+<path d="M105 484L92 498Q89 510 102 514L119 499"/>
+<path d="M501 496L518 510Q532 509 530 497L517 481"/>
+</g>
+<g id="sample-support" fill="#F2E9D6">
+<path d="M270 480V505H248V520H300V480Z"/>
+<path d="M331 480V520H383V505H361V480Z"/>
+</g>
+</g>
+</svg>

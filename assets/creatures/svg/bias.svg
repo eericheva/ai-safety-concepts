@@ -1,0 +1,55 @@
+<svg width="1026" height="1014" xmlns="http://www.w3.org/2000/svg" viewBox="72.5 62.3 513 507.2" data-beast-id="bias">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="incoming-data">
+<rect x="117" y="73" width="29" height="29" rx="5" fill="#8FB5A5" transform="rotate(-12 132 88)"/>
+<rect x="178" y="101" width="29" height="29" rx="5" fill="#8FB5A5" transform="rotate(16 192 116)"/>
+<rect x="231" y="67" width="29" height="29" rx="5" fill="#8FB5A5" transform="rotate(-9 245 82)"/>
+<rect x="291" y="104" width="29" height="29" rx="5" fill="#8FB5A5" transform="rotate(13 305 119)"/>
+<circle cx="354" cy="111" r="16" fill="#B5A2BD"/>
+<circle cx="401" cy="147" r="16" fill="#B5A2BD"/>
+<path d="M142 120L149 143M240 111L244 134M354 139L350 157" fill="none"/>
+</g>
+<g id="unequal-outcomes">
+<path d="M75 517L211 517L198 560L90 560Z" fill="#987B4F"/>
+<path d="M355 510L583 510L565 567L371 567Z" fill="#987B4F"/>
+<circle cx="141" cy="497" r="17" fill="#B5A2BD"/>
+<g fill="#8FB5A5">
+<rect x="381" y="476" width="30" height="30" rx="4"/>
+<rect x="420" y="476" width="30" height="30" rx="4"/>
+<rect x="459" y="476" width="30" height="30" rx="4"/>
+<rect x="498" y="476" width="30" height="30" rx="4"/>
+<rect x="537" y="476" width="30" height="30" rx="4"/>
+<rect x="400" y="437" width="30" height="30" rx="4"/>
+<rect x="439" y="437" width="30" height="30" rx="4"/>
+<rect x="478" y="437" width="30" height="30" rx="4"/>
+<rect x="517" y="437" width="30" height="30" rx="4"/>
+</g>
+</g>
+</g>
+<g id="body">
+<path id="slanted-filter-shell" d="M86 158Q242 125 450 207L484 252L427 366L466 413L393 445L352 385L249 388L205 459L159 435L184 350Z" fill="#C8A268"/>
+<path id="shell-shadow" d="M450 207L484 252L427 366L466 413L443 424L402 367L450 260Z" fill="#987B4F"/>
+<path id="intake-rim" d="M86 158Q236 124 450 207L443 239Q236 160 101 190Z" fill="#F2E9D6"/>
+<path id="amplifying-channel" d="M150 204Q216 198 274 222L316 285L397 331L427 397L399 410L368 359L278 328L218 262L163 247Z" fill="#8FB5A5"/>
+<path id="constricted-channel" d="M375 240L347 283L251 325L207 413L188 405L225 305L324 263L344 230Z" fill="#B5A2BD"/>
+<path id="selective-gate" d="M234 287L260 339M251 282L277 331" fill="none"/>
+<g id="signal-multiplication" fill="#F2E9D6">
+<rect x="184" y="218" width="18" height="18" rx="3"/>
+<rect x="239" y="251" width="18" height="18" rx="3"/>
+<rect x="271" y="286" width="18" height="18" rx="3"/>
+<rect x="300" y="301" width="18" height="18" rx="3"/>
+<rect x="329" y="316" width="18" height="18" rx="3"/>
+<rect x="358" y="331" width="18" height="18" rx="3"/>
+</g>
+<path id="left-toe" d="M270 382L267 456L242 472L244 485L297 485L304 384" fill="#C8A268"/>
+<path id="right-toe" d="M327 385L337 452L360 468L353 484L312 475L302 387" fill="#C8A268"/>
+</g>
+<g id="face">
+<path id="face-plate" d="M393 254Q416 242 437 259L419 306Q397 319 375 300Z" fill="#F2E9D6"/>
+<ellipse id="left-eye" cx="398" cy="269" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<ellipse id="right-eye" cx="420" cy="275" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path id="mouth" d="M395 294Q405 287 412 299" fill="none"/>
+</g>
+</g>
+</svg>

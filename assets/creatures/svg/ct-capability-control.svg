@@ -1,0 +1,37 @@
+<svg width="1048" height="918" xmlns="http://www.w3.org/2000/svg" viewBox="63.5 93.5 524 459" data-beast-id="ct-capability-control" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="bounded-wing" d="M289 260 C236 207 208 159 155 143 L164 205 L109 182 L129 244 L83 239 Q95 339 210 364 L286 347Z" fill="#C8A268"/>
+<path id="bounded-wing-fold" d="M274 326 Q200 302 163 229 M242 313 L219 237 M204 289 L150 275"/>
+<path id="motivated-wing" d="M354 266 Q401 150 551 96 Q536 154 571 181 Q540 214 585 256 Q549 286 562 332 Q477 393 353 359Z" fill="#C8A268"/>
+<path id="wing-inner-membrane" d="M371 300 Q418 206 529 143 Q517 172 539 184 Q517 211 550 250 Q523 274 534 312 Q458 350 378 340Z" fill="#F2E9D6"/>
+<path id="lower-body" d="M281 346 Q267 430 303 505 L321 550 L341 503 Q381 423 357 346Z" fill="#987B4F"/>
+<path id="tail-segments" d="M291 434 Q321 453 350 432 M298 468 Q321 483 343 466 M310 504 L333 504"/>
+<path id="thorax" d="M294 222 Q272 258 277 351 Q281 404 320 416 Q363 405 366 351 Q373 266 347 224Z" fill="#C8A268"/>
+<path id="left-foot" d="M285 388 L244 434 L212 430 L200 445 L252 451 L299 414" fill="#C8A268"/>
+<path id="right-foot" d="M353 389 L402 423 L430 406 L446 417 L403 447 L341 416" fill="#C8A268"/>
+<path id="head" d="M276 202 L269 158 L303 174 Q321 162 339 174 L374 150 L368 207 Q357 247 320 251 Q283 242 276 202Z" fill="#C8A268"/>
+<path id="antenna-left" d="M300 174 Q294 124 274 111"/>
+<path id="antenna-right" d="M342 172 Q351 131 374 117"/>
+<circle cx="272" cy="108" r="8" fill="#F2E9D6"/><circle cx="377" cy="114" r="8" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<path d="M284 197 Q298 179 320 195 Q340 177 359 194 L352 219 Q322 251 291 220Z" fill="#F2E9D6"/>
+<ellipse cx="301" cy="206" rx="5" ry="9" fill="#2E4649" stroke="none"/><ellipse cx="341" cy="206" rx="5" ry="9" fill="#2E4649" stroke="none"/>
+<path d="M312 224 Q321 231 331 223"/>
+</g>
+<g id="props">
+<g id="external-bounds">
+<path d="M75 155 L75 375 L240 375 L240 155" stroke="#2E4649" stroke-width="15"/>
+<path d="M75 155 L75 375 L240 375 L240 155" stroke="#A6BFBC" stroke-width="7"/>
+<path id="wing-restraint" d="M66 223 L248 223 L248 245 L66 245Z" fill="#A6BFBC"/>
+<path id="cut-channel" d="M238 333 L255 333 M276 333 L286 333" stroke="#987B4F" stroke-width="10"/>
+<path d="M257 322 L268 344 M268 322 L257 344" stroke="#BC795E"/>
+</g>
+<g id="inner-goal-anatomy">
+<path id="goal-chamber" d="M298 273 Q319 257 343 275 L345 348 Q323 376 298 350Z" fill="#F2E9D6"/>
+<path id="goal-organ" d="M321 290 L338 316 L321 345 L304 316Z" fill="#8EB29A"/>
+<path id="motivational-tendons" d="M338 316 C395 313 424 243 500 187 M338 316 Q446 299 534 250 M338 316 Q441 340 515 310" stroke="#749C8A" stroke-width="7"/>
+<path id="goal-direction" d="M485 186 L500 187 L494 203 M520 244 L534 250 L523 263 M499 302 L515 310 L500 319" stroke="#749C8A"/>
+</g>
+</g>
+</svg>

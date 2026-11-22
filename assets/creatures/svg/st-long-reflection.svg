@@ -1,0 +1,45 @@
+<svg width="1128" height="746" xmlns="http://www.w3.org/2000/svg" viewBox="31.5 124.4 564 372.8" data-beast-id="st-long-reflection" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="shelter-shell" d="M84 403C68 270 158 130 318 127C479 123 568 254 557 403L505 461H137Z" fill="#C8A268"/>
+<path id="shell-shadow" d="M318 127C471 146 528 279 513 401L483 447L505 461L557 403C568 254 479 123 318 127Z" fill="#987B4F" stroke="none"/>
+<path id="sheltered-cavity" d="M126 393C121 280 192 178 319 178C440 178 516 284 510 393L469 435H170Z" fill="#F2E9D6"/>
+<path id="shell-rib-left" d="M127 280L93 270M182 204L155 176M264 166L256 133M357 165L366 133M443 206L472 178M493 281L534 270"/>
+<path id="stable-foot" d="M91 408Q310 376 557 408L527 468Q322 522 113 467Z" fill="#C8A268"/>
+<path d="M113 445Q321 486 540 443L527 468Q322 522 113 467Z" fill="#987B4F" stroke="none"/>
+<path id="reflective-core" d="M254 382Q263 345 282 326L276 291Q277 253 317 250Q357 251 358 291L352 326Q377 346 385 382Q369 407 320 410Q270 407 254 382Z" fill="#C8A268"/>
+<path d="M283 282Q317 261 351 282L347 316Q317 341 286 316Z" fill="#F2E9D6"/>
+<path id="reflective-left-arm" d="M282 337Q239 347 251 374Q267 386 300 370" fill="#C8A268"/>
+<path id="reflective-right-arm" d="M350 337Q388 347 380 372Q363 389 333 370" fill="#C8A268"/>
+<path d="M286 388Q320 374 354 389"/>
+</g>
+<g id="face">
+<path id="calm-eyes" d="M289 295Q298 301 306 294M329 294Q338 301 346 295"/>
+<path id="thoughtful-mouth" d="M310 315Q319 320 327 315"/>
+</g>
+<g id="props">
+<g id="open-futures" fill="#8FB7A0">
+<path d="M181 375Q161 315 187 271M218 345Q200 304 225 254M272 242L265 216M365 242L376 215M417 346Q442 306 420 260M458 375Q480 327 457 286" fill="none"/>
+<path id="bud-one" d="M187 281Q157 271 171 241Q198 244 187 281Z"/>
+<path id="bud-two" d="M225 264Q198 247 220 218Q247 236 225 264Z" fill="#ADC5CA"/>
+<path id="bud-three" d="M265 225Q238 209 257 188Q283 192 265 225Z"/>
+<path id="bud-four" d="M376 225Q357 196 384 186Q405 208 376 225Z" fill="#ADC5CA"/>
+<path id="bud-five" d="M420 270Q402 236 426 223Q449 246 420 270Z"/>
+<path id="bud-six" d="M457 297Q444 267 473 255Q488 283 457 297Z" fill="#ADC5CA"/>
+</g>
+<g id="safe-entry">
+<path id="past-danger" d="M34 429L49 393L67 416L79 392L91 445Z" fill="#B87D69"/>
+<path id="protective-divider" d="M113 375L126 375L135 457L121 457Z" fill="#ADC5CA"/>
+<path d="M77 476L93 473M104 485L121 482M137 489L153 487" stroke="#987B4F"/>
+</g>
+<g id="irreversible-gate">
+<path id="far-threshold" d="M454 436H593L571 456H454Z" fill="#F2E9D6"/>
+<path d="M553 432L565 442L553 451"/>
+<path id="gate-hinge" d="M459 435V313"/>
+<path id="held-open-gate" d="M459 314L543 330L551 350L459 336Z" fill="#987B4F"/>
+<path d="M482 320L482 340M505 324L505 344M528 328L528 347" stroke="#F2E9D6"/>
+<path id="gate-holding-tendril" d="M403 419Q450 412 472 369Q482 348 501 351Q518 353 518 339" fill="none" stroke="#2E4649" stroke-width="19"/>
+<path d="M403 419Q450 412 472 369Q482 348 501 351Q518 353 518 339" fill="none" stroke="#C8A268" stroke-width="9"/>
+</g>
+<g id="deliberation-pool"><ellipse cx="318" cy="365" rx="24" ry="10" fill="#ADC5CA"/><path d="M309 364H324" stroke="#F2E9D6" stroke-width="3"/></g>
+</g>
+</svg>

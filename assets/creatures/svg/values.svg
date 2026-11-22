@@ -1,0 +1,48 @@
+<svg width="872" height="1006" xmlns="http://www.w3.org/2000/svg" viewBox="117.4 79.3 436.1 503.2" data-beast-id="values">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="organic-half" d="M289 108 C254 60 186 83 180 136 C128 139 115 192 142 228 C102 264 123 309 152 323 C116 355 140 406 181 414 C161 454 168 481 183 502 L142 550 Q131 574 160 580 L222 577 Q240 569 232 548 L218 504 Q252 460 247 416 L285 395 L276 353 L248 333 L277 310 L280 266 L249 247 L281 226 Z" fill="#C8A268"/>
+<path id="organic-shading" d="M168 371 Q192 400 247 378 L247 416 Q252 460 218 504 L232 548 Q240 569 222 577 L160 580 Q149 578 146 573 L204 554 L195 502 Q219 440 194 421 Q163 407 168 371Z" fill="#987B4F" stroke="none"/>
+<path id="artificial-half" d="M353 111 L401 83 L444 111 L443 150 L476 175 L458 221 L491 253 L470 299 L488 342 L458 372 L459 420 L419 440 L419 487 L486 516 L527 506 L551 531 L537 551 L476 553 L389 514 L373 456 L347 418 L360 377 L386 358 L359 333 L361 289 L389 270 L359 247 L357 205 L385 187 L353 166Z" fill="#C8A268"/>
+<path id="machine-shadow" d="M444 111 L443 150 L476 175 L458 221 L491 253 L470 299 L488 342 L458 372 L459 420 L419 440 L419 487 L486 516 L527 506 L551 531 L537 551 L476 553 L389 514 L373 456 L347 418 L372 416 L400 433 L400 494 L483 535 L522 531 L484 533 L405 499 L399 428 L437 409 L436 363 L466 339 L449 298 L468 256 L435 225 L452 181 L422 160 L421 117Z" fill="#987B4F" stroke="none"/>
+</g>
+<g id="props">
+<g id="adjustable-spine" fill="#F2E9D6">
+<path d="M294 193 L327 183 L350 203 L340 242 L307 248 L285 227Z"/>
+<path d="M307 267 L340 262 L358 287 L343 323 L310 321 L294 298Z"/>
+<path d="M297 343 L331 334 L353 355 L345 392 L310 401 L289 378Z"/>
+<path d="M300 415 L333 407 L350 430 L336 457 L306 458 L290 439Z"/>
+</g>
+<path id="direction-axis" d="M320 438 Q304 370 324 298 Q307 241 322 175 L335 135" fill="none" stroke="#759C93" stroke-width="12"/>
+<path id="shared-direction" d="M310 147 L341 112 L351 158" fill="none" stroke="#759C93" stroke-width="9"/>
+<g id="adjustment-collars" fill="#C8A268">
+<circle cx="317" cy="218" r="12"/><path d="M312 220 L322 216"/>
+<circle cx="326" cy="292" r="12"/><path d="M320 288 L332 296"/>
+<circle cx="317" cy="367" r="12"/><path d="M310 370 L324 364"/>
+</g>
+<path id="intent-transfer-upper" d="M213 250 Q242 251 269 273 L290 284 M358 296 L405 299" fill="none" stroke="#F2E9D6" stroke-width="12"/>
+<path id="intent-transfer-lower" d="M204 345 L267 359 M356 366 L409 378" fill="none" stroke="#F2E9D6" stroke-width="12"/>
+<g id="plural-intentions" fill="#F2E9D6">
+<path d="M186 231 L214 231 L214 256 L186 256Z"/>
+<path d="M185 330 L203 313 L221 330 L203 348Z"/>
+<path d="M394 287 L418 287 L418 311 L394 311Z"/>
+<path d="M397 365 L415 348 L433 365 L415 383Z"/>
+</g>
+<path id="unsettled-coupling" d="M269 350 L276 366 M275 344 L284 366" stroke="#BD785B"/>
+<path id="pursuit-tendons" d="M406 319 L405 341 M415 390 L403 430 L400 478" fill="none"/>
+<path id="deviating-pursuit" d="M436 479 L476 493 L467 477 M476 493 L458 500" fill="none" stroke="#BD785B"/>
+</g>
+<g id="face">
+<path id="organic-face" d="M185 163 Q216 142 267 167 L266 216 Q211 241 179 208Z" fill="#F2E9D6"/>
+<path id="artificial-face" d="M370 164 L418 154 L440 180 L426 211 L371 215Z" fill="#F2E9D6"/>
+<ellipse cx="232" cy="184" rx="9" ry="14" fill="#2E4649" stroke="none"/>
+<ellipse cx="392" cy="183" rx="9" ry="14" fill="#2E4649" stroke="none"/>
+<circle cx="235" cy="179" r="3" fill="#F2E9D6" stroke="none"/>
+<circle cx="395" cy="178" r="3" fill="#F2E9D6" stroke="none"/>
+<path d="M218 160 Q234 154 247 162 M380 160 L406 157" fill="none"/>
+<path d="M238 213 L250 211 M379 208 L391 211" fill="none"/>
+<ellipse cx="204" cy="207" rx="11" ry="6" fill="#D39B7C" stroke="none"/>
+<path d="M413 201 L423 201" stroke="#D39B7C"/>
+</g>
+</g>
+</svg>

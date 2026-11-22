@@ -1,0 +1,32 @@
+<svg width="1131" height="518" xmlns="http://www.w3.org/2000/svg" viewBox="42.2 198.5 565.3 259" data-beast-id="sp-edge-instantiation">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="rear-foot" d="M135 382 Q100 422 110 455 L157 455 L173 401" fill="#987B4F"/>
+<path id="front-foot" d="M278 389 L304 445 L352 448 L338 434 L318 380" fill="#C8A268"/>
+<path id="wedge-body" d="M74 354 Q48 305 85 263 Q120 220 174 237 Q237 257 301 285 Q403 319 591 332 Q459 345 346 377 Q243 413 153 416 Q99 414 74 354Z" fill="#C8A268"/>
+<path id="underside" d="M96 377 Q201 409 333 365 Q446 338 591 332 Q460 345 346 377 Q243 413 153 416 Q116 414 96 377Z" fill="#987B4F" stroke="none"/>
+<path id="crest" d="M106 243 L111 201 L143 235 L164 209 L187 241" fill="#C8A268"/>
+<path id="tension-arm" d="M180 369 Q211 339 242 345 L264 359 M239 346 L264 335" fill="none"/>
+<path id="tail" d="M69 311 Q39 290 46 260 Q48 242 65 248 Q78 254 67 267" fill="none"/>
+</g>
+<g id="props">
+<path id="ordinary-goal" d="M214 279 Q206 278 207 290 L210 313 Q211 322 222 323 L243 323 Q253 323 251 313 L247 292 Q246 283 237 282Z" fill="#F2E9D6"/>
+<path id="stretched-goal" d="M278 295 Q270 293 272 302 L278 323 Q280 331 289 332 L328 332 Q341 332 330 325 L310 308 Q305 303 296 301Z" fill="#F2E9D6"/>
+<path id="degenerating-goal" d="M354 318 Q349 315 351 321 L360 333 Q363 337 373 336 L426 333 L376 323Z" fill="#F2E9D6"/>
+<path id="extreme-goal" d="M452 330 L566 332 L453 335Z" fill="#F2E9D6"/>
+<path id="optimization-arrow" d="M214 205 Q376 277 548 292 M530 277 L548 292 L525 300" fill="none" stroke="#987B4F"/>
+<path id="limit-bracket" d="M592 302 L605 302 L605 362 L592 362" fill="none"/>
+<path id="stretch-lines" d="M278 257 L304 268 M339 279 L372 289 M413 299 L454 306" fill="none" stroke="#987B4F"/>
+</g>
+<g id="face">
+<path id="face-mask" d="M83 293 Q101 270 139 279 Q172 286 178 317 Q180 345 154 365 Q121 383 95 356 Q75 335 83 293Z" fill="#F2E9D6"/>
+<ellipse id="left-eye" cx="107" cy="311" rx="7" ry="12" fill="#2E4649" stroke="none"/>
+<ellipse id="right-eye" cx="150" cy="312" rx="7" ry="12" fill="#2E4649" stroke="none"/>
+<circle cx="109" cy="307" r="2.5" fill="#F2E9D6" stroke="none"/>
+<circle cx="152" cy="308" r="2.5" fill="#F2E9D6" stroke="none"/>
+<path id="focused-brow" d="M96 289 L114 295 M140 295 L159 290" fill="none"/>
+<path id="mouth" d="M117 344 Q132 333 148 339" fill="none"/>
+<ellipse cx="98" cy="333" rx="9" ry="5" fill="#D89C83" stroke="none"/>
+</g>
+</g>
+</svg>

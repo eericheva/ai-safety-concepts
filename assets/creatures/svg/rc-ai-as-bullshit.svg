@@ -1,0 +1,40 @@
+<svg width="1066" height="1012" xmlns="http://www.w3.org/2000/svg" viewBox="72.5 56.5 533.1 506" data-beast-id="rc-ai-as-bullshit">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="resonant-throat" d="M135 469 C78 449 76 391 111 351 C143 313 211 323 225 281 C238 245 220 211 189 194 L216 132 C270 161 293 211 282 271 C271 338 209 361 174 386 C152 402 158 427 182 427 C237 428 282 363 322 312 C364 259 404 248 437 259 L475 218 C505 252 519 302 513 347 L462 345 C427 324 401 347 375 386 C321 469 233 510 169 487 Z" fill="#C8A268"/>
+<path id="throat-shadow" d="M111 411 C122 458 172 468 225 449 C282 429 326 368 352 340 C383 303 416 299 458 313 L492 328 L513 347 L462 345 C427 324 401 347 375 386 C321 469 233 510 169 487 C133 477 113 447 111 411Z" fill="#987B4F" stroke="none"/>
+<path id="throat-highlight" d="M128 374 C154 352 204 348 238 313 C270 280 268 230 249 205" fill="none" stroke="#F2E9D6" stroke-width="12"/>
+<ellipse id="intake-rim" cx="203" cy="164" rx="24" ry="37" transform="rotate(24 203 164)" fill="#F2E9D6"/>
+<path d="M203 142 Q220 165 195 187" fill="none"/>
+<ellipse id="bell-rim" cx="479" cy="282" rx="38" ry="70" transform="rotate(-17 479 282)" fill="#F2E9D6"/>
+<ellipse id="bell-mouth" cx="480" cy="282" rx="19" ry="48" transform="rotate(-17 480 282)" fill="#987B4F"/>
+<path id="resonance-rib-one" d="M293 355 Q309 369 320 386" fill="none"/>
+<path id="resonance-rib-two" d="M315 329 Q334 341 346 358" fill="none"/>
+</g>
+<g id="face">
+<path id="face-plate" d="M165 378 C172 358 220 343 240 354 C259 365 248 399 222 414 C192 432 160 412 165 378Z" fill="#F2E9D6"/>
+<path id="relaxed-eye-left" d="M177 384 Q185 376 193 380" fill="none"/>
+<path id="relaxed-eye-right" d="M215 369 Q225 363 232 371" fill="none"/>
+<path id="unconcerned-mouth" d="M199 398 Q209 403 219 391" fill="none"/>
+</g>
+<g id="props">
+<g id="rough-input" fill="#F2E9D6">
+<path d="M143 116 L125 99 L146 83 L163 100 L156 120Z"/>
+<path d="M194 100 L177 76 L197 59 L214 83Z"/>
+</g>
+<g id="polished-output" fill="#F2E9D6">
+<path d="M531 210 Q537 199 548 203 L578 216 Q589 221 584 232 Q580 243 568 239 L540 228 Q527 223 531 210Z"/>
+<path d="M544 272 Q545 261 557 261 L591 263 Q604 264 603 277 Q602 289 590 288 L556 286 Q544 285 544 272Z"/>
+<path d="M542 324 Q550 316 560 323 L583 343 Q592 351 585 360 Q577 370 568 362 L544 342 Q535 334 542 324Z"/>
+</g>
+<g id="disconnected-reference" stroke="#6F9994">
+<path d="M75 540 H563" fill="none"/>
+<path d="M548 527 L563 540 L548 553" fill="none"/>
+<path d="M104 540 V518 L122 501 L140 518 V540" fill="#C1D6CE"/>
+<circle cx="286" cy="540" r="14" fill="#C1D6CE"/>
+<path d="M394 540 L410 520 L426 540 L410 560Z" fill="#C1D6CE"/>
+<path d="M286 513 V503 M286 490 V480" fill="none"/>
+</g>
+</g>
+</g>
+</svg>

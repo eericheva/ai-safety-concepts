@@ -1,0 +1,41 @@
+<svg width="1082" height="722" xmlns="http://www.w3.org/2000/svg" viewBox="49.5 166.5 541 361" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" data-beast-id="chinese">
+<g id="body">
+<g id="rear-legs" fill="#987B4F"><path d="M187 412 145 484 157 501 192 491 232 427Z" /><path d="m404 427 39 64 35 10 15-17-42-72Z" /></g>
+<path id="shell" fill="#C8A268" d="M139 248Q147 189 204 169L425 169Q482 191 501 248L520 420Q519 451 487 460H152Q120 452 121 420Z" />
+<path id="shell-top" fill="#C8A268" d="m139 248 65-79h221l76 79Z" />
+<path id="roof-shadow" fill="#987B4F" d="m425 169 76 79h-44l-61-79Z" />
+<path id="inner-room" fill="#F2E9D6" d="M176 253H461L480 414Q481 426 467 428H173Q158 428 159 414Z" />
+<path id="floor" fill="#987B4F" d="M165 393H477l3 21q1 12-13 14H173q-15 0-14-14Z" />
+<g id="front-legs" fill="#C8A268"><path d="M179 456 165 492 132 511Q125 521 141 525H185Q195 524 197 514L215 460Z" /><path d="m421 460 18 54q2 10 12 11h44q16-4 9-14l-33-19-14-36Z" /></g>
+<path id="sorting-wheel" fill="#C8A268" d="M315 322Q348 318 362 347L379 390H289L288 356Q287 332 315 322Z" />
+<path fill="#987B4F" d="M321 354q34 0 41 36h-73l-1-29Z" />
+<path id="input-arm" fill="#C8A268" d="m296 347-45-17-29 19q-12 9-4 17t19 0l20-10 35 19Z" />
+<path id="output-arm" fill="#C8A268" d="m350 346 44 16 28-23q11-7 18 3t-5 18l-31 29q-7 6-15 1l-34-17Z" />
+</g>
+<g id="props">
+<g id="rules-table">
+<path fill="#C8A268" d="M186 266H277V378H186Z" />
+<path stroke="#987B4F" d="M196 302h71m-71 35h71" />
+<path d="m204 279-7 12h14Zm-3 35h-10v12h10Zm-11 39 7-7 7 7-7 7Z" />
+<path stroke-width="3.5" d="M220 285h15m-5-4 5 4-5 4m-10 31h15m-5-4 5 4-5 4m-10 33h15m-5-4 5 4-5 4" />
+<path d="M246 278h13v13h-13Zm1 43 6-10 6 10Zm0 25v14m12-14v14m-12-7h12" />
+</g>
+<g id="input-slot"><path fill="#987B4F" d="m142 286-34 11v76l29 8 11-24Z" /><path fill="#2E4649" d="m108 315 29-9v45l-29 9Z" />
+<path id="input-card" fill="#F2E9D6" d="m52 296 76 22v52l-76-22Z" /><path d="m72 320 11-11 10 18Zm30 1v17" /></g>
+<g id="output-slot"><path fill="#987B4F" d="m496 311 34 10v74l-28 7-9-27Z" /><path fill="#2E4649" d="m503 332 27 8v40l-27-8Z" />
+<path id="output-card" fill="#F2E9D6" d="m516 346 72-24v54l-72 24Z" /><path d="m536 351 14-5v15l-14 5Zm29-7v17m10-20v17m-10-6 10-3" /></g>
+<path id="selected-card" fill="#F2E9D6" d="m391 304 46-10 11 43-46 11Z" />
+<path d="m407 314 13-3 3 14-13 3Z" />
+<path id="rule-pointer" d="m293 344-29-21" stroke="#2E4649" />
+<path id="input-motion" d="m62 383 24 7m-8-10 8 10-12 4" stroke="#987B4F" />
+<path id="output-motion" d="m548 413 26-9m-12-3 12 3-7 10" stroke="#987B4F" />
+</g>
+<g id="face">
+<path id="head" fill="#C8A268" d="M295 277q-7-19 4-32l16 15q20-5 37 10l19-7-3 22q4 25-22 40-33 8-49-13-9-14-2-35Z" />
+<path id="muzzle" fill="#F2E9D6" d="M300 280q11-7 23 8 15-13 32-6l8 10q-2 24-27 28-27 3-36-16Z" />
+<ellipse cx="314" cy="294" rx="5" ry="8" fill="#2E4649" stroke="none" /><ellipse cx="345" cy="294" rx="5" ry="8" fill="#2E4649" stroke="none" />
+<circle cx="315" cy="291" r="1.8" fill="#F2E9D6" stroke="none" /><circle cx="346" cy="291" r="1.8" fill="#F2E9D6" stroke="none" />
+<path d="m328 309 8-2" stroke-width="3.5" /><path d="m339 278 10-4" stroke-width="3.5" />
+<ellipse cx="305" cy="306" rx="6" ry="3.5" fill="#DDA895" stroke="none" /><ellipse cx="354" cy="305" rx="6" ry="3.5" fill="#DDA895" stroke="none" />
+</g>
+</svg>

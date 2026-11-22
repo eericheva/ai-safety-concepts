@@ -1,0 +1,48 @@
+<svg width="925" height="996" xmlns="http://www.w3.org/2000/svg" viewBox="120.5 70.5 462.5 498" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" data-beast-id="ct-ai-boxing">
+<g id="body">
+ <g id="closed-port-upper-left">
+  <path d="M218 198 151 171 137 205 204 239" fill="#987B4F" />
+  <path d="M143 161 124 207 142 219 162 172Z" fill="#ACC7C7" />
+  <path d="m134 184 17 7" />
+ </g>
+ <g id="closed-port-upper-right">
+  <path d="m417 182 63-24 14 35-65 29" fill="#987B4F" />
+  <path d="m475 150 18-7 22 47-19 10Z" fill="#ACC7C7" />
+  <path d="m489 173 16-7" />
+ </g>
+ <g id="closed-port-lower-left">
+  <path d="m209 381-77 20 10 40 80-18" fill="#987B4F" />
+  <path d="m123 390 20-4 16 61-22 6Z" fill="#ACC7C7" />
+  <path d="m130 419 21-5" />
+ </g>
+ <path id="shell-back" d="M314 73C226 108 184 206 180 329 176 445 228 532 314 566 400 532 451 445 447 329 443 206 401 108 314 73Z" fill="#987B4F" />
+ <path id="shell-left" d="M314 73C230 105 186 205 184 326 181 429 220 514 287 550 271 485 266 419 276 345 289 246 313 177 314 73Z" fill="#C8A268" />
+ <path id="shell-right" d="M314 73C398 105 441 205 444 326 446 430 408 513 341 550 356 484 362 420 352 345 339 245 316 177 314 73Z" fill="#C8A268" />
+ <path d="M283 126C227 190 212 257 213 337M265 457C241 414 231 380 230 351M345 126C396 189 415 256 415 310M367 459C389 423 397 393 399 371" stroke="#987B4F" />
+ <path d="M287 550 314 566 341 550 330 495 299 495Z" fill="#987B4F" />
+</g>
+<g id="face">
+ <path id="face-plate" d="M279 251Q295 242 314 260 333 242 349 251L363 334Q346 373 314 379 282 373 266 334Z" fill="#F2E9D6" />
+ <ellipse cx="290" cy="302" rx="8" ry="13" fill="#2E4649" stroke="none" />
+ <ellipse cx="338" cy="302" rx="8" ry="13" fill="#2E4649" stroke="none" />
+ <circle cx="292" cy="298" r="3" fill="#F2E9D6" stroke="none" />
+ <circle cx="340" cy="298" r="3" fill="#F2E9D6" stroke="none" />
+ <path d="M282 280Q291 275 299 281M329 281Q337 275 345 280" stroke-width="4" />
+ <ellipse cx="280" cy="329" rx="10" ry="5" fill="#D9A18B" stroke="none" />
+ <ellipse cx="348" cy="329" rx="10" ry="5" fill="#D9A18B" stroke="none" />
+ <path d="M303 342Q314 351 326 342" stroke-width="4" />
+</g>
+<g id="props">
+ <g id="allowed-output-channel">
+  <path d="M358 382 416 382 416 360 488 360 488 399 444 399 444 420 361 420Z" fill="#987B4F" />
+  <path d="M358 382H416V360H488V377H430V400H360Z" fill="#C8A268" />
+  <path d="M474 351H493V408H474Z" fill="#ACC7C7" />
+  <path d="M480 368H489V391H480Z" fill="#2E4649" stroke-width="3" />
+ </g>
+ <g id="answer-token">
+  <path d="M493 368 550 355 556 380 499 394Z" fill="#F2E9D6" />
+  <path d="m513 374 23-6" stroke-width="4" />
+ </g>
+ <path id="answer-motion" d="m565 359 13-3m-10 22 13-3" stroke="#C8A268" stroke-width="4" />
+</g>
+</svg>

@@ -1,0 +1,35 @@
+<svg width="1098" height="1047" xmlns="http://www.w3.org/2000/svg" viewBox="47.5 46.5 549 523.5" data-beast-id="sp-optimization-daemons" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="od-outer-growth" d="M285 171 L285 110 L260 110 L320 49 L380 110 L355 110 L355 171" fill="#C8A268"/>
+<path id="od-shell" d="M320 150 C427 142 534 210 555 316 C576 421 511 509 408 531 L419 561 Q396 576 372 551 L354 539 Q319 544 285 539 L265 558 Q239 577 219 558 L231 531 C124 513 67 431 82 330 C96 223 193 158 285 153 Z" fill="#C8A268"/>
+<path id="od-shell-shadow" d="M114 417 C162 497 260 516 351 509 C458 502 523 441 550 355 C558 449 494 510 408 531 L419 561 Q396 576 372 551 L354 539 Q319 544 285 539 L265 558 Q239 577 219 558 L231 531 C169 520 130 478 114 417Z" fill="#987B4F" stroke="none"/>
+<path id="od-inner-cavity" d="M318 196 C410 186 491 246 507 323 C528 408 466 471 378 486 C273 506 169 477 134 414 C94 336 158 235 244 208 Q283 196 318 196Z" fill="#F2E9D6"/>
+<path d="M158 301 Q196 231 278 222 M392 220 Q468 249 484 308" stroke="#C8A268"/>
+<g id="od-left-optimizer">
+<path d="M283 437 C252 466 196 448 181 413 C165 376 182 337 216 326 C249 314 286 333 297 363 C307 390 299 419 283 437Z" fill="#C8A268"/>
+<path d="M225 421 C198 400 209 360 233 353 C257 346 277 370 271 392 C267 411 247 421 235 407 C228 399 237 389 245 394" fill="#F2E9D6"/>
+<path id="od-left-reach" d="M204 354 C173 345 161 324 139 305 L82 286 L88 268 L150 284 C185 301 196 320 222 326" fill="#9ABBA9"/>
+</g>
+<g id="od-upper-optimizer">
+<path d="M286 322 C263 299 270 252 304 239 C339 224 376 250 377 283 C378 314 348 338 321 334Z" fill="#C8A268"/>
+<path d="M304 309 C286 295 290 269 309 261 C329 253 350 270 345 288 C341 304 326 309 317 299 Q312 291 320 286" fill="#F2E9D6"/>
+<path id="od-upper-reach" d="M342 250 Q354 216 387 199 L428 169 L442 183 L401 218 Q378 234 367 267" fill="#B0C9CF"/>
+</g>
+<g id="od-right-optimizer">
+<path d="M365 450 C331 429 334 385 359 361 C385 337 432 345 451 378 C473 416 439 454 409 458Z" fill="#C8A268"/>
+<path d="M372 429 C351 412 365 375 390 372 C415 368 436 390 424 412 C414 430 395 429 389 417 Q384 406 396 402" fill="#F2E9D6"/>
+<path id="od-right-reach" d="M438 382 C470 379 471 411 494 422 L553 437 L548 458 L486 446 C459 438 451 414 437 409" fill="#D3A18B"/>
+</g>
+</g>
+<g id="face">
+<path d="M281 501 Q320 487 359 501 Q353 527 320 528 Q289 528 281 501Z" fill="#F2E9D6"/>
+<ellipse cx="302" cy="506" rx="4" ry="6" fill="#2E4649" stroke="none"/><ellipse cx="339" cy="506" rx="4" ry="6" fill="#2E4649" stroke="none"/><path d="M314 516 Q321 520 327 515" stroke-width="3"/>
+<g id="od-inner-gazes" fill="#2E4649" stroke="none"><ellipse cx="210" cy="344" rx="4" ry="6"/><ellipse cx="226" cy="339" rx="4" ry="6"/><ellipse cx="341" cy="254" rx="4" ry="6"/><ellipse cx="356" cy="260" rx="4" ry="6"/><ellipse cx="432" cy="385" rx="4" ry="6"/><ellipse cx="435" cy="403" rx="4" ry="6"/></g>
+</g>
+<g id="props">
+<path id="od-green-goal" d="M50 263 Q66 242 88 246 L94 263 Q85 283 61 281Z" fill="#9ABBA9"/>
+<path id="od-blue-goal" d="M432 135 L457 149 L451 178 L428 183 L413 161Z" fill="#B0C9CF"/>
+<path id="od-coral-goal" d="M570 425 Q593 425 594 447 Q592 469 569 468 L550 449Z" fill="#D3A18B"/>
+<path d="M60 259 L78 266 M430 158 L442 164 M568 438 L579 452" stroke="#F2E9D6"/>
+</g>
+</svg>

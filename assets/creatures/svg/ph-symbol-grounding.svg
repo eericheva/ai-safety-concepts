@@ -1,0 +1,40 @@
+<svg width="734" height="1042" xmlns="http://www.w3.org/2000/svg" viewBox="140.5 51.6 367 520.9" data-beast-id="ph-symbol-grounding">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="reference-vine" d="M310 462 C227 450 209 399 239 348 C260 311 365 303 389 256 C418 198 383 132 322 128 C272 125 242 153 244 183 C246 208 272 220 293 204 L310 223 C271 257 218 232 214 189 C210 137 255 96 319 101 C401 106 450 187 415 263 C388 323 289 334 267 363 C235 409 264 431 317 436 Z" fill="#C8A268"/>
+<path id="loop-shadow" d="M235 204 C248 231 284 231 310 223 L293 204 C272 220 246 208 244 183" fill="#987B4F" stroke="none"/>
+<path id="glyph-loop-organ" d="M277 67 Q325 38 363 74 L379 114 L354 141 L322 112 L299 126 L274 104 Z M310 84 L320 101 L341 94 L331 78 Z" fill="#C8A268" fill-rule="evenodd"/>
+<path id="glyph-bracket-organ" d="M184 198 L218 185 L246 252 L225 263 L211 234 L183 248 L195 276 L172 287 L143 221 Z" fill="#C8A268"/>
+<path d="M174 225 L188 219 L201 245" fill="none" stroke="#F2E9D6"/>
+<path id="glyph-fork-organ" d="M414 206 L441 175 L462 190 L433 225 L459 260 L438 278 L410 240 L387 252 L373 228 Z" fill="#C8A268"/>
+<path id="glyph-diamond-organ" d="M253 311 L290 344 L268 388 L222 374 L206 340 Z M249 336 L235 347 L243 358 L259 351 Z" fill="#C8A268" fill-rule="evenodd"/>
+<path id="glyph-hook-organ" d="M313 424 C375 401 390 364 369 351 C351 338 336 352 339 366 L314 373 C302 340 336 315 367 324 C415 339 411 399 347 434 L353 457 L326 468 Z" fill="#C8A268"/>
+<path d="M376 349 Q394 385 350 409" stroke="#F2E9D6" fill="none"/>
+<path id="root-base" d="M302 429 Q324 441 341 458 L324 495 Q291 507 267 486 L280 457 Z" fill="#C8A268"/>
+<path id="sensory-root" d="M321 486 C334 514 352 530 376 529 L397 515 L406 531 C383 557 346 557 320 533 L292 506 Z" fill="#F2E9D6"/>
+<path id="root-curl" d="M279 481 C239 480 220 508 232 529 C241 546 266 543 269 527 C271 518 259 513 253 519" fill="none" stroke="#C8A268" stroke-width="15"/>
+</g>
+<g id="face">
+<path id="face-patch" d="M280 444 Q307 433 332 450 L323 478 Q300 493 281 474 Z" fill="#F2E9D6"/>
+<ellipse cx="292" cy="458" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<ellipse cx="315" cy="455" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path d="M300 477 Q305 470 313 475" fill="none" stroke-width="3"/>
+</g>
+<g id="props">
+<g id="recursive-links" fill="none" stroke="#987B4F" stroke-width="5">
+<path d="M253 145 Q275 128 295 140 M283 130 L295 140 L280 147"/>
+<path d="M391 290 Q374 312 346 314 M357 304 L346 314 L361 322"/>
+<path d="M277 399 Q286 417 305 420 M295 408 L305 420 L290 426"/>
+</g>
+<g id="world-leaf">
+<path d="M455 558 Q475 539 481 516" fill="none" stroke="#70958A" stroke-width="8"/>
+<path d="M476 532 C441 519 434 475 448 448 C486 454 519 494 476 532 Z" fill="#91B6A0"/>
+<path d="M476 528 L452 463 M465 500 L481 482 M462 489 L446 485" fill="none" stroke="#F2E9D6" stroke-width="4"/>
+<path d="M430 570 Q467 558 505 570" fill="none" stroke="#70958A"/>
+</g>
+<g id="incomplete-contact" stroke="#70958A" stroke-width="4">
+<path d="M420 518 L430 512 M416 502 L419 494 M427 531 L437 531"/>
+</g>
+</g>
+</g>
+</svg>

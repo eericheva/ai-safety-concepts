@@ -1,0 +1,58 @@
+<svg width="930" height="884" xmlns="http://www.w3.org/2000/svg" viewBox="90.5 81.5 465 442" data-beast-id="st-value-lock-in">
+  <g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="body">
+      <path id="rear-foot" fill="#987B4F" d="M291 444 Q329 455 345 488 L368 502 Q374 518 354 520 L319 516 277 477Z" />
+      <path id="front-foot" fill="#C8A268" d="M198 444 Q191 483 165 496 L143 499 Q127 510 148 521 L188 518 Q219 500 235 467Z" />
+      <path id="soft-torso" fill="#C8A268" d="M190 335 Q224 321 254 350 Q286 365 326 364 L367 419 Q343 468 288 482 Q226 498 184 465 Q157 440 172 403Z" />
+      <path fill="#987B4F" stroke="none" d="M182 441 Q244 480 310 441 L341 408 362 424 Q333 474 278 481 Q216 491 184 460Z" />
+      <path id="rigid-tail" fill="#C8A268" d="M281 384 325 337 386 311 437 263 474 195 497 111 542 84 553 155 537 247 491 337 423 407 352 450 310 433Z" />
+      <path id="tail-shadow" fill="#987B4F" d="M310 433 352 450 423 407 491 337 537 247 553 155 542 84 520 152 505 235 464 316 397 382 333 419Z" />
+      <path id="fused-plate-seams" fill="none" d="M325 337 356 364 397 382 M386 311 412 330 464 316 M437 263 473 278 505 235 M474 195 502 205 520 152" />
+      <path id="neck" fill="#C8A268" d="M189 392 Q176 356 157 342 L207 314 Q244 341 247 382" />
+      <path id="head" fill="#C8A268" d="M107 293 93 260 136 274 Q166 247 204 263 L236 246 232 286 Q256 314 239 340 Q224 367 185 371 Q132 372 111 340 Q97 320 107 293Z" />
+      <path id="reaching-arm" fill="#C8A268" d="M233 379 Q247 398 268 385 L277 364 Q287 355 296 365 L307 367 Q320 371 312 384 L294 409 Q266 436 242 423" />
+    </g>
+    <g id="face">
+      <path id="cream-mask" fill="#F2E9D6" d="M116 304 Q123 281 143 287 L179 306 209 282 Q231 288 236 310 Q245 342 214 353 Q177 368 143 351 Q114 341 116 304Z" />
+      <ellipse cx="147" cy="317" rx="9" ry="13" fill="#2E4649" stroke="none" />
+      <ellipse cx="212" cy="310" rx="9" ry="13" fill="#2E4649" stroke="none" />
+      <circle cx="150" cy="312" r="3" fill="#F2E9D6" stroke="none" />
+      <circle cx="215" cy="305" r="3" fill="#F2E9D6" stroke="none" />
+      <path d="M134 292 149 296 M201 281 219 278" fill="none" stroke-width="4" />
+      <path d="M176 326 186 325 181 332Z" fill="#2E4649" stroke-width="3" />
+      <path d="M172 344 Q181 336 191 342" fill="none" stroke-width="4" />
+      <ellipse cx="130" cy="337" rx="9" ry="5" fill="#DFA08D" stroke="none" />
+      <ellipse cx="225" cy="330" rx="9" ry="5" fill="#DFA08D" stroke="none" />
+    </g>
+    <g id="props">
+      <g id="fixed-values">
+        <path id="fixed-root-tile" fill="#F2E9D6" d="M330 363 395 363 395 427 330 427Z" />
+        <path fill="#F2E9D6" d="M408 273 443 282 435 318 400 308Z" />
+        <path fill="#F2E9D6" d="M467 208 503 214 497 251 461 244Z" />
+        <path fill="#F2E9D6" d="M500 128 533 133 528 169 495 164Z" />
+        <g fill="#E8B651" stroke-width="3">
+          <path d="M362 378 378 395 362 412 346 395Z" />
+          <path d="M422 282 433 297 418 309 409 294Z" />
+          <path d="M483 217 495 231 480 243 470 229Z" />
+          <path d="M515 136 526 149 513 161 502 148Z" />
+        </g>
+      </g>
+      <g id="permanent-staples" fill="#AFC3C2" stroke-width="4">
+        <path id="upper-staple" d="M319 357 405 357 405 374 319 374Z" />
+        <path id="lower-staple" d="M319 415 405 415 405 432 319 432Z" />
+        <g fill="#2E4649" stroke="none">
+          <circle cx="327" cy="365" r="3" /><circle cx="397" cy="365" r="3" />
+          <circle cx="327" cy="424" r="3" /><circle cx="397" cy="424" r="3" />
+        </g>
+      </g>
+      <g id="replacement-value-tile">
+        <path fill="#9BBCA7" d="M256 310 309 320 298 378 245 368Z" />
+        <path id="leaf-alternative" fill="#F2E9D6" d="M265 356 Q254 332 292 327 Q292 354 265 356Z" stroke-width="3" />
+        <path fill="none" d="M261 362 283 338" stroke-width="3" />
+        <path id="gripping-fingers" fill="#C8A268" d="M278 372 Q273 365 279 360 Q285 356 290 363 L298 370 Q309 366 313 374 Q316 382 306 387 L291 390" stroke-width="4" />
+      </g>
+      <path id="blocked-replacement" fill="none" stroke="#DCA84C" stroke-width="4" d="M310 341 319 340 M313 329 318 325" />
+      <path id="strain" fill="none" stroke="#DCA84C" stroke-width="4" d="M272 338 267 325 M289 331 292 316" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<svg width="1112" height="945" xmlns="http://www.w3.org/2000/svg" viewBox="48.5 84.5 556 472.7" data-beast-id="sp-specification-gaming">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="untraveled-route" fill="none" stroke="#A8C5C6"><path d="M391 265C412 228 448 215 464 184S494 139 537 131" stroke-dasharray="11 15"/><path d="M516 122L539 130L524 148"/></g>
+<g id="distant-finish"><path d="M553 87V179" fill="none"/><path d="M553 88H602V127H553Z" fill="#F2E9D6"/><path d="M553 88H578V107H553ZM578 107H602V127H578Z" fill="#987B4F" stroke="none"/><path d="M536 182H570" fill="none"/></g>
+<g id="circular-wake" fill="none" stroke="#A8C5C6"><path d="M97 309C46 420 116 538 253 553C379 567 475 493 476 397"/><path d="M461 416L477 394L492 417"/><path d="M106 476C143 515 194 529 244 530"/><path d="M405 486C433 464 448 434 450 408"/></g>
+<g id="scoring-ring"><ellipse cx="288" cy="375" rx="77" ry="120" fill="#89B7A5"/><ellipse cx="288" cy="375" rx="51" ry="90" fill="#F2E9D6"/><path d="M260 449L274 461L299 433" fill="none" stroke="#668F7F"/><path d="M264 478L274 482" fill="none" stroke="#F2E9D6"/></g>
+</g>
+<g id="body">
+<g id="radial-paddles" fill="#C8A268"><path d="M147 326L80 286L51 307L61 331L136 354Z"/><path d="M150 424L106 458L112 497L142 500L177 448Z"/><path d="M310 461L322 515L361 535L380 510L342 452Z"/><path d="M391 362L451 372L472 343L455 320L394 331Z"/></g>
+<path id="looped-hull" d="M378 262C327 215 231 223 169 267C106 311 107 390 158 437C214 488 309 487 370 443C417 409 432 361 413 323L379 329C392 363 367 397 333 418C290 445 223 438 191 411C155 381 153 335 191 306C233 274 290 270 328 289Z" fill="#C8A268"/>
+<path id="hull-shadow" d="M160 419C224 460 308 460 368 419C397 399 411 372 412 348C420 391 394 427 369 444C309 486 214 487 158 437Z" fill="#987B4F" stroke="none"/>
+<path id="curved-neck" d="M327 293C327 260 350 233 377 229L390 209L405 228C434 229 457 247 465 271L482 281L463 295C450 328 412 342 380 325C357 314 347 306 327 293Z" fill="#C8A268"/>
+<path d="M175 301L194 317M139 352L164 355M180 437L195 417M306 464L299 437" fill="none"/>
+</g>
+<g id="face">
+<path d="M368 259C383 248 399 258 409 260C420 251 444 252 451 270C459 291 439 318 415 318C387 318 366 299 366 278Z" fill="#F2E9D6"/>
+<ellipse cx="387" cy="279" rx="6" ry="10" fill="#2E4649" stroke="none"/><ellipse cx="429" cy="281" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M398 300Q409 307 418 299" fill="none"/><path d="M379 263L391 261M422 264L434 267" fill="none"/>
+</g>
+<g id="reward-pulses" fill="#89B7A5"><circle cx="279" cy="224" r="19"/><circle cx="297" cy="176" r="19"/><circle cx="311" cy="128" r="19"/><path d="M269 224L277 231L290 216M287 176L295 183L308 168M301 128L309 135L322 120" fill="none" stroke="#F2E9D6"/><path d="M246 261L236 248M305 254L318 244" fill="none" stroke="#C8A268"/></g>
+</g></svg>

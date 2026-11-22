@@ -1,0 +1,26 @@
+<svg width="874" height="1045" xmlns="http://www.w3.org/2000/svg" viewBox="77.5 48.3 437.1 522.7" data-beast-id="cs-hot">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="cs-hot-lobed-body" fill="#C8A268" d="M290 83 Q269 48 251 51 Q250 85 260 109 C186 127 155 191 178 251 Q190 282 234 306 C179 332 154 381 168 441 Q181 492 230 513 L218 560 Q246 580 277 553 L289 523 Q320 531 350 521 L369 555 Q404 576 424 554 L406 507 C465 468 477 400 442 353 Q422 324 395 307 C457 272 480 219 456 166 Q438 127 389 110 Q402 80 391 53 Q367 62 353 88 Q321 78 290 83Z"/>
+<path id="cs-hot-body-shadow" fill="#987B4F" stroke="none" d="M433 149 Q496 236 395 307 Q476 351 451 444 Q439 484 406 507 L424 554 Q404 573 382 562 L368 520 Q409 488 420 447 Q434 397 406 360 Q381 327 359 308 Q424 271 436 228 Q445 191 433 149Z"/>
+<path fill="#F2E9D6" d="M238 364 Q320 323 403 366 Q431 401 414 449 Q392 495 320 499 Q245 497 222 454 Q201 411 238 364Z"/>
+<path id="cs-hot-left-feeler" fill="#C8A268" d="M174 425 Q111 422 113 363 Q114 344 132 347 Q146 351 138 367 Q134 391 176 392"/>
+<path id="cs-hot-right-feeler" fill="#C8A268" d="M456 423 Q514 415 512 360 Q512 340 495 344 Q480 348 487 364 Q489 389 455 389"/>
+</g>
+<g id="face">
+<path id="cs-hot-upper-observer-eye" fill="#F2E9D6" d="M202 211 Q249 145 320 143 Q395 145 435 211 Q388 278 320 279 Q248 276 202 211Z"/>
+<path id="cs-hot-observer-iris" fill="#A9C5BE" d="M320 154 Q375 154 376 211 Q376 266 320 268 Q265 267 264 211 Q266 156 320 154Z"/>
+<path id="cs-hot-inset-sensory-eye" fill="#F2E9D6" d="M278 210 Q320 170 363 210 Q320 251 278 210Z"/>
+<path id="cs-hot-represented-state" fill="#C86F5B" d="M320 188 L340 210 L320 233 L300 210Z"/>
+<path id="cs-hot-lower-sensory-eye" fill="#F2E9D6" d="M235 414 Q320 333 406 414 Q320 496 235 414Z"/>
+<path id="cs-hot-sensory-state" fill="#C86F5B" d="M320 370 L360 414 L320 460 L280 414Z"/>
+<path fill="none" d="M301 480 Q320 491 339 480"/>
+</g>
+<g id="props">
+<path id="cs-hot-metarepresentation-channel" fill="none" stroke="#F2E9D6" stroke-width="12" d="M320 344 L320 300"/>
+<path fill="none" d="M320 344 L320 300 M307 313 L320 300 L333 313"/>
+<path id="cs-hot-sensory-rays" fill="none" stroke="#C86F5B" d="M82 410 L98 410 M92 440 L107 433 M80 381 L96 388"/>
+<path fill="none" d="M230 135 L217 117 M410 135 L423 117"/>
+</g>
+</g>
+</svg>

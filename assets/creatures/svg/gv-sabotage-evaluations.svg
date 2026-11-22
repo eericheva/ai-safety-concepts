@@ -1,0 +1,36 @@
+<svg width="1010" height="849" xmlns="http://www.w3.org/2000/svg" viewBox="97.5 107.5 505 424.4" data-beast-id="gv-sabotage-evaluations" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="mantle-shadow" d="M112 493 Q158 357 247 254 L393 110 Q399 212 451 297 Q475 345 445 405 Q408 465 319 472 L112 493Z" fill="#987B4F"/>
+<path id="diagonal-mantle" d="M100 493 Q166 369 188 270 Q214 168 393 110 Q355 174 348 237 Q343 302 296 367 Q239 449 100 493Z" fill="#C8A268"/>
+<path id="mantle-fold" d="M111 486 Q229 405 283 307 Q322 236 393 110 Q368 249 328 350 Q282 435 196 468Z" fill="#F2E9D6"/>
+<path d="M167 434 Q246 366 269 291 M214 278 Q234 216 291 190"/>
+<path id="lower-tip" d="M278 454 Q333 476 329 513 Q322 538 301 525 Q320 519 302 501 L256 473Z" fill="#C8A268"/>
+<path id="oversight-seam" d="M372 210 Q381 257 409 299 Q443 347 414 389 Q384 429 326 433" stroke="#F2E9D6" stroke-width="18"/>
+<g id="seam-stitches" stroke="#2E4649">
+<path d="M362 232 L386 223 M371 260 L395 249 M387 286 L410 273 M413 310 L430 299 M425 337 L446 335 M412 387 L431 401 M391 409 L402 427 M361 422 L367 444 M332 423 L335 445"/>
+</g>
+</g>
+<g id="face">
+<path d="M233 235 Q254 178 322 169 Q316 224 278 255 Q252 268 233 235Z" fill="#F2E9D6"/>
+<ellipse cx="257" cy="226" rx="7" ry="11" fill="#2E4649" stroke="none" transform="rotate(25 257 226)"/>
+<ellipse cx="290" cy="205" rx="7" ry="11" fill="#2E4649" stroke="none" transform="rotate(25 290 205)"/>
+<path d="M271 239 Q280 236 283 227"/>
+<path d="M244 211 L257 204 M284 187 L297 183"/>
+</g>
+<g id="props">
+<path id="hidden-tendril" d="M308 327 Q353 306 373 330 Q385 346 366 365 Q353 380 368 390 Q383 399 402 371" stroke="#987B4F" stroke-width="13"/>
+<path id="tendril-outline" d="M307 320 Q355 299 378 327 Q393 349 374 369 Q365 378 373 383 Q381 386 394 368"/>
+<path id="fine-hook" d="M394 368 Q413 345 424 358 L416 367" stroke="#2E4649"/>
+<path id="loosened-thread" d="M422 357 Q449 352 446 371 Q443 384 427 376" stroke="#C8A268"/>
+<path id="probe-field" d="M515 277 L395 330 L395 400 L541 327Z" fill="#A9C7CB" opacity="0.22" stroke="none"/>
+<g id="evaluation-probe">
+<path d="M552 274 L583 250 L600 273 L568 299" fill="#987B4F"/>
+<ellipse cx="532" cy="307" rx="32" ry="43" transform="rotate(-35 532 307)" fill="#A9C7CB"/>
+<ellipse cx="532" cy="307" rx="16" ry="25" transform="rotate(-35 532 307)" fill="#F2E9D6"/>
+<path d="M505 319 L473 337 M498 299 L468 306 M522 341 L503 364" stroke="#8DAFAE"/>
+</g>
+<g id="revealed-nick" stroke="#B97E61">
+<path d="M405 343 L399 332 M428 341 L434 331 M441 389 L449 398"/>
+</g>
+</g>
+</svg>

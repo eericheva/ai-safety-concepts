@@ -1,0 +1,33 @@
+<svg width="1094" height="893" xmlns="http://www.w3.org/2000/svg" viewBox="41 96.5 546.8 446.5" data-beast-id="ov-swiss-cheese">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="accordion-upper" d="M224 185 L270 219 L304 148 L365 196 L417 161 L460 215 L460 257 L415 215 L368 248 L307 207 L272 271 L224 235Z" fill="#987B4F"/>
+<path id="accordion-lower" d="M218 392 L270 436 L314 385 L368 438 L420 391 L466 416 L468 456 L423 435 L369 483 L314 432 L271 481 L219 443Z" fill="#C8A268"/>
+<path id="first-shield" fill="#C8A268" fill-rule="evenodd" d="M146 160 Q188 129 239 162 L244 387 Q232 458 194 489 Q149 456 142 385 Z M164 284 A31 25 0 1 0 226 284 A31 25 0 1 0 164 284 Z"/>
+<path id="first-rim" d="M158 187 Q193 168 226 186 M160 402 Q171 439 191 457" fill="none" stroke="#F2E9D6"/>
+<path id="middle-shield" fill="#F2E9D6" fill-rule="evenodd" d="M289 115 L349 99 L391 135 L388 427 L338 520 L285 429 Z M308 378 L308 418 L363 418 L363 378 Z"/>
+<path id="middle-ribs" d="M305 145 L305 235 M371 145 L371 341 M306 448 L336 493 L369 447" fill="none" stroke="#C8A268"/>
+<path id="last-shield" fill="#C8A268" fill-rule="evenodd" d="M438 177 Q479 145 535 174 L557 347 Q545 434 491 488 Q432 442 425 352 Z M462 328 L482 299 L515 330 L489 358 Z"/>
+<path id="last-edge" d="M537 366 Q522 423 493 452" fill="none" stroke="#987B4F"/>
+<path id="left-foot" d="M177 478 L171 516 Q148 520 149 535 Q170 546 205 534 L210 479" fill="#987B4F"/>
+<path id="right-foot" d="M478 479 L480 520 Q511 516 520 535 Q491 547 462 533 L458 465" fill="#987B4F"/>
+</g>
+<g id="face">
+<path id="face-plate" d="M452 203 Q488 181 526 204 L532 257 Q492 286 450 259Z" fill="#F2E9D6"/>
+<ellipse id="eye-left" cx="471" cy="230" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse id="eye-right" cx="510" cy="230" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path id="mouth" d="M482 250 Q492 257 502 248" fill="none"/>
+<path id="brow-left" d="M460 214 L478 209 M502 209 L518 214" fill="none"/>
+</g>
+<g id="props">
+<g id="incoming-risk" stroke="#BD7156" fill="#BD7156">
+<path d="M45 284 L137 284 M169 284 L219 284 M251 284 L280 284" fill="none" stroke-width="8"/>
+<path d="M270 273 L285 284 L270 295" fill="none" stroke-width="6"/>
+<path id="risk-tail" d="M48 269 L65 284 L48 299" fill="none"/>
+</g>
+<g id="stopped-impact" stroke="#BD7156">
+<path d="M280 266 L270 253 M280 303 L270 317 M301 273 L312 264 M301 296 L313 306" fill="none"/>
+</g>
+<path id="rear-hand" d="M553 359 Q581 353 585 327 Q587 316 577 314 Q567 313 566 328 L553 333" fill="#F2E9D6"/>
+</g>
+</g></svg>

@@ -1,0 +1,43 @@
+<svg width="1170" height="742" xmlns="http://www.w3.org/2000/svg" viewBox="28.5 162.5 585 371.0" data-beast-id="arendt">
+<g fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="rear-leg" d="M100 354L79 420Q76 433 94 433H122L124 415H108L129 360" fill="#987B4F"/>
+<path id="second-leg" d="M220 355L204 422Q202 434 220 434H246L249 415H230L247 357" fill="#987B4F"/>
+<path id="third-leg" d="M340 354L326 416Q322 432 342 432H368L370 413H351L368 353" fill="#987B4F"/>
+<path id="front-leg" d="M457 349L445 411Q440 428 461 428H482L486 409H472L488 345" fill="#987B4F"/>
+<path id="tail-intake" d="M74 290L31 269V327L75 343" fill="#F2E9D6"/>
+<path id="segment-one" d="M62 310V260Q62 210 117 207Q173 207 179 262V323Q178 369 122 371Q64 372 62 310Z" fill="#C8A268"/>
+<path id="joint-one" d="M174 264L196 272V342L175 348Z" fill="#987B4F"/>
+<path id="segment-two" d="M185 305V239Q187 193 239 190Q294 189 303 246V316Q302 366 246 369Q189 367 185 305Z" fill="#C8A268"/>
+<path id="joint-two" d="M299 255L321 263V339L299 344Z" fill="#987B4F"/>
+<path id="segment-three" d="M309 303V222Q310 178 363 176Q421 177 426 235V313Q424 365 369 366Q313 366 309 303Z" fill="#C8A268"/>
+<path id="joint-three" d="M422 244L444 252V334L423 341Z" fill="#987B4F"/>
+<path id="segment-four" d="M432 301V207Q435 164 486 165Q539 166 550 215L557 309Q556 360 498 363Q439 363 432 301Z" fill="#C8A268"/>
+<path id="output-neck" d="M550 276Q589 275 597 309L607 378L570 390L550 331Z" fill="#C8A268"/>
+<path id="output-blades" d="M570 366L607 356L610 389L599 405L590 387L581 411L570 393Z" fill="#F2E9D6"/>
+</g>
+<g id="face" fill="#F2E9D6">
+<path id="face-one" d="M89 241Q119 224 150 240L148 266Q119 280 90 264Z"/>
+<path id="face-two" d="M211 222Q243 207 274 224L273 250Q242 263 212 248Z"/>
+<path id="face-three" d="M337 208Q368 192 397 208L396 235Q365 246 338 234Z"/>
+<path id="face-four" d="M458 194Q486 180 520 195L519 221Q490 236 459 220Z"/>
+<path id="indifferent-eyes" d="M101 247H111M131 247H141M223 231H233M254 231H264M349 216H359M378 216H388M471 204H481M501 204H511"/>
+<path id="neutral-mouths" d="M116 260H125M239 244H247M365 230H373M485 219H494" stroke-width="3"/>
+</g>
+<g id="props">
+<path id="transfer-channel" d="M74 289H541V334H74Z" fill="#987B4F"/>
+<path id="paper-one" d="M87 294L127 287L139 325L99 333Z" fill="#F2E9D6"/>
+<path id="paper-two" d="M208 294L248 287L260 325L220 333Z" fill="#F2E9D6"/>
+<path id="paper-three" d="M331 294L371 287L383 325L343 333Z" fill="#F2E9D6"/>
+<path id="paper-four" d="M453 294L493 287L505 325L465 333Z" fill="#F2E9D6"/>
+<path id="passing-arms" d="M154 275V303L182 309L168 319M277 262V303L305 309L291 319M401 248V303L429 309L415 319M526 234V303L548 309" fill="none"/>
+<path id="mechanical-stamps" d="M106 283V296H122M228 283V296H244M351 283V296H367M473 283V296H489" stroke="#2E4649"/>
+<path id="falling-output" d="M580 429L589 449M605 422L599 434" stroke="#B56E57"/>
+<path id="broken-stem" d="M542 522L553 482L567 475M555 475L570 455L593 462" stroke="#2E4649"/>
+<path id="wilted-leaf" d="M552 490Q515 489 514 460Q545 458 552 490Z" fill="#8DA894"/>
+<path id="fallen-leaf" d="M576 499Q596 479 611 496Q600 520 576 499Z" fill="#8DA894"/>
+<path id="harm-fracture" d="M545 453L534 441M568 440L569 428M588 474L606 475" stroke="#B56E57"/>
+<path id="soil" d="M518 529Q544 518 565 529M579 531H595"/>
+</g>
+</g>
+</svg>

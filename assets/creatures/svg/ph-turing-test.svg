@@ -1,0 +1,29 @@
+<svg width="1102" height="902" xmlns="http://www.w3.org/2000/svg" viewBox="44.5 116.1 551 451.1" data-beast-id="ph-turing-test">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path d="M53 191 Q53 152 90 152 H245 Q275 152 275 188 V365 Q275 396 242 396 H85 Q53 396 53 365Z" fill="#987B4F"/>
+<path d="M365 188 Q365 152 395 152 H550 Q587 152 587 191 V365 Q587 396 555 396 H398 Q365 396 365 365Z" fill="#987B4F"/>
+<path id="human-source" d="M107 234 V207 L122 191 V175 Q118 139 145 125 Q179 108 198 136 Q209 153 201 169 L216 185 L201 191 V208 L221 234Z" fill="#F2E9D6"/>
+<path d="M137 143 Q156 123 179 142 M185 162 L188 162" fill="none"/>
+<g id="machine-source" fill="#ACC7BF"><path d="M433 141 H511 V215 H433Z"/><path d="M449 158 H495 V197 H449Z"/><path d="M447 141 V126 M471 141 V121 M495 141 V126 M433 157 H418 M433 181 H418 M511 157 H526 M511 181 H526 M449 215 V230 M495 215 V230" fill="none"/></g>
+<path id="left-screen" d="M47 230 Q47 213 64 213 H265 Q282 213 282 230 V369 Q282 390 262 390 H67 Q47 390 47 369Z" fill="#C8A268"/>
+<path id="right-screen" d="M358 230 Q358 213 375 213 H576 Q593 213 593 230 V369 Q593 390 573 390 H378 Q358 390 358 369Z" fill="#C8A268"/>
+<path d="M65 365 H262 M378 365 H575" stroke="#987B4F" fill="none"/>
+<path id="left-neck" d="M117 390 Q115 462 250 487 L266 454 Q156 433 164 390Z" fill="#C8A268"/>
+<path id="right-neck" d="M523 390 Q525 462 390 487 L374 454 Q484 433 476 390Z" fill="#C8A268"/>
+<path d="M286 526 L268 562 Q289 571 307 550 M354 526 L372 562 Q351 571 333 550" fill="#987B4F"/>
+</g>
+<g id="props">
+<g id="left-response" fill="#F2E9D6"><path d="M82 251 H246 V316 H186 L165 337 V316 H82Z"/><path d="M105 274 H220 M105 294 H185" fill="none"/></g>
+<g id="right-response" fill="#F2E9D6"><path d="M394 251 H558 V316 H498 L477 337 V316 H394Z"/><path d="M417 274 H532 M417 294 H497" fill="none"/></g>
+<path id="left-observation" d="M190 352 L278 420" fill="none" stroke-dasharray="8 12"/>
+<path id="right-observation" d="M450 352 L362 420" fill="none" stroke-dasharray="8 12"/>
+</g>
+<g id="face">
+<path id="judge-head" d="M238 470 Q242 411 320 400 Q398 411 402 470 Q394 533 320 546 Q246 533 238 470Z" fill="#C8A268"/>
+<path id="judging-eye" d="M257 464 Q320 410 383 464 Q320 517 257 464Z" fill="#F2E9D6"/>
+<ellipse id="pupil" cx="320" cy="464" rx="17" ry="25" fill="#2E4649"/><circle cx="315" cy="455" r="6" fill="#F2E9D6" stroke="none"/>
+<path d="M306 523 Q320 515 334 523" fill="none"/>
+<path d="M280 409 L286 397 M360 409 L354 397" fill="none"/>
+</g>
+</g></svg>

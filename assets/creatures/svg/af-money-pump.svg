@@ -1,0 +1,54 @@
+<svg width="1093" height="1109" xmlns="http://www.w3.org/2000/svg" viewBox="55.9 51.0 546.7 554.5" data-beast-id="af-money-pump">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="cyclic-torso" fill="#C8A268" fill-rule="evenodd" d="M278 122 Q320 86 362 122 L535 419 Q561 466 508 484 L132 484 Q79 466 105 419 Z M313 232 L210 412 L430 412 L327 232 Q320 218 313 232Z"/>
+<path id="torso-shadow" fill="#987B4F" stroke="none" d="M135 464 L503 464 Q531 455 522 427 L535 449 Q542 475 508 484 L132 484 Q107 477 105 460 Q120 467 135 464Z"/>
+<path id="round-desire-lobe" fill="#C8A268" d="M249 145 C225 97 264 54 312 56 C362 43 406 82 393 133 C385 164 357 189 319 186 C279 190 258 175 249 145Z"/>
+<path id="angular-desire-lobe" fill="#C8A268" d="M456 340 L530 349 L571 413 L546 478 L480 499 L434 455 L431 389Z"/>
+<path id="scalloped-desire-lobe" fill="#C8A268" d="M172 348 C153 321 117 333 113 360 C73 350 54 388 74 412 C42 433 65 470 92 469 C95 505 138 517 156 489 C184 511 214 485 205 459 C238 443 228 405 201 401 C211 371 193 352 172 348Z"/>
+</g>
+<g id="face">
+<path fill="#F2E9D6" d="M266 112 Q316 92 376 112 Q377 161 323 168 Q272 169 266 112Z"/>
+<path fill="#F2E9D6" d="M455 397 L524 380 L544 419 L516 464 L468 458Z"/>
+<path fill="#F2E9D6" d="M93 396 Q142 367 189 408 Q193 454 147 474 Q101 472 93 430Z"/>
+<g id="three-eager-gazes" fill="#2E4649" stroke="none">
+<ellipse cx="291" cy="127" rx="7" ry="11"/><ellipse cx="350" cy="127" rx="7" ry="11"/>
+<ellipse cx="477" cy="416" rx="7" ry="11"/><ellipse cx="520" cy="411" rx="7" ry="11"/>
+<ellipse cx="113" cy="424" rx="7" ry="11"/><ellipse cx="169" cy="422" rx="7" ry="11"/>
+</g>
+<path id="accepted-trade-smiles" fill="none" d="M309 148 Q321 158 335 145 M488 440 Q505 449 517 433 M132 445 Q147 455 160 440"/>
+</g>
+<g id="props">
+<g id="clockwise-trade-arrows" fill="#F2E9D6">
+<path d="M376 218 L417 286 L432 277 L435 326 L392 303 L407 294 L365 225Z"/>
+<path d="M397 442 L277 442 L277 425 L240 451 L277 474 L277 458 L397 458Z"/>
+<path d="M190 316 L233 242 L218 233 L261 212 L260 259 L245 250 L204 324Z"/>
+</g>
+<g id="exchange-object-start" fill="#90B5AD">
+<path d="M302 189 L320 177 L339 190 L333 212 L309 212Z"/>
+<path fill="#F2E9D6" d="M318 184 L326 194 L318 204 L312 194Z" stroke-width="3"/>
+</g>
+<g id="exchange-object-return" fill="#90B5AD">
+<path d="M264 249 L282 237 L301 250 L295 272 L271 272Z"/>
+<path fill="#F2E9D6" d="M280 244 L288 254 L280 264 L274 254Z" stroke-width="3"/>
+</g>
+<path id="return-to-start" fill="none" stroke="#90B5AD" d="M287 231 Q287 204 302 204 M291 196 L303 204 L293 215"/>
+<circle id="round-object" cx="440" cy="352" r="19" fill="#E1AC85"/>
+<path id="square-object" d="M197 349 L226 354 L221 383 L192 378Z" fill="#A6BBC3"/>
+<g id="leaking-valves" fill="#987B4F">
+<path d="M382 87 L412 83 L417 98 L387 109Z"/>
+<path d="M555 442 L585 454 L581 470 L551 464Z"/>
+<path d="M104 485 L91 517 L109 524 L126 492Z"/>
+</g>
+<g id="coins-paid-at-each-trade" fill="#E3BB65">
+<ellipse cx="443" cy="114" rx="11" ry="17" transform="rotate(-29 443 114)"/>
+<ellipse cx="475" cy="151" rx="11" ry="17" transform="rotate(-29 475 151)"/>
+<ellipse cx="584" cy="502" rx="11" ry="17" transform="rotate(20 584 502)"/>
+<ellipse cx="566" cy="548" rx="11" ry="17" transform="rotate(20 566 548)"/>
+<ellipse cx="86" cy="553" rx="11" ry="17" transform="rotate(25 86 553)"/>
+<ellipse cx="113" cy="593" rx="17" ry="10"/>
+</g>
+<path id="falling-coin-marks" fill="none" stroke-width="3" d="M423 131 L433 143 M455 167 L462 179 M599 522 L597 535 M71 523 L67 535"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,38 @@
+<svg width="1106" height="936" xmlns="http://www.w3.org/2000/svg" viewBox="41.5 80.4 553 468.1" data-beast-id="ov-cirl">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="human-lower-limb" d="M191 363 Q139 422 114 484 L80 512 Q65 530 84 543 L145 543 L167 521 L164 494 L228 410Z" fill="#C8A268"/>
+<path id="machine-lower-limb" d="M416 364 L472 420 L491 486 L544 504 L558 531 L543 546 L477 530 L454 505 L419 445 L373 409Z" fill="#C8A268"/>
+<path id="shared-torso" d="M184 230 Q125 253 147 335 Q163 399 242 421 Q314 448 391 420 Q468 392 486 319 Q497 253 440 231 L397 259 Q429 299 398 336 Q360 372 312 371 Q244 373 220 334 Q198 297 228 262Z" fill="#C8A268"/>
+<path d="M164 347 Q237 418 316 410 Q403 411 462 350 Q443 398 391 420 Q314 448 242 421 Q192 406 164 347Z" fill="#987B4F" stroke="none"/>
+<path id="human-head" d="M139 200 Q120 142 156 113 L172 87 L190 107 Q227 102 245 138 Q260 177 231 212 L205 255 L169 247Z" fill="#C8A268"/>
+<path id="ai-head" d="M398 120 L452 117 L485 153 L477 208 L442 252 L403 239 L376 195 L380 147Z" fill="#C8A268"/>
+<path id="shared-leading-arm" d="M181 265 Q126 258 102 296 L82 316 L55 310 L44 329 L61 345 L94 343 L133 317 L195 308Z" fill="#C8A268"/>
+<path id="ai-following-arm" d="M448 267 Q503 252 527 286 L551 312 L580 310 L592 328 L576 345 L544 342 L509 317 L457 310Z" fill="#C8A268"/>
+</g>
+<g id="props">
+<path id="shared-goal-heart" d="M312 332 Q253 291 255 257 Q256 225 286 228 Q307 231 312 249 Q322 227 341 229 Q372 230 371 259 Q369 294 312 332Z" fill="#D2A08C"/>
+<path id="partial-knowledge-veil" d="M326 221 Q367 214 381 247 L374 308 L326 334Z" fill="#F2E9D6"/>
+<path d="M340 241 L363 253 M339 266 L360 277 M338 291 L353 300" stroke="#987B4F"/>
+<path id="human-goal-connection" d="M217 219 Q238 234 260 247" fill="none"/>
+<path id="uncertain-goal-connection" d="M390 222 L378 235 M372 247 L367 253" fill="none" stroke-dasharray="4 8"/>
+<path id="inference-feeler" d="M406 126 Q373 69 299 92 Q235 111 263 167 Q276 198 236 253 Q208 285 151 296" fill="none" stroke="#89ABA2" stroke-width="10"/>
+<path d="M406 126 Q373 69 299 92 Q235 111 263 167 Q276 198 236 253 Q208 285 151 296" fill="none" stroke-width="3"/>
+<path id="feeler-eye" d="M130 296 Q146 278 163 295 Q149 312 130 296Z" fill="#F2E9D6"/>
+<circle cx="147" cy="295" r="4" fill="#2E4649" stroke="none"/>
+<path id="correction-joint" d="M512 284 A24 24 0 1 0 516 319" fill="#F2E9D6"/>
+<path id="human-correction-hand" d="M221 334 Q265 357 346 348 Q420 340 474 305 L490 290 Q501 283 506 292 L500 304 L518 300 Q532 302 524 313 L502 327 L479 326 Q421 374 344 383 Q263 392 214 367Z" fill="#F2E9D6"/>
+<path d="M492 312 L505 307" fill="none"/>
+</g>
+<g id="face">
+<path d="M145 163 Q163 138 181 157 Q208 142 236 163 L227 198 Q184 233 153 197Z" fill="#F2E9D6"/>
+<ellipse cx="168" cy="176" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<ellipse cx="213" cy="176" rx="6" ry="10" fill="#2E4649" stroke="none"/>
+<path d="M180 196 Q192 205 203 193" fill="none"/>
+<path d="M389 154 L462 152 L466 188 L440 214 L409 206 L389 185Z" fill="#F2E9D6"/>
+<ellipse cx="411" cy="176" rx="6" ry="9" fill="#2E4649" stroke="none"/>
+<ellipse cx="446" cy="176" rx="6" ry="9" fill="#2E4649" stroke="none"/>
+<path d="M422 195 Q432 200 439 191 M403 160 L417 156 M441 157 L451 161" fill="none"/>
+</g>
+</g>
+</svg>

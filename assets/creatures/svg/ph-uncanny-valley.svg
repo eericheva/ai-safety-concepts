@@ -1,0 +1,40 @@
+<svg width="1148" height="1022" xmlns="http://www.w3.org/2000/svg" viewBox="27.5 59.0 574 511.0" data-beast-id="ph-uncanny-valley" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="affinity-ribbon" fill="#C8A268" d="M52 344 C103 337 120 283 160 246 C199 207 236 179 267 196 C308 220 310 333 345 414 C367 467 406 497 438 461 C480 415 481 215 529 157 C547 134 567 133 587 148 L589 214 C565 197 552 217 544 258 C532 324 526 451 475 514 C429 572 360 539 321 468 C281 395 271 286 245 272 C223 261 198 287 174 311 C128 356 94 397 53 404 Z"/>
+<path id="ribbon-shadow" fill="#987B4F" stroke="none" d="M53 382 C95 378 130 342 174 298 C204 267 230 249 247 258 C283 276 287 396 328 467 C369 536 428 554 472 499 C523 436 526 294 544 246 C529 325 526 451 475 514 C429 572 360 539 321 468 C281 395 271 286 245 272 C223 261 198 287 174 311 C128 356 94 397 53 404 Z"/>
+<path id="upper-contour" stroke="#F2E9D6" stroke-width="8" d="M65 358 C135 334 199 210 253 218 C298 225 308 414 373 463 C449 520 464 368 488 258 C509 170 548 143 573 163"/>
+<path id="abstract-tail" fill="#F2E9D6" d="M53 333 L88 344 L88 385 L53 409 L30 380 L30 351 Z"/>
+</g>
+<g id="face">
+<g id="simplified-mask">
+<path fill="#F2E9D6" d="M181 175 L237 146 L281 177 L273 243 L230 270 L185 244 Z"/>
+<path d="M199 196 L216 196 M247 196 L263 196 M214 228 Q235 246 254 224"/>
+<path stroke="#987B4F" d="M231 176 L228 214 L239 214"/>
+</g>
+<g id="near-human-mask">
+<path fill="#987B4F" d="M345 330 Q346 283 400 284 Q453 284 458 331 L451 407 Q445 444 404 459 Q361 439 350 405 Z"/>
+<path fill="#F2E9D6" d="M334 319 Q341 273 394 273 Q445 276 446 324 L436 395 Q427 429 393 441 Q359 423 347 391 Z"/>
+<path id="artificial-material-panel" fill="#B6CBC7" d="M408 279 Q444 291 446 324 L436 395 Q427 429 393 441 L407 410 L412 364 L402 326 Z"/>
+<path d="M354 320 Q368 310 381 320 M401 320 Q417 311 430 323"/>
+<path d="M354 336 Q368 345 381 336 M402 337 Q417 348 429 338"/>
+<ellipse cx="369" cy="337" rx="4" ry="6" fill="#2E4649" stroke="none"/>
+<ellipse cx="416" cy="339" rx="4" ry="6" fill="#2E4649" stroke="none"/>
+<path d="M391 334 L384 367 L396 369 M373 395 Q392 385 413 395"/>
+<path id="panel-specular" stroke="#F2E9D6" stroke-width="6" d="M422 293 L432 311 M421 304 L431 322"/>
+<path id="jaw-hinge" d="M430 397 L443 401 L449 389"/>
+</g>
+<g id="recovered-mask">
+<path fill="#F2E9D6" d="M509 118 Q512 82 546 77 Q582 79 590 111 L583 160 Q575 185 551 196 Q524 184 516 162 Z"/>
+<path fill="#987B4F" d="M508 119 Q502 83 529 68 Q565 50 588 82 L599 111 L580 114 L571 93 Q547 117 508 119 Z"/>
+<path d="M523 135 Q532 126 541 133 M557 132 Q568 127 576 135 M550 137 L545 153 L552 155 M536 170 Q550 180 566 166"/>
+</g>
+</g>
+<g id="props">
+<g id="motion-mismatch" stroke="#987B4F">
+<path d="M466 305 Q483 325 479 350 M476 292 Q502 325 492 362"/>
+<path d="M326 385 L317 403 L327 420"/>
+</g>
+<path id="valley-emphasis" stroke="#B77863" d="M367 559 Q404 576 437 559"/>
+<path id="rising-contour-tip" d="M578 217 L589 214 L586 229"/>
+</g>
+</svg>

@@ -1,0 +1,27 @@
+<svg width="1004" height="828" xmlns="http://www.w3.org/2000/svg" viewBox="67.4 160.5 502.1 414" data-beast-id="st-shard-theory">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="leaf-context"><path d="M80 261 Q52 205 102 166 Q148 200 116 246Z" fill="#91B6A2"/><path d="M94 270 103 190 M101 219 83 203 M100 232 120 213" fill="none" stroke="#F2E9D6"/></g>
+<g id="shelter-context"><path d="M470 222 514 169 567 220" fill="none"/><path d="M487 220V266H553V220" fill="#F2E9D6"/><path d="M508 266V242Q522 228 535 242V266" fill="#987B4F"/></g>
+<g id="stepping-context" fill="#BAC8BD"><path d="M191 538 218 522 257 530 260 550 206 557Z"/><path d="M342 556 372 533 409 537 424 557 407 570 355 572Z"/></g>
+</g>
+<g id="body">
+<g id="seeking-limb" fill="#91B6A2"><path d="M235 269 169 288 125 265 105 275 161 316 245 308Z"/><path d="M129 274 113 251 99 257 105 275 89 272 80 282 105 292Z"/></g>
+<g id="sheltering-limb" fill="#C8A268"><path d="M411 296Q484 273 498 313Q515 353 471 376L435 368 445 346Q469 353 474 336Q480 318 455 323L423 341Z"/><path d="M457 354 470 365 M470 346 483 354" fill="none"/></g>
+<g id="walking-limbs" fill="#C8A268"><path d="M259 409 271 453 246 479 235 527 212 531 216 483 232 447 224 422Z"/><path d="M349 421 373 457 363 495 388 535 366 544 333 501 340 461 317 440Z"/></g>
+<g id="resting-limbs" fill="#987B4F"><path d="M194 355Q135 365 156 410Q175 441 206 414L200 396Q180 413 174 396Q169 383 204 381Z"/><path d="M401 380Q452 402 426 440Q408 461 386 438L390 419Q405 434 411 420Q417 407 391 402Z"/></g>
+<g id="mosaic-shards">
+<path d="M206 218 267 182 317 230 287 296 213 293 181 254Z" fill="#91B6A2"/>
+<path d="M267 182 335 163 380 198 363 265 317 230Z" fill="#C8A268"/>
+<path d="M380 198 424 223 456 288 400 323 363 265Z" fill="#D8BB85"/>
+<path d="M213 293 287 296 297 365 240 407 190 365Z" fill="#C8A268"/>
+<path d="M287 296 317 230 363 265 400 323 351 370 297 365Z" fill="#F2E9D6"/>
+<path d="M400 323 456 288 448 366 409 418 351 370Z" fill="#987B4F"/>
+<path d="M240 407 297 365 351 370 409 418 351 454 284 443Z" fill="#C8A268"/>
+</g>
+<g id="reinforcement-traces" fill="none" stroke="#F2E9D6"><path d="M213 242 230 259 251 236 M220 258 237 275 258 252"/><path d="M391 252 405 264 416 247 M397 273 411 285 422 268"/><path d="M285 414 302 426 318 409 M310 426 326 438 342 421"/></g>
+</g>
+<g id="face"><path d="M307 310Q314 302 321 310 M345 311Q352 303 359 312" fill="none"/><ellipse cx="314" cy="323" rx="5" ry="9" fill="#2E4649" stroke="none"/><ellipse cx="351" cy="324" rx="5" ry="9" fill="#2E4649" stroke="none"/><path d="M321 343Q333 354 345 342" fill="none"/><path d="M300 338 307 340 M359 341 366 339" stroke="#CD927B"/></g>
+<g id="context-activation" fill="none" stroke="#91B6A2"><path d="M143 216 156 226 M153 194 166 210 M171 195 178 208"/></g>
+</g>
+</svg>

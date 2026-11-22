@@ -1,0 +1,58 @@
+<svg width="994" height="856" xmlns="http://www.w3.org/2000/svg" viewBox="76.5 138.7 497 427.8" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" data-beast-id="sp-negative-side-effects">
+<g id="props">
+ <path id="low-impact-delivery-path" d="M112 433C112 369 132 355 153 350C168 315 234 284 256 349C280 405 358 444 397 454C444 466 483 479 497 506" stroke="#87AFA1" stroke-width="3" stroke-dasharray="5 9" />
+ <path id="delivery-path-arrow" d="M486 500L497 508L502 495" stroke="#87AFA1" stroke-width="3" />
+ <g id="preserved-vase">
+  <path d="M151 538H238" stroke="#87AFA1" />
+  <path d="M178 394C178 416 164 437 162 473C158 511 169 531 194 531C222 531 235 511 229 477C223 443 208 418 209 394Z" fill="#A4C4C3" />
+  <ellipse cx="194" cy="393" rx="18" ry="7" fill="#F2E9D6" />
+  <path d="M179 457C173 477 174 491 179 501" stroke="#F2E9D6" />
+  <path d="M193 385C190 370 195 351 206 333" stroke="#719C83" />
+  <path d="M197 363C178 363 170 351 171 339C189 339 199 348 197 363Z" fill="#8DB59B" />
+  <path d="M201 347C202 326 215 320 229 321C227 337 216 345 201 347Z" fill="#8DB59B" />
+ </g>
+ <g id="preserved-tower">
+  <path d="M270 538H349" stroke="#87AFA1" />
+  <rect x="280" y="503" width="58" height="29" rx="3" fill="#B4C6A4" />
+  <rect x="288" y="473" width="42" height="30" rx="3" fill="#F2E9D6" />
+  <rect x="295" y="446" width="28" height="27" rx="3" fill="#C8A268" />
+ </g>
+ <g id="destination-platform">
+  <path d="M421 509L493 477L571 511L499 545Z" fill="#A4C4C3" />
+  <path d="M421 509V528L499 564L571 530V511L499 545Z" fill="#719C99" />
+  <path d="M499 545V564" />
+  <path d="M464 509L494 496L529 511L499 525Z" fill="#F2E9D6" stroke-dasharray="7 8" />
+ </g>
+</g>
+<g id="body">
+ <path id="curling-tail" d="M227 231C183 231 147 218 137 193C125 164 141 136 166 142C180 145 184 159 174 166C166 172 157 167 158 160C144 173 153 192 173 202C193 212 219 211 243 209Z" fill="#987B4F" />
+ <path id="manta-body" d="M79 327C105 308 119 276 150 249C184 219 233 199 288 203C312 187 339 180 365 188C389 197 405 215 413 230C466 233 500 255 563 292C547 308 527 323 499 327C473 332 451 325 425 315C408 337 380 351 346 350C314 351 291 336 269 320C231 296 204 292 182 300C163 307 162 333 140 344C121 354 100 343 79 327Z" fill="#C8A268" />
+ <path id="raised-mantle-edge" d="M79 327C113 332 123 324 141 306C155 292 168 284 183 283C215 280 238 294 269 320C231 296 204 292 182 300C163 307 162 333 140 344C121 354 100 343 79 327Z" fill="#F2E9D6" />
+ <path id="right-mantle-fold" d="M425 315C454 296 490 292 563 292C547 308 527 323 499 327C473 332 451 325 425 315Z" fill="#987B4F" />
+ <path d="M180 249C221 230 250 229 274 238M431 254C462 257 492 271 512 282" stroke="#987B4F" />
+ <path id="left-precision-arm" d="M329 344C325 382 343 411 399 419L425 419L426 402L405 402C368 398 351 380 355 349" fill="#C8A268" />
+ <path id="right-precision-arm" d="M397 337C421 350 443 364 462 382L449 397C428 378 408 366 386 356" fill="#C8A268" />
+</g>
+<g id="face">
+ <path d="M301 250C315 234 331 245 349 252C366 259 386 243 403 256C415 268 416 291 404 308C390 329 353 336 325 321C301 308 290 272 301 250Z" fill="#F2E9D6" />
+ <ellipse cx="326" cy="276" rx="8" ry="12" fill="#2E4649" stroke="none" />
+ <ellipse cx="387" cy="280" rx="8" ry="12" fill="#2E4649" stroke="none" />
+ <circle cx="328" cy="272" r="3" fill="#F2E9D6" stroke="none" />
+ <circle cx="389" cy="276" r="3" fill="#F2E9D6" stroke="none" />
+ <path d="M348 300Q357 309 367 299" />
+ <ellipse cx="315" cy="294" rx="8" ry="5" fill="#DDA68E" stroke="none" />
+ <ellipse cx="399" cy="298" rx="8" ry="5" fill="#DDA68E" stroke="none" />
+</g>
+<g id="carried-box">
+ <path d="M417 389L457 370L496 391L455 412Z" fill="#F2E9D6" />
+ <path d="M417 389V430L455 450V412Z" fill="#C8A268" />
+ <path d="M455 412V450L496 429V391Z" fill="#987B4F" />
+ <path d="M436 380L476 401V418L466 423V406L426 386" fill="#DDBE83" stroke-width="3" />
+ <path id="left-hand" d="M413 416C406 414 402 419 405 425L419 435C425 439 432 435 431 430L423 425" fill="#C8A268" />
+ <path id="right-hand" d="M490 397C496 391 502 394 502 401L501 415C500 421 492 424 489 418L491 409" fill="#C8A268" />
+</g>
+<g id="careful-motion" stroke="#87AFA1" stroke-width="4">
+ <path d="M476 459L485 468M509 453L514 461" />
+ <path d="M95 371L109 366M119 385L127 375" />
+</g>
+</svg>

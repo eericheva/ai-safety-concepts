@@ -1,0 +1,49 @@
+<svg width="1010" height="906" xmlns="http://www.w3.org/2000/svg" viewBox="65.5 62.5 505 452.9" data-beast-id="ct-mild-optimization">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="unused-summit">
+<path d="M414 492 L414 345 L457 345 L457 256 L496 256 L496 170 L536 113 L568 170 L568 492 Z" fill="#F2E9D6"/>
+<path d="M536 113 L538 171 L568 170 M496 256 L568 256 M457 345 L568 345" fill="none"/>
+<path d="M536 198 L536 222 M536 218 Q514 214 516 199 Q532 197 536 218 M536 214 Q552 207 553 194" fill="#94B5A0"/>
+<circle cx="534" cy="103" r="19" fill="#D6B45E"/>
+<path d="M534 83 Q534 69 546 65" fill="none"/>
+<circle cx="516" cy="288" r="15" fill="#D6B45E"/>
+<circle cx="548" cy="288" r="15" fill="#D6B45E"/>
+<path d="M516 272 L521 263 M548 272 L553 263" fill="none"/>
+</g>
+<g id="sufficient-terrace">
+<path d="M407 361 L486 361 L486 379 L407 379 Z" fill="#94B5A0"/>
+<path d="M427 346 L441 356 L462 335" fill="none" stroke="#628F7D"/>
+</g>
+</g>
+<g id="body">
+<g id="resting-feet" fill="#987B4F">
+<path d="M148 460 L130 501 Q131 515 166 512 L189 475 Z"/>
+<path d="M323 464 L339 510 Q374 518 384 504 L364 460 Z"/>
+</g>
+<g id="terraced-wedge">
+<path d="M68 457 Q78 426 112 410 L130 362 L183 362 L199 309 L254 309 L270 260 L324 260 Q347 264 351 293 L357 339 L392 381 L410 450 Q396 480 348 486 L159 486 Q98 485 68 457 Z" fill="#C8A268"/>
+<path d="M69 457 Q148 466 202 458 Q290 453 326 425 L392 381 L410 450 Q396 480 348 486 L159 486 Q98 485 69 457 Z" fill="#987B4F" stroke="none"/>
+<path d="M112 410 L164 412 L183 362 L235 363 L254 309 L309 311 L324 260" fill="none"/>
+<path d="M164 412 L179 449 M235 363 L253 412 M309 311 L327 352" fill="none" stroke="#F2E9D6"/>
+</g>
+<g id="folded-neck-segments">
+<path d="M280 409 L280 363 Q280 346 298 346 L323 346 L323 320 Q323 300 342 300 Q360 300 360 320 L360 333 L399 333 Q422 333 423 356 Q423 378 399 379 L365 379 L365 414 Q365 435 344 435 L305 435 Q280 435 280 409 Z" fill="#F2E9D6"/>
+<path d="M303 409 L340 409 L340 365 M323 346 L323 383 M360 333 L360 354" fill="none"/>
+</g>
+<g id="relaxed-forelimb">
+<path d="M303 439 Q330 452 357 440 L377 425 Q386 422 389 431 Q390 440 381 448 Q346 475 308 461" fill="#C8A268"/>
+</g>
+</g>
+<g id="face">
+<path d="M360 345 Q370 337 379 344 M393 344 Q403 338 411 345" fill="none"/>
+<path d="M377 360 Q389 371 402 359" fill="none"/>
+<path d="M359 356 L366 358 M408 355 L414 354" stroke="#CF9982"/>
+</g>
+<g id="sufficient-fruit">
+<circle cx="438" cy="385" r="17" fill="#D6B45E"/>
+<path d="M438 368 Q436 359 444 354" fill="none"/>
+<path d="M413 396 Q427 408 443 402" fill="none"/>
+</g>
+</g>
+</svg>

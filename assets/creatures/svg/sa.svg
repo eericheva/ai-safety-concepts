@@ -1,0 +1,44 @@
+<svg width="948" height="876" xmlns="http://www.w3.org/2000/svg" viewBox="113.5 118.5 474 438" data-beast-id="sa">
+<g fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="sa-test-frame" stroke="#88ABA8">
+<path d="M408 167V126H585V548H408V511"/>
+<path d="M408 184V203M408 222V241M408 260V279M408 298V317M408 336V355M408 374V393M408 412V431M408 450V469" stroke-dasharray="4 8"/>
+</g>
+<g id="sa-observer">
+<path d="M461 155Q509 111 557 155Q509 199 461 155Z" fill="#F2E9D6"/>
+<ellipse cx="508" cy="155" rx="12" ry="19" fill="#2E4649"/>
+<circle cx="511" cy="149" r="4" fill="#F2E9D6" stroke="none"/>
+<path d="M470 187L450 207M493 193L480 220" stroke="#88ABA8"/>
+</g>
+</g>
+<g id="body">
+<path id="sa-relaxed-leg" d="M284 410L256 460L194 462L164 516L126 532L116 554L177 553L210 494L277 492L319 437Z" fill="#C8A268"/>
+<path id="sa-upright-leg" d="M358 425L401 442L421 520L463 522L481 546L407 550L373 476L332 455Z" fill="#987B4F"/>
+<path id="sa-angular-torso" d="M260 275L352 257L409 333L388 430L318 460L249 411L231 329Z" fill="#C8A268"/>
+<path d="M249 411L318 460L388 430L399 379L355 419L295 425Z" fill="#987B4F" stroke="none"/>
+<path id="sa-periscope-neck" d="M279 285L276 185L322 143L397 143L397 194L344 194L321 214L324 275Z" fill="#C8A268"/>
+<path d="M291 268V200L332 162H365" stroke="#F2E9D6"/>
+<path id="sa-loose-arm" d="M246 315L201 347L156 319L140 327L145 349L199 385L250 356" fill="#C8A268"/>
+<path id="sa-attentive-arm" d="M389 317L446 318L446 253L464 240L481 251L479 345L408 361" fill="#C8A268"/>
+<path d="M457 255L468 259M155 330L161 344"/>
+</g>
+<g id="face">
+<path id="sa-head" d="M354 137L413 125L440 149L427 202L362 204Z" fill="#C8A268"/>
+<path d="M367 150L411 142L427 154L419 184L373 187Z" fill="#F2E9D6"/>
+<ellipse id="sa-watching-eye" cx="409" cy="164" rx="8" ry="12" fill="#2E4649" stroke="none"/>
+<circle cx="411" cy="160" r="2.5" fill="#F2E9D6" stroke="none"/>
+<path d="M389 194L404 193"/>
+<path d="M442 132L449 121M450 144L462 141" stroke="#C8A268"/>
+</g>
+<g id="sa-self-world-model">
+<path d="M264 311L346 292L375 335L361 398L306 417L268 389Z" fill="#F2E9D6"/>
+<path d="M326 310V392" stroke="#88ABA8" stroke-dasharray="3 8" stroke-width="3"/>
+<path id="sa-model-self" d="M284 377L290 350L290 336L300 326H317V337H304L301 345L308 370L306 388M290 364L280 388" stroke-width="4"/>
+<path id="sa-model-observer" d="M334 329Q348 316 362 329Q348 342 334 329Z" fill="#B5CECA" stroke-width="3"/>
+<circle cx="348" cy="329" r="4" fill="#2E4649" stroke="none"/>
+<path id="sa-model-link" d="M315 351L340 351L347 343" stroke="#987B4F" stroke-width="3"/>
+<path d="M337 349L340 355L345 349" stroke="#987B4F" stroke-width="3"/>
+</g>
+</g>
+</svg>

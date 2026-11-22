@@ -1,0 +1,40 @@
+<svg width="956" height="886" xmlns="http://www.w3.org/2000/svg" viewBox="102.5 100.5 478 442.8" data-beast-id="mary">
+<g fill="#C8A268" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="mary-left-foot" d="M163 468 Q144 504 125 518 Q124 536 167 533 L211 493Z"/>
+<path id="mary-right-foot" d="M331 494 L346 533 Q388 550 403 530 L384 477Z"/>
+<path id="mary-room-shell" d="M105 167 L320 103 L457 174 L457 438 L298 513 L105 438Z"/>
+<path id="mary-ceiling" d="M105 167 L320 103 L457 174 L292 239Z" fill="#F2E9D6"/>
+<path id="mary-side-wall" d="M292 239 L457 174 L457 438 L298 513Z" fill="#987B4F"/>
+<path id="mary-room-interior" d="M126 193 L270 249 L276 478 L126 422Z" fill="#F2E9D6"/>
+<path d="M105 438 L298 513 M292 239 L298 513" fill="none"/>
+</g>
+<g id="props">
+<g id="mary-knowledge-organs" fill="#F2E9D6">
+<path d="M145 227 L250 268 L250 313 L145 272Z"/>
+<path d="M145 293 L250 334 L250 379 L145 338Z"/>
+<path d="M145 359 L250 400 L250 445 L145 404Z"/>
+<path d="M157 249 L171 254 M181 258 L192 262 M202 266 L234 279 M157 315 L174 321 L174 306 M187 325 L187 315 L203 331 L203 321 M216 337 L237 345 M157 382 L177 390 M187 394 L207 402 M218 406 L235 413" fill="none"/>
+<circle cx="232" cy="297" r="4" fill="#2E4649" stroke="none"/>
+<circle cx="232" cy="363" r="4" fill="#2E4649" stroke="none"/>
+<circle cx="232" cy="430" r="4" fill="#2E4649" stroke="none"/>
+</g>
+<path id="mary-small-window" d="M399 252 L457 231 L457 325 L399 347Z" fill="#F2E9D6"/>
+<path id="mary-open-shutter" d="M457 231 L496 253 L496 341 L457 325Z" fill="#C8A268"/>
+<path d="M470 258 L482 265 L482 319 L470 314Z" fill="#987B4F"/>
+<g id="mary-first-red">
+<path d="M533 209 L537 196 M564 231 L578 226 M565 264 L578 272" fill="none" stroke="#CF4B40"/>
+<path d="M545 278 C507 264 509 225 533 220 C558 214 574 257 545 278Z" fill="#DF493E"/>
+<path d="M534 233 Q527 238 530 248" fill="none" stroke="#F2E9D6"/>
+</g>
+<path id="mary-gaze" d="M429 285 L440 279 M483 262 L505 252" fill="none" stroke="#F2E9D6"/>
+</g>
+<g id="face">
+<path id="mary-reaching-eye" d="M327 322 Q352 279 397 282 L427 293 Q399 331 364 340Z" fill="#F2E9D6"/>
+<ellipse cx="398" cy="304" rx="10" ry="17" fill="#2E4649" transform="rotate(20 398 304)"/>
+<circle cx="401" cy="297" r="3" fill="#F2E9D6" stroke="none"/>
+<path id="mary-brow" d="M345 279 Q368 263 384 266" fill="none"/>
+<ellipse id="mary-wonder" cx="370" cy="380" rx="10" ry="14" fill="#F2E9D6"/>
+</g>
+</g>
+</svg>

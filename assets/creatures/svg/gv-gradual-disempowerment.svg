@@ -1,0 +1,31 @@
+<svg width="1086" height="900" xmlns="http://www.w3.org/2000/svg" viewBox="47.0 100.5 543.1 450" data-beast-id="gv-gradual-disempowerment">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="distributed-institution-body" fill="#C8A268" d="M63 350 C35 307 55 260 83 241 L83 184 L110 184 L110 150 L143 150 L143 184 L171 184 L171 235 C194 243 204 264 218 269 C229 229 232 191 260 172 C250 149 258 116 278 103 C295 127 312 132 326 115 C351 100 376 121 375 147 C375 161 368 171 357 180 C383 204 388 238 397 267 C411 254 423 244 443 242 L443 192 L432 192 L488 145 L545 192 L534 192 L534 247 C579 270 600 312 580 353 C571 375 547 390 515 393 C491 421 444 426 405 398 C369 418 334 428 303 406 C272 425 228 426 194 399 C155 419 113 405 96 383 C83 375 70 363 63 350 Z"/>
+<path fill="#987B4F" stroke="none" d="M62 334 C102 365 153 374 196 352 C239 389 274 380 304 364 C344 387 375 381 405 357 C461 390 528 370 585 326 C583 366 558 388 515 393 C491 421 444 426 405 398 C369 418 334 428 303 406 C272 425 228 426 194 399 C155 419 113 405 96 383 C77 370 68 354 62 334 Z"/>
+<path fill="#F2E9D6" d="M96 205 H157 V240 H96 Z M456 202 H521 V239 H456 Z"/>
+<path d="M110 205 V239 M130 205 V239 M145 205 V239 M470 203 V238 M489 203 V238 M508 203 V238"/>
+<path fill="#F2E9D6" d="M272 192 Q309 169 349 194 L337 230 Q308 246 281 228 Z"/>
+</g>
+<g id="props">
+<g id="human-feedback-limbs" fill="#F2E9D6">
+<path id="strong-feedback-connection" fill="#C8A268" d="M125 393 L125 453 L111 453 L112 472 L143 472 L147 398"/>
+<path id="weakening-feedback-connection" fill="none" stroke-width="6" d="M302 408 C307 437 312 453 302 474"/>
+<path id="faint-feedback-connection" fill="none" stroke="#987B4F" stroke-width="2" d="M488 407 C487 431 481 444 490 472"/>
+<g id="human-left"><circle cx="127" cy="495" r="15"/><path d="M108 548 L112 520 L95 508 L102 497 L125 515 L150 502 L158 512 L142 525 L147 548 Z"/></g>
+<g id="human-middle"><circle cx="302" cy="495" r="15"/><path d="M283 548 L287 521 L268 512 L274 501 L300 515 L325 504 L331 515 L317 525 L321 548 Z"/></g>
+<g id="human-right"><circle cx="489" cy="495" r="15"/><path d="M470 548 L473 524 L455 516 L459 504 L487 515 L512 506 L517 518 L504 526 L508 548 Z"/></g>
+</g>
+<g id="self-reinforcing-circulation" fill="none" stroke="#7AA59C" stroke-width="14">
+<path id="economic-loop" d="M172 285 C198 282 214 308 202 331 C190 355 155 356 144 337 C132 314 149 295 172 301 C197 307 234 325 264 319"/>
+<path id="cultural-loop" d="M328 274 C355 266 375 289 363 315 C350 342 315 340 302 318 C290 295 309 282 329 289 C365 301 402 329 436 319"/>
+<path id="state-loop" d="M500 282 C529 275 549 296 538 323 C525 349 493 347 480 326 C467 304 482 291 501 297"/>
+</g>
+<g id="loop-arrows" fill="#7AA59C" stroke-width="3"><path d="M250 306 L269 318 L251 332 Z"/><path d="M422 306 L442 318 L424 333 Z"/><path d="M488 273 L506 282 L490 294 Z"/></g>
+</g>
+<g id="face" fill="#2E4649" stroke="none">
+<g id="economic-organ-face"><ellipse cx="106" cy="266" rx="5" ry="7"/><ellipse cx="126" cy="266" rx="5" ry="7"/><path d="M107 281 Q116 286 125 281" fill="none" stroke="#2E4649" stroke-width="4"/></g>
+<g id="cultural-organ-face"><ellipse cx="284" cy="259" rx="5" ry="7"/><ellipse cx="304" cy="259" rx="5" ry="7"/><path d="M285 274 Q294 279 303 274" fill="none" stroke="#2E4649" stroke-width="4"/></g>
+<g id="state-organ-face"><ellipse cx="456" cy="267" rx="5" ry="7"/><ellipse cx="476" cy="267" rx="5" ry="7"/><path d="M457 282 Q466 287 475 282" fill="none" stroke="#2E4649" stroke-width="4"/></g>
+</g>
+</g></svg>

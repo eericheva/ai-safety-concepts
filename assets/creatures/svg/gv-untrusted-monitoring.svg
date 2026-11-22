@@ -1,0 +1,39 @@
+<svg width="957" height="966" xmlns="http://www.w3.org/2000/svg" viewBox="72.9 63.5 478.6 483" data-beast-id="gv-untrusted-monitoring">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="rear-leg" fill="#987B4F" d="M167 384L134 490 101 521Q93 538 116 541H184L208 428Z"/>
+<path id="far-arm" fill="#987B4F" d="M368 341Q455 321 474 410L491 506Q510 511 521 530Q523 542 503 544H441Q428 540 427 520L410 432 355 411Z"/>
+<path id="bowed-powerful-trunk" fill="#C8A268" d="M81 387Q59 308 123 249Q181 194 267 218Q347 226 405 292L449 323Q467 355 439 394Q415 423 373 415L289 385Q255 422 222 447Q181 473 131 438Q97 419 81 387Z"/>
+<path id="back-shadow" fill="#987B4F" stroke="none" d="M87 365Q143 415 216 399Q245 394 273 364Q329 392 372 401Q340 406 288 385Q249 439 210 446Q131 458 87 387Z"/>
+<path id="near-arm" fill="#C8A268" d="M326 324Q292 346 293 388L301 479Q277 497 278 523Q281 540 306 541H366Q387 537 380 515L364 481 374 392"/>
+<path id="knuckle-lines" fill="none" d="M309 520V540M332 520V540M355 521V540M459 526V542M481 527V542"/>
+<path id="watch-neck" fill="#C8A268" d="M212 223L223 149 244 143 253 229"/>
+<path id="watch-neck-inset" fill="none" stroke="#F2E9D6" stroke-width="7" d="M235 169L233 210"/>
+</g>
+<g id="face">
+<path id="lowered-head" fill="#C8A268" d="M395 288Q426 272 461 302L480 325 530 343 549 378Q528 424 477 422Q437 420 422 391L396 367Z"/>
+<path id="cream-muzzle" fill="#F2E9D6" d="M443 340Q467 322 482 346L521 360 530 382Q510 407 479 399Q452 391 443 367Z"/>
+<path id="brow" fill="none" d="M450 328L476 333"/>
+<ellipse id="power-eye" cx="468" cy="355" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<path id="power-mouth" fill="none" d="M485 381Q499 390 513 379"/>
+<path id="small-watch-organ" fill="#F2E9D6" d="M186 130Q192 100 230 97Q267 100 281 130L270 157Q232 177 199 153Z"/>
+<path id="watch-eye-white" fill="#F2E9D6" d="M201 133Q232 103 264 133Q231 160 201 133Z"/>
+<ellipse id="watch-pupil" cx="233" cy="132" rx="9" ry="15" fill="#2E4649" stroke="none"/>
+<circle id="watch-glint" cx="236" cy="127" r="3" fill="#F2E9D6" stroke="none"/>
+</g>
+<g id="props">
+<path id="left-action-outlet" fill="#F2E9D6" d="M112 343L150 328 168 371 129 386Z"/>
+<path id="right-action-outlet" fill="#F2E9D6" d="M367 274L407 286 395 327 355 315Z"/>
+<path id="action-one" fill="none" d="M127 354L142 348 150 365 135 370Z"/>
+<path id="action-two" fill="none" d="M372 291L390 296 385 312 368 307Z"/>
+<path id="crosscheck-one" fill="none" stroke="#659C98" stroke-width="6" d="M140 331L155 279 279 203 255 162"/>
+<path id="crosscheck-two" fill="none" stroke="#659C98" stroke-width="6" d="M384 277L350 236 215 196 214 160"/>
+<circle id="channel-swap-junction" cx="251" cy="220" r="12" fill="#F2E9D6"/>
+<path id="swap-direction" fill="none" stroke-width="3" d="M244 216L255 224M253 214L258 219 253 221"/>
+<path id="collusion-channel" fill="none" stroke="#AC7160" stroke-width="5" stroke-dasharray="6 10" d="M159 377Q202 407 237 365Q283 312 354 310"/>
+<path id="collusion-node-one" fill="#AC7160" d="M199 382L207 371 219 378 212 389Z"/>
+<path id="collusion-node-two" fill="#AC7160" d="M310 319L318 308 330 315 323 326Z"/>
+<path id="watch-attention" fill="none" d="M186 95L177 82M232 83V66M274 94L285 82"/>
+</g>
+</g>
+</svg>

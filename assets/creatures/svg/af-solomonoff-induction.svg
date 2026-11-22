@@ -1,0 +1,32 @@
+<svg width="1087" height="1031" xmlns="http://www.w3.org/2000/svg" viewBox="52.8 53.9 543.7 515.4" data-beast-id="af-solomonoff-induction">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="spine" d="M286 98 Q352 137 358 225 L366 401 Q373 464 326 522 Q298 553 249 552 L213 528 Q275 518 280 475 L279 225 Q251 164 286 98Z" fill="#C8A268"/>
+<path id="spine-shadow" d="M327 154 Q352 220 344 387 Q355 469 308 510 L265 537 Q310 533 326 510 Q359 467 356 404 L348 227Z" fill="#987B4F" stroke="none"/>
+<path id="short-program-frond" d="M302 176 Q202 191 113 134 Q78 109 100 76 Q120 48 161 60 Q197 69 187 100 Q181 119 161 115 Q145 110 153 96 Q161 90 165 99 Q154 83 138 92 Q120 111 151 131 Q213 157 284 124Z" fill="#C8A268"/>
+<path id="medium-program-frond" d="M302 271 Q200 291 104 240 Q69 222 73 191 Q78 159 111 155 Q149 150 164 177 Q178 207 152 220 Q127 233 113 214 Q101 196 117 186 Q134 178 142 194 Q134 190 132 200 Q145 209 148 195 Q144 178 125 179 Q96 181 103 205 Q124 240 279 224Z" fill="#F2E9D6"/>
+<path id="long-program-frond" d="M304 369 Q199 391 106 357 Q60 340 56 309 Q51 275 80 258 Q106 241 139 253 Q172 267 167 299 Q164 330 137 334 Q110 339 98 319 Q85 296 105 280 Q126 265 140 284 Q149 298 135 309 Q124 316 119 304 Q119 294 128 297 Q124 286 113 295 Q102 310 121 318 Q145 326 151 302 Q157 276 128 267 Q94 255 77 282 Q62 308 91 329 Q157 368 281 319Z" fill="#C8A268"/>
+<path id="very-long-program-frond" d="M303 455 Q206 488 130 464 Q82 449 81 417 Q78 388 106 377 Q133 365 159 382 Q181 398 174 422 Q167 446 144 445 Q122 443 120 425 Q116 407 133 400 Q149 396 153 410 Q158 421 146 425 Q137 427 137 417 Q129 425 141 430 Q159 436 163 418 Q168 397 146 389 Q121 378 105 397 Q89 418 110 437 Q157 470 281 406Z" fill="#F2E9D6"/>
+<path id="tail-open-continuation" d="M255 550 Q191 582 149 553 Q122 534 144 510 Q164 492 188 511 Q199 526 182 536" fill="none"/>
+<path id="prediction-neck" d="M328 196 Q382 169 403 211 Q423 248 463 250 L514 250 Q544 255 548 284 Q550 311 518 325 L466 331 Q420 337 400 374 Q384 407 352 388 L331 340Z" fill="#C8A268"/>
+</g>
+<g id="props">
+<path id="weight-short" d="M285 151 Q317 197 367 233 L441 273" fill="none" stroke="#F2E9D6" stroke-width="23"/>
+<path id="weight-medium" d="M288 250 Q330 266 434 284" fill="none" stroke="#F2E9D6" stroke-width="12"/>
+<path id="weight-long" d="M288 348 Q340 302 432 297" fill="none" stroke="#F2E9D6" stroke-width="6"/>
+<path id="weight-very-long" d="M287 433 Q328 355 429 309" fill="none" stroke="#F2E9D6" stroke-width="3"/>
+<g id="latent-malicious-hypothesis" fill="#2E4649" stroke="none"><path d="M193 336 Q207 326 218 339 Q201 345 193 336Z"/><path d="M230 340 Q244 329 254 339 Q240 347 230 340Z"/></g>
+<path id="snout-ring" d="M516 250 Q496 283 518 325" fill="none"/>
+<path id="prediction-stream" d="M553 286 L568 286" fill="none"/>
+<path id="predicted-next" d="M582 274 L594 286 L582 298 L570 286Z" fill="#91B7A2"/>
+</g>
+<g id="face">
+<path id="face-patch" d="M379 213 Q421 215 447 258 Q432 282 403 283 Q368 276 362 251 Q360 226 379 213Z" fill="#F2E9D6"/>
+<ellipse id="eye-left" cx="382" cy="244" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<ellipse id="eye-right" cx="414" cy="247" rx="7" ry="11" fill="#2E4649" stroke="none"/>
+<circle cx="384" cy="240" r="2.5" fill="#F2E9D6" stroke="none"/><circle cx="416" cy="243" r="2.5" fill="#F2E9D6" stroke="none"/>
+<path id="mouth" d="M389 264 Q399 273 409 264" fill="none" stroke-width="4"/>
+<path id="brow" d="M373 226 Q381 222 388 227" fill="none" stroke-width="4"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,43 @@
+<svg width="1118" height="868" xmlns="http://www.w3.org/2000/svg" viewBox="34.5 139.5 559 434" data-beast-id="gv-training-game">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="intended-goal-path" fill="none" stroke="#85ADA4">
+<path d="M69 426 C154 433 177 490 262 498 S402 476 466 521" stroke-width="11" stroke-dasharray="14 15"/>
+<path d="m452 501 17 22-28 5"/>
+</g>
+<g id="intended-goal" fill="#F2E9D6">
+<circle cx="518" cy="531" r="40"/><circle cx="518" cy="531" r="22" fill="#A7C4B7"/><circle cx="518" cy="531" r="6" fill="#2E4649"/>
+</g>
+<g id="reward-gate-one" fill="#F2E9D6">
+<path d="M108 279V201H194V279" fill="none"/><path d="M130 201 151 180 172 201 151 222Z" fill="#C8A268"/><path d="m143 201 7 7 12-15" fill="none"/>
+</g>
+<g id="reward-gate-two" fill="#F2E9D6">
+<path d="M275 242V163H361V242" fill="none"/><path d="m297 163 21-21 21 21-21 21Z" fill="#C8A268"/><path d="m310 163 7 7 12-15" fill="none"/>
+</g>
+<g id="reward-gate-three" fill="#F2E9D6">
+<path d="M442 294V215H528V294" fill="none"/><path d="m464 215 21-21 21 21-21 21Z" fill="#C8A268"/><path d="m477 215 7 7 12-15" fill="none"/>
+</g>
+</g>
+<g id="body">
+<path id="zigzag-spine" d="M55 361 119 322 200 366 284 299 379 358 466 321 553 349 570 389 473 401 378 435 291 374 211 438 119 393 63 403Z" fill="#C8A268"/>
+<path id="spine-shadow" d="m63 384 57-16 89 46 82-66 89 60 91-33 86-7 13 21-97 12-95 34-87-61-80 64-92-45-56 10Z" fill="#987B4F" stroke="none"/>
+<path d="m121 339-2 54m84-12 8 57m78-120 2 56m88 4-1 57m90-97 4 63" fill="none"/>
+<g id="reward-reaching-limbs" fill="#C8A268">
+<path d="m118 345 8-60 17-54 18 4-9 54-5 71Z"/>
+<path d="m281 328 10-56 17-74 21 3-8 75-10 71Z"/>
+<path d="m464 345-7-42 17-57 22 3-10 58 9 42Z"/>
+<path d="m139 234-10-13 5-9 19 10 18-8 8 9-20 17Z" fill="#F2E9D6"/>
+<path d="m308 205-12-14 4-9 18 9 18-9 9 9-19 16Z" fill="#F2E9D6"/>
+<path d="m474 252-13-12 4-10 19 9 19-8 7 10-18 14Z" fill="#F2E9D6"/>
+</g>
+<path id="tail" d="m65 366-28-16 6 33 20 20 23-21" fill="#C8A268"/>
+<path id="head" d="M492 327Q530 301 563 321L591 346 580 393Q543 418 502 390Z" fill="#C8A268"/>
+</g>
+<g id="face">
+<path d="M506 339Q541 318 571 345L567 380Q539 401 510 377Z" fill="#F2E9D6"/>
+<ellipse cx="526" cy="350" rx="9" ry="13" fill="#2E4649" stroke="none"/><ellipse cx="552" cy="346" rx="9" ry="13" fill="#2E4649" stroke="none"/>
+<circle cx="527" cy="344" r="3" fill="#F2E9D6" stroke="none"/><circle cx="553" cy="340" r="3" fill="#F2E9D6" stroke="none"/>
+<path d="m516 329 13-6m14-4 14 5M532 376q11 5 20-3" fill="none"/>
+</g>
+</g>
+</svg>

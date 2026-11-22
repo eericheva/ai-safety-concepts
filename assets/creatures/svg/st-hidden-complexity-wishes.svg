@@ -1,0 +1,40 @@
+<svg width="1094" height="806" xmlns="http://www.w3.org/2000/svg" viewBox="50.5 132.5 547 403" data-beast-id="st-hidden-complexity-wishes">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="implicit-constraint-web" fill="none" stroke="#86AAA2">
+<path d="M65 251L133 181 218 219 239 306 184 386 95 367 65 251ZM65 251L184 386 218 219 95 367 133 181 239 306 65 251ZM133 181L184 386M95 367L239 306"/>
+<path d="M133 181L109 135M218 219L251 181M95 367L69 413M184 386L208 426"/>
+</g>
+<g id="context-knots" fill="#F2E9D6">
+<circle cx="65" cy="251" r="12"/><circle cx="133" cy="181" r="12"/><circle cx="218" cy="219" r="12"/><circle cx="239" cy="306" r="12"/><circle cx="184" cy="386" r="12"/><circle cx="95" cy="367" r="12"/>
+</g>
+<path id="incoming-wish" d="M151 236L164 266 197 268 172 289 179 321 151 304 123 321 130 289 105 268 138 266Z" fill="#D8B159"/>
+<path id="discarded-threads" d="M227 372L254 397 239 435M256 350L279 397 267 458M213 418L228 446" fill="none" stroke="#86AAA2"/>
+<path id="broken-context-left" d="M468 430L488 432 505 449 495 464 513 486 485 505Q451 476 450 438Z" fill="#86AAA2"/>
+<path id="broken-context-right" d="M521 447L537 432 595 430Q592 490 548 509L530 486 544 465Z" fill="#86AAA2"/>
+<path d="M493 522L507 512 517 533Z" fill="#F2E9D6"/>
+</g>
+<g id="body">
+<path id="rear-foot" d="M306 404Q285 450 303 478L349 478 337 456 351 409Z" fill="#987B4F"/>
+<path id="front-foot" d="M388 405L388 466 431 478Q455 479 444 462L418 447 420 404Z" fill="#C8A268"/>
+<path id="bellows-body" d="M266 233L306 209 322 245 349 219 368 250 391 234 414 265 420 378 394 410 368 388 347 420 323 392 304 429 266 403Z" fill="#C8A268"/>
+<path d="M304 236L304 400M326 258L326 382M350 246L350 392M373 263L373 377M395 266L395 381" fill="none" stroke="#987B4F"/>
+<path id="intake-rim" d="M247 220Q268 211 280 238L280 393Q270 422 248 410L228 382 228 253Z" fill="#F2E9D6"/>
+<path d="M247 251L247 382" fill="none"/>
+<path id="literal-nozzle" d="M414 266Q441 268 457 294L514 302 514 340 456 350Q441 377 420 378Z" fill="#C8A268"/>
+<path id="narrow-channel" d="M454 313L516 313 516 329 454 329Z" fill="#F2E9D6"/>
+<path id="pump-neck" d="M323 220L323 179 357 179 357 224" fill="#987B4F"/>
+<path id="pump-head" d="M278 174Q277 144 305 142L378 142Q403 143 404 173L385 197 297 197Z" fill="#C8A268"/>
+<path id="compression-arm" d="M380 181Q444 193 439 238L422 261 406 246 417 226Q416 207 385 208" fill="#C8A268"/>
+</g>
+<g id="face" fill="#2E4649">
+<ellipse cx="313" cy="170" rx="5" ry="9"/><ellipse cx="368" cy="170" rx="5" ry="9"/>
+<path d="M330 182Q340 187 349 182" fill="none"/>
+<path d="M303 157L320 155M360 155L376 158" fill="none"/>
+</g>
+<g id="output-details">
+<path id="literal-result" d="M548 348L561 378 594 380 569 401 576 433 548 416 520 433 527 401 502 380 535 378Z" fill="#D8B159"/>
+<path id="output-motion" d="M540 307L556 318M550 288L572 297" fill="none" stroke="#987B4F"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,21 @@
+<svg width="1108" height="805" xmlns="http://www.w3.org/2000/svg" viewBox="44.6 115.8 554.2 402.4" data-beast-id="cs-substrate-independence">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-28 320 320)">
+<g id="body">
+<path id="organic-envelope" d="M232 263 C196 246 164 249 142 262 C113 238 83 252 83 279 C49 273 38 304 59 324 C36 346 53 379 83 372 C88 403 122 405 144 380 C178 398 211 382 236 375Z" fill="#C8A268"/>
+<path id="organic-shadow" d="M64 351 C115 372 176 369 230 345 L236 375 C211 382 178 398 144 380 C122 405 88 403 83 372 C67 375 56 366 56 355Z" fill="#987B4F" stroke="none"/>
+<path id="crystal-envelope" d="M221 269 L271 235 L328 252 L378 238 L405 273 L401 367 L351 392 L294 381 L249 395 L220 365Z" fill="#A9C8C5"/>
+<path id="crystal-facets" d="M221 269 L276 281 L271 235 M276 281 L328 252 L351 280 L378 238 M249 395 L276 356 L294 381 M276 356 L351 363 L351 392 M351 363 L401 367" fill="none" stroke="#6A9697"/>
+<path id="simulation-envelope" d="M394 265 L535 265 L579 299 L579 354 L535 380 L394 380Z" fill="#F2E9D6" fill-opacity="0.35"/>
+<path id="simulation-depth" d="M394 265 L417 241 L556 241 L601 277 L601 332 L579 354 M535 265 L556 241 M579 299 L601 277 M394 380 L417 356" fill="none"/>
+</g>
+<g id="props">
+<path id="braid-upper" d="M83 319 C108 261 149 261 174 319 S240 377 265 319 S331 261 356 319 S422 377 447 319 S513 261 538 319" fill="none" stroke="#2E4649" stroke-width="19"/>
+<path id="braid-upper-fill" d="M83 319 C108 261 149 261 174 319 S240 377 265 319 S331 261 356 319 S422 377 447 319 S513 261 538 319" fill="none" stroke="#F2E9D6" stroke-width="10"/>
+<path id="braid-lower" d="M83 319 C108 377 149 377 174 319 S240 261 265 319 S331 377 356 319 S422 261 447 319 S513 377 538 319" fill="none" stroke="#2E4649" stroke-width="19"/>
+<path id="braid-lower-fill" d="M83 319 C108 377 149 377 174 319 S240 261 265 319 S331 377 356 319 S422 261 447 319 S513 377 538 319" fill="none" stroke="#C8A268" stroke-width="10"/>
+<g id="preserved-network-1" transform="translate(128 319)"><path d="M-45 0 L0 -43 L45 0 L0 43Z M0 -43 L0 43" fill="none"/><circle cx="-45" cy="0" r="9" fill="#F2E9D6"/><circle cx="0" cy="-43" r="9" fill="#F2E9D6"/><circle cx="45" cy="0" r="9" fill="#F2E9D6"/><circle cx="0" cy="43" r="9" fill="#F2E9D6"/></g><g id="preserved-network-2" transform="translate(310 319)"><path d="M-45 0 L0 -43 L45 0 L0 43Z M0 -43 L0 43" fill="none"/><circle cx="-45" cy="0" r="9" fill="#F2E9D6"/><circle cx="0" cy="-43" r="9" fill="#F2E9D6"/><circle cx="45" cy="0" r="9" fill="#F2E9D6"/><circle cx="0" cy="43" r="9" fill="#F2E9D6"/></g><g id="preserved-network-3" transform="translate(492 319)"><path d="M-45 0 L0 -43 L45 0 L0 43Z M0 -43 L0 43" fill="none"/><circle cx="-45" cy="0" r="9" fill="#F2E9D6"/><circle cx="0" cy="-43" r="9" fill="#F2E9D6"/><circle cx="45" cy="0" r="9" fill="#F2E9D6"/><circle cx="0" cy="43" r="9" fill="#F2E9D6"/></g></g>
+<g id="face" transform="translate(553 320)">
+<path id="face-mask" d="M-19 -25 Q0 -39 20 -24 L23 21 Q0 39 -22 21Z" fill="#F2E9D6"/>
+<ellipse cx="-9" cy="-7" rx="4" ry="7" fill="#2E4649" stroke="none"/><ellipse cx="10" cy="-7" rx="4" ry="7" fill="#2E4649" stroke="none"/>
+<path d="M-6 15 Q2 21 10 13" fill="none" stroke-width="4"/>
+</g></g></svg>

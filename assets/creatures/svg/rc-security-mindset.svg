@@ -1,0 +1,55 @@
+<svg width="1024" height="938" xmlns="http://www.w3.org/2000/svg" viewBox="62.5 73.5 512 469" data-beast-id="rc-security-mindset" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+ <g id="rear-legs" fill="#987B4F">
+  <path d="M215 354 144 393 93 477 65 483 66 504 116 501 172 422 248 397Z"/>
+  <path d="m399 358 76 30 50 73 38 10 9 23-56-4-65-76-71-13Z"/>
+ </g>
+ <path id="undershell" fill="#987B4F" d="M159 298Q171 236 325 230 458 229 487 301L478 361Q440 416 316 423 192 416 161 365Z"/>
+ <path id="shell" fill="#C8A268" d="M158 301Q166 221 318 211 458 217 489 300L467 334Q414 371 312 372 216 371 170 337Z"/>
+ <path id="smooth-center" fill="#F2E9D6" d="M225 277Q318 227 412 278L402 306Q319 333 236 305Z"/>
+ <path id="left-seam" d="m210 239 16 51-16 54"/>
+ <path id="right-seam" d="m430 244-15 44 12 24-5 43"/>
+ <path id="tested-opening" fill="#2E4649" d="m421 297 30 12-4 33-23 14 8-29Z"/>
+ <path id="lifted-plate" fill="#F2E9D6" d="m447 308 35-12 4 27-36 20Z"/>
+ <g id="front-legs" fill="#C8A268">
+  <path d="m235 381-39 50 13 68-34 18 2 19 55-13 4-26-9-58 45-39Z"/>
+  <path d="m366 392 52 35-6 74 30 19-5 20-55-21 6-80-49-27Z"/>
+ </g>
+</g>
+<g id="props">
+ <g id="upper-edge-probe">
+  <path fill="#C8A268" d="m229 231-52-55 15-73 120-27 100 38-7 23-94-33-98 20-9 44 46 46Z"/>
+  <circle cx="191" cy="177" r="15" fill="#F2E9D6"/>
+  <circle cx="310" cy="91" r="14" fill="#F2E9D6"/>
+  <path fill="#987B4F" d="m405 116 51 47-7 64-16-1-2-56-38-30Z"/>
+  <circle cx="446" cy="164" r="14" fill="#F2E9D6"/>
+  <path d="m441 225-10 21 12 17m-2-38 12 21-4 14"/>
+ </g>
+ <g id="side-probe">
+  <path fill="#C8A268" d="m461 362 62-18 32-90-30-57-19 10 23 50-26 67-50 15Z"/>
+  <circle cx="540" cy="254" r="14" fill="#F2E9D6"/>
+  <path fill="#987B4F" d="m511 204-46 38 6 63-16 6-8-76 52-47Z"/>
+  <circle cx="456" cy="237" r="12" fill="#F2E9D6"/>
+  <path d="m464 307-17 16 11 10m6-26 13 13-4 11"/>
+ </g>
+ <g id="underside-probe">
+  <path fill="#C8A268" d="m169 340-66-26-34 60 39 57 86 6 2-23-73-6-27-36 18-28 48 19Z"/>
+  <circle cx="82" cy="373" r="14" fill="#F2E9D6"/>
+  <path d="m196 424 35-15 13 8m-48 7 35 8 13-7"/>
+ </g>
+ <g id="detected-gap" stroke="#B16F52">
+  <path d="m471 279 7-12m8 16 13-4"/>
+ </g>
+</g>
+<g id="face">
+ <path id="head" fill="#C8A268" d="M246 354Q249 322 283 327L319 345 346 334Q375 344 369 375L349 409Q302 434 260 402Z"/>
+ <path id="facial-mask" fill="#F2E9D6" d="m258 352 25-8 34 17 30-10 9 22-17 24q-36 20-67-5Z"/>
+ <g id="eyes" fill="#2E4649" stroke="none">
+  <ellipse cx="283" cy="369" rx="7" ry="10"/>
+  <ellipse cx="333" cy="373" rx="7" ry="10"/>
+ </g>
+ <path id="focused-brows" d="m270 354 18 1m37 4 17-7"/>
+ <path id="mouth" d="M300 397q13 4 22-3"/>
+ <path id="cheeks" stroke="#C98F76" d="m269 387 7 2m62-1 7-3"/>
+</g>
+</svg>

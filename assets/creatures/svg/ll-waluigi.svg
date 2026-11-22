@@ -1,0 +1,33 @@
+<svg width="894" height="952" xmlns="http://www.w3.org/2000/svg" viewBox="80.4 73.8 447.1 476.1" data-beast-id="ll-waluigi" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="ll-waluigi-shared-outline" d="M303 307 C253 303 206 277 170 242 C127 199 112 137 143 107 C170 80 211 93 237 111 C257 69 301 67 328 95 C367 135 352 207 332 253 L320 308 C373 314 424 346 458 386 L498 367 L485 424 L525 449 L481 466 C483 521 449 555 415 546 C386 538 371 514 360 491 C334 511 298 499 283 470 C260 429 281 365 303 333 Z" fill="#C8A268"/>
+<path id="ll-waluigi-inverse-shadow" d="M320 308 C373 314 424 346 458 386 L498 367 L485 424 L525 449 L481 466 C483 521 449 555 415 546 C386 538 371 514 360 491 C334 511 298 499 283 470 C260 429 281 365 303 333 Z" fill="#987B4F"/>
+<path id="ll-waluigi-shared-spine" d="M203 151 C254 179 276 254 311 320 C345 386 395 426 434 478" stroke="#F2E9D6" stroke-width="14"/>
+<path id="ll-waluigi-gentle-arm" d="M187 238 C153 239 126 267 109 290 C98 305 78 295 84 279 C102 239 130 210 162 207" fill="#C8A268"/>
+<path id="ll-waluigi-inverse-arm" d="M439 370 L480 315 L515 325 L501 339 L490 337 L466 397" fill="#987B4F"/>
+<circle id="ll-waluigi-hinge" cx="312" cy="320" r="28" fill="#F2E9D6"/>
+<circle cx="312" cy="320" r="10" fill="#C8A268"/>
+</g>
+<g id="face">
+<path id="ll-waluigi-gentle-mask" d="M168 137 Q206 115 232 146 Q263 132 291 157 C307 193 278 234 246 240 C211 238 173 205 168 137Z" fill="#F2E9D6"/>
+<path d="M188 156 Q201 144 213 153 M253 166 Q266 157 278 170"/>
+<ellipse cx="204" cy="177" rx="7" ry="11" fill="#2E4649" stroke="none" transform="rotate(-25 204 177)"/>
+<ellipse cx="261" cy="188" rx="7" ry="11" fill="#2E4649" stroke="none" transform="rotate(-25 261 188)"/>
+<path d="M220 202 Q233 221 249 210"/>
+<path d="M187 190 L198 195 M267 210 L276 207" stroke="#D89F85" stroke-width="8"/>
+<g id="ll-waluigi-inverted-face" transform="rotate(180 400 439)">
+<path d="M347 410 L374 393 L400 414 L430 394 L453 414 L440 463 L401 480 L362 459Z" fill="#F2E9D6"/>
+<path d="M364 423 L385 431 M416 430 L437 419"/>
+<path d="M375 434 L381 446 M426 433 L421 445" stroke-width="8"/>
+<path d="M383 458 Q402 446 421 455 Q405 475 383 458Z" fill="#C8A268"/>
+<path d="M398 452 L404 461 L410 451" fill="#F2E9D6" stroke-width="3"/>
+</g>
+</g>
+<g id="props">
+<path id="ll-waluigi-narrative-ribbon" d="M104 393 L166 393 L199 354 L231 392 L251 392" stroke="#90B7A8" stroke-width="13"/>
+<path d="M239 376 L258 392 L239 408" stroke="#90B7A8" stroke-width="8"/>
+<path id="ll-waluigi-turn-arc" d="M382 191 C441 208 473 253 463 294" stroke="#987B4F"/>
+<path d="M450 279 L463 298 L480 281" stroke="#987B4F"/>
+<path id="ll-waluigi-turn-spark" d="M263 287 L251 278 M275 271 L271 257" stroke="#C8A268"/>
+</g>
+</svg>

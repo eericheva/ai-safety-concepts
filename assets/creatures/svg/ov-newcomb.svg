@@ -1,0 +1,43 @@
+<svg width="926" height="939" xmlns="http://www.w3.org/2000/svg" viewBox="80.5 91.9 463 469.6" data-beast-id="ov-newcomb" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="eye-stalk" d="M348 278 C344 233 338 218 321 195 L345 172 C378 208 385 235 384 274" fill="#987B4F"/>
+<path id="chest-bridge" d="M252 330 H325 V420 H252Z" fill="#987B4F"/>
+<path id="small-chamber" d="M104 292 L140 265 H258 L284 292 V436 L252 465 H104Z" fill="#C8A268"/>
+<path d="M104 292 H252 L284 265 M252 292 V465"/>
+<path id="transparent-window" d="M122 312 H232 V442 H122Z" fill="#B6CFCA" fill-opacity="0.5"/>
+<path d="M137 331 L155 313 M137 351 L174 314" stroke="#F2E9D6"/>
+<g id="small-reward" fill="#E6BF66"><ellipse cx="177" cy="404" rx="32" ry="12"/><path d="M145 389 V405 C145 419 209 419 209 405 V389"/><ellipse cx="177" cy="389" rx="32" ry="12"/></g>
+<path id="opaque-chamber" d="M302 276 L348 241 H494 L535 276 V442 L493 474 H302Z" fill="#C8A268"/>
+<path d="M302 276 H493 L535 241 M493 276 V474"/>
+<path d="M493 276 L535 241 V442 L493 474Z" fill="#987B4F"/>
+<path id="sealed-band" d="M383 276 H415 V474 H383Z" fill="#F2E9D6"/>
+<path d="M383 276 L428 241 H460 L415 276Z" fill="#F2E9D6"/>
+<path id="seal" d="M399 352 L421 366 L418 392 L398 405 L376 390 L377 366Z" fill="#A66B59"/>
+<path d="M389 378 L399 369 L407 380 L398 389Z" fill="#F2E9D6"/>
+</g>
+<g id="face">
+<path id="predictor-eye-organ" d="M250 151 C276 98 331 79 374 108 C410 131 421 156 423 169 C388 203 303 216 250 151Z" fill="#C8A268"/>
+<path id="eye-white" d="M271 153 C305 116 362 119 397 161 C357 185 307 186 271 153Z" fill="#F2E9D6"/>
+<ellipse id="predictor-pupil" cx="325" cy="153" rx="13" ry="23" fill="#2E4649"/>
+<circle cx="321" cy="145" r="4" fill="#F2E9D6" stroke="none"/>
+<path d="M287 190 Q326 209 357 193"/>
+</g>
+<g id="props">
+<g id="prior-choice-model" stroke="#668C87">
+<path d="M97 115 H197 Q211 115 211 130 V203 Q211 217 196 217 H97 Q83 217 83 202 V131 Q83 115 97 115Z" fill="#F2E9D6" stroke-dasharray="7 8"/>
+<path d="M104 153 H130 V184 H104Z M144 142 H185 V184 H144Z" fill="#B6CFCA"/>
+<path d="M122 134 Q143 119 165 132 M157 126 L165 132 L158 137"/>
+</g>
+<path id="model-to-eye" d="M217 153 H246" stroke="#668C87" stroke-dasharray="5 7"/>
+<path id="prediction-to-content" d="M420 155 C477 155 471 211 459 229" stroke="#668C87"/>
+<path d="M453 214 L459 230 L474 221" stroke="#668C87"/>
+<g id="one-box-choice" fill="#C8A268">
+<path d="M345 474 C332 501 312 517 306 537 C304 552 318 562 332 553 L362 523 L385 516 L395 493 L380 490 L367 501 L372 474Z"/>
+</g>
+<g id="both-boxes-choice" fill="#C8A268">
+<path d="M148 465 L131 495 C116 519 132 541 158 542 H245 C262 542 273 530 267 516 L255 481 L239 485 L243 512 H158 L172 465Z"/>
+<path d="M166 526 H226" stroke="#987B4F"/>
+</g>
+<path id="right-foot" d="M458 474 L476 521 Q491 540 526 532 L541 546 Q514 568 481 553 L433 505 L427 474Z" fill="#987B4F"/>
+</g>
+</svg>

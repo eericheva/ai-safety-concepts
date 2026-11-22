@@ -1,0 +1,31 @@
+<svg width="1006" height="1014" xmlns="http://www.w3.org/2000/svg" viewBox="70.5 77.3 503 507.2" data-beast-id="ph-lucas-penrose" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="ladder-left-rail" d="M106 534 L259 274 L284 288 L136 550 Z" fill="#C8A268"/>
+<path id="ladder-right-rail" d="M209 557 L358 296 L382 312 L240 568 Z" fill="#C8A268"/>
+<path id="rungs" d="M142 496 L251 523 L265 498 L156 472 Z M174 442 L281 469 L295 444 L188 418 Z M205 388 L311 416 L325 391 L219 364 Z M236 334 L342 361 L356 336 L250 310 Z" fill="#F2E9D6"/>
+<path id="left-foot" d="M108 528 Q75 531 73 554 Q94 569 138 549" fill="#987B4F"/>
+<path id="right-foot" d="M212 551 Q202 578 224 582 L264 582 Q274 570 240 559" fill="#987B4F"/>
+<path id="insight-arch" d="M139 435 C47 215 127 86 282 80 C427 75 475 160 502 219 L474 231 C447 172 411 112 288 117 C160 119 99 242 166 420 Z" fill="#C8A268"/>
+<path id="arch-inner-shadow" d="M139 435 C106 354 99 290 112 238 C105 317 135 381 166 420 Z" fill="#987B4F" stroke="none"/>
+<path id="reaching-tip" d="M469 212 L495 195 L528 221 L507 229 L517 246 L484 248 Z" fill="#F2E9D6"/>
+</g>
+<g id="props">
+<path id="gate-frame" d="M300 382 L300 211 Q300 175 335 175 L391 175 Q424 175 424 211 L424 382 L401 382 L401 211 Q401 200 390 200 L335 200 Q323 200 323 211 L323 382 Z" fill="#987B4F"/>
+<path id="gate-leaf" d="M329 211 L394 211 L394 350 L329 350 Z" fill="#AFC8C4"/>
+<path id="closed-bars" d="M349 215 L349 347 M374 215 L374 347 M329 261 L394 261 M329 316 L394 316"/>
+<path id="statement-loop" d="M356 239 C372 216 387 239 375 249 C365 260 345 247 356 239 Z" fill="#F2E9D6"/>
+<path id="lock" d="M352 285 L352 278 Q363 260 375 278 L375 285 M345 285 L382 285 L382 312 L345 312 Z" fill="#C8A268"/>
+<path id="beyond-statement" d="M530 285 L571 308 L547 348 L505 325 Z" fill="#F2E9D6"/>
+<path id="beyond-loop" d="M527 315 C543 288 561 311 546 323 C534 334 518 322 527 315 Z"/>
+<path id="speculative-reach" d="M514 252 Q545 260 543 280" stroke="#987B4F" stroke-dasharray="8 10"/>
+<path id="uncertain-footing" d="M121 444 L157 434 L186 493 L144 507 Z M132 513 L145 535 M179 502 L192 521" stroke="#987B4F" stroke-dasharray="9 9"/>
+</g>
+<g id="face">
+<path id="head" d="M196 198 Q219 168 253 182 L279 162 L279 202 Q300 238 277 271 Q247 292 214 270 L190 255 L202 239 Z" fill="#C8A268"/>
+<path id="face-mask" d="M210 215 Q228 199 244 216 Q262 201 280 218 L280 244 Q251 277 219 248 Z" fill="#F2E9D6"/>
+<ellipse id="eye-left" cx="226" cy="228" rx="5" ry="9" fill="#2E4649" stroke="none"/>
+<ellipse id="eye-right" cx="265" cy="226" rx="5" ry="9" fill="#2E4649" stroke="none"/>
+<path id="uncertain-mouth" d="M239 249 Q248 242 256 249 M217 206 L233 210 M258 206 L273 201"/>
+<path id="touching-hand" d="M280 263 Q306 249 316 270 L323 278 L309 285 L302 276 L283 286" fill="#C8A268"/>
+</g>
+</svg>

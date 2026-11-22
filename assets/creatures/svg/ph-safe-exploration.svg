@@ -1,0 +1,35 @@
+<svg width="1068" height="669" xmlns="http://www.w3.org/2000/svg" viewBox="32.5 232.0 534 334.5" data-beast-id="ph-safe-exploration">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<path id="stable-bank" d="M35 451L286 451L321 478L291 504L307 526L38 526Z" fill="#A5BCAD"/>
+<path id="irreversible-edge" d="M286 451L321 478L291 504L307 526" fill="none" stroke="#B9795C" stroke-width="9"/>
+<path id="near-stone" d="M365 413L403 400L431 419L418 442L374 444L357 429Z" fill="#F2E9D6"/>
+<path id="unknown-stone" d="M461 320L501 307L535 327L526 352L482 359L457 343Z" fill="#AFC8C8"/>
+<g id="unstable-stone"><path d="M476 479L502 458L523 477L515 498L490 504Z" fill="#B9795C"/><path d="M537 472L564 487L554 507L529 503L535 489Z" fill="#B9795C"/><path d="M520 532L528 543M552 539L548 553M504 557L501 564" fill="none"/></g>
+</g>
+<g id="body">
+<g id="anchored-feet" fill="#987B4F"><path d="M99 385Q61 399 55 447Q76 466 95 444L122 403Z"/><path d="M153 399L127 457Q151 479 171 454L184 410Z"/><path d="M215 399L206 454Q231 476 252 452L244 405Z"/></g>
+<path id="crawler-shell" d="M47 360Q60 303 128 292Q169 239 220 272Q270 265 299 307Q329 339 301 389Q268 426 156 425Q70 419 47 382Z" fill="#C8A268"/>
+<path d="M55 385Q152 422 250 394Q294 380 307 352Q311 405 247 418Q119 444 55 395Z" fill="#987B4F" stroke="none"/>
+<path id="segmented-shell" d="M114 298Q135 325 129 382M174 275Q200 307 189 373M233 278Q252 303 246 324" fill="none"/>
+<g id="retractable-feelers" fill="none">
+<path id="upper-probe" d="M269 309Q310 222 384 248Q446 272 490 317" stroke="#C8A268" stroke-width="20"/>
+<path d="M269 309Q310 222 384 248Q446 272 490 317"/>
+<path id="middle-probe" d="M295 366Q357 343 389 408" stroke="#C8A268" stroke-width="20"/>
+<path d="M295 366Q357 343 389 408"/>
+<path id="withdrawing-probe" d="M275 392Q343 474 417 464Q453 454 447 424Q437 403 418 426" stroke="#C8A268" stroke-width="20"/>
+<path d="M275 392Q343 474 417 464Q453 454 447 424Q437 403 418 426"/>
+<path id="folded-probe" d="M80 337Q40 284 83 250Q115 230 131 253Q143 275 122 285" stroke="#C8A268" stroke-width="15"/>
+<path d="M80 337Q40 284 83 250Q115 230 131 253Q143 275 122 285"/>
+</g>
+<g id="probe-joints" fill="#F2E9D6"><circle cx="384" cy="248" r="11"/><circle cx="353" cy="371" r="10"/><circle cx="375" cy="463" r="10"/><ellipse cx="490" cy="315" rx="13" ry="9" transform="rotate(32 490 315)"/><ellipse cx="389" cy="406" rx="13" ry="9" transform="rotate(57 389 406)"/><circle cx="418" cy="426" r="10"/></g>
+</g>
+<g id="face">
+<path d="M238 321Q264 309 288 329Q309 348 289 379Q266 395 239 378Q224 354 238 321Z" fill="#F2E9D6"/>
+<ellipse cx="250" cy="344" rx="6" ry="11" fill="#2E4649" stroke="none"/><ellipse cx="282" cy="342" rx="6" ry="11" fill="#2E4649" stroke="none"/>
+<path d="M255 368Q266 361 276 367" fill="none"/>
+<path d="M243 323L255 320M277 319L287 325" fill="none"/>
+</g>
+<g id="sensing-marks" fill="none" stroke="#987B4F"><path d="M500 285L505 273M518 297L531 290M413 389L425 382M405 403L422 402"/></g>
+</g>
+</svg>

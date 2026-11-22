@@ -1,0 +1,39 @@
+<svg width="995" height="910" xmlns="http://www.w3.org/2000/svg" viewBox="88.2 107.4 497.3 455.1" data-beast-id="cs-eliza-effect">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<path id="projection-cone" d="M235 282 395 122 523 354 240 384Z" fill="#F2E9D6" fill-opacity="0.45" stroke="none"/>
+<path d="m246 281 98-95m-93 189 131 15" fill="none" stroke="#C8A268" stroke-dasharray="8 11"/>
+<g id="attributed-mind">
+<path d="M379 426V379C351 367 328 344 322 311L287 294 316 253C312 210 321 164 356 135 401 97 476 103 517 147 560 194 551 264 518 306L520 426Z" fill="#B8D0CB" fill-opacity="0.8"/>
+<path d="M356 221C338 206 343 183 362 179 357 157 379 142 397 151 411 130 437 138 445 153 468 139 493 154 489 178 513 190 505 218 484 222 475 245 450 245 437 228 421 246 394 239 390 222 377 235 362 234 356 221Z" fill="#F2E9D6"/>
+<path d="M363 180c22-3 29 15 24 29m11-56c-5 19 6 28 18 28m29-26c-9 14-3 27 11 30m33-5c-17 1-26 12-24 25m-53-24c-2 18 12 20 22 17m-2 2-3 23" fill="none"/>
+<path id="attributed-heart" d="M432 352C421 340 388 317 388 297 388 275 419 271 432 292 445 271 476 275 476 297 476 317 444 341 432 352Z" fill="#D89A82"/>
+<path d="M338 258q15-8 25 1m-24 35 18 2" fill="none"/>
+</g>
+<g id="observer-eye">
+<path d="M424 494Q500 422 583 494 501 564 424 494Z" fill="#F2E9D6"/>
+<ellipse cx="497" cy="494" rx="27" ry="35" fill="#C8A268"/>
+<ellipse cx="491" cy="494" rx="11" ry="20" fill="#2E4649" stroke="none"/>
+<circle cx="486" cy="484" r="5" fill="#F2E9D6" stroke="none"/>
+<path d="m490 446-19-25m55 25 10-25m-62 121-10 18m62-21 14 14" fill="none"/>
+</g>
+</g>
+<g id="body">
+<path id="template-body" d="M104 186Q99 159 126 151L230 151Q253 156 251 180L241 388Q237 422 213 434L213 474Q213 505 181 509L117 509Q88 506 91 485 94 463 115 463L160 463 162 431Q109 419 108 381Z" fill="#C8A268"/>
+<path d="M111 389Q151 424 207 404L211 435 210 476Q207 497 180 497L111 496Q97 492 100 480 95 503 119 507L181 507Q212 505 213 474L213 434Q237 422 241 388Z" fill="#987B4F" stroke="none"/>
+<g id="repeating-tiles" fill="#F2E9D6">
+<path d="M127 260H220V291H175L161 305V291H127Z"/>
+<path d="M127 315H220V346H175L161 360V346H127Z"/>
+<path d="M127 370H220V401H175L161 415V401H127Z"/>
+</g>
+<path d="M143 276h22m13 0h24m-59 55h22m13 0h24m-59 55h22m13 0h24" fill="none"/>
+<path id="reply-spout" d="m245 230 30 9-4 37-29 12" fill="#C8A268"/>
+</g>
+<g id="face">
+<path d="M123 184Q172 163 232 184L229 239Q177 255 124 236Z" fill="#F2E9D6"/>
+<path d="M140 204q10-12 20 0m37 0q10-12 20 0m-58 21q19 12 37 0" fill="none"/>
+<circle cx="139" cy="224" r="6" fill="#D89A82" stroke="none"/>
+<circle cx="216" cy="224" r="6" fill="#D89A82" stroke="none"/>
+</g>
+</g>
+</svg>

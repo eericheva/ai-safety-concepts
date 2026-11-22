@@ -1,0 +1,32 @@
+<svg width="1112" height="1011" xmlns="http://www.w3.org/2000/svg" viewBox="38.5 41.1 556.0 505.4" data-beast-id="cs-multiple-realizability">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="shared-frame" d="M289 213 L351 213 L356 291 L439 334 L411 390 L320 346 L229 390 L201 334 L284 291 Z" fill="#C8A268"/>
+<path id="neural-lobe" d="M246 230 C207 223 191 192 203 166 C181 144 196 107 224 101 C223 71 254 53 279 64 C297 37 339 37 357 63 C389 51 417 78 413 106 C445 115 451 151 432 174 C444 204 417 230 388 231 C364 254 340 246 320 234 C292 252 267 249 246 230 Z" fill="#C8A268"/>
+<path d="M223 189 C233 225 278 242 317 218 C349 240 399 224 421 195 C421 223 402 228 388 231 C364 254 340 246 320 234 C292 252 267 249 246 230 C228 226 217 214 213 201 Z" fill="#987B4F" stroke="none"/>
+<path id="tentacle-lobe" d="M213 316 C163 295 107 324 101 379 C93 409 65 400 67 381 C68 368 82 364 88 374 C89 341 42 347 41 382 C40 426 90 444 116 416 C102 453 67 460 60 439 C40 470 65 498 99 487 C119 479 131 460 141 443 C142 480 126 506 108 496 C102 524 130 542 152 522 C177 500 176 472 177 449 C194 478 189 501 179 512 C208 530 233 504 223 473 C218 453 208 437 205 427 C236 443 252 425 254 403 C257 366 245 334 213 316 Z" fill="#C8A268"/>
+<path id="silicon-lobe" d="M417 316 L509 316 L555 362 L555 462 L511 507 L414 507 L373 466 L373 361 Z" fill="#C8A268"/>
+<path d="M514 324 L555 362 L555 462 L511 507 L414 507 L397 490 L497 490 L536 451 L536 370 L501 335 Z" fill="#987B4F" stroke="none"/>
+<path d="M402 313 V291 M428 313 V286 M455 313 V291 M483 313 V286 M511 314 V291 M555 378 H581 M555 405 H592 M555 432 H581 M555 459 H587 M426 508 V534 M454 508 V544 M482 508 V534 M509 508 V540" fill="none"/>
+</g>
+<g id="props" fill="none">
+<path id="neural-folds" d="M254 92 C238 114 263 117 250 136 M293 72 C279 89 298 107 285 119 M344 75 C367 88 344 103 362 116 M394 120 C375 128 404 144 394 160 M224 154 C247 151 232 177 249 186 M274 212 C288 193 281 181 271 180 M365 213 C350 197 364 186 375 189"/>
+<path id="tentacle-folds" d="M94 445 L108 435 M119 486 L132 469 M194 482 L190 464 M224 408 C235 394 228 376 221 368" stroke="#F2E9D6"/>
+<path id="circuit-traces" d="M405 350 H426 V369 M493 347 H522 V379 M526 435 V466 H495 M409 474 V449 H421" stroke="#F2E9D6"/>
+<g id="state-neural" transform="translate(320 159)">
+<circle r="42" fill="#F2E9D6"/><path d="M-18 13 L0 -18 L18 13 Z"/><circle cx="0" cy="-18" r="7" fill="#88B0A1"/><circle cx="-18" cy="13" r="7" fill="#88B0A1"/><circle cx="18" cy="13" r="7" fill="#88B0A1"/>
+</g>
+<g id="state-tentacular" transform="translate(169 380)">
+<circle r="42" fill="#F2E9D6"/><path d="M-18 13 L0 -18 L18 13 Z"/><circle cx="0" cy="-18" r="7" fill="#88B0A1"/><circle cx="-18" cy="13" r="7" fill="#88B0A1"/><circle cx="18" cy="13" r="7" fill="#88B0A1"/>
+</g>
+<g id="state-silicon" transform="translate(466 410)">
+<circle r="42" fill="#F2E9D6"/><path d="M-18 13 L0 -18 L18 13 Z"/><circle cx="0" cy="-18" r="7" fill="#88B0A1"/><circle cx="-18" cy="13" r="7" fill="#88B0A1"/><circle cx="18" cy="13" r="7" fill="#88B0A1"/>
+</g>
+</g>
+<g id="face">
+<path d="M287 282 Q319 266 353 282 L356 313 Q321 342 284 314 Z" fill="#F2E9D6"/>
+<ellipse cx="305" cy="298" rx="5" ry="8" fill="#2E4649" stroke="none"/><ellipse cx="336" cy="298" rx="5" ry="8" fill="#2E4649" stroke="none"/>
+<path d="M311 315 Q320 322 330 315" fill="none"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,44 @@
+<svg width="856" height="1138" xmlns="http://www.w3.org/2000/svg" viewBox="88.5 27.5 428 569" data-beast-id="cr-automating-inequality">
+<g stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path fill="#987B4F" d="M228 526L210 575H278L290 527M354 527L369 575H435L414 526"/>
+<path fill="#C8A268" d="M228 181L246 148V92L320 54L394 92V148L412 181L397 527H243Z"/>
+<path fill="#987B4F" d="M373 160L394 148L412 181L397 527H371Z"/>
+<path fill="#F2E9D6" d="M229 181L320 143L411 181L397 203H242Z"/>
+<path fill="none" d="M246 148L320 113L394 148M244 314H397M242 423H395"/>
+<path id="rooftop-probe" fill="#C8A268" d="M307 61V30H334V61"/>
+<path fill="#F2E9D6" d="M268 233H371V284H268ZM268 342H371V393H268ZM268 450H371V500H268Z"/>
+</g>
+<g id="face">
+<path fill="#F2E9D6" d="M264 111L305 95V117L266 128ZM335 95L376 111L374 128L335 117Z"/>
+<path id="slit-eye-left" fill="#2E4649" d="M288 103V120L296 117V100Z"/>
+<path id="slit-eye-right" fill="#2E4649" d="M344 100V117L352 120V103Z"/>
+<path fill="none" d="M309 132H332"/>
+</g>
+<g id="props">
+<g id="open-service">
+<path fill="#86AAA0" d="M279 245H359V273H279Z"/>
+<path fill="#F2E9D6" d="M290 269V255L319 244L347 255V269Z"/>
+<path fill="none" d="M308 269V258H328V269"/>
+</g>
+<g id="constricting-service">
+<path fill="#2E4649" d="M279 351H359V384H279Z"/>
+<path fill="#987B4F" d="M274 346H306L317 366L306 389H274ZM366 346H334L323 366L334 389H366Z"/>
+</g>
+<g id="closed-service">
+<path fill="#987B4F" d="M274 455H315V495H274ZM365 455H324V495H365Z"/>
+<path fill="none" d="M318 456V495"/>
+<path stroke="#B77660" d="M290 465L302 485M302 465L290 485M339 465L351 485M351 465L339 485"/>
+</g>
+<path id="control-spine" fill="none" d="M376 217H386V478H372M371 259H386M371 368H386"/>
+<path id="intake-arm" fill="#C8A268" d="M239 271L195 294L174 340L151 333L169 281L230 245Z"/>
+<path id="document-claw" fill="#C8A268" d="M174 339L162 357L135 350L125 328L138 318L145 338L155 334L151 317L164 313Z"/>
+<path id="application" fill="#F2E9D6" d="M91 346L131 338L149 396L109 405Z"/>
+<path fill="none" d="M106 360L128 355M111 375L133 369M117 388L137 382"/>
+<path id="rejection-arm" fill="#987B4F" d="M402 436L461 452L484 497L464 510L441 473L400 466Z"/>
+<path id="severed-application-top" fill="#F2E9D6" d="M460 518L470 487L514 500L506 523L495 516L487 527L478 519L469 530Z"/>
+<path id="severed-application-bottom" fill="#F2E9D6" d="M457 541L465 531L474 539L483 531L493 539L502 530L493 565L449 553Z"/>
+<path fill="none" stroke="#B77660" d="M458 574L452 587M489 582L493 594"/>
+</g>
+</g>
+</svg>

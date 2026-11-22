@@ -1,0 +1,22 @@
+<svg width="1016" height="902" xmlns="http://www.w3.org/2000/svg" viewBox="67.5 104.5 508 451" data-beast-id="cr-weapons-math-destruction" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="props">
+<g id="feedback-channel"><path d="M486 461H553V124H347V158" stroke="#2E4649" stroke-width="33"/><path d="M486 461H553V124H347V158" stroke="#987B4F" stroke-width="23"/><path d="m532 324 21-21 20 21M457 107l-19 17 19 17" stroke="#F2E9D6"/><path d="M524 420h22v22h-22zM535 375h22v22h-22z" fill="#B96E57"/></g>
+<g id="input-stream" fill="#F2E9D6"><path d="m97 154 25-6 6 25-25 6zM145 174l25-6 6 25-25 6zM111 211l25-6 6 25-25 6z"/><path d="m70 233 102 15 44-31v69l-44-19-102-15z" fill="#C8A268"/></g>
+<g id="unequal-results"><path d="M124 535h57v17h-57z" fill="#8FB59D"/><path d="M224 526h64v27h-64zM324 516h67v37h-67zM427 503h71v50h-71z" fill="#B96E57"/><path d="M232 539h48M332 530h51M332 542h51M435 517h55M435 531h55M435 543h55"/></g>
+</g>
+<g id="body">
+<path d="M173 172 467 160 506 194V446L468 473H173Z" fill="#987B4F"/>
+<path d="M173 172H467V447H173Z" fill="#C8A268"/>
+<path d="M467 172v275l39-1V194Z" fill="#987B4F"/>
+<path d="M191 303h257v116H191Z" fill="#2E4649"/>
+<path d="M206 321h224M206 339h224M206 357h224M206 375h224M206 393h224" stroke="#987B4F"/>
+<g id="multiplying-stamp-feet" fill="#C8A268"><path d="M194 447v54l-65 18h62l26-12v-60Z"/><path d="M255 447v50l-28 16h61v-66Z"/><path d="M332 447v43l-8 11h67l-26-17v-37Z"/><path d="M413 447v27l14 14h71l-48-29v-12Z"/></g>
+<g id="rivets" fill="#F2E9D6"><circle cx="187" cy="187" r="5"/><circle cx="452" cy="187" r="5"/><circle cx="187" cy="433" r="5"/><circle cx="452" cy="433" r="5"/></g>
+</g>
+<g id="face">
+<path id="objectivity-mask" d="M222 204h197v66H222Z" fill="#F2E9D6"/>
+<path d="M245 225h39M245 240h39M356 225h39M356 240h39"/>
+<path d="M308 249h25"/>
+<path d="M302 208v-17M339 208v-17"/>
+</g>
+</svg>

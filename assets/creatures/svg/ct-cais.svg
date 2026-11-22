@@ -1,0 +1,54 @@
+<svg width="1175" height="561" xmlns="http://www.w3.org/2000/svg" viewBox="23 178.5 587.5 280.5" data-beast-id="ct-cais" fill="none" stroke="#2E4649" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<g id="body">
+<path id="shared-conduit" d="M114 349 C217 386 371 384 519 334 L526 368 C389 429 200 424 102 383Z" fill="#987B4F"/>
+<path id="perception-organ" d="M58 289 C67 241 111 224 160 244 C190 256 210 289 207 328 C203 366 174 395 131 394 C80 394 43 352 58 289Z" fill="#C8A268"/>
+<path id="sorting-organ" d="M231 256 Q253 228 304 235 Q356 235 374 277 L370 355 Q361 397 309 402 Q250 399 232 362Z" fill="#C8A268"/>
+<path id="assembly-organ" d="M395 287 Q412 243 459 239 Q515 237 546 284 L556 340 Q535 394 481 397 Q421 391 398 355Z" fill="#C8A268"/>
+<path id="sensor-frill" d="M69 264 L51 219 L96 235 L104 197 L133 234 L164 207 L164 246" fill="#F2E9D6"/>
+<path id="sorting-frill" d="M253 239 L251 196 L274 184 L281 237 M302 234 L310 191 L333 201 L328 239" fill="#C8A268"/>
+<path id="assembly-frill" d="M440 244 Q434 199 454 181 L470 240 M484 241 L497 190 Q520 219 511 256" fill="#C8A268"/>
+<path id="left-foot" d="M107 393 L96 439 Q111 454 130 440 L141 394" fill="#C8A268"/>
+<path id="middle-foot" d="M283 399 L272 448 Q292 466 311 446 L319 400" fill="#C8A268"/>
+<path id="right-foot" d="M468 396 L485 439 Q509 449 517 427 L502 391" fill="#C8A268"/>
+<g id="bounded-couplings" fill="#A5C5C3">
+<path d="M202 294 L234 294 L234 346 L204 346Z"/>
+<path d="M371 294 L397 294 L403 346 L371 346Z"/>
+</g>
+<g id="task-valves" fill="#F2E9D6">
+<rect x="212" y="285" width="13" height="69" rx="6"/>
+<rect x="378" y="285" width="13" height="69" rx="6"/>
+</g>
+</g>
+<g id="face">
+<path id="reading-eye" d="M72 305 Q132 251 189 306 Q134 360 72 305Z" fill="#F2E9D6"/>
+<ellipse cx="132" cy="305" rx="17" ry="25" fill="#2E4649" stroke="none"/>
+<ellipse cx="126" cy="296" rx="5" ry="7" fill="#F2E9D6" stroke="none"/>
+<path d="M115 363 Q132 374 148 362"/>
+<path id="sorting-expression" d="M278 370 Q288 360 298 370 M320 370 Q330 360 340 370"/>
+<path id="assembly-expression" d="M454 367 Q465 378 477 367"/>
+</g>
+<g id="props">
+<g id="bounded-sorter">
+<path d="M255 274 L348 274 L348 347 L255 347Z" fill="#F2E9D6"/>
+<path d="M279 275 L279 346 M322 275 L322 346"/>
+<circle cx="267" cy="292" r="6" fill="#A5C5C3" stroke-width="3"/>
+<path d="M292 295 L302 282 L312 295Z" fill="#C8A268" stroke-width="3"/>
+<rect x="330" y="285" width="12" height="12" rx="2" fill="#A5C5C3" stroke-width="3"/>
+<circle cx="267" cy="330" r="6" fill="#A5C5C3" stroke-width="3"/>
+<path d="M292 333 L302 320 L312 333Z" fill="#C8A268" stroke-width="3"/>
+<rect x="330" y="323" width="12" height="12" rx="2" fill="#A5C5C3" stroke-width="3"/>
+</g>
+<g id="assembly-folds">
+<path d="M416 289 L443 271 L471 289 L496 273 L517 295 L495 313 L468 300 L445 316Z" fill="#F2E9D6"/>
+<path d="M419 338 L442 316 L468 331 L495 315 L520 336 L497 355 L471 345 L447 359Z" fill="#A5C5C3"/>
+<path d="M443 271 L445 316 M471 289 L468 300 M442 316 L447 359 M495 315 L497 355"/>
+</g>
+<g id="finite-output">
+<path d="M542 303 L573 291 L585 316 L558 333Z" fill="#987B4F"/>
+<path d="M565 277 L591 277 L591 297 L608 297 L608 325 L583 325 L583 305 L565 305Z" fill="#F2E9D6"/>
+</g>
+<g id="input-signals" stroke-width="4">
+<path d="M28 290 L42 290 M25 312 L40 312 M29 334 L43 334"/>
+</g>
+</g>
+</svg>
