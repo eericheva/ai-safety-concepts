@@ -10,25 +10,30 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&amp;family=Onest:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
-<style>html,body{margin:0;height:100%;background:#0c0b0a;overflow:hidden}a{color:#d8a24a;text-decoration:none}a:hover{color:#efeae2}</style>
+<style>html,body{margin:0;height:100%;background:#0c0b0a;overflow:hidden}a{color:#d8a24a;text-decoration:none}a:hover{color:#efeae2}
+/* CHANGED 2026-11-22: design review: keyboard focus shows the brand ring, not the browser default */
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a24a;outline-offset:2px}</style>
 </helmet>
 <div ref="{{ wrapRef }}" style="position:relative;width:100%;height:100vh;min-height:560px;overflow:hidden;background:#0c0b0a;color:#efeae2;font-family:'Onest',sans-serif">
   <canvas ref="{{ cvRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:{{ cursor }}"></canvas>
 
   <!-- ADDED 2026-11-22: one top row holds the title, the modes, ? and what the mode does; the left panel is left to the wandering and the expedition (owner) -->
   <!-- CHANGED 2026-11-22: the top bar is a toolbar, 56px high (brand book sizes) -->
-  <div style="position:absolute;left:16px;right:16px;top:12px;height:56px;display:flex;align-items:center;gap:12px;background:#11100e;border:1px solid #2e2b28;border-top:3px solid #d8a24a;padding:0 6px 0 14px;box-sizing:border-box;overflow:hidden">
+  <!-- CHANGED 2026-11-22: design review: top edge 4px as on every panel; text starts 16px in, on the left panel's text line; below 700px
+       the title and ? take the first row and the modes the second, so every control is in reach (the bar is 109px there, see BAR) -->
+  <div style="position:absolute;left:16px;right:16px;top:12px;height:{{ barBoxH }}px;display:flex;flex-wrap:{{ barWrap }};align-items:center;align-content:center;gap:8px 12px;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:0 6px 0 16px;box-sizing:border-box;overflow:hidden">
     <h1 style="margin:0;flex:none;font:700 16px/1 'Unbounded',sans-serif;color:#efeae2;white-space:nowrap">Bestiarium Map</h1>
     <!-- CHANGED 2026-11-22: modes are switches, 40px, one shared width (brand book sizes) -->
-    <div style="display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;flex:none">
+    <div style="display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;flex:{{ modesFlex }};order:{{ modesOrder }}">
       <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3">
         <button onClick="{{ m.go }}" style="height:40px;padding:0 12px;border:1px solid {{ m.bd }};background:{{ m.bg }};color:{{ m.fg }};font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
       </sc-for>
     </div>
     <!-- CHANGED 2026-11-22: the expedition's rules stand in the top row next to the modes while Expedition is on; the mode line went back to the left panel (owner) -->
-    <sc-if value="{{ questOn }}" hint-placeholder-val="{{ false }}">
+    <!-- CHANGED 2026-11-22: design review: from 1100px only; below, the rules stand at the head of the expedition in the left panel -->
+    <sc-if value="{{ rulesBar }}" hint-placeholder-val="{{ false }}">
     <div style="display:flex;align-items:center;gap:4px;flex:1 1 auto;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e">
-      <span title="Click a rule to start a new expedition along it" style="flex:none;padding:0 6px 0 4px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b;white-space:nowrap;display:{{ ruleLbl }}">New expedition along</span>
+      <span title="Click a rule to start a new expedition along it" style="flex:none;padding:0 6px 0 4px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b;white-space:nowrap">New expedition along</span>
       <!-- CHANGED 2026-11-22: rules are switches, 40px, one shared width (brand book sizes) -->
       <div style="display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;flex:none">
       <sc-for list="{{ rules }}" as="ru" hint-placeholder-count="4">
@@ -41,34 +46,51 @@
     <button onClick="{{ openIntro }}" title="How this world works" style="margin-left:auto;width:40px;height:40px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">?</button>
   </div>
   <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
-  <div style="position:absolute;left:16px;top:{{ barH }}px;bottom:16px;width:310px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:16px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
+  <!-- CHANGED 2026-11-22: design review: the foot rises above the Chronicle bar where the bar cannot stand beside the panel (leftB) -->
+  <div style="position:absolute;left:16px;top:{{ barH }}px;bottom:{{ leftB }}px;width:310px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:16px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
     <div ref="{{ leftRef }}" style="flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;gap:12px">
+    <!-- ADDED 2026-11-22: design review: below 1100px the expedition's rules are a row of four 40px switches here, not a cut-off
+         row in the top bar; their labels are the rules' short names, the full name is in the title -->
+    <sc-if value="{{ rulesPanel }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b;white-space:nowrap">New expedition along</span>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
+        <sc-for list="{{ rules }}" as="ru" hint-placeholder-count="4">
+          <button onClick="{{ ru.go }}" title="{{ ru.label }} · {{ ru.tip }}" style="height:40px;padding:0 4px;border:1px solid #4a4540;background:{{ ru.bg }};color:{{ ru.fg }};font:700 10px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap">{{ ru.short }}</button>
+        </sc-for>
+        </div>
+      </div>
+    </sc-if>
     <sc-if value="{{ questOn }}" hint-placeholder-val="{{ false }}">
       <div style="display:flex;flex-direction:column;gap:10px;background:#171513;border:1px solid #2e2b28;padding:12px">
         <span style="font:400 12.5px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">Find a path from the start to the flag. {{ qRuleText }} Click a neighbour once to read about it, click it a second time (or press Step) to move there. Fewest hops wins.</span>
         <!-- CHANGED 2026-11-22: the start and the flag are written as every beast on this page is, as in the beast's card: family in its island's colour, name, role, weight and era (owner) -->
+        <!-- CHANGED 2026-11-22: design review: one heading form for the start, the flag, the peek and the card: name 18/1.2, tags 10px 3/8;
+             the family stays 10.5px here, at 11px the two longest families wrap in this 250px box -->
         <div style="display:flex;flex-direction:column;gap:5px">
           <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Start</span>
           <span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ qsFamCol }}">{{ qsFam }}</span>
-          <span style="font:700 15px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ qsName }}</span>
-          <span style="display:flex;gap:5px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:5px;font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px"><i style="width:7px;height:7px;background:{{ qsRoleCol }}"></i>{{ qsRole }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ qsW }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ qsEra }}</span></span>
+          <span style="font:700 18px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ qsName }}</span>
+          <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:6px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px"><i style="width:8px;height:8px;background:{{ qsRoleCol }}"></i>{{ qsRole }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ qsW }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ qsEra }}</span></span>
         </div>
         <div style="display:flex;flex-direction:column;gap:5px;border-top:1px solid #2e2b28;padding-top:10px">
           <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a">Flag</span>
           <span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ qtFamCol }}">{{ qtFam }}</span>
-          <span style="font:700 17px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ qtName }}</span>
-          <span style="display:flex;gap:5px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:5px;font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px"><i style="width:7px;height:7px;background:{{ qtRoleCol }}"></i>{{ qtRole }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ qtW }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ qtEra }}</span></span>
+          <span style="font:700 18px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ qtName }}</span>
+          <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:6px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px"><i style="width:8px;height:8px;background:{{ qtRoleCol }}"></i>{{ qtRole }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ qtW }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ qtEra }}</span></span>
           <span style="font:400 13px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ qFlagBlurb }}</span>
           <span style="font:400 12px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty"><b style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Flag's neighbours: </b>{{ qFlagNb }}</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #2e2b28;padding-top:10px">
+        <!-- CHANGED 2026-11-22: design review: "N hops away" at 18px over its trend, the two counters on one row under them, each on one
+             line (side by side the three did not fit this 250px box and the counters broke in two) -->
+        <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #2e2b28;padding-top:10px">
           <div style="display:flex;flex-direction:column;gap:2px">
-            <span style="font:900 22px/1 'Unbounded',sans-serif;color:{{ qTrendCol }}">{{ qAway }}</span>
+            <span style="font:900 18px/1 'Unbounded',sans-serif;color:{{ qTrendCol }};white-space:nowrap">{{ qAway }}</span>
             <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:{{ qTrendCol }}">{{ qTrend }}</span>
           </div>
-          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
-            <span style="font:400 12px 'JetBrains Mono',monospace;color:#efeae2">hops made: {{ qHops }}</span>
-            <span style="font:400 12px 'JetBrains Mono',monospace;color:#9a948b">best possible: {{ qBest }}</span>
+          <div style="display:flex;justify-content:space-between;gap:10px">
+            <span style="font:400 12px 'JetBrains Mono',monospace;color:#efeae2;white-space:nowrap">hops made: {{ qHops }}</span>
+            <span style="font:400 12px 'JetBrains Mono',monospace;color:#9a948b;white-space:nowrap">best possible: {{ qBest }}</span>
           </div>
         </div>
         <sc-if value="{{ wonResult }}" hint-placeholder-val="{{ false }}">
@@ -103,9 +125,11 @@
       <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;border:1px solid #2e2b28;background:#171513">
           <sc-for list="{{ results }}" as="r" hint-placeholder-count="0">
-            <button onClick="{{ r.go }}" style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:8px 12px;background:transparent;border:0;border-bottom:1px solid #26231f;color:#efeae2;text-align:left;cursor:pointer" style-hover="background:#26231f">
-              <span style="font:500 13.5px 'Onest',sans-serif">{{ r.name }}</span>
-              <span style="font:400 11px 'JetBrains Mono',monospace;color:#9a948b;white-space:nowrap">{{ r.sub }}</span>
+            <!-- CHANGED 2026-11-22: design review: a result is written as a row of the card: name, then its island in the island's colour;
+                 the hover is #1e1c19, where every family colour keeps 4.5:1 -->
+            <button onClick="{{ r.go }}" style="display:flex;flex-direction:column;gap:2px;padding:7px 12px;background:transparent;border:0;border-bottom:1px solid #26231f;color:#efeae2;text-align:left;cursor:pointer" style-hover="background:#1e1c19">
+              <span style="font:500 14px/1.3 'Onest',sans-serif">{{ r.name }}</span>
+              <span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ r.famCol }}">{{ r.fam }}</span>
             </button>
           </sc-for>
         </div>
@@ -113,14 +137,18 @@
     </div>
     </sc-if>
     </sc-if>
+    <!-- ADDED 2026-11-22: design review: where the two side panels do not fit side by side, the islands panel opens from here
+         and takes this panel's place until it is closed, instead of covering it -->
+    <sc-if value="{{ isOpener }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleIs }}" style="flex:none;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:44px;padding:0 12px;background:transparent;border:1px solid #4a4540;color:#d8a24a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;text-align:left;cursor:pointer"><span>Islands = {{ grpTitle }}</span><span style="color:#9a948b">+</span></button>
+    </sc-if>
     <sc-if value="{{ wOn }}" hint-placeholder-val="{{ false }}">
       <div style="flex:1 1 auto;min-height:220px;display:flex;flex-direction:column;gap:0;background:#171513;border:1px solid #2e2b28;padding:10px 12px">
         <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:4px">
           <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Your wanderings</span>
           <span style="font:400 11px 'JetBrains Mono',monospace;color:#9a948b">{{ wCount }}</span>
         </div>
-        <div style="flex:1 1 0;min-height:0;display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#4a4540 #171513">
-          <sc-if value="{{ wEmpty }}" hint-placeholder-val="{{ false }}"><span style="font:400 12.5px/1.45 'Onest',sans-serif;color:#9a948b;padding:6px 0">No stops yet. Click any beast to start your trail.</span></sc-if>
+        <div style="flex:1 1 0;min-height:0;display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#4a4540 #171513">          <sc-if value="{{ wEmpty }}" hint-placeholder-val="{{ false }}"><span style="font:400 12.5px/1.45 'Onest',sans-serif;color:#9a948b;padding:6px 0">No stops yet. Click any beast to start your trail.</span></sc-if>
           <sc-for list="{{ wSteps }}" as="ws" hint-placeholder-count="0">
             <button onClick="{{ ws.go }}" title="Go back to this beast" style="display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:7px 6px;background:{{ ws.bg }};border:0;color:#efeae2;text-align:left;cursor:pointer" style-hover="background:#1e1c19">
               <span style="min-width:20px;height:17px;margin-top:1px;box-sizing:border-box;border:1px solid {{ ws.col }};display:flex;align-items:center;justify-content:center;font:700 10px 'JetBrains Mono',monospace;color:#efeae2">{{ ws.n }}</span>
@@ -133,7 +161,7 @@
         </div>
         <!-- CHANGED 2026-11-22: Back and Clear trail are actions, 44px (brand book sizes) -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;padding-top:8px">
-          <button onClick="{{ wBack }}" title="Step back to where you were" style="min-height:44px;border:1px solid #4a4540;background:transparent;color:#efeae2;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:{{ wBackOp }}">← Back</button>
+          <button onClick="{{ wBack }}" title="Step back to where you were" style="min-height:44px;border:1px solid #4a4540;background:transparent;color:#efeae2;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:{{ wBackOp }}">← Back</button><!-- CHANGED 2026-11-22: design review: disabled at .55, see wBackOp -->
           <button onClick="{{ wClear }}" title="Forget this trail" style="min-height:44px;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Clear trail</button>
         </div>
       </div>
@@ -155,19 +183,21 @@
 
 
   <sc-if value="{{ hasFocus }}" hint-placeholder-val="{{ false }}">
-    <div style="position:absolute;right:16px;top:{{ barH }}px;bottom:16px;width:350px;max-width:calc(100% - 32px);background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;box-sizing:border-box">
+    <!-- CHANGED 2026-11-22: design review: the card opens at its top on every new beast or neighbour (cardRef); up to 900px it stands
+         above the lines legend instead of under it (cardB); inner padding 16 -->
+    <div ref="{{ cardRef }}" style="position:absolute;right:16px;top:{{ barH }}px;bottom:{{ cardB }}px;width:350px;max-width:calc(100% - 32px);background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;box-sizing:border-box">
       <sc-if value="{{ peeking }}" hint-placeholder-val="{{ false }}">
         <!-- CHANGED 2026-11-22: back to the host beast is an action, 44px (brand book sizes) -->
-        <button onClick="{{ backHost }}" style="display:flex;align-items:center;gap:8px;min-height:44px;flex:none;padding:9px 18px;background:#171513;border:0;border-bottom:1px solid #26231f;color:#cfc8bd;text-align:left;cursor:pointer;font:400 12.5px/1.3 'Onest',sans-serif" style-hover="color:#efeae2">
+        <button onClick="{{ backHost }}" style="display:flex;align-items:center;gap:8px;min-height:44px;flex:none;padding:9px 16px;background:#171513;border:0;border-bottom:1px solid #26231f;color:#cfc8bd;text-align:left;cursor:pointer;font:400 12.5px/1.3 'Onest',sans-serif" style-hover="color:#efeae2">
           <span style="font:700 12px 'JetBrains Mono',monospace;color:#d8a24a">←</span><span>Visiting <b style="color:#efeae2">{{ hostName }}</b> · you are looking at a neighbour</span>
         </button>
       </sc-if>
-      <div style="padding:16px 18px 14px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid #26231f;flex:none;box-sizing:border-box">
+      <div style="padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid #26231f;flex:none;box-sizing:border-box">
         <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
           <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ fFamCol }}">{{ fFam }}</span>
           <button onClick="{{ close }}" style="width:28px;height:28px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">×</button>
         </div>
-        <span style="font:700 21px/1.18 'Unbounded',sans-serif;text-wrap:pretty">{{ fName }}</span>
+        <span style="font:700 18px/1.2 'Unbounded',sans-serif;text-wrap:pretty">{{ fName }}</span><!-- CHANGED 2026-11-22: design review: the heading form, 18/1.2 (was 21) -->
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           <span style="display:flex;align-items:center;gap:6px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px"><i style="width:8px;height:8px;background:{{ fRoleCol }}"></i>{{ fRole }}</span>
           <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ fWeight }}</span>
@@ -185,7 +215,7 @@
           </div>
         </div>
       </div>
-      <div style="flex:none;padding:6px 18px 18px;display:flex;flex-direction:column;gap:16px">
+      <div style="flex:none;padding:6px 16px 16px;display:flex;flex-direction:column;gap:16px">
         <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="3">
           <div style="display:flex;flex-direction:column;gap:2px">
             <div style="display:flex;align-items:center;gap:10px;padding:12px 0 6px">
@@ -213,7 +243,7 @@
       <!-- ADDED 2026-11-22: both colourings at the foot of the beast card in Wander and Chronicle; none in the expedition,
            which keeps the colours chosen before it (owner) -->
       <sc-if value="{{ colInCard }}" hint-placeholder-val="{{ false }}">
-      <div style="position:sticky;bottom:0;margin-top:auto;flex:none;display:flex;flex-direction:column;gap:8px;padding:12px 18px;background:#11100e;border-top:1px solid #2e2b28">
+      <div style="position:sticky;bottom:0;margin-top:auto;flex:none;display:flex;flex-direction:column;gap:8px;padding:12px 16px;background:#11100e;border-top:1px solid #2e2b28">
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center;">
           <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Islands by</span>
           <sc-for list="{{ grps }}" as="gp" hint-placeholder-count="4">
@@ -238,9 +268,11 @@
     </div>
   </sc-if>
 
-  <div style="position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;align-items:center;max-width:calc(100% - 32px)">
+  <!-- CHANGED 2026-11-22: design review: the Chronicle bar stands between the side panels as the legend does, 16px from each; where
+       that leaves it under 480px it takes the whole width and the left panel rises above it (chronFull) -->
+  <div style="position:absolute;left:{{ chL }}px;right:{{ chR }}px;bottom:16px;display:flex;flex-direction:column;gap:8px;align-items:center">
     <sc-if value="{{ chronOn }}" hint-placeholder-val="{{ false }}">
-      <div style="display:flex;align-items:center;gap:16px;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:12px 16px;width:min(640px,calc(100vw - 32px));box-sizing:border-box">
+      <div ref="{{ chronRef }}" style="display:flex;align-items:center;gap:16px;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:12px 16px;width:min(640px,100%);box-sizing:border-box">
         <button onClick="{{ togglePlay }}" style="width:44px;height:44px;flex:none;background:#d8a24a;border:0;color:#0c0b0a;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">{{ playLabel }}</button>
         <div style="flex:1;display:flex;flex-direction:column;gap:6px;min-width:0">
           <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
@@ -254,7 +286,7 @@
   </div>
 
     <sc-if value="{{ legendOn }}" hint-placeholder-val="{{ false }}">
-    <div style="position:absolute;left:{{ legL }}px;bottom:16px;display:flex;flex-direction:column;gap:6px;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:10px 10px 8px;width:{{ legW }}px;box-sizing:border-box">
+    <div ref="{{ legRef }}" style="position:absolute;left:{{ legL }}px;bottom:16px;display:flex;flex-direction:column;gap:6px;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:10px 10px 8px;width:{{ legW }}px;box-sizing:border-box">
       <!-- CHANGED 2026-11-22: Show all links is an action, 44px (brand book sizes) -->
       <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:0 4px"><span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#cfc8bd">How to read the lines · hover to light up, click to hide</span><sc-if value="{{ anyOff }}" hint-placeholder-val="{{ false }}"><button onClick="{{ showAll }}" style="min-height:44px;padding:0 10px;background:#d8a24a;border:0;color:#0c0b0a;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Show all links</button></sc-if></div>
       <!-- CHANGED 2026-11-22: one row of link kinds across the whole width between the side panels, never two rows; when it
@@ -262,7 +294,7 @@
       <div style="display:flex;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e">
       <sc-for list="{{ legend }}" as="g" hint-placeholder-count="4">
         <button onClick="{{ g.toggle }}" onMouseEnter="{{ g.enter }}" onMouseLeave="{{ g.leave }}" title="{{ g.tip }}" style="flex:1 0 {{ legCardW }}px;display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:8px 10px;background:transparent;border:1px solid #26231f;cursor:pointer;text-align:left;opacity:{{ g.op }}" style-hover="border-color:#4a4540;background:#171513">
-          <span style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:0;border-top:{{ g.line }}"></span><span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ g.col }}">{{ g.name }}</span></span>
+          <span style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:0;border-top:{{ g.line }}"></span><span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ g.col }};white-space:nowrap">{{ g.name }}</span></span><!-- CHANGED 2026-11-22: design review: a link kind's name on one line -->
           <sc-if value="{{ legFull }}" hint-placeholder-val="{{ true }}"><span style="font:400 12px/1.35 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ g.verb }}</span></sc-if>
         </button>
       </sc-for>
@@ -271,8 +303,9 @@
     </sc-if>
 
   <sc-if value="{{ islandsOn }}" hint-placeholder-val="{{ false }}">
-    <div style="position:absolute;right:16px;top:{{ barH }}px;bottom:{{ isB }};width:330px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;box-sizing:border-box">
-      <button onClick="{{ toggleIs }}" style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:12px 14px;background:transparent;border:0;color:#efeae2;text-align:left;cursor:pointer">
+    <!-- CHANGED 2026-11-22: design review: inner padding 16; 350px wide, as the beast card (was 330) -->
+    <div style="position:absolute;right:16px;top:{{ barH }}px;bottom:{{ isB }};width:350px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;display:flex;flex-direction:column;box-sizing:border-box">
+      <button onClick="{{ toggleIs }}" style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:12px 16px;background:transparent;border:0;color:#efeae2;text-align:left;cursor:pointer">
         <span style="display:flex;flex-direction:column;gap:4px">
           <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#d8a24a">Islands = {{ grpTitle }}</span>
           <span style="font:400 12.5px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ grpNote }} Neighbouring islands are joined by bridges; far ones by ship or plane.</span>
@@ -282,7 +315,7 @@
       <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}">
         <div style="flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;border-top:1px solid #26231f">
           <sc-for list="{{ islands }}" as="il" hint-placeholder-count="13">
-            <button onClick="{{ il.go }}" onMouseEnter="{{ il.enter }}" onMouseLeave="{{ il.leave }}" style="display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:start;padding:7px 14px;background:transparent;border:0;border-bottom:1px solid #1f1d1a;color:#efeae2;text-align:left;cursor:pointer" style-hover="background:#1e1c19">
+            <button onClick="{{ il.go }}" onMouseEnter="{{ il.enter }}" onMouseLeave="{{ il.leave }}" style="display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:start;padding:7px 16px;background:transparent;border:0;border-bottom:1px solid #1f1d1a;color:#efeae2;text-align:left;cursor:pointer" style-hover="background:#1e1c19">
               <i style="width:12px;height:12px;margin-top:2px;background:{{ il.col }}"></i>
               <span style="display:flex;flex-direction:column;gap:1px">
                 <span style="font:700 12.5px/1.3 'Onest',sans-serif">{{ il.name }}</span>
@@ -293,7 +326,7 @@
           </sc-for>
         </div>
       </sc-if>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center;flex:none;padding:12px 14px;border-top:1px solid #2e2b28">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center;flex:none;padding:12px 16px;border-top:1px solid #2e2b28">
         <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Islands by</span>
         <sc-for list="{{ grps }}" as="gp" hint-placeholder-count="4">
           <!-- CHANGED 2026-11-22: colourings are switches, 40px (brand book sizes) -->
@@ -301,7 +334,7 @@
         </sc-for>
       </div>
       <!-- ADDED 2026-11-22: the beasts' colouring, next to the islands' (owner) -->
-      <div style="flex:none;display:flex;flex-direction:column;gap:8px;padding:0 14px 12px">
+      <div style="flex:none;display:flex;flex-direction:column;gap:8px;padding:0 16px 12px">
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-items:center">
         <span style="grid-column:1 / -1;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b">Beasts by</span>
         <sc-for list="{{ cbs }}" as="cb" hint-placeholder-count="4">
@@ -322,9 +355,10 @@
     <div style="position:absolute;bottom:16px;left:{{ pkL }}px;width:{{ pkW }}px;max-height:200px;overflow:auto;background:#11100e;border:1px solid #2e2b28;border-top:4px solid {{ pkFamCol }};padding:12px 14px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box;z-index:3">
       <span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Look before you step</span>
       <!-- CHANGED 2026-11-22: written as the beast's card is (owner) -->
-      <span style="font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ pkFamCol }}">{{ pkFam }}</span>
+      <!-- CHANGED 2026-11-22: design review: the heading form, family 11px, tags 10px 3/8 -->
+      <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ pkFamCol }}">{{ pkFam }}</span>
       <span style="font:700 18px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ pkName }}</span>
-      <span style="display:flex;gap:5px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:5px;font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px"><i style="width:7px;height:7px;background:{{ pkRoleCol }}"></i>{{ pkRole }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ pkW }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:2px 7px">{{ pkEra }}</span></span>
+      <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:6px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px"><i style="width:8px;height:8px;background:{{ pkRoleCol }}"></i>{{ pkRole }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ pkW }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ pkEra }}</span></span>
       <p style="margin:0;font:400 13px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ pkBlurb }}</p>
       <div style="display:flex;flex-direction:column;gap:3px;background:#171513;border:1px solid #26231f;padding:8px 10px">
         <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:{{ pkRelCol }}">The road · {{ pkRelTag }}</span>
@@ -340,7 +374,7 @@
 
   <sc-if value="{{ introOn }}" hint-placeholder-val="{{ false }}">
     <div style="position:absolute;inset:0;background:rgba(12,11,10,.8);display:flex;align-items:center;justify-content:center;padding:20px;z-index:5">
-      <div style="width:min(880px,100%);max-height:100%;overflow:auto;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:26px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box">
+      <div style="width:min(880px,100%);max-height:100%;overflow:auto;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:24px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box"><!-- CHANGED 2026-11-22: design review: overlays 24 -->
         <div style="display:flex;flex-direction:column;gap:6px">
           <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d8a24a">How this world works</span>
           <span style="font:700 26px/1.15 'Unbounded',sans-serif">227 ideas live here as <span style="color:#d8a24a">beasts</span></span>
@@ -363,6 +397,8 @@
     <div style="position:absolute;left:{{ hx }}px;top:{{ hy }}px;transform:translate(16px,16px);pointer-events:none;background:#171513;border:1px solid #2e2b28;padding:9px 12px;display:flex;flex-direction:column;gap:3px;max-width:300px">
       <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ hCol }}">{{ hTag }}</span>
       <span style="font:700 14px/1.25 'Unbounded',sans-serif">{{ hTitle }}</span>
+      <!-- ADDED 2026-11-22: design review: a beast's role, weight and era are the card's tags -->
+      <sc-if value="{{ hHasTags }}" hint-placeholder-val="{{ false }}"><span style="display:flex;gap:6px;flex-wrap:wrap;padding:2px 0;white-space:nowrap"><span style="display:flex;align-items:center;gap:6px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px"><i style="width:8px;height:8px;background:{{ hRoleCol }}"></i>{{ hRole }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ hW }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ hEra }}</span></span></sc-if>
       <span style="font:400 12.5px/1.4 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ hSub }}</span>
     </div>
   </sc-if>
@@ -377,29 +413,37 @@
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d8a24a">Expedition report</span>
         <span style="font:700 24px/1.15 'Unbounded',sans-serif">{{ rGrade }}</span>
         <span style="font:400 15px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ rLine }}</span>
+        <!-- CHANGED 2026-11-22: design review: the start is written in the heading form, once for both routes; a step is a row of the
+             beast's card: number box, name, how it is linked to the beast before it, its island in the island's colour -->
+        <div style="display:flex;flex-direction:column;gap:5px;border-top:1px solid #2e2b28;padding-top:12px">
+          <span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">Start</span>
+          <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ rsFamCol }}">{{ rsFam }}</span>
+          <span style="font:700 18px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ rsName }}</span>
+          <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:6px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px"><i style="width:8px;height:8px;background:{{ rsRoleCol }}"></i>{{ rsRole }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ rsW }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ rsEra }}</span></span>
+        </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
           <sc-if value="{{ rHasMine }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column">
-            <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">Your route · start: {{ rStart }}</span>
+            <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">Your route</span>
             <sc-for list="{{ rMineSteps }}" as="ms" hint-placeholder-count="0">
-              <div style="display:grid;grid-template-columns:18px 1fr;gap:8px;padding:5px 0;border-bottom:1px solid #1f1d1a">
-                <span style="font:700 11px 'JetBrains Mono',monospace;color:#d8a24a">{{ ms.n }}</span>
-                <span style="display:flex;flex-direction:column;gap:1px">
-                  <span style="font:400 11px/1.3 'JetBrains Mono',monospace;color:{{ ms.col }}">{{ ms.rel }}</span>
-                  <span style="font:500 13px/1.3 'Onest',sans-serif;color:#efeae2">{{ ms.name }}</span>
+              <div style="display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:7px 0;border-bottom:1px solid #1f1d1a">
+                <span style="min-width:20px;height:17px;margin-top:1px;box-sizing:border-box;border:1px solid {{ ms.col }};display:flex;align-items:center;justify-content:center;font:700 10px 'JetBrains Mono',monospace;color:#efeae2">{{ ms.n }}</span>
+                <span style="display:flex;flex-direction:column;gap:2px">
+                  <span style="font:500 14px/1.3 'Onest',sans-serif;color:#efeae2">{{ ms.name }}</span>
+                  <span style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><span style="font:400 12px/1.35 'Onest',sans-serif;color:#9a948b">{{ ms.rel }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ ms.famCol }}">{{ ms.fam }}</span></span>
                 </span>
               </div>
             </sc-for>
           </div>
           </sc-if>
           <div style="display:flex;flex-direction:column">
-            <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">A shortest route · start: {{ rStart }}</span>
+            <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">A shortest route</span>
             <sc-for list="{{ rShortSteps }}" as="ss" hint-placeholder-count="0">
-              <div style="display:grid;grid-template-columns:18px 1fr;gap:8px;padding:5px 0;border-bottom:1px solid #1f1d1a">
-                <span style="font:700 11px 'JetBrains Mono',monospace;color:#d8a24a">{{ ss.n }}</span>
-                <span style="display:flex;flex-direction:column;gap:1px">
-                  <span style="font:400 11px/1.3 'JetBrains Mono',monospace;color:{{ ss.col }}">{{ ss.rel }}</span>
-                  <span style="font:500 13px/1.3 'Onest',sans-serif;color:#efeae2">{{ ss.name }}</span>
+              <div style="display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:7px 0;border-bottom:1px solid #1f1d1a">
+                <span style="min-width:20px;height:17px;margin-top:1px;box-sizing:border-box;border:1px solid {{ ss.col }};display:flex;align-items:center;justify-content:center;font:700 10px 'JetBrains Mono',monospace;color:#efeae2">{{ ss.n }}</span>
+                <span style="display:flex;flex-direction:column;gap:2px">
+                  <span style="font:500 14px/1.3 'Onest',sans-serif;color:#efeae2">{{ ss.name }}</span>
+                  <span style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><span style="font:400 12px/1.35 'Onest',sans-serif;color:#9a948b">{{ ss.rel }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ ss.famCol }}">{{ ss.fam }}</span></span>
                 </span>
               </div>
             </sc-for>
@@ -431,6 +475,7 @@ const ERAK=['E0','E1','E2','E3','E4','E5','E6'];
 const ROLE={'провал':['Failure mode','red','#ff4a63'],'решение':['Solution','green','#2fcc71'],'тезис':['Thesis','yellow','#ffb800'],'критика':['Critique','dark','#6b5845'],'линза':['Lens','blue','#45d7e5'],'механизм':['Mechanism','white','#e8e6e6'],'эмпирика':['Evidence','white','#e8e6e6'],'метафора':['Metaphor','white','#e8e6e6']};
 const G={A:{name:'Roots',verb:'logic: premise → conclusion',col:'#f2c200',line:'2px solid #f2c200'},B:{name:'Currents',verb:'cause → effect',col:'#3fc1b0',line:'2px dashed #3fc1b0'},C:{name:'Duels',verb:'debate & critique',col:'#ff6b5e',line:'2px solid #ff6b5e'},D:{name:'Kin',verb:'analogy, shared theme',col:'#a58cff',line:'2px dotted #a58cff'},E:{name:'Lineage',verb:'history: older → newer',col:'#c49a6c',line:'3px dotted #c49a6c'},F:{name:'Bridges',verb:'between canons',col:'#7ad13a',line:'3px double #7ad13a'}};
 const GEXP={A:'Logic. Beads flow from a premise to the idea that follows from it.',B:'Cause and effect. Dashes run from a cause to what it gives rise to, worsens or mitigates.',C:'Debate. A crackling zigzag: the two ideas critique, contradict or rival each other.',D:'Kinship. Dots, no direction: an analogy, a shared theme or the same mechanism.',E:'History. Paw prints walk from the older idea to the newer one that grew out of it.',F:'A bridge between the technical canon and the humanities canon.'};
+const RSHORT={any:'Any',A:'Logic',B:'Cause',E:'Time'}; /* ADDED 2026-11-22: design review: the rules' names in the left panel's four switches */
 const RULES={any:['Any link','Hop along any meaningful link (loose “shares a theme” links don’t count).'],A:['Logic chain','Follow Roots only: premise → conclusion.'],B:['Cause chain','Follow Currents only: cause → effect, problem → remedy.'],E:['Through time','Follow Lineage only: an older idea → the idea that grew from it.']};
 const KL={'напряжение':'is in tension with','тематически':'shares a theme with','специализация':'is a special case of','аналогия':'is an analogy for','иллюстрирует':'illustrates','вытекает':'follows from','исторически-предшествует':'came before','часть':'is part of','порождает':'gives rise to','развивает':'develops','смягчает':'mitigates','тот-же-механизм':'shares a mechanism with','критикует':'critiques','одна-школа':'is from the same school as','демонстрирует':'demonstrates','измеряется':'is measured by','предпосылка':'is a premise of','усугубляет':'worsens','альтернатива':'is an alternative to','мотивирует':'motivates','операционализирует':'operationalizes','решает':'solves','противоречит':'contradicts','контрпример':'is a counterexample to','дуал':'is the dual of','мост-канонов':'bridges canons with','переименование':'was renamed as'};
 const REV=new Set(['вытекает','специализация','часть','развивает']);
@@ -439,7 +484,7 @@ const SIDE_L={left:'COMES FROM',right:'LEADS TO',top:'ARGUES WITH',bottom:'KIN &
 const ARR={rel:{name:'Relation',L:SIDE_L,T:null,note:'Sides by kind of link: left feeds it, right follows from it, top argues with it, bottom is kin.'},time:{name:'Time',L:{left:'OLDER IDEAS',right:'NEWER IDEAS',top:'',bottom:'SAME ERA'},T:{left:['Older ideas','came before it in time'],right:['Newer ideas','came after it in time'],top:['',''],bottom:['Same era','from the same period']},note:'Sides by era: older neighbours on the left, newer on the right, same era below.'},role:{name:'Role',L:{left:'PROBLEMS',right:'SOLUTIONS',top:'CLAIMS & CRITIQUES',bottom:'LENSES & EVIDENCE'},T:{left:['Problems','failure modes'],right:['Solutions','fixes and methods'],top:['Claims & critiques','theses and objections'],bottom:['Lenses & evidence','lenses, mechanisms, findings, metaphors']},note:'Sides by the neighbour’s role in the argument: problems left, solutions right.'}};
 const SPR={blue:{A:[366,472,165,165],B:[0,192,192,192],C:[677,0,141,194],D:[192,546,174,182],E:[683,1190,132,250],F:[366,0,170,236]},dark:{A:[531,472,165,165],B:[0,0,192,192],C:[677,194,141,194],D:[192,182,174,182],E:[697,388,132,250],F:[348,1200,170,236]},green:{A:[518,1129,165,165],B:[0,768,192,192],C:[536,194,141,194],D:[192,0,174,182],E:[824,888,132,250],F:[366,236,170,236]},red:{A:[518,964,165,165],B:[0,960,192,192],C:[536,0,141,194],D:[0,1152,174,182],E:[818,0,132,250],F:[192,728,170,236]},white:{A:[518,1294,165,165],B:[0,384,192,192],C:[683,996,141,194],D:[192,364,174,182],E:[815,1190,132,250],F:[362,728,170,236]},yellow:{A:[532,637,165,165],B:[0,576,192,192],C:[683,802,141,194],D:[174,1152,174,182],E:[824,638,132,250],F:[348,964,170,236]}};
 const EYE={cute:[1026,1410,64,69],core:[1090,1410,64,69],angry:[757,747,60,55]};
-const LSW='bestiary-wandering-trail'; const BAR=80; /* ADDED 2026-11-22: the top row's foot, panels start there; CHANGED 2026-11-22: 12 + 56px toolbar + 12 (brand book sizes) */ const ART_PX=200; // ADDED 2026-11-22: raster size of a creature, see artImg
+const LSW='bestiary-wandering-trail'; let BAR=80; /* ADDED 2026-11-22: the top row's foot, panels start there; CHANGED 2026-11-22: 12 + 56px toolbar + 12 (brand book sizes); CHANGED 2026-11-22: design review: 12 + 109 + 12 below 700px, where the bar has two rows, see resize() */ const ART_PX=200; // ADDED 2026-11-22: raster size of a creature, see artImg
 const bez=(p0,c,p1,u)=>[(1-u)*(1-u)*p0[0]+2*(1-u)*u*c[0]+u*u*p1[0],(1-u)*(1-u)*p0[1]+2*(1-u)*u*c[1]+u*u*p1[1]];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};
@@ -447,11 +492,17 @@ const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(
 class Component extends DCLogic {
   state={ready:false,mode:'explore',focus:null,hover:null,groups:{A:true,B:true,C:true,D:true,E:true,F:true},q:'',era:6,playing:false,quest:null,result:null,toast:null,tick:0,peek:null,intro:false};
   wrapRef=React.createRef(); cvRef=React.createRef(); tStep=0; leftRef=React.createRef(); // ADDED 2026-11-22: the left panel's scroll, see travel()
+  cardRef=React.createRef(); legRef=React.createRef(); chronRef=React.createRef(); legH=0; chronH=0; cardKey=''; // ADDED 2026-11-22: design review: the card's scroll and the heights of the bars the panels rise above, see componentDidUpdate()
   cam={x:0,y:0,z:.5}; camT=null; camV={x:0,y:0,z:0}; camTs=0; ring={k:0,f:null,x:0,y:0,R:0}; ringE=0; leaving=new Map(); council=null; hoverId=null; hoverFam=null; listHover=null; wpath=[]; W=800; H=600; dpr=1;
 
   componentDidMount(){ this.boot(); }
   componentWillUnmount(){ this.dead=true; cancelAnimationFrame(this.raf); this.ro&&this.ro.disconnect(); clearInterval(this.playT); clearTimeout(this.toastT); this.off&&this.off(); }
-  componentDidUpdate(p){ if(this.nodes&&(p.gather!==this.props.gather)){ this.buildCouncil(); if(this.state.focus) this.frameFocus(); } }
+  componentDidUpdate(p){ if(this.nodes&&(p.gather!==this.props.gather)){ this.buildCouncil(); if(this.state.focus) this.frameFocus(); }
+    // ADDED 2026-11-22: design review: a new beast or neighbour in the card opens at the card's top (it kept the old scroll, so the new
+    // name was out of view); the legend's and the Chronicle bar's heights are read back for the panels that stand above them
+    const k=this.state.focus+'|'+this.state.peek; if(k!==this.cardKey){ this.cardKey=k; if(this.cardRef.current) this.cardRef.current.scrollTop=0; }
+    const lh=this.legRef.current?this.legRef.current.offsetHeight:0, ch=this.chronRef.current?this.chronRef.current.offsetHeight:0;
+    if(lh!==this.legH||ch!==this.chronH){ this.legH=lh; this.chronH=ch; this.setState({tick:this.state.tick+1}); } }
 
   async boot(){
     const wrap=this.wrapRef.current, cv=this.cvRef.current; if(!wrap||!cv) return;
@@ -511,7 +562,7 @@ class Component extends DCLogic {
   }
   tintCanvas(col){ if(this.tints[col]) return this.tints[col]; const c=document.createElement('canvas'); c.width=this.wAtlasW; c.height=252; const g=c.getContext('2d'); const W=SPR.white; const put=()=>'ABCDEF'.split('').forEach(k=>{ const r=W[k],o=this.wOff[k]; g.drawImage(this.sheet,r[0],r[1],r[2],r[3],o.x,0,r[2],r[3]); }); put(); if(!this.wMask){ const m=document.createElement('canvas'); m.width=c.width; m.height=c.height; m.getContext('2d').drawImage(c,0,0); this.wMask=m; } g.globalCompositeOperation='multiply'; g.fillStyle=col; g.fillRect(0,0,c.width,c.height); g.globalCompositeOperation='destination-in'; g.drawImage(this.wMask,0,0); this.tints[col]=c; return c; }
   setColorBy(k){ if(k==='role'){ this.colTab=null; } else { const T=this.groupTables(k); this.colTab={key:T.key,FCOL:T.FCOL,FSHORT:T.FSHORT}; } this.setState({colorBy:k}); }
-  resize(){ const w=this.wrapRef.current,c=this.cvRef.current; if(!w||!c) return; this.W=w.clientWidth; this.H=w.clientHeight; this.dpr=Math.min(2,window.devicePixelRatio||1); c.width=Math.round(this.W*this.dpr); c.height=Math.round(this.H*this.dpr); if(this.nodes) this.setState({tick:this.state.tick+1}); }
+  resize(){ const w=this.wrapRef.current,c=this.cvRef.current; if(!w||!c) return; this.W=w.clientWidth; this.H=w.clientHeight; BAR=this.W<700?133:80; /* CHANGED 2026-11-22: design review: see BAR */ this.dpr=Math.min(2,window.devicePixelRatio||1); c.width=Math.round(this.W*this.dpr); c.height=Math.round(this.H*this.dpr); if(this.nodes) this.setState({tick:this.state.tick+1}); }
   cardHidden(){ return !!this.state.focus&&this.W<1250&&this.state.mode!=='quest'; }
   journalHidden(){ return this.state.mode==='quest'&&this.W<1250; }
   rightInset(){ return this.state.focus&&!this.journalHidden()&&this.W>900?370:0; }
@@ -543,7 +594,7 @@ class Component extends DCLogic {
   tipFor(id,x,y){ const n=this.byId.get(id);
     const C=this.council, v=C&&C.map.get(id);
     if(v){ const e=v.e; return {x,y,tag:`${G[e.g].name} · lives in ${FSHORT[n.fam]}`,title:n.name,sub:`${this.byId.get(e.a).name} ${KL[e.k]||e.k} ${this.byId.get(e.b).name}.`,col:G[e.g].col}; }
-    return {x,y,tag:FAM[n.fam][0],title:n.name,sub:`${n.roleL} · ${ERA[n.era]||''} · ${(this.adj.get(id)||[]).length} links`,col:'#d8a24a'}; }
+    return {x,y,tag:FAM[n.fam][0],title:n.name,sub:`${(this.adj.get(id)||[]).length} links`,col:FCOL[n.fam],n}; } /* CHANGED 2026-11-22: design review: the family in its island's colour; role, weight and era as the card's tags (n) */
   pointClick(x,y){ const id=this.pickAt(x,y)||this.edgeHov; const inC=id&&this.council&&this.council.map.has(id);
     if(id&&id===this.state.focus){ if(this.state.peek) this.setState({peek:null}); return; }
     if(inC){ if(this.state.peek===id) this.travel(id); else this.setState({peek:id}); return; }
@@ -572,7 +623,7 @@ class Component extends DCLogic {
     this.hoverId=null;
     // CHANGED 2026-11-22: after a step of the expedition the left panel shows its foot, where the journey grows, instead of
     // jumping back to its top (owner)
-    this.setState({focus:id,quest,result,hover:null,q:'',peek:null},()=>{ this.buildCouncil(); if(s.mode==='quest'&&this.leftRef.current) requestAnimationFrame(()=>{ const el=this.leftRef.current; if(el) el.scrollTop=el.scrollHeight; }); const w=this.byId.get(id); if(w.path&&(w.route||Math.hypot(w.x-w.px,w.y-w.py)>400)) this.follow=id; else { this.follow=null; this.frameFocus(); } });
+    this.setState({focus:id,quest,result,hover:null,q:'',peek:null},()=>{ this.buildCouncil(); if(s.mode==='quest'&&this.leftRef.current) requestAnimationFrame(()=>{ const el=this.leftRef.current; if(el) el.scrollTop=quest.steps.length?el.scrollHeight:0; }); /* CHANGED 2026-11-22: design review: a new expedition opens at the panel's top; the foot only after a step */ const w=this.byId.get(id); if(w.path&&(w.route||Math.hypot(w.x-w.px,w.y-w.py)>400)) this.follow=id; else { this.follow=null; this.frameFocus(); } });
   }
   clearFocus(){ this.setState({focus:null,hover:null},()=>{ this.buildCouncil(); this.camT={x:this.cam.x,y:this.cam.y,z:Math.min(this.cam.z,.7)}; }); }
 
@@ -638,7 +689,8 @@ class Component extends DCLogic {
   makeResult(q,gave){ const {prev}=this.bfs(q.s,q.rule); const sp=[q.t]; while(sp[0]!==q.s) sp.unshift(prev.get(sp[0])); const nm=id=>this.byId.get(id).name;
     const grade=gave?'Here is the way':q.hops<=q.best?'Perfect pathfinder':q.hops<=q.best+2?'Good wandering':'The scenic route';
     return {gave,grade,line:gave?`The flag was ${q.best} hops away. Follow the shortest route below — each arrow is one link on the map.`:`You reached ${nm(q.t)} in ${q.hops} hops${q.hints?` with ${q.hints} hint${q.hints>1?'s':''}`:''}. The shortest possible route takes ${q.best}.`,mine:q.path.length>1?q.path.map(nm).join('  →  '):'',short:sp.map(nm).join('  →  '),sp,path:q.path,rule:q.rule}; }
-  routeRows(ids,rule){ const sh=id=>{const nm=this.byId.get(id).name;return nm.length>24?nm.slice(0,22)+'…':nm;}; return ids.slice(1).map((id,i)=>{ const p=ids[i], e=(this.adj.get(p)||[]).find(e=>(e.a===id||e.b===id)&&this.ok(e,rule))||(this.adj.get(p)||[]).find(e=>e.a===id||e.b===id); return {n:String(i+1),rel:`${sh(e.a)} ${KL[e.k]||e.k} ${sh(e.b)}`,col:G[e.g].col,name:this.byId.get(id).name}; }); }
+  // CHANGED 2026-11-22: design review: a step of the report is a row of the beast's card: name, its link to the beast before it, its island
+  routeRows(ids,rule){ const sh=id=>{const nm=this.byId.get(id).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; return ids.slice(1).map((id,i)=>{ const p=ids[i], n=this.byId.get(id), e=(this.adj.get(p)||[]).find(e=>(e.a===id||e.b===id)&&this.ok(e,rule))||(this.adj.get(p)||[]).find(e=>e.a===id||e.b===id), kl=KL[e.k]||e.k; return {n:String(i+1),rel:e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:G[e.g].col,name:n.name,fam:FSHORT[n.fam],famCol:FCOL[n.fam]}; }); }
   hint(){ const q=this.state.quest, f=this.state.focus; if(!q||!f) return; const d=q.distT.get(f); const nx=(this.adj.get(f)||[]).filter(e=>this.ok(e,q.rule)).map(e=>e.a===f?e.b:e.a).find(o=>q.distT.get(o)===d-1); if(!nx) return; this.hintId=nx; this.setState({quest:{...q,hints:q.hints+1}}); this.toast(`Hint: try ${this.byId.get(nx).name}`); }
   saveTrail(p){ this.wpath=p; try{localStorage.setItem(LSW,JSON.stringify(p));}catch(e){} }
   edgeBetween(a,b){ return (this.adj.get(a)||[]).find(e=>e.a===b||e.b===b); }
@@ -826,21 +878,29 @@ class Component extends DCLogic {
     const s=this.state, ready=s.ready&&!!this.byId, fn=ready&&s.focus?this.byId.get(s.focus):null;
     const modes=[['explore','Wander'],['quest','Expedition'],['chronicle','Chronicle']].map(([k,l])=>({label:l,bg:s.mode===k?'#d8a24a':'transparent',fg:s.mode===k?'#0c0b0a':'#cfc8bd',bd:s.mode===k?'#d8a24a':'#4a4540',go:()=>this.setMode(k)}));
     const help={explore:'Click a beast to visit it. Click a neighbour once to read about it, a second time to step there. The coloured base and dotted thread show which island each guest came from.',chronicle:'The bestiary grows era by era. Each new idea walks out of the older idea it descends from.'}[s.mode]||'';
-        const qn=s.q.trim().toLowerCase(); const results=ready&&qn.length>1?this.nodes.filter(n=>n.name.toLowerCase().includes(qn)).slice(0,6).map(n=>({name:n.name,sub:FAM[n.fam][0].split(' ')[0],go:()=>this.travel(n.id)})):[];
+        const qn=s.q.trim().toLowerCase(); const results=ready&&qn.length>1?this.nodes.filter(n=>n.name.toLowerCase().includes(qn)).slice(0,6).map(n=>({name:n.name,fam:FSHORT[n.fam],famCol:FCOL[n.fam],go:()=>this.travel(n.id)})):[]; /* CHANGED 2026-11-22: design review: the island's short name in its colour (was the first word of the family, "Takeoff,") */
     let sections=[];
-    if(fn&&this.council){ const sd=this.council.sides; sections=['left','right','top','bottom'].filter(k=>sd[k].length).map(k=>({title:(ARR[s.arr||'rel'].T||SIDE_T)[k][0],sub:(ARR[s.arr||'rel'].T||SIDE_T)[k][1],n:sd[k].length,items:sd[k].map(v=>{const o=this.byId.get(v.o),e=v.e,kl=KL[e.k]||e.k;const onFlag=s.mode==='quest'&&s.quest&&this.byId.get(s.quest.t).fam===o.fam, isFlag=s.mode==='quest'&&s.quest&&s.quest.t===o.id; return {num:String(v.num||''), flagTag:isFlag?'the flag':onFlag?'flag island':'', flagDisp:(isFlag||onFlag)?'inline':'none', fo:isFlag?0:onFlag?1:2, fam:FSHORT[o.fam],famCol:FCOL[o.fam],name:o.name,rel:e.a===fn.id?`this one ${kl} it`:`${kl} this one`,col:G[e.g].col,sel:s.peek===o.id?'#26231f':'transparent', stepDisp:s.peek===o.id?'flex':'none', step:()=>this.travel(o.id), go:()=>this.setState({peek:o.id}),enter:()=>{this.listHover=o.id;},leave:()=>{this.listHover=null;}};}).sort((p,q)=>p.fo-q.fo)})); }
+    if(fn&&this.council){ const sd=this.council.sides; sections=['left','right','top','bottom'].filter(k=>sd[k].length).map(k=>({title:(ARR[s.arr||'rel'].T||SIDE_T)[k][0],sub:(ARR[s.arr||'rel'].T||SIDE_T)[k][1],n:sd[k].length,items:sd[k].map(v=>{const o=this.byId.get(v.o),e=v.e,kl=KL[e.k]||e.k;const onFlag=s.mode==='quest'&&s.quest&&this.byId.get(s.quest.t).fam===o.fam, isFlag=s.mode==='quest'&&s.quest&&s.quest.t===o.id; return {num:String(v.num||''), flagTag:isFlag?'the flag':onFlag?'flag island':'', flagDisp:(isFlag||onFlag)?'inline':'none', fo:isFlag?0:onFlag?1:2, fam:FSHORT[o.fam],famCol:FCOL[o.fam],name:o.name,rel:e.a===fn.id?`this one ${kl} it`:`${kl} this one`,col:G[e.g].col,sel:s.peek===o.id?'#221f1c':'transparent', /* CHANGED 2026-11-22: design review: #221f1c keeps every family colour at 4.5:1 */ stepDisp:s.peek===o.id?'flex':'none', step:()=>this.travel(o.id), go:()=>this.setState({peek:o.id}),enter:()=>{this.listHover=o.id;},leave:()=>{this.listHover=null;}};}).sort((p,q)=>p.fo-q.fo)})); }
     const gc={}; if(fn){ const qr=this.qRule(); const seenG={}; (this.adj.get(fn.id)||[]).forEach(e=>{ if(!this.ok(e,qr)) return; const o=e.a===fn.id?e.b:e.a; if(!this.vis(this.byId.get(o))) return; const k=e.g+o; if(seenG[k]) return; seenG[k]=1; gc[e.g]=(gc[e.g]||0)+1; }); }
     const legend=Object.entries(G).filter(([k])=>gc[k]>0).map(([k,g])=>({name:`${g.name} · ${gc[k]}`,verb:GEXP[k],col:g.col,line:g.line,op:s.groups[k]?1:.4, name:s.groups[k]?`${g.name} · ${gc[k]}`:`${g.name} · hidden`,tip:`${GEXP[k]} Hover to light up, click to hide.`,toggle:()=>this.toggleGroup(k),enter:()=>{this.groupHov=k;},leave:()=>{this.groupHov=null;}}));
     const q=s.quest, r=s.result, h=s.hover; const pk=ready&&s.peek?this.byId.get(s.peek):null, pv=pk&&this.council?this.council.map.get(pk.id):null, vn=pv?pk:fn, tn=q&&ready?this.byId.get(q.t):null;
-    const rules=Object.entries(RULES).map(([k,v])=>({label:v[0],on:q&&q.rule===k,bg:q&&q.rule===k?'#d8a24a':'transparent',fg:q&&q.rule===k?'#0c0b0a':'#cfc8bd',go:()=>this.newQuest(k), tip:`Start a new expedition: ${v[1]}`}));
+    const rules=Object.entries(RULES).map(([k,v])=>({label:v[0],short:RSHORT[k],on:q&&q.rule===k,bg:q&&q.rule===k?'#d8a24a':'transparent',fg:q&&q.rule===k?'#0c0b0a':'#cfc8bd',go:()=>this.newQuest(k), tip:`Start a new expedition: ${v[1]}`}));
     const islands=ready?this.isl.map(I=>({name:FSHORT[I.k],desc:FDESC[I.k],n:I.list.length,col:FCOL[I.k],enter:()=>{this.hoverFam=I.k;},leave:()=>{this.hoverFam=null;},go:()=>{ this.camT={x:I.x,y:I.y,z:clamp(Math.min(this.W,this.H)/(I.R*2+140),.6,2.2)}; }})).sort((a,b)=>b.n-a.n):[];
     const arrs=Object.entries(ARR).map(([k,v])=>({label:v.name,bg:(s.arr||'rel')===k?'#d8a24a':'transparent',fg:(s.arr||'rel')===k?'#0c0b0a':'#cfc8bd',go:()=>this.setState({arr:k},()=>this.buildCouncil())}));
     const GRP={family:['Family','families of ideas','Every beast lives on the island of its topic; islands that share the most links sit side by side.'],era:['Era','periods of time','Every beast lives in the era its idea comes from, oldest on the left.'],role:['Role','roles in the argument','Every beast lives with ideas that play the same role: failure modes, solutions, theses, critiques…'],canon:['Canon','two canons','Two continents: the technical canon and the humanities canon.']}; const gk=s.grp||'family';
     const grps=Object.entries(GRP).map(([k,v])=>({label:v[0],bg:gk===k?'#d8a24a':'transparent',fg:gk===k?'#0c0b0a':'#cfc8bd',go:()=>this.setGrouping(k)}));
     const cbk=s.colorBy||'role'; const cbs=[['family','Family'],['era','Era'],['role','Role'],['canon','Canon']].map(([k,l])=>({label:l,bg:cbk===k?'#d8a24a':'transparent',fg:cbk===k?'#0c0b0a':'#cfc8bd',go:()=>this.setColorBy(k)}));
+    // ADDED 2026-11-22: design review: where the panels stand. NS: the two side panels do not fit side by side (16+310+16+350+16), so the
+    // islands panel is closed by default and, opened, takes the left panel's place (CHANGED 2026-11-22: design review: 16+310+16+350+16, the
+    // right panels are 350 wide). Floating bars keep 16px from the panels (fl, fr); the
+    // Chronicle bar goes full width when less than 480px is left beside them, and the left panel rises above it; up to 900px the card
+    // rises above the lines legend
+    const NS=this.W<708, isO=s.isOpen??(this.W>=1100), isShown=ready&&!fn&&!s.intro&&(!NS||s.isOpen===true), showCard=!this.cardHidden()&&!(NS&&isShown);
+    const fl=showCard?342:16, fr=this.rightInset()?382:16, chR0=isShown&&isO?382:fr, chFull=this.W-fl-chR0<480, chronOn=s.mode==='chronicle';
+    const legendOn=!!fn&&legend.length>0&&!(s.mode==='quest'&&this.leftInset()===0), legW=Math.max(300,this.W-fl-fr);
     const colLegend=cbk==='role'||!this.colTab?[['#ff4a63','failure modes'],['#2fcc71','solutions'],['#ffb800','theses'],['#45d7e5','lenses'],['#6b5845','critiques'],['#e8e6e6','mechanisms, evidence']].map(([c,l])=>({c,l})):Object.entries(this.colTab.FCOL).map(([k,c])=>({c,l:this.colTab.FSHORT[k]}));
     return {
-      cbs, colLegend, grps, grpTitle:GRP[gk][1], grpNote:GRP[gk][2], jBottom:this.H<700?16:104, arrs, arrNote:ARR[s.arr||'rel'].note, islands, islandsOn:ready&&!fn&&!s.intro, isOpen:(s.isOpen??(this.W>=1100))!==false, toggleIs:()=>this.setState({isOpen:!(s.isOpen??(this.W>=1100))}), isToggle:(s.isOpen??(this.W>=1100))?'–':'+', isBottom:16, isB:(s.isOpen??(this.W>=1100))?'16px':'auto',
+      cbs, colLegend, grps, grpTitle:GRP[gk][1], grpNote:GRP[gk][2], jBottom:this.H<700?16:104, arrs, arrNote:ARR[s.arr||'rel'].note, islands, islandsOn:isShown, isOpener:showCard&&NS&&!isShown&&ready&&!fn&&!s.intro, isOpen:isO, /* CHANGED 2026-11-22: design review: see NS */ toggleIs:()=>this.setState({isOpen:!(s.isOpen??(this.W>=1100))}), isToggle:(s.isOpen??(this.W>=1100))?'–':'+', isBottom:16, isB:(s.isOpen??(this.W>=1100))?'16px':'auto',
       rules, qRuleName:q?RULES[q.rule||'any'][0]:'', qRuleText:q?RULES[q.rule||'any'][1]:'', qFlagFam:tn?FAM[tn.fam][0]:'', qFlagCol:tn?FCOL[tn.fam]:'#d8a24a', qFlagBlurb:tn?tn.blurb:'', qFlagNb:tn?(()=>{ const WO={Core:0,Major:1,Supporting:2}; const L=[...new Set((this.adj.get(tn.id)||[]).filter(e=>this.ok(e,q.rule)).map(e=>e.a===tn.id?e.b:e.a))].map(id=>this.byId.get(id)).sort((a,b)=>(WO[a.w]??2)-(WO[b.w]??2)); return L.slice(0,4).map(n=>n.name).join(' · ')+(L.length>4?` · +${L.length-4} more`:''); })():'',
       hasPeek:false, pkName:pk?pk.name:'', pkFam:pk?FAM[pk.fam][0]:'', pkFamCol:pk?FCOL[pk.fam]:'#d8a24a', pkRole:pk?pk.roleL:'', pkBlurb:pk?pk.blurb:'', pkRel:pv?`${this.byId.get(pv.e.a).name} ${KL[pv.e.k]||pv.e.k} ${this.byId.get(pv.e.b).name}`:'', pkRelCol:pv?G[pv.e.g].col:'#cfc8bd', pkRelTag:pv?G[pv.e.g].name:'', pkSame:!!(pk&&tn&&pk.fam===tn.fam), pkIsFlag:!!(pk&&tn&&pk.id===tn.id), pkL:this.leftInset()+16, pkW:Math.max(280,Math.min(640,this.W-this.leftInset()-this.rightInset()-32)), step:()=>s.peek&&this.travel(s.peek), unpeek:()=>this.setState({peek:null}),
       introOn:!!s.intro&&ready, closeIntro:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); }, openIntro:()=>this.setState({intro:true}),
@@ -848,16 +908,16 @@ class Component extends DCLogic {
       modes, help, q:s.q, onQ:e=>this.setState({q:e.target.value}), results, hasResults:results.length>0,
       
       hasFocus:!!fn&&!this.journalHidden(), fFam:vn?FAM[vn.fam][0]:'', fFamCol:vn?FCOL[vn.fam]:'#d8a24a', fName:vn?vn.name:'', fRole:vn?vn.roleL:'', fRoleCol:vn?vn.roleCol:'#e8e6e6', fWeight:vn?vn.w:'', fEra:vn?(ERA[vn.era]||vn.era):'', fBlurb:vn?vn.blurb:'', fWho:vn?vn.who:'', fWiki:vn?`/bestiarium/wiki/${vn.id}`:'#', peeking:!!pv, notPeeking:!pv, hostName:fn?fn.name:'', backHost:()=>this.setState({peek:null}), stepLabel:pk?`Step to ${pk.name.length>26?pk.name.slice(0,24)+'…':pk.name} →`:'', sections, close:()=>this.clearFocus(),
-      legend, legendOn:!!fn&&legend.length>0&&!(s.mode==='quest'&&this.leftInset()===0), /* CHANGED 2026-11-22: on a narrow screen the expedition panel needs its foot */ anyOff:Object.values(s.groups).some(v=>!v), showAll:()=>this.setState({groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>this.buildCouncil()), legL:this.leftInset()+16, legFull:this.W-this.leftInset()-this.rightInset()-52>=legend.length*174, legCardW:this.W-this.leftInset()-this.rightInset()-52>=legend.length*174?170:120, legW:Math.max(300,this.W-this.leftInset()-this.rightInset()-32), // CHANGED 2026-11-22: the texts show when every card fits in one row with them (170 px), else the cards are 120 px
-      wOn:ready&&s.mode==='explore', wEmpty:this.wpath.length===0, wCount:`${this.wpath.length} stop${this.wpath.length===1?'':'s'}`, wBackOp:this.wpath.length>1?1:.4,
+      legend, legendOn, /* CHANGED 2026-11-22: on a narrow screen the expedition panel needs its foot */ anyOff:Object.values(s.groups).some(v=>!v), showAll:()=>this.setState({groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>this.buildCouncil()), legL:fl, legFull:legW-20>=legend.length*174, legCardW:legW-20>=legend.length*174?170:120, legW, /* CHANGED 2026-11-22: design review: 16px from the panels on both sides (was 32 and 20) */ // CHANGED 2026-11-22: the texts show when every card fits in one row with them (170 px), else the cards are 120 px
+      wOn:ready&&s.mode==='explore', wEmpty:this.wpath.length===0, wCount:`${this.wpath.length} stop${this.wpath.length===1?'':'s'}`, wBackOp:this.wpath.length>1?1:.55, /* CHANGED 2026-11-22: design review: disabled at .55 (was .4) */
       wBack:()=>this.wanderBack(), wClear:()=>{ this.saveTrail(s.focus?[s.focus]:[]); this.setState({tick:s.tick+1}); },
       wSteps:ready?this.wpath.map((id,i)=>{ const p=this.wpath[i-1], e=p&&this.edgeBetween(p,id), n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):'';
-        return {n:String(i+1),rel:i===0?'start':!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name,bg:id===s.focus&&i===this.wpath.length-1?'#26231f':'transparent',go:()=>id===s.focus?this.frameFocus():this.travel(id)}; }).reverse():[],
-      questOn:s.mode==='quest'&&!!q&&ready, qTarget:q&&ready?this.byId.get(q.t).name:'', qStart:q&&ready?this.byId.get(q.s).name:'', ...this.beastHead('qs',q&&ready?this.byId.get(q.s):null), ...this.beastHead('qt',tn), ...this.beastHead('pk',pk), qHops:q?q.hops:0, qBest:q?q.best:0, qAway:q&&ready&&s.focus?(()=>{const d=q.distT.get(s.focus);return d===0?'At the flag':d===1?'1 hop away':`${d} hops away`;})():'', qTrend:q?({warmer:'warmer — closer to the flag',colder:'colder — further away',same:'same distance',back:'stepped back','':'distance from here'}[q.trend]):'', qTrendCol:q?({warmer:'#7ad13a',colder:'#ff6b5e'}[q.trend]||'#efeae2'):'#efeae2', qHasSteps:!!(q&&q.steps.length), qSteps:q&&ready?q.steps.map((st,i)=>{ /* CHANGED 2026-11-22: a step is written as a link in the beast's card: name, how it is linked to the beast before it, its island in the island's colour (owner) */ const e=st.e, id=st.to, p=st.from, n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):''; return {n:String(i+1),rel:!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name};}):[], qHint:()=>this.hint(), qUndo:()=>this.undo(), qUndoOp:q&&q.path.length>1?1:.4, giveUp:()=>this.giveUp(),
-      hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), rStart:r&&ready?this.byId.get(r.sp[0]).name:'', rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, qFoot:s.mode==='quest'&&!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
-      chronOn:s.mode==='chronicle', playLabel:s.playing?'❚❚':'▶', eraLabel:ERA[ERAK[s.era]], era:s.era, onEra:e=>{clearInterval(this.playT);this.setState({playing:false});this.setEra(+e.target.value);}, togglePlay:()=>this.togglePlay(), alive:ready?`${this.nodes.filter(n=>n.ei<=s.era).length} beasts alive`:'',
-      hasHover:!!h, hx:h?h.x:0, hy:h?h.y:0, hTag:h?h.tag:'', hTitle:h?h.title:'', hSub:h?h.sub:'', hCol:h?h.col:'#d8a24a',
-      hasToast:!!s.toast, toast:s.toast||'', toastTop:BAR, /* CHANGED 2026-11-22: under the taller top bar (brand book sizes) */ barH:BAR, ruleLbl:this.W>1100?'inline':'none', showDetails:true, showCard:!this.cardHidden(), colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
+        return {n:String(i+1),rel:i===0?'start':!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name,bg:id===s.focus&&i===this.wpath.length-1?'#221f1c':'transparent', /* CHANGED 2026-11-22: design review: see sel */go:()=>id===s.focus?this.frameFocus():this.travel(id)}; }).reverse():[],
+      questOn:s.mode==='quest'&&!!q&&ready, qTarget:q&&ready?this.byId.get(q.t).name:'', qStart:q&&ready?this.byId.get(q.s).name:'', ...this.beastHead('qs',q&&ready?this.byId.get(q.s):null), ...this.beastHead('qt',tn), ...this.beastHead('pk',pk), qHops:q?q.hops:0, qBest:q?q.best:0, qAway:q&&ready&&s.focus?(()=>{const d=q.distT.get(s.focus);return d===0?'At the flag':d===1?'1 hop away':`${d} hops away`;})():'', qTrend:q?({warmer:'warmer — closer to the flag',colder:'colder — further away',same:'same distance',back:'stepped back','':'distance from here'}[q.trend]):'', qTrendCol:q?({warmer:'#7ad13a',colder:'#ff6b5e'}[q.trend]||'#efeae2'):'#efeae2', qHasSteps:!!(q&&q.steps.length), qSteps:q&&ready?q.steps.map((st,i)=>{ /* CHANGED 2026-11-22: a step is written as a link in the beast's card: name, how it is linked to the beast before it, its island in the island's colour (owner) */ const e=st.e, id=st.to, p=st.from, n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):''; return {n:String(i+1),rel:!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name};}):[], qHint:()=>this.hint(), qUndo:()=>this.undo(), qUndoOp:q&&q.path.length>1?1:.55, giveUp:()=>this.giveUp(),
+      hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), ...this.beastHead('rs',r&&ready?this.byId.get(r.sp[0]):null), /* CHANGED 2026-11-22: design review: the start in the heading form */ rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, qFoot:s.mode==='quest'&&!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
+      chronOn, chL:chFull?16:fl, chR:chFull?16:chR0, leftB:chronOn&&chFull?32+this.chronH:16, cardB:legendOn&&this.W<=900?32+this.legH:16, cardRef:this.cardRef, legRef:this.legRef, chronRef:this.chronRef, /* ADDED 2026-11-22: design review: see NS */ playLabel:s.playing?'❚❚':'▶', eraLabel:ERA[ERAK[s.era]], era:s.era, onEra:e=>{clearInterval(this.playT);this.setState({playing:false});this.setEra(+e.target.value);}, togglePlay:()=>this.togglePlay(), alive:ready?`${this.nodes.filter(n=>n.ei<=s.era).length} beasts alive`:'',
+      hasHover:!!h, hx:h?Math.min(h.x,this.W-332):0, /* CHANGED 2026-11-22: design review: the tooltip (up to 300px) stays inside the map; its tags do not wrap */ hy:h?h.y:0, hTag:h?h.tag:'', hTitle:h?h.title:'', hSub:h?h.sub:'', hCol:h?h.col:'#d8a24a', hHasTags:!!(h&&h.n), ...this.beastHead('h',h&&h.n), /* ADDED 2026-11-22: design review: see tipFor */
+      hasToast:!!s.toast, toast:s.toast||'', toastTop:BAR, /* CHANGED 2026-11-22: under the taller top bar (brand book sizes) */ barH:BAR, barBoxH:BAR-24, barWrap:this.W<700?'wrap':'nowrap', modesFlex:this.W<700?'1 0 100%':'none', modesOrder:this.W<700?2:0, rulesBar:s.mode==='quest'&&!!q&&ready&&this.W>=1100, rulesPanel:s.mode==='quest'&&!!q&&ready&&this.W<1100, showDetails:true, showCard, /* CHANGED 2026-11-22: design review: two rows below 700px; the rules move to the left panel below 1100px; see NS */ colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
     };
   }
 }

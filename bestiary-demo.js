@@ -8,27 +8,30 @@
 (() => {
   const SVG = 'http://www.w3.org/2000/svg'
   const CARD_W = 340
-  const CURSOR = '<svg width="22" height="22" viewBox="0 0 22 22"><path d="M3 2 L3 18 L7.5 14 L10.5 20.5 L13.2 19.3 L10.3 13 L16.5 13 Z" fill="#efeae2" stroke="#0c0b0a" stroke-width="1.4" stroke-linejoin="round"/></svg><span style="position:absolute;left:-9px;top:-9px;width:22px;height:22px;border:2px solid #f2c200;border-radius:50%;opacity:0;transform:scale(.4);transition:all .45s;"></span>'
+  const CURSOR = '<svg width="22" height="22" viewBox="0 0 22 22"><path d="M3 2 L3 18 L7.5 14 L10.5 20.5 L13.2 19.3 L10.3 13 L16.5 13 Z" fill="#efeae2" stroke="#0c0b0a" stroke-width="1.4" stroke-linejoin="round"/></svg><span style="position:absolute;left:-9px;top:-9px;width:22px;height:22px;border:2px solid #d8a24a;border-radius:50%;opacity:0;transform:scale(.4);transition:all .45s;"></span>'
   // CHANGED 2026-11-22: the tour card's buttons are actions, 44px (brand book sizes)
+  // CHANGED 2026-11-22: design review: the Demo button and the tour's frames and cards are in the brand gold #d8a24a (was #f2c200)
+  // CHANGED 2026-11-22: design review: the blocks are no longer at least 1200px wide; below 1312px (1200 + the gutters) the Demo button heads its block instead of covering its title
   const CSS = `
 .bd-cursor{position:absolute;left:0;top:0;width:22px;height:22px;pointer-events:none;z-index:70;opacity:0;transition:transform .75s cubic-bezier(.45,0,.2,1),opacity .3s}
-.bd-btn{position:absolute;right:32px;top:30px;z-index:5;padding:6px 12px;background:transparent;border:1px solid #f2c200;color:#f2c200;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
-.bd-btn:hover{background:#f2c200;color:#0c0b0a}
+.bd-btn{position:absolute;right:32px;top:30px;z-index:5;padding:6px 12px;background:transparent;border:1px solid #d8a24a;color:#d8a24a;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.bd-btn:hover{background:#d8a24a;color:#0c0b0a}
+@media (max-width:1311px){.bd-btn{position:static;order:-1;align-self:flex-start}}
 .bd-layer{position:absolute;inset:0;pointer-events:none;z-index:80;opacity:0;transition:opacity .3s}
 .bd-layer.on{opacity:1}
 .bd-layer svg{position:absolute;left:0;top:0;overflow:visible}
-.bd-frame{fill:rgba(242,194,0,.07);stroke:#f2c200;stroke-width:2}
-.bd-arrow{fill:none;stroke:#f2c200;stroke-width:2;stroke-dasharray:5 4}
-.bd-tip{position:absolute;box-sizing:border-box;padding:16px 18px 14px;background:#1b1916;border:1px solid #f2c200;box-shadow:0 12px 40px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.bd-frame{fill:rgba(216,162,74,.07);stroke:#d8a24a;stroke-width:2}
+.bd-arrow{fill:none;stroke:#d8a24a;stroke-width:2;stroke-dasharray:5 4}
+.bd-tip{position:absolute;box-sizing:border-box;padding:16px 18px 14px;background:#1b1916;border:1px solid #d8a24a;box-shadow:0 12px 40px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:8px;overflow:hidden}
 .bd-layer.on .bd-tip{pointer-events:auto}
-.bd-tip b{font:700 15px/1.3 'Unbounded',sans-serif;color:#f2c200}
+.bd-tip b{font:700 15px/1.3 'Unbounded',sans-serif;color:#d8a24a}
 .bd-tip p{margin:0;font:400 14px/1.55 'Onest',sans-serif;color:#efeae2;text-wrap:pretty}
 .bd-tip div{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}
 .bd-tip button{min-height:44px;padding:0 12px;background:transparent;border:1px solid #4a4540;color:#cfc8bd;cursor:pointer;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
-.bd-tip button:last-child{border-color:#f2c200;color:#f2c200}
-.bd-tip button:hover{background:#f2c200;color:#0c0b0a}
+.bd-tip button:last-child{border-color:#d8a24a;color:#d8a24a}
+.bd-tip button:hover{background:#d8a24a;color:#0c0b0a}
 .bd-tip.held i{opacity:.35}
-.bd-tip i{position:absolute;left:0;bottom:0;width:100%;height:3px;background:#f2c200;transform-origin:left}`
+.bd-tip i{position:absolute;left:0;bottom:0;width:100%;height:3px;background:#d8a24a;transform-origin:left}`
 
   const wait = (ms) => new Promise((r) => setTimeout(r, ms))
   const look = (t) => (typeof t === 'function' ? t() : t)
@@ -103,7 +106,7 @@
       const cw = best.w, ch = best.h, cx = best.x, cy = best.y
       card.style.left = `${cx}px`; card.style.top = `${cy}px`
       svg.setAttribute('width', String(W)); svg.setAttribute('height', String(H))
-      svg.innerHTML = '<defs><marker id="bd-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#f2c200"/></marker></defs>'
+      svg.innerHTML = '<defs><marker id="bd-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#d8a24a"/></marker></defs>'
       const mid = { x: cx + cw / 2, y: cy + ch / 2 }
       const spread = (k) => (bs.length > 1 ? 0.25 + (0.5 * k) / (bs.length - 1) : 0.5)
       bs.forEach((b, k) => {
@@ -177,7 +180,8 @@
   const byText = (root, sel, re) => () => all(root, sel).find((e) => re.test(txt(e)) && shown(e)) || null
   const spanText = (root, re) => byText(root, 'span', re)
   // The whole bestiary: the beast rows (16px high, clickable), the column heads, the selected chip
-  const wRows = (root) => all(root, 'div[title]').filter((e) => e.style.height === '16px')
+  // CHANGED 2026-11-22: design review: a row is a button now, 16px high (24px below 700px); it is told by its 2px left mark
+  const wRows = (root) => all(root, 'button[title]').filter((e) => e.style.borderLeftWidth === '2px')
   const wRowNamed = (root, name) => () => wRows(root).find((e) => txt(e) === name) || null
   const firstLit = (root) => () => wRows(root).find((e) => e.style.fontWeight === '700' && e.style.background !== 'rgb(216, 162, 74)') || null
   const faded = (root) => () => wRows(root).find((e) => e.style.color === 'rgb(77, 72, 66)') || null
