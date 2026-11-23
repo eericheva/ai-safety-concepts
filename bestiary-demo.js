@@ -355,6 +355,7 @@
       wander: up(byTxt('span', /^Your wanderings$/), 2),
       wCount: () => { const w = S.wander(); return w ? txt(w.children[0].children[1]) : '' },
       card: () => { const a = byTxt('a', /^Read the full entry/)(); return a && a.parentElement.parentElement },
+      wiki: byTxt('a', /^Read the full entry in the wiki/), /* ADDED 2026-11-23 */
       cardHead: () => { const a = byTxt('a', /^Read the full entry/)(); return a && a.parentElement },
       arrange: up(byTxt('span', /^Arrange$/)),
       arr: (l) => () => { const r = S.arrange(); return r && [...r.querySelectorAll('button')].find((b) => txt(b) === l) || null },
@@ -397,6 +398,12 @@
 
   const worldTour = (cmp) => {
     const { S, P, leave, out, settle, st, nm, hub, bigIsland, onMap } = worldKit(cmp)
+    /* ADDED 2026-11-23: the card's sections as the page writes them ("Older ideas · 4, ..."), and the first legend card's name */
+    const sides = () => all(S.card(), 'div').filter((e) => e.style.padding === '12px 0px 6px').map((h) => txt(h).replace(/\s*(\d+)$/, ' · $1')).join(', ')
+    const legName = () => S.legCard().children[0].children[1]
+    let kind = ''
+    // the gathered neighbours when no panel covers them (on a phone the card does), else the given element
+    const councilOr = (alt) => () => onMap(P.council)() || alt()
     const toTop = (find) => () => { const e = find(); if (e) cmp.cardRef.current.scrollTop = e.offsetTop - 8 }
     const narrow = () => cmp.W < 708
     const hop = [['click', P.next, 900], ['click', P.next, 600], ['do', settle]]
@@ -433,9 +440,19 @@
         text: () => `${all(S.card(), 'span').filter((e) => e.style.color === 'rgb(154, 148, 139)' && /^\d+$/.test(txt(e))).reduce((a, e) => a + +txt(e), 0)} neighbours come to it: what it comes from on the left, what it leads to on the right, what argues with it above, kin and echoes below. The coloured base under a guest is its home island.` }],
       ['note', { at: [S.cardHead], title: 'The beast card',
         text: 'Island, name, role, weight and era, a short summary, who proposed the idea, and a link to its full entry in the wiki. × closes the card.' }],
+      /* ADDED 2026-11-23: the wiki link, framed on its own (owner: the map exists so people read the essays) */
+      ['note', { at: [S.wiki], clear: [S.cardHead], title: 'Read the full entry',
+        text: () => `Read the full entry in the wiki ↗ opens the full essay on ${nm(st().focus)} in a new tab: what the idea is, who proposed it, how it links to the others. The map is here to help you find the essay you want to read.` }],
       ['note', { at: [S.arrange], title: 'Arrange',
         text: 'Relation places neighbours by kind of link. Time puts older ideas on the left and newer ones on the right; Role puts problems on the left and solutions on the right.' }],
+      /* CHANGED 2026-11-23: Time, then Role, then back to Relation, with a note on the gathered neighbours after Time and after Role
+         (owner: the tour clicked through Arrange without showing what moved); the card's lists are read off the page */
       ['click', S.arr('Time'), 600], ['do', settle],
+      ['note', { at: [councilOr(S.arrange)], clear: [S.card], title: 'Arrange: Time',
+        text: () => `The neighbours moved by era: older ideas on the left, newer ones on the right, the same era below. The card’s lists follow: ${sides()}.` }],
+      ['click', S.arr('Role'), 600], ['do', settle],
+      ['note', { at: [councilOr(S.arrange)], clear: [S.card], title: 'Arrange: Role',
+        text: () => `Now by role: problems on the left, solutions on the right, claims and critiques above, lenses and evidence below. The card: ${sides()}.` }],
       ['click', S.arr('Relation'), 600], ['do', settle],
       ['do', toTop(S.secHead), 300],
       ['note', { at: [S.secHead, S.firstRow], title: 'Its neighbours, by side',
@@ -443,6 +460,15 @@
       ['note', { at: [S.legend], clear: [P.council], title: 'How to read the lines',
         text: () => `${S.legend().querySelectorAll('button[title]').length} kinds of link reach this beast, each with its own line: beads for logic, dashes for cause, a zigzag for debate, dots for kin, paw prints for history. Hover a kind to light up its lines, click it to hide them.` }],
       ['hover', S.legCard],
+      /* ADDED 2026-11-23: a click on a kind hides its links and a second click brings them back, each with its note (owner: the
+         tour only said so); the kind's name and count are read off its legend card before it is hidden */
+      ['do', () => { kind = txt(legName()) }],
+      ['click', S.legCard, 900],
+      ['note', { at: [S.legCard, onMap(P.council)], clear: [S.card], title: 'Links hidden',
+        text: () => `${kind.replace(/ · /, ': ')} links. A click on its card hid them on the map, and the card now says “${txt(legName()).replace(/^.* · /, '')}”. Show all links brings every kind back at once.` }],
+      ['click', S.legCard, 900],
+      ['note', { at: [S.legCard, onMap(P.council)], clear: [S.card], title: 'Links back',
+        text: () => `A second click brings them back: ${txt(legName())}.` }],
       ['do', out(S.legCard), 300],
       ['click', P.nb, 900],
       ['note', { at: [onMap(P.nb), S.peekBar], clear: [S.cardHead], title: 'One click reads a neighbour',
@@ -481,6 +507,10 @@
       ['note', { at: [S.chron], title: 'Chronicle',
         text: () => `The bestiary grows era by era, from myths to the LLM era, each new idea walking out of the older one it descends from. ▶ plays it, the slider picks an era, the count says how many beasts are alive by then: all ${cmp.nodes.length} in the LLM era.` }],
       ['click', S.mode('Wander'), 600],
+      /* ADDED 2026-11-23: the closing note points to the next thing to do: open a beast and read its essay */
+      ['click', P.hub, 600], ['do', settle],
+      ['note', { at: [S.wiki], clear: [S.cardHead], title: 'Next: read an essay',
+        text: () => `Every beast is an essay. Open any beast, ${nm(st().focus)} for example, and Read the full entry in the wiki ↗. Click anywhere to take over the map.` }],
     ]
   }
 
