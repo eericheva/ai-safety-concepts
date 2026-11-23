@@ -42,14 +42,19 @@
   // `title` and `text` may be functions too, so a note reads its numbers off the page when it opens.
   // CHANGED 2026-11-02: a note may also list `clear: [targets]`, the elements its text is about that the card
   // must not cover besides the framed ones; a target there may find an element or a list of them.
-  function startDemo(root, tour) {
+  // ADDED 2026-11-23: `opts` lets another page use the tour: `button` is a button the page already has (none is made then),
+  // `watch` is where a real click ends the tour (the root by default), `controls: false` hides Pause and Next, and
+  // `readMs(words)` sets how long a note stays, `scroll: false` keeps the tour from scrolling anything (a page that fits the screen,
+  // where scrolling an element into view would scroll a toolbar's hidden overflow instead). A step may also be ['do', fn, ms]: run fn, wait for what it returns, then ms.
+  function startDemo(root, tour, opts = {}) {
     const cur = document.createElement('div'); cur.className = 'bd-cursor'; cur.innerHTML = CURSOR
     const ring = cur.querySelector('span')
-    const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'bd-btn'; btn.textContent = '▶ Demo: how to read this'
+    /* CHANGED 2026-11-23: the page's own button when it has one (opts.button) */
+    const btn = opts.button || Object.assign(document.createElement('button'), { type: 'button', className: 'bd-btn', textContent: '▶ Demo: how to read this' })
     const layer = document.createElement('div'); layer.className = 'bd-layer'
     const svg = document.createElementNS(SVG, 'svg'); layer.appendChild(svg)
     const card = document.createElement('div'); card.className = 'bd-tip'; layer.appendChild(card)
-    root.append(btn, cur, layer)
+    root.append(...(opts.button ? [] : [btn]), cur, layer)
     let run = 0, playing = false, next = () => {}
     const moveTo = (el) => {
       const a = root.getBoundingClientRect(), b = el.getBoundingClientRect()
@@ -60,7 +65,8 @@
       if (!els.length) return
       const rs = els.map((e) => e.getBoundingClientRect())
       const top = Math.min(...rs.map((r) => r.top)), bottom = Math.max(...rs.map((r) => r.bottom))
-      if (bottom - top < innerHeight - 200) scrollBy({ top: (top + bottom) / 2 - innerHeight / 2, behavior: 'smooth' })
+      if (opts.scroll === false) {} /* CHANGED 2026-11-23: see opts.scroll */
+      else if (bottom - top < innerHeight - 200) scrollBy({ top: (top + bottom) / 2 - innerHeight / 2, behavior: 'smooth' })
       else els[0].scrollIntoView({ block: 'center', behavior: 'smooth' })
       await wait(650); if (token !== run) return
       moveTo(els[0]); await wait(700); if (token !== run) return
@@ -75,7 +81,7 @@
       const bar = document.createElement('i'), ctl = document.createElement('div')
       const hold = document.createElement('button'); hold.type = 'button'; hold.textContent = 'Pause'
       const go = document.createElement('button'); go.type = 'button'; go.textContent = 'Next ›'
-      ctl.append(hold, go); card.append(t, p, ctl, bar)
+      ctl.append(hold, go); card.append(t, p, ...(opts.controls === false ? [] : [ctl]), bar) /* CHANGED 2026-11-23: see opts.controls */
       // CHANGED 2026-11-02: the card goes where it covers least of what the note is about. Candidates sit
       // right of, left of, below and above the framed union and in the corners and edges of the part of the
       // block on screen, in three widths; each is scored by the area it covers of the frames (weighted 4)
@@ -124,9 +130,10 @@
         svg.appendChild(path)
       })
       layer.classList.add('on')
-      card.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+      if (opts.scroll !== false) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' }) /* CHANGED 2026-11-23: see opts.scroll */
       // reading time: about 4 words a second, never under 6 s
-      const ms = Math.max(6000, (t.textContent + ' ' + p.textContent).split(/\s+/).length * 260)
+      const words = (t.textContent + ' ' + p.textContent).split(/\s+/).length
+      const ms = opts.readMs ? opts.readMs(words) : Math.max(6000, words * 260) /* CHANGED 2026-11-23: see opts.readMs */
       bar.style.transition = 'none'; bar.style.transform = 'scaleX(1)'
       await new Promise((done) => {
         let left = ms, since = 0, timer
@@ -153,10 +160,11 @@
       for (const s of tour(root)) {
         if (token !== run) return
         if (s[0] === 'note') { await showNote(s[1], token); continue }
+        if (s[0] === 'do') { await s[1](); await wait(s[2] || 0); continue } /* ADDED 2026-11-23: see opts */
         const el = look(s[1])
         if (!el || !el.isConnected) continue
         const b = el.getBoundingClientRect()
-        if (b.bottom < 80 || b.top > innerHeight - 80) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); await wait(550) }
+        if (opts.scroll !== false && (b.bottom < 80 || b.top > innerHeight - 80)) { /* CHANGED 2026-11-23: see opts.scroll */ el.scrollIntoView({ block: 'center', behavior: 'smooth' }); await wait(550) }
         moveTo(el); await wait(850); if (token !== run) return
         if (s[0] === 'hover') { el.dispatchEvent(new MouseEvent('mouseenter')); el.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })); await wait(1100) }
         else {
@@ -170,7 +178,9 @@
     }
     btn.addEventListener('click', (e) => { e.stopPropagation(); play() })
     // a real click in the block, outside the note card and the button, hands the block to the reader
-    root.addEventListener('pointerdown', (e) => { if (playing && e.isTrusted && e.target !== btn && !card.contains(e.target)) stop() })
+    /* CHANGED 2026-11-23: in opts.watch when given; the tour's own play and stop are returned for a page that drives it */
+    ;(opts.watch || root).addEventListener('pointerdown', (e) => { if (playing && e.isTrusted && e.target !== btn && !btn.contains(e.target) && !card.contains(e.target)) stop() }, true)
+    return { play, stop }
   }
 
   // ---- finding things on the page ----
@@ -296,11 +306,202 @@
     },
   }
 
+  // ---- ADDED 2026-11-23: the tour of the Bestiarium Map (bestiary-world.html) ----
+  // The map is a canvas: a beast, an island, the gathered neighbours and the flag have no element of their own. A spot stands in
+  // for one: its box is asked of the map component (window.__bestiaryWorld, its accessors beastBox, islandBox, councilBox,
+  // flagBox) every time it is read, and its click and hover are pointer events sent to the canvas, so they go through the same
+  // handlers as a real mouse. Which beast, island or neighbour the tour points at is chosen by a rule from the data: the beast
+  // with the most links, the island with the most beasts, the first neighbour in the card, the next beast on a shortest path.
+  const worldKit = (cmp) => {
+    const cv = () => cmp.cvRef.current
+    const fire = (type, x, y) => cv().dispatchEvent(new PointerEvent(type, { clientX: x, clientY: y, bubbles: true, pointerId: 1, isPrimary: true }))
+    const spot = (box) => () => {
+      if (!box()) return null
+      const rect = () => { const b = box(), c = cv().getBoundingClientRect(); return { left: c.left + b.x0, top: c.top + b.y0, right: c.left + b.x1, bottom: c.top + b.y1, width: b.x1 - b.x0, height: b.y1 - b.y0 } }
+      const mid = () => { const r = rect(); return [r.left + r.width / 2, r.top + r.height / 2] }
+      return { isConnected: true, getBoundingClientRect: rect, scrollIntoView() {},
+        click() { const [x, y] = mid(); fire('pointerdown', x, y); fire('pointerup', x, y) },
+        dispatchEvent(ev) { if (ev.type === 'mouseover') { const [x, y] = mid(); fire('pointermove', x, y) } } }
+    }
+    const leave = () => fire('pointerleave', 0, 0)
+    // a spot whose centre a panel covers is not shown: a note does not frame it
+    const onMap = (sp) => () => { const e = sp(); if (!e) return null; const r = e.getBoundingClientRect(); return document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) === cv() ? e : null }
+    const free = (b) => { const c = cv().getBoundingClientRect(); return document.elementFromPoint(c.left + (b.x0 + b.x1) / 2, c.top + (b.y0 + b.y1) / 2) === cv() }
+    // a DOM element's React onMouseLeave: a mouseout to the page
+    const out = (find) => () => { const e = find(); if (e) e.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, relatedTarget: document.body })) }
+    const settle = async () => { const t0 = performance.now(); await wait(250); while (!cmp.settled() && performance.now() - t0 < 4000) await wait(100); await wait(200) }
+    const root = cmp.wrapRef.current
+    const visible = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && r.right > 0 && r.left < innerWidth }
+    const els = (sel) => all(root, sel).filter(visible)
+    const byTxt = (sel, re) => () => els(sel).find((e) => re.test(txt(e))) || null
+    const up = (find, k = 1) => () => { let e = find(); for (let i = 0; e && i < k; i++) e = e.parentElement; return e }
+    const S = {
+      title: byTxt('h1', /^Bestiarium Map$/),
+      mode: (l) => byTxt('button', new RegExp(`^${l}$`)),
+      help: byTxt('button', /^\?$/),
+      intro: up(byTxt('span', /^How this world works$/), 2),
+      introGo: byTxt('button', /^Start wandering/),
+      tip: () => els('div').find((e) => e.style.pointerEvents === 'none' && e.style.transform === 'translate(16px, 16px)') || null,
+      isHead: byTxt('button', /^Islands = .*Neighbouring islands are joined/),
+      isPanel: up(() => S.isHead()),
+      isOpener: byTxt('button', /^Islands = .*\+$/),
+      isList: () => { const p = S.isPanel(); return p && [...p.children].find((e) => e.style.overflowY === 'auto') || null },
+      // the colourings: the islands panel's, or the foot of the beast card when the panel is not shown
+      grpRow: up(byTxt('span', /^Islands by$/)),
+      grpBtn: (l) => () => { const r = S.grpRow(); return r && [...r.querySelectorAll('button')].find((b) => txt(b) === l) || null },
+      cbRow: up(byTxt('span', /^Beasts by$/)),
+      colLegend: () => { const r = S.cbRow(); return r && r.nextElementSibling },
+      search: () => els('input').find((e) => e.placeholder === 'Find a beast…') || null,
+      wander: up(byTxt('span', /^Your wanderings$/), 2),
+      wCount: () => { const w = S.wander(); return w ? txt(w.children[0].children[1]) : '' },
+      card: () => { const a = byTxt('a', /^Read the full entry/)(); return a && a.parentElement.parentElement },
+      cardHead: () => { const a = byTxt('a', /^Read the full entry/)(); return a && a.parentElement },
+      arrange: up(byTxt('span', /^Arrange$/)),
+      arr: (l) => () => { const r = S.arrange(); return r && [...r.querySelectorAll('button')].find((b) => txt(b) === l) || null },
+      secHead: () => { const c = S.card(); return c ? all(c, 'div').find((e) => e.style.padding === '12px 0px 6px') || null : null },
+      firstRow: () => { const h = S.secHead(); return h && h.parentElement.querySelector('button') },
+      peekBar: byTxt('button', /^← ?Visiting /),
+      stepBtn: () => els('button').find((b) => /^Step →$/.test(txt(b))) || null,
+      legend: () => cmp.legRef.current && visible(cmp.legRef.current) ? cmp.legRef.current : null,
+      legCard: () => { const l = S.legend(); return l && l.querySelector('button[title]') },
+      rules: up(byTxt('span', /^New expedition along$/)),
+      start: up(byTxt('span', /^Start$/)),
+      flag: up(byTxt('span', /^Flag$/)),
+      away: up(byTxt('span', /hops? away$|^At the flag$/), 2),
+      foot: () => { const h = byTxt('button', /^Hint$/)(); return h && h.parentElement },
+      journey: up(byTxt('span', /^Your journey$/)),
+      report: up(byTxt('span', /^Expedition report$/)),
+      chron: () => cmp.chronRef.current,
+    }
+    const st = () => cmp.state
+    const nm = (id) => cmp.byId.get(id).name
+    // the beast with the most links and the island with the most beasts, among those no panel covers (chosen once per tour);
+    // the first neighbour in the card; the next hop on a shortest path
+    let hubId = null, isl = null
+    const hub = () => hubId || (hubId = [...cmp.nodes].sort((a, b) => cmp.adj.get(b.id).length - cmp.adj.get(a.id).length).find((n) => free(cmp.beastBox(n.id))).id)
+    const bigIsland = () => isl || (isl = [...cmp.isl].sort((a, b) => b.list.length - a.list.length).find((I) => free(cmp.islandBox(I.k))))
+    const firstNb = () => { const sd = cmp.council && cmp.council.sides; return sd ? ['left', 'right', 'top', 'bottom'].map((k) => sd[k][0]).find(Boolean).o : null }
+    const nextHop = () => { const q = st().quest, f = st().focus; if (!q || !f || !cmp.nodes) return null; const d = q.distT.get(f); if (!d) return null
+      return cmp.adj.get(f).filter((e) => cmp.ok(e, q.rule)).map((e) => (e.a === f ? e.b : e.a)).find((o) => q.distT.get(o) === d - 1) || null }
+    const P = {
+      hub: spot(() => cmp.beastBox(hub())),
+      island: spot(() => cmp.islandBox(bigIsland().k)),
+      council: spot(() => st().focus && cmp.council ? cmp.councilBox() : null),
+      nb: spot(() => { const o = st().peek || firstNb(); return o ? cmp.beastBox(o) : null }),
+      next: spot(() => { const o = nextHop(); return o ? cmp.beastBox(o) : null }),
+      hint: spot(() => cmp.hintId && st().quest ? cmp.beastBox(cmp.hintId) : null),
+      flag: spot(() => st().quest ? cmp.flagBox() : null),
+    }
+    return { S, P, fire, leave, out, settle, st, nm, hub, bigIsland, firstNb, nextHop, onMap }
+  }
+
+  const worldTour = (cmp) => {
+    const { S, P, leave, out, settle, st, nm, hub, bigIsland, onMap } = worldKit(cmp)
+    const toTop = (find) => () => { const e = find(); if (e) cmp.cardRef.current.scrollTop = e.offsetTop - 8 }
+    const narrow = () => cmp.W < 708
+    const hop = [['click', P.next, 900], ['click', P.next, 600], ['do', settle]]
+    return [
+      ['do', async () => { cmp.setState({ intro: false }); if (st().mode !== 'explore' || st().focus) cmp.setMode('explore'); else cmp.fitWorld(); await settle() }],
+      ['note', { at: [S.title, S.mode('Wander')], clear: [S.mode('Expedition'), S.mode('Chronicle')], title: 'Three ways to use the map',
+        text: 'Wander: click beasts and read about them. Expedition: a game, get from one beast to a flag along the links. Chronicle: watch the bestiary grow era by era. The lit switch is the mode you are in.' }],
+      ['click', S.help, 900],
+      ['note', { at: [S.intro], title: 'How this world works',
+        text: 'The ? button opens this short guide: islands are families of ideas, beasts are ideas, lines are the links between them.' }],
+      ['click', S.introGo, 900],
+      ['hover', P.island],
+      ['note', { at: [P.island, S.tip], title: 'Islands are families of ideas',
+        text: () => { const I = bigIsland(); return `Each island holds the ideas on one topic. ${I.label} has ${I.list.length} of the ${cmp.nodes.length} beasts. Hover an island to see which islands it shares the most links with: bridges join near ones, ships and planes far ones.` } }],
+      ['do', leave],
+      ['click', () => (narrow() ? S.isOpener() : null), 900],
+      ['note', { at: [S.isList], title: 'The islands panel',
+        text: () => `All ${cmp.isl.length} islands with the number of beasts on each. Click one to fly to it.` }],
+      ['note', { at: [S.grpRow], title: 'Islands by',
+        text: 'Regroups the beasts onto new islands: by family (the default), by era, by role in the argument or by canon. The beasts walk, sail or fly to their new homes.' }],
+      ['click', S.grpBtn('Era'), 2600],
+      ['click', S.grpBtn('Family'), 2600],
+      ['note', { at: [S.cbRow, S.colLegend], title: 'Colours by role',
+        text: () => `A beast's body colour is its role in the argument; the legend names them: ${[...S.colLegend().children].map(txt).join(', ')}. Bigger beasts are the core canon. Beasts by Family, Era or Canon recolours them.` }],
+      ['click', () => (narrow() ? S.isHead() : null), 900],
+      ['note', { at: [S.search, S.wander], title: 'The left panel',
+        text: () => `Find a beast… searches by name. Your wanderings keeps every beast you visit; it holds ${S.wCount()} now. ← Back steps back, Clear trail forgets the trail.` }],
+      ['hover', P.hub],
+      ['note', { at: [S.tip], clear: [P.hub], title: 'Hover a beast',
+        text: () => `The tooltip gives its island, name, role, weight and era, and its number of links: ${txt(S.tip()).match(/(\d+) links/)[1]} for ${nm(hub())}.` }],
+      ['do', leave],
+      ['click', P.hub, 600], ['do', settle],
+      ['note', { at: [P.council], clear: [S.card], title: 'Click a beast: its neighbours gather',
+        text: () => `${all(S.card(), 'span').filter((e) => e.style.color === 'rgb(154, 148, 139)' && /^\d+$/.test(txt(e))).reduce((a, e) => a + +txt(e), 0)} neighbours come to it: what it comes from on the left, what it leads to on the right, what argues with it above, kin and echoes below. The coloured base under a guest is its home island.` }],
+      ['note', { at: [S.cardHead], title: 'The beast card',
+        text: 'Island, name, role, weight and era, a short summary, who proposed the idea, and a link to its full entry in the wiki. × closes the card.' }],
+      ['note', { at: [S.arrange], title: 'Arrange',
+        text: 'Relation places neighbours by kind of link. Time puts older ideas on the left and newer ones on the right; Role puts problems on the left and solutions on the right.' }],
+      ['click', S.arr('Time'), 600], ['do', settle],
+      ['click', S.arr('Relation'), 600], ['do', settle],
+      ['do', toTop(S.secHead), 300],
+      ['note', { at: [S.secHead, S.firstRow], title: 'Its neighbours, by side',
+        text: () => `${txt(S.secHead()).replace(/\s*(\d+)$/, ' · $1')}: each row says how the two are linked, here “${txt(S.firstRow().children[1].children[1].children[0])}”. The number in the box is the one over the beast on the map.` }],
+      ['note', { at: [S.legend], clear: [P.council], title: 'How to read the lines',
+        text: () => `${S.legend().querySelectorAll('button[title]').length} kinds of link reach this beast, each with its own line: beads for logic, dashes for cause, a zigzag for debate, dots for kin, paw prints for history. Hover a kind to light up its lines, click it to hide them.` }],
+      ['hover', S.legCard],
+      ['do', out(S.legCard), 300],
+      ['click', P.nb, 900],
+      ['note', { at: [onMap(P.nb), S.peekBar], clear: [S.cardHead], title: 'One click reads a neighbour',
+        text: () => `The card now shows ${nm(st().peek)}, and its top bar leads back to ${nm(st().focus)}. A second click on the beast, or Step → in its row, moves there.` }],
+      ['click', P.nb, 600], ['do', settle],
+      ['note', { at: [S.wander], title: 'Your wanderings',
+        text: () => `The trail now holds ${S.wCount()}. Click a stop to go back to it.` }],
+      ['click', S.mode('Expedition'), 600], ['do', settle],
+      ['note', { at: [S.rules], title: 'New expedition along',
+        text: 'Each switch starts a new expedition with its own rule: Any link, Logic chain (Roots only), Cause chain (Currents only), Through time (Lineage only). The lit one is the rule now.' }],
+      ['note', { at: [S.start, S.flag], title: 'Start and flag',
+        text: () => `You stand on ${nm(st().quest.s)}. The flag is ${nm(st().quest.t)}, ${st().quest.best} hops away. Under it: a short summary and the flag's neighbours, so you know what to look for.` }],
+      ['note', { at: [P.flag], title: 'The flag on the map',
+        text: 'A gold flag marks it, or a gold arrow at the edge points to it. The flag’s island has a moving gold outline, and small gold flags mark neighbours that live there.' }],
+      ['note', { at: [S.away], title: 'Hops away',
+        text: () => `${txt(S.away().children[0].children[0])} from here. Hops made counts your hops; best possible is the shortest route.` }],
+      ['click', P.next, 900],
+      ['click', () => S.stepBtn() || P.next(), 600], ['do', settle],
+      ['note', { at: [S.away, S.journey], title: 'One hop',
+        text: () => `${txt(S.away().children[0].children[0])}: ${txt(S.away().children[0].children[1]).toLowerCase()}. Your journey lists each hop and how the two beasts are linked.` }],
+      ['click', byText(document, 'button', /^Hint$/), 900],
+      ['note', { at: [onMap(P.hint), S.foot], title: 'Hint, Undo, Give up',
+        text: () => `Hint rings the next beast on a shortest path in gold: ${nm(cmp.hintId)}. Undo steps back one hop. Give up shows a shortest route.` }],
+      ...hop, ...hop, ...hop, ...hop,
+      ['note', { at: [S.away, byText(document, 'button', /^Show expedition report$/)], title: 'At the flag',
+        text: () => `${nm(st().quest.t)} reached in ${st().quest.hops} hops; the best possible is ${st().quest.best}. Fireworks, and the report is ready.` }],
+      ['click', byText(document, 'button', /^Show expedition report$/), 900],
+      ['note', { at: [S.report], title: 'Expedition report',
+        text: () => `${st().result.grade}. Your route and a shortest route stand side by side, every hop with its link.` }],
+      ['click', byText(document, 'button', /^New expedition →$/), 600], ['do', settle],
+      ['click', byText(document, 'button', /^Give up$/), 900],
+      ['note', { at: [S.report], title: 'Give up',
+        text: 'Shows a shortest route to the flag. Keep trying closes the report and lights a hint; New expedition → starts another.' }],
+      ['click', byText(document, 'button', /^Keep trying$/), 900],
+      ['click', S.mode('Chronicle'), 2400],
+      ['note', { at: [S.chron], title: 'Chronicle',
+        text: () => `The bestiary grows era by era, from myths to the LLM era, each new idea walking out of the older one it descends from. ▶ plays it, the slider picks an era, the count says how many beasts are alive by then: all ${cmp.nodes.length} in the LLM era.` }],
+      ['click', S.mode('Wander'), 600],
+    ]
+  }
+
+  const bootWorld = () => {
+    const cmp = window.__bestiaryWorld, btn = document.querySelector('button[title="Demo: how to read this"]')
+    if (!cmp || !btn) { setTimeout(bootWorld, 300); return }
+    document.head.append(Object.assign(document.createElement('style'), { textContent: CSS }))
+    const root = Object.assign(document.createElement('div'), { style: 'position:fixed;inset:0;pointer-events:none;z-index:60' })
+    document.body.append(root)
+    window.BestiaryDemo.playWorld = startDemo(root, () => worldTour(cmp), { button: btn, watch: document, scroll: false }).play /* CHANGED 2026-11-23: the intro overlay's Watch the demo button plays it */
+  }
+
+  // ADDED 2026-11-23: the page names its tour on the script tag (data-tour="world" on the Bestiarium Map); no name is the interactives
+  const PAGE = document.currentScript.dataset.tour || 'interactives'
   const boot = () => {
     const ready = ['2w', '4a', '2f'].every((id) => { const e = document.getElementById(id); return e && e.querySelector('button') })
     if (!ready) { setTimeout(boot, 300); return }
     document.head.append(Object.assign(document.createElement('style'), { textContent: CSS }))
     for (const id of Object.keys(TOURS)) startDemo(document.getElementById(id), TOURS[id])
   }
-  document.addEventListener('DOMContentLoaded', () => setTimeout(boot, 300))
+  /* CHANGED 2026-11-23: each page boots its own tour; window.BestiaryDemo lets a script drive the engine (the Expedition video) */
+  window.BestiaryDemo = { startDemo, wait, txt, worldKit }
+  document.addEventListener('DOMContentLoaded', () => setTimeout(PAGE === 'world' ? bootWorld : boot, 300))
 })()
