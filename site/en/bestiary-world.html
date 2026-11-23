@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./dc-runtime.js"></script>
+<script src="./bestiary-demo.js" data-tour="world"></script><!-- ADDED 2026-11-23: the "Demo: how to read this" tour -->
 </head>
 <body>
 <x-dc>
@@ -31,6 +32,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a2
     </div>
     <!-- CHANGED 2026-11-22: the expedition's rules stand in the top row next to the modes while Expedition is on; the mode line went back to the left panel (owner) -->
     <!-- CHANGED 2026-11-22: design review: from 1100px only; below, the rules stand at the head of the expedition in the left panel -->
+    <!-- CHANGED 2026-11-23: from 1250px, see rulesBar -->
     <sc-if value="{{ rulesBar }}" hint-placeholder-val="{{ false }}">
     <div style="display:flex;align-items:center;gap:4px;flex:1 1 auto;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e">
       <span title="Click a rule to start a new expedition along it" style="flex:none;padding:0 6px 0 4px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#9a948b;white-space:nowrap">New expedition along</span>
@@ -42,13 +44,18 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a2
       </div>
     </div>
     </sc-if>
+    <!-- ADDED 2026-11-23: the tour's button (bestiary-demo.js finds it by its title). An action, but 40px like the toolbar's switches:
+         at 44 it would stand out of the 56px toolbar's row (brand book: a toolbar holds 40px controls). The short label below 1400px -->
+    <button title="Demo: how to read this" style="margin-left:auto;height:40px;flex:none;padding:0 12px;border:1px solid #d8a24a;background:transparent;color:#d8a24a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap" style-hover="background:#d8a24a;color:#0c0b0a">{{ demoLabel }}</button>
     <!-- CHANGED 2026-11-22: ? is a switch-sized icon button, 40x40 (brand book sizes) -->
-    <button onClick="{{ openIntro }}" title="How this world works" style="margin-left:auto;width:40px;height:40px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">?</button>
+    <!-- CHANGED 2026-11-23: margin-left:auto moved to the Demo button -->
+    <button onClick="{{ openIntro }}" title="How this world works" style="width:40px;height:40px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">?</button>
   </div>
   <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
   <!-- CHANGED 2026-11-22: design review: the foot rises above the Chronicle bar where the bar cannot stand beside the panel (leftB) -->
   <div style="position:absolute;left:16px;top:{{ barH }}px;bottom:{{ leftB }}px;width:310px;max-width:calc(100% - 32px);overflow:hidden;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:16px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box">
     <div ref="{{ leftRef }}" style="flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e;display:flex;flex-direction:column;gap:12px">
+    <!-- CHANGED 2026-11-23: below 1250px now, see rulesBar -->
     <!-- ADDED 2026-11-22: design review: below 1100px the expedition's rules are a row of four 40px switches here, not a cut-off
          row in the top bar; their labels are the rules' short names, the full name is in the title -->
     <sc-if value="{{ rulesPanel }}" hint-placeholder-val="{{ false }}">
@@ -388,7 +395,12 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a2
           <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#d8a24a">Three ways to play</span>
           <span style="font:400 14px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty"><b style="color:#efeae2">Wander</b>: click any beast and read its council. <b style="color:#efeae2">Expedition</b>: get from one beast to the flag by hopping along links; pick a rule (any link, logic, cause, or through time), read a neighbour before stepping, watch warmer / colder. <b style="color:#efeae2">Chronicle</b>: watch the bestiary grow from myths to the LLM era.</span>
         </div>
-        <button onClick="{{ closeIntro }}" style="align-self:flex-start;min-height:44px;padding:0 22px;background:#d8a24a;border:0;color:#0c0b0a;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Start wandering →</button>
+        <!-- ADDED 2026-11-23: a first visit opens here, over the toolbar and its Demo button: the overlay offers the tour too; the two
+             actions share a row and wrap onto two when it is too narrow -->
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <button onClick="{{ closeIntro }}" style="min-height:44px;padding:0 22px;background:#d8a24a;border:0;color:#0c0b0a;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Start wandering →</button>
+          <button onClick="{{ watchDemo }}" style="min-height:44px;padding:0 22px;background:transparent;border:1px solid #d8a24a;color:#d8a24a;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap" style-hover="background:#d8a24a;color:#0c0b0a">▶ Watch the demo</button>
+        </div>
       </div>
     </div>
   </sc-if>
@@ -582,6 +594,18 @@ class Component extends DCLogic {
     this.off=()=>{cv.removeEventListener('pointerdown',pd);cv.removeEventListener('pointermove',pm);cv.removeEventListener('pointerup',pu);cv.removeEventListener('pointerleave',pl);cv.removeEventListener('wheel',wh);};
   }
   toWorld(x,y){const c=this.cam;return [(x-this.W/2)/c.z+c.x,(y-this.H/2)/c.z+c.y];}
+  /* ADDED 2026-11-23: accessors for the demo tour (bestiary-demo.js): where a beast, an island, the gathered neighbours and the
+     flag are drawn, in canvas pixels, and whether the map has stopped moving */
+  scrOf(x,y){ const c=this.cam; return [(x-c.x)*c.z+this.W/2,(y-c.y)*c.z+this.H/2]; }
+  beastBox(id){ const n=this.byId.get(id), [x,y]=this.scrOf(n.x,n.y), r=Math.max(14,n.S*(n.bz||1)*this.cam.z*.7); return {x0:x-r,y0:y-r,x1:x+r,y1:y+r}; }
+  islandBox(k){ const I=this.islBy[k], [x0,y0]=this.scrOf(I.x-I.R,I.y-I.R), [x1,y1]=this.scrOf(I.x+I.R,I.y+I.R); return {x0,y0,x1,y1}; }
+  councilBox(){ const bs=[this.state.focus,...this.council.map.keys()].map(id=>{ const n=this.byId.get(id), p=n.slot||n, [x,y]=this.scrOf(p.x,p.y), r=n.S*this.cam.z; return [x-r,y-r,x+r,y+r]; });
+    return {x0:Math.min(...bs.map(b=>b[0])),y0:Math.min(...bs.map(b=>b[1])),x1:Math.max(...bs.map(b=>b[2])),y1:Math.max(...bs.map(b=>b[3]))}; }
+  flagBox(){ const F=this.flagAt(); return F.off?{x0:F.cx-20,y0:F.cy-20,x1:F.cx+20,y1:F.cy+20}:{x0:F.sx-6,y0:F.sy-38,x1:F.sx+24,y1:F.sy+2}; }
+  settled(){ return !this.camT&&!this.follow&&this.nodes.every(n=>!n.path&&!n.mv); }
+  /* ADDED 2026-11-23: where the flag is drawn, or the arrow at the map's edge when it is off screen; draw() and flagBox() share it */
+  flagAt(){ const tn=this.byId.get(this.state.quest.t); const [sx,sy]=this.scrOf(tn.x,tn.y-tn.S*(tn.id===this.state.focus?.9:.6)); const m=46, fl=this.leftInset()+m, fr=this.W-this.rightInset()-m;
+    return {sx,sy,off:sx<fl||sx>fr||sy<m+BAR||sy>this.H-m,cx:clamp(sx,fl,Math.max(fl,fr)),cy:clamp(sy,m,this.H-m)}; }
   vis(n){ return this.state.mode!=='chronicle'||n.ei<=this.state.era; }
   pickAt(x,y){ if(!this.nodes) return null; const [wx,wy]=this.toWorld(x,y); const C=this.council; let best=null,bd=1;
     for(const n of this.nodes){ if(!this.vis(n)) continue; const inC=C&&(n.id===C.f||C.map.has(n.id)); const sc=n.id===this.state.focus?1.55:1; const r=Math.max(n.S*.6*sc,10/this.cam.z); const d=Math.hypot(wx-n.x,wy-(n.y-n.S*.05))/r; const dd=inC?d*.7:d; if(dd<bd){bd=dd;best=n.id;} }
@@ -869,9 +893,9 @@ class Component extends DCLogic {
     else if(z>.95){ for(const n of list){ if(z<1.6&&n.w!=='Core') continue; const [sx,sy]=scr(n.x,n.y+n.S*.62); this.text(ctx,nameOf(n),sx,sy+7,'500 11px Onest, sans-serif','#cfc8bd'); } }
     if(q&&q.path.length>1){ q.path.forEach((id,i)=>{ if(i===q.path.length-1) return; const n=this.byId.get(id); const [sx,sy]=scr(n.x,n.y-n.S*.7); ctx.fillStyle='#d8a24a'; ctx.fillRect(sx-9,sy-9,18,18); ctx.fillStyle='#0c0b0a'; ctx.font='700 11px "JetBrains Mono", monospace'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(i===0?'S':String(i),sx,sy+.5); }); }
     if(q&&C&&s.mode==='quest'){ const tf=this.byId.get(q.t).fam; for(const v of C.map.values()){ const n=this.byId.get(v.o); if(n.fam!==tf||n.id===q.t||n.mv) continue; const [sx,sy]=scr(n.x+n.S*.45,n.y-n.S*.55); ctx.strokeStyle='#efeae2'; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(sx,sy-16); ctx.stroke(); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(sx,sy-16); ctx.lineTo(sx+11,sy-12.5); ctx.lineTo(sx,sy-9); ctx.closePath(); ctx.fill(); } }
-    if(q&&q.t){ const tn=this.byId.get(q.t); let [sx,sy]=scr(tn.x,tn.y-tn.S*(tn.id===f?.9:.6)); const m=46, fl=this.leftInset()+m, fr=W-this.rightInset()-m, off=sx<fl||sx>fr||sy<m+BAR||sy>H-m;
+    if(q&&q.t){ const {sx,sy,off,cx,cy}=this.flagAt(); /* CHANGED 2026-11-23: see flagAt */
       if(!off){ const b=Math.sin(t*3)*2; ctx.strokeStyle='#efeae2'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(sx,sy-2); ctx.lineTo(sx,sy-34+b); ctx.stroke(); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(sx,sy-34+b); ctx.lineTo(sx+20,sy-28+b); ctx.lineTo(sx,sy-22+b); ctx.closePath(); ctx.fill(); }
-      else { const cx=clamp(sx,fl,Math.max(fl,fr)), cy=clamp(sy,m,H-m), a=Math.atan2(sy-cy,sx-cx); ctx.save(); ctx.translate(cx,cy); ctx.rotate(a); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(16,0); ctx.lineTo(-8,-11); ctx.lineTo(-8,11); ctx.closePath(); ctx.fill(); ctx.restore(); this.text(ctx,'FLAG',cx-Math.cos(a)*24,cy-Math.sin(a)*24,'700 10px "JetBrains Mono", monospace','#d8a24a'); } }
+      else { const a=Math.atan2(sy-cy,sx-cx); ctx.save(); ctx.translate(cx,cy); ctx.rotate(a); ctx.fillStyle='#d8a24a'; ctx.beginPath(); ctx.moveTo(16,0); ctx.lineTo(-8,-11); ctx.lineTo(-8,11); ctx.closePath(); ctx.fill(); ctx.restore(); this.text(ctx,'FLAG',cx-Math.cos(a)*24,cy-Math.sin(a)*24,'700 10px "JetBrains Mono", monospace','#d8a24a'); } }
   }
 
   renderVals(){
@@ -903,7 +927,7 @@ class Component extends DCLogic {
       cbs, colLegend, grps, grpTitle:GRP[gk][1], grpNote:GRP[gk][2], jBottom:this.H<700?16:104, arrs, arrNote:ARR[s.arr||'rel'].note, islands, islandsOn:isShown, isOpener:showCard&&NS&&!isShown&&ready&&!fn&&!s.intro, isOpen:isO, /* CHANGED 2026-11-22: design review: see NS */ toggleIs:()=>this.setState({isOpen:!(s.isOpen??(this.W>=1100))}), isToggle:(s.isOpen??(this.W>=1100))?'–':'+', isBottom:16, isB:(s.isOpen??(this.W>=1100))?'16px':'auto',
       rules, qRuleName:q?RULES[q.rule||'any'][0]:'', qRuleText:q?RULES[q.rule||'any'][1]:'', qFlagFam:tn?FAM[tn.fam][0]:'', qFlagCol:tn?FCOL[tn.fam]:'#d8a24a', qFlagBlurb:tn?tn.blurb:'', qFlagNb:tn?(()=>{ const WO={Core:0,Major:1,Supporting:2}; const L=[...new Set((this.adj.get(tn.id)||[]).filter(e=>this.ok(e,q.rule)).map(e=>e.a===tn.id?e.b:e.a))].map(id=>this.byId.get(id)).sort((a,b)=>(WO[a.w]??2)-(WO[b.w]??2)); return L.slice(0,4).map(n=>n.name).join(' · ')+(L.length>4?` · +${L.length-4} more`:''); })():'',
       hasPeek:false, pkName:pk?pk.name:'', pkFam:pk?FAM[pk.fam][0]:'', pkFamCol:pk?FCOL[pk.fam]:'#d8a24a', pkRole:pk?pk.roleL:'', pkBlurb:pk?pk.blurb:'', pkRel:pv?`${this.byId.get(pv.e.a).name} ${KL[pv.e.k]||pv.e.k} ${this.byId.get(pv.e.b).name}`:'', pkRelCol:pv?G[pv.e.g].col:'#cfc8bd', pkRelTag:pv?G[pv.e.g].name:'', pkSame:!!(pk&&tn&&pk.fam===tn.fam), pkIsFlag:!!(pk&&tn&&pk.id===tn.id), pkL:this.leftInset()+16, pkW:Math.max(280,Math.min(640,this.W-this.leftInset()-this.rightInset()-32)), step:()=>s.peek&&this.travel(s.peek), unpeek:()=>this.setState({peek:null}),
-      introOn:!!s.intro&&ready, closeIntro:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); }, openIntro:()=>this.setState({intro:true}),
+      introOn:!!s.intro&&ready, closeIntro:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); }, openIntro:()=>this.setState({intro:true}), watchDemo:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); window.BestiaryDemo.playWorld(); }, /* ADDED 2026-11-23: see the overlay's Watch the demo button */
       wrapRef:this.wrapRef, cvRef:this.cvRef, leftRef:this.leftRef, cursor:h?'pointer':'grab', loading:!ready,
       modes, help, q:s.q, onQ:e=>this.setState({q:e.target.value}), results, hasResults:results.length>0,
       
@@ -917,7 +941,7 @@ class Component extends DCLogic {
       hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), ...this.beastHead('rs',r&&ready?this.byId.get(r.sp[0]):null), /* CHANGED 2026-11-22: design review: the start in the heading form */ rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, qFoot:s.mode==='quest'&&!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
       chronOn, chL:chFull?16:fl, chR:chFull?16:chR0, leftB:chronOn&&chFull?32+this.chronH:16, cardB:legendOn&&this.W<=900?32+this.legH:16, cardRef:this.cardRef, legRef:this.legRef, chronRef:this.chronRef, /* ADDED 2026-11-22: design review: see NS */ playLabel:s.playing?'❚❚':'▶', eraLabel:ERA[ERAK[s.era]], era:s.era, onEra:e=>{clearInterval(this.playT);this.setState({playing:false});this.setEra(+e.target.value);}, togglePlay:()=>this.togglePlay(), alive:ready?`${this.nodes.filter(n=>n.ei<=s.era).length} beasts alive`:'',
       hasHover:!!h, hx:h?Math.min(h.x,this.W-332):0, /* CHANGED 2026-11-22: design review: the tooltip (up to 300px) stays inside the map; its tags do not wrap */ hy:h?h.y:0, hTag:h?h.tag:'', hTitle:h?h.title:'', hSub:h?h.sub:'', hCol:h?h.col:'#d8a24a', hHasTags:!!(h&&h.n), ...this.beastHead('h',h&&h.n), /* ADDED 2026-11-22: design review: see tipFor */
-      hasToast:!!s.toast, toast:s.toast||'', toastTop:BAR, /* CHANGED 2026-11-22: under the taller top bar (brand book sizes) */ barH:BAR, barBoxH:BAR-24, barWrap:this.W<700?'wrap':'nowrap', modesFlex:this.W<700?'1 0 100%':'none', modesOrder:this.W<700?2:0, rulesBar:s.mode==='quest'&&!!q&&ready&&this.W>=1100, rulesPanel:s.mode==='quest'&&!!q&&ready&&this.W<1100, showDetails:true, showCard, /* CHANGED 2026-11-22: design review: two rows below 700px; the rules move to the left panel below 1100px; see NS */ colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
+      hasToast:!!s.toast, toast:s.toast||'', toastTop:BAR, /* CHANGED 2026-11-22: under the taller top bar (brand book sizes) */ barH:BAR, barBoxH:BAR-24, barWrap:this.W<700?'wrap':'nowrap', demoLabel:this.W>=1400?'▶ Demo: how to read this':'▶ Demo', /* ADDED 2026-11-23: see the Demo button */ modesFlex:this.W<700?'1 0 100%':'none', modesOrder:this.W<700?2:0, rulesBar:s.mode==='quest'&&!!q&&ready&&this.W>=1250, rulesPanel:s.mode==='quest'&&!!q&&ready&&this.W<1250, /* CHANGED 2026-11-23: from 1250px (was 1100): with the Demo button the rules no longer fit the top row below it */ showDetails:true, showCard, /* CHANGED 2026-11-22: design review: two rows below 700px; the rules move to the left panel below 1100px; see NS */ colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
     };
   }
 }
