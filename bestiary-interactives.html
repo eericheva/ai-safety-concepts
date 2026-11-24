@@ -358,6 +358,7 @@ class Component extends DCLogic {
       const s0 = by[this.state.sel] ? this.state.sel : 'power'; // CHANGED 2026-11-12: an unknown #/n/<id> falls back to Power-seeking
       const top = [...this.axes.role.C.flat()].sort((p, q) => this.axes.role.steps[q][0] + this.axes.role.steps[q][1] - this.axes.role.steps[p][0] - this.axes.role.steps[p][1]).filter(id => id !== s0).slice(0, 4);
       this.setState({ data: nodes, sel: s0, recent: [s0, ...top] });
+      window.__bestiaryInteractives = this; /* ADDED 2026-11-23: for the demo tours (bestiary-demo.js): they count the ideas and put the page's state back when a tour ends */
     });
     // ADDED 2026-11-22: the hand-drawn creatures, the same assets/creatures/creatures.json the map reads (built from
     // assets/creatures/svg/<id>.svg); a beast without one keeps its Kenney monster
