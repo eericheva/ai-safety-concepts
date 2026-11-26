@@ -31,7 +31,13 @@
 .bd-tip button:last-child{border-color:#d8a24a;color:#d8a24a}
 .bd-tip button:hover{background:#d8a24a;color:#0c0b0a}
 .bd-tip.held i{opacity:.35}
-.bd-tip i{position:absolute;left:0;bottom:0;width:100%;height:3px;background:#d8a24a;transform-origin:left}`
+.bd-tip i{position:absolute;left:0;bottom:0;width:100%;height:3px;background:#d8a24a;transform-origin:left}
+.bd-layer.bd-find .bd-frame{fill:rgba(255,107,94,.08);stroke:#ff6b5e}
+.bd-layer.bd-find .bd-arrow{stroke:#ff6b5e}
+.bd-layer.bd-find .bd-tip{border-color:#ff6b5e;box-shadow:0 0 0 2px #ff6b5e,0 12px 40px rgba(0,0,0,.55)}
+.bd-layer.bd-find .bd-tip b{color:#ff6b5e}
+.bd-layer.bd-find .bd-tip{overflow:visible}
+.bd-tip em{position:absolute;left:-1px;bottom:100%;margin-bottom:2px;padding:5px 9px;background:#ff6b5e;color:#0c0b0a;white-space:nowrap;font:700 10px/1 'JetBrains Mono',monospace;font-style:normal;letter-spacing:.08em;text-transform:uppercase}` /* ADDED 2026-11-24: a note with finding: true is one of the page's results (owner): red, the how-to notes stay gold */
 
   const wait = (ms) => new Promise((r) => setTimeout(r, ms))
   const look = (t) => (typeof t === 'function' ? t() : t)
@@ -40,6 +46,8 @@
   // A step is ['click', target] | ['hover', target] | ['note', {at: [targets], title, text}]; a target is
   // an element or a function that finds it when the step runs (the page re-renders as the tour clicks).
   // `title` and `text` may be functions too, so a note reads its numbers off the page when it opens.
+  // ADDED 2026-11-24: a note with `finding: true` is one of the page's results (owner): its card, frames and arrows are red and it says
+  // "Interesting finding" on a tab above its card; the how-to notes stay gold. Two per tour, three on the map.
   // CHANGED 2026-11-02: a note may also list `clear: [targets]`, the elements its text is about that the card
   // must not cover besides the framed ones; a target there may find an element or a list of them.
   // ADDED 2026-11-23: `opts` lets another page use the tour: `button` is a button the page already has (none is made then),
@@ -119,12 +127,14 @@
       const x0 = Math.min(...bs.map((b) => b.x)), x1 = Math.max(...bs.map((b) => b.x + b.w))
       const y0 = Math.min(...bs.map((b) => b.y)), y1 = Math.max(...bs.map((b) => b.y + b.h))
       card.innerHTML = ''
+      layer.classList.toggle('bd-find', !!n.finding) /* ADDED 2026-11-24 */
       const t = document.createElement('b'); t.textContent = look(n.title)
+      const k = document.createElement('em'); k.textContent = '★ Interesting finding'
       const p = document.createElement('p'); p.textContent = look(n.text)
       const bar = document.createElement('i'), ctl = document.createElement('div')
       const hold = document.createElement('button'); hold.type = 'button'; hold.textContent = 'Pause'
       const go = document.createElement('button'); go.type = 'button'; go.textContent = 'Next ›'
-      ctl.append(hold, go); card.append(t, p, ...(opts.controls === false ? [] : [ctl]), bar) /* CHANGED 2026-11-23: see opts.controls */
+      ctl.append(hold, go); card.append(...(n.finding ? [k] : []), t, p, ...(opts.controls === false ? [] : [ctl]), bar) /* CHANGED 2026-11-23: see opts.controls */
       // CHANGED 2026-11-02: the card goes where it covers least of what the note is about. Candidates sit
       // right of, left of, below and above the framed union and in the corners and edges of the part of the
       // block on screen, in three widths; each is scored by the area it covers of the frames (weighted 4)
@@ -155,7 +165,7 @@
       const cw = best.w, ch = best.h, cx = best.x, cy = best.y
       card.style.left = `${cx}px`; card.style.top = `${cy}px`
       svg.setAttribute('width', String(W)); svg.setAttribute('height', String(H))
-      svg.innerHTML = '<defs><marker id="bd-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#d8a24a"/></marker></defs>'
+      svg.innerHTML = `<defs><marker id="bd-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="${n.finding ? '#ff6b5e' : '#d8a24a'}"/></marker></defs>`
       const mid = { x: cx + cw / 2, y: cy + ch / 2 }
       const spread = (k) => (bs.length > 1 ? 0.25 + (0.5 * k) / (bs.length - 1) : 0.5)
       bs.forEach((b, k) => {
@@ -342,7 +352,7 @@
         // 4. Debate: the idea that opens the largest argument
         ['click', tab('Debate')],
         ['click', row(() => openers()[0]), 1600],
-        ['note', { dep: true, at: [selRow, info(root)], clear: [litRows(root)],
+        ['note', { finding: true, dep: true, at: [selRow, info(root)], clear: [litRows(root)],
           title: () => (tops(picked()) ? `${nm(picked())} opens the largest argument: ${feeds()} ideas` : `${nm(picked())}: ${feeds()} ideas answer it`),
           text: () => `On Debate a column is a turn of the argument: an idea feeds its critique. ${fed() ? '' : `Nothing feeds ${nm(picked())} here. `}${feeds()} of ${ideas()} ideas answer it within three steps, ${litCols()[1]} of them in the next column.${openers()[1] ? ` The next widest opener, ${nm(openers()[1])}, feeds ${axis().steps[openers()[1]][1]}.` : ''}` }],
         // 5. Cause: the longest chain, and the one idea it ends in
@@ -352,7 +362,7 @@
           text: () => { const g = axis(), nl = page().axes.logic.n, nd = page().axes.debate.n, c = g.C[last()]
             return `Logic has ${nl} columns and Debate ${nd}. Cause has ${g.n}${g.n > Math.max(nl, nd) ? ': the longest chain of links in the bestiary is causal' : ''}. Its last column, ${g.labels[last()]}, holds ${c.length} of ${ideas()} ideas${c.length === 1 ? `: ${nm(c[0])}` : ''}.` } }],
         ['click', row(lastFirst), 1600],
-        ['note', { dep: true, at: [selRow, selChip(root), info(root)], clear: [litRows(root)],
+        ['note', { finding: true, dep: true, at: [selRow, selChip(root), info(root)], clear: [litRows(root)],
           title: () => `${nm(picked())}: ${fed()} ideas lead here, ${feeds() ? `it feeds ${feeds()}` : 'nothing leads on'}`,
           text: () => `${nm(picked())} ${axis().C[last()].length === 1 ? 'is the only idea' : 'stands'} in the last column of Cause. ${fed()} of ${ideas()} ideas feed it within three steps, ${litCols()[0]} of them under ${axis().labels[0]}, and it feeds ${feeds() || 'nothing'}.` }],
         // 6. Debate again, with the end of the causal chain still picked: the thinnest tab
@@ -444,7 +454,7 @@
         // 4. Circuit: what it leads to, and how much of that is a remedy
         ['click', tab('Circuit'), 1800],
         ['hover', () => remedies()[0] || outRows()[0] || null],
-        ['note', { dep: true, at: [() => remedies()[0] || outRows()[0], spanText(root, /^Leads to · \d+$/), spanText(root, /^Comes from · \d+$/)], clear: [outRows, () => [...level(3).children].filter((e) => e.style.width === '200px')],
+        ['note', { finding: true, dep: true, at: [() => remedies()[0] || outRows()[0], spanText(root, /^Leads to · \d+$/), spanText(root, /^Comes from · \d+$/)], clear: [outRows, () => [...level(3).children].filter((e) => e.style.width === '200px')],
           title: () => (remedies().length ? `${nm(picked())}: ${remedies().length} of the ${outRows().length} ideas it leads to are remedies` : `${num(/^Comes from · \d+$/)} ideas lead in, ${outRows().length} lead out`),
           text: () => { const r = remedies(), hov = r[0] || outRows()[0]
             return `${num(/^Comes from · \d+$/)} ideas lead into ${nm(picked())} and it leads to ${outRows().length}.${r.length ? ` ${r.length} of the ${outRows().length} are marked mitigates or solves: answers to it, not effects of it.` : ''} The pointer is on one row, ${txt(hov.children[1])}, and the page dims the others.` } }],
@@ -465,7 +475,7 @@
         ['click', tab('Pros and cons'), 1800],
         /* CHANGED 2026-11-23 (after the blind verification): the closing note says what the count of "against" is made of (links with no
            direction, the idea's own critiques, critiques aimed at it) and ends on the count that has a direction */
-        ['note', { at: [verdict], clear: [follow, pos, neg, () => verdict().parentElement], /* the last: the card of the idea itself, its name and picture */
+        ['note', { finding: true, at: [verdict], clear: [follow, pos, neg, () => verdict().parentElement], /* the last: the card of the idea itself, its name and picture */
           title: () => { const b = sides(picked()), t = aimed(picked()).length; return `${nm(picked())}: ${b[0]} for, ${b[1]} against, ${t || 'none'} aimed at it` },
           text: () => { const d = P().state.data, id = picked(), bal = (n) => sides(n.id)[0] - sides(n.id)[1], a = sides(first), b = sides(id)
             const ng = negs(id), o = ownCrit(id), t = aimed(id), u = ng.length - o.length - t.length, link = ng.find((e) => e[0] === first)
@@ -517,7 +527,7 @@
         // 2. the far end of that tree, grown from itself
         ['click', card(() => end), 1300],
         ['do', grown],
-        ['note', { dep: true, at: [rootCard, count], clear: [cards],
+        ['note', { finding: true, dep: true, at: [rootCard, count], clear: [cards],
           title: () => `${nm(picked())}: ${fed()} ideas lead in, ${feeds() ? `${feeds()} lead out` : 'nothing leads out'}`,
           text: () => { const g = axis(); return `The same tree, grown from ${nm(picked())}: ${fed()} of ${ideas()} ideas lead to it within three causal links, and it feeds ${feeds() || 'nothing'}.${feeds() ? '' : ' On Cause it is an end point.'}${g.C[g.col[picked()]].length === 1 ? ` It is the only idea in the column ${g.labels[g.col[picked()]]}.` : ''}` } }],
         // 3. the first idea again, on Logic
@@ -557,7 +567,7 @@
         // 7. the same idea on Cause: a source on one tab, an end point on the other
         ['click', tab('Cause')],
         ['do', grown],
-        ['note', { at: [rootCard, count], clear: [cards],
+        ['note', { finding: true, at: [rootCard, count], clear: [cards],
           title: () => (flips(picked()) ? 'A source on Role ladder, an end point on Cause' : `${nm(picked())} on Cause: fed by ${fed()}, feeds ${feeds()}`),
           text: () => { const r = P().axes.role.steps[picked()], fl = P().state.data.filter((d) => flips(d.id)).map((d) => d.id)
             return `${nm(picked())} on Role ladder: ${r[0] ? `${r[0]} ideas feed it` : 'nothing feeds it'}, it feeds ${r[1]}. On Cause: ${fed() ? `${fed()} ideas feed it` : 'nothing feeds it'}, it feeds ${feeds() || 'nothing'}. ${flips(picked()) ? `The idea and its links are the same; only the reading of "feeds" changed. ${fl.length} of ${ideas()} ideas only feed on Role ladder and are only fed on Cause${picked() === most(fl, (m) => P().axes.role.steps[m][1]) ? `, and ${nm(picked())} has the widest tree of them` : ''}.` : 'A tree is a reading of one tab, not a property of the idea.'}` } }],
@@ -788,7 +798,7 @@
       ['do', leave],
       ['do', async () => { const l = lone(); loneK = l.pair ? await pick(l.pair) : null }],
       ['hover', or(isl(() => loneK), S.isRow(() => loneK))],
-      ['note', { dep: true, at: [islOr(() => loneK), S.tip],
+      ['note', { finding: true, dep: true, at: [islOr(() => loneK), S.tip],
         title: () => { const [a, b] = lone().pair; return `${c}${short(a)} and ${short(b)} share no link` },
         text: () => { const l = lone(), [a, b] = l.pair, n = cmp.isl.length
           return `${short(a)} (${size(a)} beasts) and ${short(b)} (${size(b)}) are the ${ord(rank(a))} and ${ord(rank(b))} largest of the ${n} islands, and no link joins them. ${l.none} of the ${(n * (n - 1)) / 2} pairs of islands share no link; this is the largest such pair.${S.tip() ? ` The tooltip lists the islands ${short(loneK)} does link to.` : ''}${full(loneK)}` } }],
@@ -826,7 +836,7 @@
       (c) => [
       ['do', async () => { hubId = hub(); await bring(P.beast(() => hubId))() }],
       ['click', P.beast(() => hubId), 600], ['do', settle],
-      ['note', { dep: true, at: [councilOr(S.cardHead)], clear: [S.card, S.cardHead],
+      ['note', { finding: true, dep: true, at: [councilOr(S.cardHead)], clear: [S.card, S.cardHead],
         title: () => { const f = st().focus; return `${c}${nm(f)}: ${deg(f)} links, neighbours from ${count(nbs(f), (n) => n.family).length} of ${cmp.isl.length} islands` },
         text: () => { const f = st().focus, ds = cmp.nodes.map((n) => deg(n.id)).sort((a, b) => a - b), by = count(nbs(f), (n) => n.family), home = focused().family, at = (by.find(([k]) => k === home) || [0, 0])[1]
           return `${seen('The click gathered its neighbours around it.', 'The click opened its card.')} ${nm(f)} has ${deg(f)} links${deg(f) === ds[ds.length - 1] ? `, the most of the ${N()} beasts` : ''}; the median beast has ${ds[Math.floor(ds.length / 2)]}. Its ${nbs(f).length} neighbours come from ${by.length} of the ${cmp.isl.length} islands${by[0][0] !== home ? `, and ${short(by[0][0])} sends more of them (${by[0][1]}) than its own island, ${short(home)} (${at})` : ''}.` } }],
@@ -934,7 +944,7 @@
       ['click', S.found(endId), 600], ['do', settle],
       /* CHANGED 2026-11-23 (after the blind verification): the closing note opens also when the search did not bring its beast up (the tour
          never ends on the Chronicle), and says how long the link stays: the map is put back when the tour ends */
-      ['note', { at: [() => (st().focus === endId() && S.wiki()) || S.search() || S.title()], clear: [S.cardHead],
+      ['note', { finding: true, at: [() => (st().focus === endId() && S.wiki()) || S.search() || S.title()], clear: [S.cardHead],
         title: () => `${c}${bare().length} of ${fails().length} failure modes have no solution beside them`,
         text: () => { const e = endId(), on = st().focus === e && !!S.wiki(), by = count(bare(), (n) => n.family)
           return `${on ? `Find a beast… brought up ${nm(e)}` : `Take ${nm(e)}`}: a failure mode with ${deg(e)} links, none of them to a solution. On this map that is true of ${bare().length} of the ${fails().length} failure modes, ${by[0][1]} of them on ${short(by[0][0])}. Every beast is an essay${on ? ': Read the full entry in the wiki ↗ opens this one in a new tab. Use the link while this note is open: when the tour ends, the map goes back to where you left it.' : ', and its card links to it: Read the full entry in the wiki ↗.'}` } }],
