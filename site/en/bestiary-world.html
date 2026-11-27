@@ -100,7 +100,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a2
             <span style="font:400 12px 'JetBrains Mono',monospace;color:#9a948b;white-space:nowrap">best possible: {{ qBest }}</span>
           </div>
         </div>
-        <sc-if value="{{ wonResult }}" hint-placeholder-val="{{ false }}">
+        <sc-if value="{{ hasResult }}" hint-placeholder-val="{{ false }}"><!-- CHANGED 2026-11-27: also after Give up, see lookAt -->
           <!-- CHANGED 2026-11-22: an action, 44px (brand book sizes) -->
           <button onClick="{{ openReport }}" style="min-height:44px;background:#d8a24a;border:0;color:#0c0b0a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Show expedition report</button>
         </sc-if>
@@ -421,7 +421,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a2
 
   <sc-if value="{{ reportOn }}" hint-placeholder-val="{{ false }}">
     <div style="position:absolute;inset:0;background:rgba(12,11,10,.72);display:flex;align-items:center;justify-content:center;padding:20px">
-      <div style="width:min(720px,100%);max-height:calc(100% - 40px);overflow:auto;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:24px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box">
+      <div style="width:min(900px,100%);max-height:calc(100% - 40px);overflow:auto;background:#11100e;border:1px solid #2e2b28;border-top:4px solid #d8a24a;padding:24px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box">
         <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d8a24a">Expedition report</span>
         <span style="font:700 24px/1.15 'Unbounded',sans-serif">{{ rGrade }}</span>
         <span style="font:400 15px/1.5 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ rLine }}</span>
@@ -432,6 +432,12 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a2
           <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:{{ rsFamCol }}">{{ rsFam }}</span>
           <span style="font:700 18px/1.2 'Unbounded',sans-serif;color:#efeae2;text-wrap:pretty">{{ rsName }}</span>
           <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:6px;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px"><i style="width:8px;height:8px;background:{{ rsRoleCol }}"></i>{{ rsRole }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ rsW }}</span><span style="font:700 10px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#cfc8bd;border:1px solid #4a4540;padding:3px 8px">{{ rsEra }}</span></span>
+        </div>
+        <!-- ADDED 2026-11-27 (owner): every shortest route as a graph, drawn by drawRoutes(); replaces the list of one shortest route -->
+        <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #2e2b28;padding-top:12px">
+          <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b">All shortest routes</span>
+          <span style="font:400 13px/1.45 'Onest',sans-serif;color:#cfc8bd;text-wrap:pretty">{{ rGraphLine }}</span>
+          <div ref="{{ routeRef }}" style="overflow-x:auto;overflow-y:hidden;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:#4a4540 #11100e"></div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
           <sc-if value="{{ rHasMine }}" hint-placeholder-val="{{ false }}">
@@ -448,18 +454,6 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a2
             </sc-for>
           </div>
           </sc-if>
-          <div style="display:flex;flex-direction:column">
-            <span style="font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;padding-bottom:4px">A shortest route</span>
-            <sc-for list="{{ rShortSteps }}" as="ss" hint-placeholder-count="0">
-              <div style="display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:7px 0;border-bottom:1px solid #1f1d1a">
-                <span style="min-width:20px;height:17px;margin-top:1px;box-sizing:border-box;border:1px solid {{ ss.col }};display:flex;align-items:center;justify-content:center;font:700 10px 'JetBrains Mono',monospace;color:#efeae2">{{ ss.n }}</span>
-                <span style="display:flex;flex-direction:column;gap:2px">
-                  <span style="font:500 14px/1.3 'Onest',sans-serif;color:#efeae2">{{ ss.name }}</span>
-                  <span style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><span style="font:400 12px/1.35 'Onest',sans-serif;color:#9a948b">{{ ss.rel }}</span><span style="font:700 9.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{{ ss.famCol }}">{{ ss.fam }}</span></span>
-                </span>
-              </div>
-            </sc-for>
-          </div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button onClick="{{ newQuest }}" style="min-height:44px;padding:0 20px;background:#d8a24a;border:0;color:#0c0b0a;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">New expedition →</button>
@@ -502,9 +496,10 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};
 
 class Component extends DCLogic {
-  state={ready:false,mode:'explore',focus:null,hover:null,groups:{A:true,B:true,C:true,D:true,E:true,F:true},q:'',era:6,playing:false,quest:null,result:null,toast:null,tick:0,peek:null,intro:false};
+  state={ready:false,mode:'explore',focus:null,hover:null,groups:{A:true,B:true,C:true,D:true,E:true,F:true},q:'',era:6,playing:false,quest:null,result:null,toast:null,tick:0,peek:null,intro:false,look:false}; // CHANGED 2026-11-27: look, see lookAt()
   wrapRef=React.createRef(); cvRef=React.createRef(); tStep=0; leftRef=React.createRef(); // ADDED 2026-11-22: the left panel's scroll, see travel()
-  cardRef=React.createRef(); legRef=React.createRef(); chronRef=React.createRef(); legH=0; chronH=0; cardKey=''; // ADDED 2026-11-22: design review: the card's scroll and the heights of the bars the panels rise above, see componentDidUpdate()
+  cardRef=React.createRef(); legRef=React.createRef(); chronRef=React.createRef(); legH=0; chronH=0; cardKey=''; routeRef=React.createRef(); // ADDED 2026-11-27: the report's graph of shortest routes, see drawRoutes()
+  // ADDED 2026-11-22: design review: the card's scroll and the heights of the bars the panels rise above, see componentDidUpdate()
   cam={x:0,y:0,z:.5}; camT=null; camV={x:0,y:0,z:0}; camTs=0; ring={k:0,f:null,x:0,y:0,R:0}; ringE=0; leaving=new Map(); council=null; hoverId=null; hoverFam=null; listHover=null; wpath=[]; W=800; H=600; dpr=1;
 
   componentDidMount(){ this.boot(); }
@@ -514,7 +509,8 @@ class Component extends DCLogic {
     // name was out of view); the legend's and the Chronicle bar's heights are read back for the panels that stand above them
     const k=this.state.focus+'|'+this.state.peek; if(k!==this.cardKey){ this.cardKey=k; if(this.cardRef.current) this.cardRef.current.scrollTop=0; }
     const lh=this.legRef.current?this.legRef.current.offsetHeight:0, ch=this.chronRef.current?this.chronRef.current.offsetHeight:0;
-    if(lh!==this.legH||ch!==this.chronH){ this.legH=lh; this.chronH=ch; this.setState({tick:this.state.tick+1}); } }
+    if(lh!==this.legH||ch!==this.chronH){ this.legH=lh; this.chronH=ch; this.setState({tick:this.state.tick+1}); }
+    this.drawRoutes(); /* ADDED 2026-11-27 */ }
 
   async boot(){
     const wrap=this.wrapRef.current, cv=this.cvRef.current; if(!wrap||!cv) return;
@@ -636,6 +632,7 @@ class Component extends DCLogic {
   isNbr(a,b,rule){ return (this.adj.get(a)||[]).some(e=>(e.a===b||e.b===b)&&this.ok(e,rule)); }
   toast(msg){ clearTimeout(this.toastT); this.setState({toast:msg}); this.toastT=setTimeout(()=>!this.dead&&this.setState({toast:null}),2800); }
   travel(id,force){
+    if(this.state.look&&this.state.result&&!force){ this.lookAt(id); return; } // ADDED 2026-11-27: after the report the game is over, a click only looks
     const s=this.state,n=this.byId.get(id); if(!n) return; this.tStep=performance.now(); // ADDED 2026-11-22: see pointClick
     let quest=s.quest,result=null;
     if(s.mode==='quest'&&quest&&!force&&id!==s.focus){
@@ -709,13 +706,46 @@ class Component extends DCLogic {
     const deg=n=>(this.adj.get(n.id)||[]).filter(e=>this.ok(e,rule)).length; let pool=this.nodes.filter(n=>n.w==='Core'&&deg(n)>=2); if(pool.length<5) pool=this.nodes.filter(n=>n.w!=='Supporting'&&deg(n)>=2); let s,t,best=0;
     for(let k=0;k<80&&!t;k++){ s=pool[Math.floor(Math.random()*pool.length)].id; const {dist}=this.bfs(s,rule); for(const want of (rule==='any'?[4,3]:[4,3,2])){ const c=[...dist].filter(([id,d])=>d===want).map(x=>x[0]); if(c.length){ t=c[Math.floor(Math.random()*c.length)]; best=want; break; } } }
     const quest={s,t,rule,hops:0,path:[s],best,steps:[],hints:0,distT:this.bfs(t,rule).dist,trend:''}; this.hintId=null;
-    this.setState({mode:'quest',quest,result:null,showReport:false,playing:false,era:6,focus:null,peek:null,groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>{ this.travel(s,true); });
+    this.setState({mode:'quest',quest,result:null,showReport:false,look:false,playing:false,era:6,focus:null,peek:null,groups:{A:true,B:true,C:true,D:true,E:true,F:true}},()=>{ this.travel(s,true); });
   }
   makeResult(q,gave){ const {prev}=this.bfs(q.s,q.rule); const sp=[q.t]; while(sp[0]!==q.s) sp.unshift(prev.get(sp[0])); const nm=id=>this.byId.get(id).name;
     const grade=gave?'Here is the way':q.hops<=q.best?'Perfect pathfinder':q.hops<=q.best+2?'Good wandering':'The scenic route';
-    return {gave,grade,line:gave?`The flag was ${q.best} hops away. Follow the shortest route below — each arrow is one link on the map.`:`You reached ${nm(q.t)} in ${q.hops} hops${q.hints?` with ${q.hints} hint${q.hints>1?'s':''}`:''}. The shortest possible route takes ${q.best}.`,mine:q.path.length>1?q.path.map(nm).join('  →  '):'',short:sp.map(nm).join('  →  '),sp,path:q.path,rule:q.rule}; }
+    return {gave,grade,g:this.routeGraph(q), /* ADDED 2026-11-27 */ line:gave?`The flag was ${q.best} hops away. Every shortest route is drawn below; each line is one link on the map.`:`You reached ${nm(q.t)} in ${q.hops} hops${q.hints?` with ${q.hints} hint${q.hints>1?'s':''}`:''}. The shortest possible route takes ${q.best}.`,mine:q.path.length>1?q.path.map(nm).join('  →  '):'',short:sp.map(nm).join('  →  '),sp,path:q.path,rule:q.rule}; }
   // CHANGED 2026-11-22: design review: a step of the report is a row of the beast's card: name, its link to the beast before it, its island
   routeRows(ids,rule){ const sh=id=>{const nm=this.byId.get(id).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; return ids.slice(1).map((id,i)=>{ const p=ids[i], n=this.byId.get(id), e=(this.adj.get(p)||[]).find(e=>(e.a===id||e.b===id)&&this.ok(e,rule))||(this.adj.get(p)||[]).find(e=>e.a===id||e.b===id), kl=KL[e.k]||e.k; return {n:String(i+1),rel:e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:G[e.g].col,name:n.name,fam:FSHORT[n.fam],famCol:FCOL[n.fam]}; }); }
+  /* ADDED 2026-11-27 (owner): a game has many shortest routes, not one. The beasts that lie on some shortest route, in columns by hop
+     (a beast d hops from the start and best-d from the flag), the links between neighbouring columns, and how many routes there are */
+  routeGraph(q){ const dS=this.bfs(q.s,q.rule).dist, dT=q.distT, b=q.best, L=Array.from({length:b+1},()=>[]), E=[];
+    dS.forEach((d,id)=>{ if(d<=b&&dT.get(id)===b-d) L[d].push(id); });
+    for(let i=0;i<b;i++) for(const u of L[i]) for(const e of this.adj.get(u)){ if(!this.ok(e,q.rule)) continue; const v=e.a===u?e.b:e.a; if(dS.get(v)===i+1&&dT.get(v)===b-i-1&&!E.some(x=>x.u===u&&x.v===v)) E.push({u,v,e}); }
+    const n=new Map([[q.s,1]]); for(let i=1;i<=b;i++) for(const v of L[i]) n.set(v,E.filter(x=>x.v===v).reduce((a,x)=>a+n.get(x.u),0));
+    for(let i=1;i<=b;i++){ const at=new Map(L[i-1].map((id,j)=>[id,j])), m=v=>{ const p=E.filter(x=>x.v===v).map(x=>at.get(x.u)); return p.reduce((a,c)=>a+c,0)/p.length; }; L[i].sort((a,c)=>m(a)-m(c)); } /* each column in the order of its predecessors, so the lines cross less */
+    return {L,E,routes:n.get(q.t),beasts:L.reduce((a,l)=>a+l.length,0)}; }
+  /* ADDED 2026-11-27 (owner): the graph drawn into the report: a column per hop, a button per beast (its island's colour on the left, gold
+     when it is on your route), the links as lines in their kind's colour and pattern; a click opens the beast on the map */
+  drawRoutes(){ const el=this.routeRef.current, s=this.state, q=s.quest, r=s.result; if(!el||!q||!r) return;
+    const W=el.clientWidth, key=[q.s,q.t,q.rule,q.path.join(','),W].join('|'); if(el.dataset.key===key) return; el.dataset.key=key;
+    const {L,E}=r.g, cols=L.length, cw=Math.max(132,Math.floor(W/cols)), nw=cw-30, nh=50, gy=10, top0=26, H=top0+Math.max(...L.map(l=>l.length))*(nh+gy)-gy;
+    const mine=new Set(r.gave?[]:q.path), mineE=new Set(r.gave?[]:q.path.slice(1).map((v,i)=>q.path[i]+'>'+v)), pos=new Map(), NS='http://www.w3.org/2000/svg';
+    L.forEach((l,i)=>{ const y0=top0+(H-top0-(l.length*(nh+gy)-gy))/2; l.forEach((id,j)=>pos.set(id,{x:i*cw+15,y:y0+j*(nh+gy)})); });
+    const box=document.createElement('div'); box.style.cssText=`position:relative;width:${cols*cw}px;height:${H}px`;
+    const svg=document.createElementNS(NS,'svg'); svg.setAttribute('width',cols*cw); svg.setAttribute('height',H); svg.style.cssText='position:absolute;left:0;top:0;overflow:visible';
+    const dash={B:'7 4',D:'2 4',E:'2 5'};
+    E.forEach(x=>{ const a=pos.get(x.u), b=pos.get(x.v), m=mineE.has(x.u+'>'+x.v), x1=a.x+nw, y1=a.y+nh/2, x2=b.x, y2=b.y+nh/2, cx=(x1+x2)/2, p=document.createElementNS(NS,'path'), t=document.createElementNS(NS,'title');
+      p.setAttribute('d',`M${x1} ${y1}C${cx} ${y1} ${cx} ${y2} ${x2} ${y2}`); p.setAttribute('fill','none'); p.setAttribute('stroke',G[x.e.g].col); p.setAttribute('stroke-width',m?3:1.6); p.setAttribute('opacity',m?1:.8); if(dash[x.e.g]) p.setAttribute('stroke-dasharray',dash[x.e.g]);
+      t.textContent=`${G[x.e.g].name}: ${this.byId.get(x.e.a).name} ${KL[x.e.k]||x.e.k} ${this.byId.get(x.e.b).name}`; p.append(t); svg.append(p); });
+    box.append(svg);
+    L.forEach((l,i)=>{ const h=document.createElement('span'); h.textContent=i===0?'Start':i===cols-1?'Flag':`Hop ${i}`; h.style.cssText=`position:absolute;left:${i*cw+15}px;top:0;font:700 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:${i===cols-1?'#d8a24a':'#9a948b'}`; box.append(h);
+      l.forEach(id=>{ const n=this.byId.get(id), p=pos.get(id), m=mine.has(id), b=document.createElement('button'), f=document.createElement('span'), t=document.createElement('span');
+        b.title=`${n.name}. ${n.blurb} Click to see it on the map.`; b.onclick=()=>this.lookAt(id);
+        b.style.cssText=`position:absolute;left:${p.x}px;top:${p.y}px;width:${nw}px;height:${nh}px;box-sizing:border-box;padding:4px 7px;display:flex;flex-direction:column;justify-content:center;gap:2px;text-align:left;cursor:pointer;background:${m?'#221f1c':'#171513'};border:1px solid ${m?'#d8a24a':'#2e2b28'};border-left:3px solid ${FCOL[n.fam]};color:#efeae2`;
+        f.textContent=FSHORT[n.fam]; f.style.cssText=`font:700 9px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:${FCOL[n.fam]};white-space:nowrap;overflow:hidden;text-overflow:ellipsis`;
+        t.textContent=n.name; t.style.cssText=`font:500 12px/1.2 'Onest',sans-serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden`;
+        b.append(f,t); box.append(b); }); });
+    el.replaceChildren(box); }
+  /* ADDED 2026-11-27 (owner): a beast of the report's graph opened on the map. The game is over: this click and the ones that follow
+     only look (see travel), the expedition's route stays as it was; Show expedition report brings the report back */
+  lookAt(id){ this.hintId=null; this.setState({look:true,focus:id,peek:null,hover:null},()=>{ this.buildCouncil(); this.frameFocus(); }); }
   hint(){ const q=this.state.quest, f=this.state.focus; if(!q||!f) return; const d=q.distT.get(f); const nx=(this.adj.get(f)||[]).filter(e=>this.ok(e,q.rule)).map(e=>e.a===f?e.b:e.a).find(o=>q.distT.get(o)===d-1); if(!nx) return; this.hintId=nx; this.setState({quest:{...q,hints:q.hints+1}}); this.toast(`Hint: try ${this.byId.get(nx).name}`); }
   saveTrail(p){ this.wpath=p; try{localStorage.setItem(LSW,JSON.stringify(p));}catch(e){} }
   edgeBetween(a,b){ return (this.adj.get(a)||[]).find(e=>e.a===b||e.b===b); }
@@ -727,8 +757,8 @@ class Component extends DCLogic {
   setMode(k){
     clearInterval(this.playT);
     if(k==='quest'){ this.newQuest(); return; }
-    if(k==='explore'){ this.setState({mode:'explore',quest:null,result:null,focus:null,peek:null,playing:false,era:6},()=>{this.buildCouncil();this.fitWorld();}); return; }
-    this.setState({mode:'chronicle',quest:null,result:null,focus:null,era:0,playing:false},()=>{ this.buildCouncil(); this.eraChanged(-1); this.fitWorld(); this.togglePlay(); });
+    if(k==='explore'){ this.setState({mode:'explore',quest:null,result:null,look:false,focus:null,peek:null,playing:false,era:6},()=>{this.buildCouncil();this.fitWorld();}); return; }
+    this.setState({mode:'chronicle',quest:null,result:null,look:false,focus:null,era:0,playing:false},()=>{ this.buildCouncil(); this.eraChanged(-1); this.fitWorld(); this.togglePlay(); });
   }
   setEra(v){ const prev=this.state.era; this.setState({era:v},()=>{ this.eraChanged(prev); this.buildCouncil(); }); }
   eraChanged(prev){ const now=performance.now(), e=this.state.era;
@@ -939,7 +969,7 @@ class Component extends DCLogic {
       wSteps:ready?this.wpath.map((id,i)=>{ const p=this.wpath[i-1], e=p&&this.edgeBetween(p,id), n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):'';
         return {n:String(i+1),rel:i===0?'start':!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name,bg:id===s.focus&&i===this.wpath.length-1?'#221f1c':'transparent', /* CHANGED 2026-11-22: design review: see sel */go:()=>id===s.focus?this.frameFocus():this.travel(id)}; }).reverse():[],
       questOn:s.mode==='quest'&&!!q&&ready, qTarget:q&&ready?this.byId.get(q.t).name:'', qStart:q&&ready?this.byId.get(q.s).name:'', ...this.beastHead('qs',q&&ready?this.byId.get(q.s):null), ...this.beastHead('qt',tn), ...this.beastHead('pk',pk), qHops:q?q.hops:0, qBest:q?q.best:0, qAway:q&&ready&&s.focus?(()=>{const d=q.distT.get(s.focus);return d===0?'At the flag':d===1?'1 hop away':`${d} hops away`;})():'', qTrend:q?({warmer:'warmer — closer to the flag',colder:'colder — further away',same:'same distance',back:'stepped back','':'distance from here'}[q.trend]):'', qTrendCol:q?({warmer:'#7ad13a',colder:'#ff6b5e'}[q.trend]||'#efeae2'):'#efeae2', qHasSteps:!!(q&&q.steps.length), qSteps:q&&ready?q.steps.map((st,i)=>{ /* CHANGED 2026-11-22: a step is written as a link in the beast's card: name, how it is linked to the beast before it, its island in the island's colour (owner) */ const e=st.e, id=st.to, p=st.from, n=this.byId.get(id); const sh=x=>{const nm=this.byId.get(x).name;return nm.length>26?nm.slice(0,24)+'…':nm;}; const kl=e?(KL[e.k]||e.k):''; return {n:String(i+1),rel:!e?'jumped here':e.a===id?`${kl} ${sh(p)}`:`${sh(p)} ${kl} it`,col:e?G[e.g].col:'#4a4540',fam:FSHORT[n.fam],famCol:FCOL[n.fam],name:n.name};}):[], qHint:()=>this.hint(), qUndo:()=>this.undo(), qUndoOp:q&&q.path.length>1?1:.55, giveUp:()=>this.giveUp(),
-      hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)), openReport:()=>this.setState({showReport:true}), closeReport:()=>this.setState({showReport:false}), ...this.beastHead('rs',r&&ready?this.byId.get(r.sp[0]):null), /* CHANGED 2026-11-22: design review: the start in the heading form */ rShortSteps:r&&ready?this.routeRows(r.sp,r.rule):[], rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, qFoot:s.mode==='quest'&&!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ this.setState({result:null}); this.hint(); }, rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
+      hasResult:!!r, wonResult:!!(r&&!r.gave), reportOn:!!(r&&(r.gave||s.showReport)&&!s.look), openReport:()=>this.setState({showReport:true,look:false}), routeRef:this.routeRef, /* CHANGED 2026-11-27: see lookAt */ rGraphLine:r?`${r.g.routes===1?'One shortest route':`${r.g.routes} shortest routes`} of ${q.best} hop${q.best===1?'':'s'}, through ${r.g.beasts} beasts. ${r.gave?'':q.hops===q.best?'Your route is outlined in gold. ':'Your route took a longer way, see below. '}A line is one link, in the colour and pattern of its kind on the map. Click a beast to see it on the map.`:'', closeReport:()=>this.setState({showReport:false}), ...this.beastHead('rs',r&&ready?this.byId.get(r.sp[0]):null), /* CHANGED 2026-11-22: design review: the start in the heading form */ rMineSteps:r&&ready?this.routeRows(r.path,r.rule):[], qPlaying:!r, qFoot:s.mode==='quest'&&!r, searchOn:s.mode!=='quest', rGrade:r?r.grade:'', rLine:r?r.line:'', rMine:r?r.mine:'', rHasMine:!!(r&&r.mine), rGave:!!(r&&r.gave), keepTrying:()=>{ const p=q.path; this.setState({result:null,look:false,focus:p[p.length-1],peek:null},()=>{ this.buildCouncil(); this.frameFocus(); this.hint(); }); }, /* CHANGED 2026-11-27: back where the walk stopped, the report may have opened other beasts */ rShort:r?r.short:'', newQuest:()=>this.newQuest(), keepWander:()=>this.setMode('explore'),
       chronOn, chL:chFull?16:fl, chR:chFull?16:chR0, leftB:chronOn&&chFull?32+this.chronH:16, cardB:legendOn&&this.W<=900?32+this.legH:16, cardRef:this.cardRef, legRef:this.legRef, chronRef:this.chronRef, /* ADDED 2026-11-22: design review: see NS */ playLabel:s.playing?'❚❚':'▶', eraLabel:ERA[ERAK[s.era]], era:s.era, onEra:e=>{clearInterval(this.playT);this.setState({playing:false});this.setEra(+e.target.value);}, togglePlay:()=>this.togglePlay(), alive:ready?`${this.nodes.filter(n=>n.ei<=s.era).length} beasts alive`:'',
       hasHover:!!h, hx:h?Math.min(h.x,this.W-350):0, /* CHANGED 2026-11-23: the tooltip is up to 326px wide with its padding and stands 16px right of the pointer: it ran 10px past the right edge at 390 and 900 */ hy:h?Math.min(h.y,this.H-200):0, /* CHANGED 2026-11-23: and it stays above the bottom edge */ hTag:h?h.tag:'', hTitle:h?h.title:'', hSub:h?h.sub:'', hCol:h?h.col:'#d8a24a', hHasTags:!!(h&&h.n), ...this.beastHead('h',h&&h.n), /* ADDED 2026-11-22: design review: see tipFor */
       hasToast:!!s.toast, toast:s.toast||'', toastTop:BAR, /* CHANGED 2026-11-22: under the taller top bar (brand book sizes) */ barH:BAR, barBoxH:BAR-24, barWrap:this.W<700?'wrap':'nowrap', demoLabel:this.W>=1400?'▶ Demo: how to read this':'▶ Demo', /* ADDED 2026-11-23: see the Demo button */ modesFlex:this.W<700?'1 0 100%':'none', modesOrder:this.W<700?2:0, rulesBar:s.mode==='quest'&&!!q&&ready&&this.W>=1250, rulesPanel:s.mode==='quest'&&!!q&&ready&&this.W<1250, /* CHANGED 2026-11-23: from 1250px (was 1100): with the Demo button the rules no longer fit the top row below it */ showDetails:true, showCard, /* CHANGED 2026-11-22: design review: two rows below 700px; the rules move to the left panel below 1100px; see NS */ colInCard:s.mode!=='quest', // ADDED 2026-11-22: see the foot of the beast card
