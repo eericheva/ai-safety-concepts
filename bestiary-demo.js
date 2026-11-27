@@ -651,9 +651,9 @@
       start: up(byTxt('span', /^Start$/)),
       flag: up(byTxt('span', /^Flag$/)),
       foot: () => { const h = byTxt('button', /^Hint$/)(); return h && h.parentElement },
-      /* ADDED 2026-11-23 (stage 2): the report's verdict and its column "A shortest route"; the Chronicle bar and its play button */
+      /* ADDED 2026-11-23 (stage 2): the report's verdict and its graph "All shortest routes" (CHANGED 2026-11-27, was the column "A shortest route"); the Chronicle bar and its play button */
       grade: () => { const s = byTxt('span', /^Expedition report$/)(); return s && s.nextElementSibling },
-      route: up(byTxt('span', /^A shortest route$/)),
+      route: up(byTxt('span', /^All shortest routes$/)),
       yours: up(byTxt('span', /^Your route$/)), /* ADDED 2026-11-23 */
       chron: () => cmp.chronRef.current,
       chronPlay: () => cmp.chronRef.current && cmp.chronRef.current.querySelector('button'),
@@ -911,9 +911,9 @@
       ['click', () => (st().result ? null : btn(/^Give up$/)()), 900],
       ['click', btn(/^Show expedition report$/), 900],
       ['note', { at: [S.grade, S.route], clear: [() => (narrow() ? null : S.yours())], /* CHANGED 2026-11-23: the card keeps off Your route where there is room beside it */
-        title: () => { const q = st().quest, r = st().result; return r.gave ? `${c}A shortest route: ${q.best} hops` : `${c}${r.grade}: ${q.hops} hops, ${q.best} at best` },
+        title: () => { const q = st().quest, r = st().result; return r.gave ? `${c}Shortest routes: ${q.best} hops` : `${c}${r.grade}: ${q.hops} hops, ${q.best} at best` },
         text: () => { const q = st().quest, r = st().result
-          return `${r.gave ? `Give up opened the report with a shortest route from ${nm(q.s)} to ${nm(q.t)}: ${q.best} hops.` : `${nm(q.t)} reached in ${q.hops} hops; the shortest possible route takes ${q.best}.`} Each row of the report is one hop with its link, so the shortest route reads as a chain of ${q.best} links from ${nm(q.s)} to ${nm(q.t)}.` } }],
+          return `${r.gave ? `Give up opened the report: the flag, ${nm(q.t)}, was ${q.best} hops from ${nm(q.s)}.` : `${nm(q.t)} reached in ${q.hops} hops; the shortest possible route takes ${q.best}.`} The graph draws every shortest route at once: ${r.g.routes === 1 ? 'here there is one' : `here ${r.g.routes} of them`}, through ${r.g.beasts} beasts, a column per hop and a line per link. A click on a beast opens it on the map.` } }], /* CHANGED 2026-11-27: the report draws every shortest route */
       ['click', () => btn(/^Close$/)() || btn(/^Keep trying$/)(), 700],
 
       ],
