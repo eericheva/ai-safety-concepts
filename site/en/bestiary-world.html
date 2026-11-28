@@ -46,7 +46,12 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a2
     </sc-if>
     <!-- ADDED 2026-11-23: the tour's button (bestiary-demo.js finds it by its title). An action, but 40px like the toolbar's switches:
          at 44 it would stand out of the 56px toolbar's row (brand book: a toolbar holds 40px controls). The short label below 1400px -->
-    <button title="Demo: how to read this" style="margin-left:auto;height:40px;flex:none;padding:0 12px;border:1px solid #d8a24a;background:transparent;color:#d8a24a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap" style-hover="background:#d8a24a;color:#0c0b0a">{{ demoLabel }}</button>
+    <!-- ADDED 2026-11-28: the site's invitation to the Telegram channel (window.TELEGRAM, given by the site only), in the toolbar's free
+         corner where the toolbar has room; else at the foot of the islands panel (tgPanel). A 40px toolbar control -->
+    <sc-if value="{{ tgTop }}" hint-placeholder-val="{{ false }}">
+    <a href="{{ tgHref }}" target="_blank" rel="noopener noreferrer" onClick="{{ tgGo }}" style="margin-left:auto;height:40px;flex:none;display:inline-flex;align-items:center;padding:0 12px;border:1px solid #4a4540;color:#cfc8bd;font:500 13px 'Onest',sans-serif;text-decoration:none;white-space:nowrap" style-hover="border-color:#d8a24a;color:#d8a24a">New beasts on Telegram →</a>
+    </sc-if>
+    <button title="Demo: how to read this" style="margin-left:{{ demoML }};height:40px;flex:none;padding:0 12px;border:1px solid #d8a24a;background:transparent;color:#d8a24a;font:700 10.5px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap" style-hover="background:#d8a24a;color:#0c0b0a">{{ demoLabel }}</button>
     <!-- CHANGED 2026-11-22: ? is a switch-sized icon button, 40x40 (brand book sizes) -->
     <!-- CHANGED 2026-11-23: margin-left:auto moved to the Demo button -->
     <button onClick="{{ openIntro }}" title="How this world works" style="width:40px;height:40px;flex:none;border:1px solid #4a4540;background:transparent;color:#cfc8bd;font:700 13px 'JetBrains Mono',monospace;cursor:pointer">?</button>
@@ -355,6 +360,9 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #d8a2
         </sc-for>
       </div>
       </div>
+      <sc-if value="{{ tgPanel }}" hint-placeholder-val="{{ false }}">
+      <a href="{{ tgHref }}" target="_blank" rel="noopener noreferrer" onClick="{{ tgGo }}" style="flex:none;display:flex;align-items:center;min-height:44px;padding:0 16px;border-top:1px solid #2e2b28;color:#cfc8bd;font:500 13px 'Onest',sans-serif;text-decoration:none" style-hover="color:#d8a24a">New beasts on Telegram →</a>
+      </sc-if>
     </div>
   </sc-if>
 
@@ -958,7 +966,7 @@ class Component extends DCLogic {
       cbs, colLegend, grps, grpTitle:GRP[gk][1], grpNote:GRP[gk][2], jBottom:this.H<700?16:104, arrs, arrNote:ARR[s.arr||'rel'].note, islands, islandsOn:isShown, isOpener:showCard&&NS&&!isShown&&ready&&!fn&&!s.intro, isOpen:isO, /* CHANGED 2026-11-22: design review: see NS */ toggleIs:()=>this.setState({isOpen:!(s.isOpen??(this.W>=1100))}), isToggle:(s.isOpen??(this.W>=1100))?'–':'+', isBottom:16, isB:(s.isOpen??(this.W>=1100))?'16px':'auto',
       rules, qRuleName:q?RULES[q.rule||'any'][0]:'', qRuleText:q?RULES[q.rule||'any'][1]:'', qFlagFam:tn?FAM[tn.fam][0]:'', qFlagCol:tn?FCOL[tn.fam]:'#d8a24a', qFlagBlurb:tn?tn.blurb:'', qFlagNb:tn?(()=>{ const WO={Core:0,Major:1,Supporting:2}; const L=[...new Set((this.adj.get(tn.id)||[]).filter(e=>this.ok(e,q.rule)).map(e=>e.a===tn.id?e.b:e.a))].map(id=>this.byId.get(id)).sort((a,b)=>(WO[a.w]??2)-(WO[b.w]??2)); return L.slice(0,4).map(n=>n.name).join(' · ')+(L.length>4?` · +${L.length-4} more`:''); })():'',
       hasPeek:false, pkName:pk?pk.name:'', pkFam:pk?FAM[pk.fam][0]:'', pkFamCol:pk?FCOL[pk.fam]:'#d8a24a', pkRole:pk?pk.roleL:'', pkBlurb:pk?pk.blurb:'', pkRel:pv?`${this.byId.get(pv.e.a).name} ${KL[pv.e.k]||pv.e.k} ${this.byId.get(pv.e.b).name}`:'', pkRelCol:pv?G[pv.e.g].col:'#cfc8bd', pkRelTag:pv?G[pv.e.g].name:'', pkSame:!!(pk&&tn&&pk.fam===tn.fam), pkIsFlag:!!(pk&&tn&&pk.id===tn.id), pkL:this.leftInset()+16, pkW:Math.max(280,Math.min(640,this.W-this.leftInset()-this.rightInset()-32)), step:()=>s.peek&&this.travel(s.peek), unpeek:()=>this.setState({peek:null}),
-      introOn:!!s.intro&&ready, closeIntro:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); }, openIntro:()=>this.setState({intro:true}), watchDemo:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); window.BestiaryDemo.playWorld(); }, /* ADDED 2026-11-23: see the overlay's Watch the demo button */
+      introOn:!!s.intro&&ready, closeIntro:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); }, openIntro:()=>this.setState({intro:true}), tgTop:!!window.TELEGRAM&&this.W>=900, tgPanel:!!window.TELEGRAM&&this.W<900, tgHref:window.TELEGRAM?TELEGRAM.href:'', tgGo:()=>TELEGRAM.click('map'), demoML:window.TELEGRAM&&this.W>=900?'0':'auto', /* ADDED 2026-11-28: the site's Telegram invitation */ watchDemo:()=>{ try{localStorage.setItem('bestiary-wandering-intro','1');}catch(e){} this.setState({intro:false}); window.BestiaryDemo.playWorld(); }, /* ADDED 2026-11-23: see the overlay's Watch the demo button */
       wrapRef:this.wrapRef, cvRef:this.cvRef, leftRef:this.leftRef, cursor:h?'pointer':'grab', loading:!ready,
       modes, help, q:s.q, onQ:e=>this.setState({q:e.target.value}), results, hasResults:results.length>0,
       

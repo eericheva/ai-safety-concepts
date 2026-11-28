@@ -213,6 +213,13 @@ a.result,a.rel,a.mini{color:inherit;text-decoration:none}
 .vrow .v a:hover{border-bottom-color:var(--gold-soft)}
 .card-note{padding:11px 16px;font-family:var(--ui);font-size:11.5px;color:var(--ink-faint);background:color-mix(in srgb,var(--gold) 6%,transparent);border-top:1px solid var(--rule-soft)}
 
+/* ADDED 2026-11-28: the invitation to the Telegram channel at the end of a beast's essay, drawn only on the site (window.TELEGRAM);
+   a card like the relation groups under it */
+.tg-card{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:40px;padding:18px 20px;border:1px solid var(--rule);border-radius:9px;background:var(--panel);color:var(--ink);text-decoration:none}
+.tg-card .tg-h{font-family:var(--serif);font-size:20px;color:var(--ink)}
+.tg-card .tg-p{font-family:var(--ui);font-size:14px;line-height:1.5;color:var(--ink-soft)}
+.tg-card .tg-b{margin-top:6px;padding:10px 16px;border:1px solid var(--gold-soft);border-radius:9px;font-family:var(--ui);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--gold)}
+.tg-card:hover{border-color:var(--gold-soft)}.tg-card:hover .tg-b{background:var(--gold);color:var(--ground)}
 /* ======================== RELATIONS ======================== */
 .relations{margin-top:52px;border-top:1px solid var(--rule);padding-top:8px}
 .relations > h3{font-size:15px;font-family:var(--ui);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:26px 0 6px;display:flex;align-items:center;gap:12px}
@@ -1087,6 +1094,7 @@ function renderEntry(id){
     col.appendChild(note);
   }
 
+  if(window.TELEGRAM) col.appendChild(buildTelegram()); // ADDED 2026-11-28: before the relations, on the site only
   col.appendChild(buildRelations(n));
   grid.appendChild(col);
   grid.appendChild(buildPlate(n));
@@ -1140,6 +1148,14 @@ function buildMini(n){
     </div>`);
 }
 
+// ADDED 2026-11-28: the site's invitation to the Telegram channel; the link and the click's analytics come from the site
+function buildTelegram(){
+  const a=el("a","tg-card",'<span class="tg-h">More beasts on Telegram</span>'+
+    '<span class="tg-p">New AI safety ideas from the bestiary, breakdowns of new lab methods and the occasional meme.</span>'+
+    '<span class="tg-b">Follow @MrsWallbreaker</span>');
+  a.href=TELEGRAM.href; a.target="_blank"; a.rel="noopener noreferrer"; a.onclick=()=>TELEGRAM.click("wiki");
+  return a;
+}
 function buildRelations(n){
   const wrap=el("div","relations");
   const rels=ADJ[n.id];
